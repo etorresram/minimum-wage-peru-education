@@ -9,9 +9,9 @@ multi-stage survey with continuous fieldwork; the quarterly employment and incom
 module (module 500) records detailed labor market information for each household
 member of working age. I pool the sixteen quarters from the first quarter of 2021
 through the fourth quarter of 2024, which yields about 347,000 person-quarter records
-of working-age individuals. I add the four quarters of 2025 for the out-of-sample
-validation exercise. All statistics use the module's sampling weights, and I cluster
-inference by department.
+of working-age individuals, and I add the four quarters of 2025 for the out-of-sample
+validation exercise. All statistics use the module's sampling weights; the treatment of
+standard errors is discussed in Section~\ref{sec:strategy}.
 
 I restrict the sample to individuals of working age, defined as ages 14 to 65, and
 I drop observations with missing education. My main wage analysis is further
@@ -48,19 +48,15 @@ work that treats education as a primary determinant of where the minimum wage bi
 
 \subsection{Outcome variables}
 
-I construct the following outcomes. \emph{Real hourly wage} is monthly labor income
-in the main occupation divided by monthly hours, deflated by the Lima consumer price
-index to December 2021 soles; I build monthly labor income following the ENAHO
-convention used by \citet{jimenez_2023}, and I winsorize the wage at the first and
-last half-percentiles to limit the influence of outliers. \emph{Real monthly
-earnings} is the same numerator without the hours adjustment. \emph{Employment} is an
-indicator for being employed in the reference week, defined over the working-age
-population, and \emph{labor force participation} is an indicator for being employed or
-unemployed. \emph{Formal employment} is an indicator for holding a formal job among
-the employed. \emph{Self-employment} is an indicator for own-account work among the
-employed, \emph{weekly hours} is hours worked in the main occupation, and \emph{paid
-below the minimum} is an indicator that monthly earnings fall below the statutory
-floor, a direct measure of the bite of and compliance with the policy.
+The outcomes fall into three groups. On \emph{pay}, the real hourly wage is monthly labor
+income in the main occupation divided by monthly hours, deflated by the Lima consumer price
+index to December 2021 soles and winsorized at the first and last half-percentiles; I build
+monthly labor income following the ENAHO convention of \citet{jimenez_2023}, and real monthly
+earnings is the same numerator without the hours adjustment. On \emph{quantities}, employment
+and labor force participation are indicators defined over the working-age population, and
+weekly hours is hours worked in the main occupation. On \emph{composition}, formal employment,
+self-employment, and an indicator for being paid below the statutory minimum are defined among
+the employed; the last is a direct measure of the bite of and compliance with the policy.
 
 A measurement issue arises for informality. INEI's official informal-employment
 indicator, \texttt{ocupinf}, is present in the 2021 through 2023 files but is not
@@ -84,9 +80,9 @@ workers are older on average, more likely to be male and rural, and have far low
 wages. The employment rate is similar across groups, but the composition of
 employment differs starkly: low-skilled workers are much more likely to be informal
 and self-employed, and far more likely to earn below the statutory minimum. Roughly
-seven in ten low-skilled dependent employees earn below the new minimum in the
-pre-reform period, against fewer than four in ten high-skilled employees, which is the
-exposure gap on which my design rests. The high informality of the low-skilled group,
+seven in ten employed low-skilled workers earn below the new minimum in the pre-reform
+period, against fewer than four in ten high-skilled workers, which is the exposure gap on
+which my design rests. The high informality of the low-skilled group,
 around 85 percent against about 49 percent for the high-skilled, is central to
 interpreting the results: for most low-skilled workers the statutory floor is not
 directly enforced, so the margin along which the labor market can adjust is the
