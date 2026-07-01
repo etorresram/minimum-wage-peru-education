@@ -1,99 +1,86 @@
 \section{Introduction}\label{sec:intro}
 
-The employment effects of the minimum wage remain among the most debated questions
-in labor economics, and the debate is sharper still in developing countries, where a
-large share of the workforce operates outside the reach of labor regulation. In such
-settings a statutory wage floor can raise pay for covered workers, push some of them
-into the uncovered informal sector, or serve as a coordinating reference for wages
-that formal firms would have set in any case. Which of these forces dominates is an
-empirical question whose answer depends on how binding the floor is, how strictly it
-is enforced, and how easily workers and firms move between the formal and informal
-margins. This paper studies these questions for Peru, a country that combines a high
-statutory minimum wage relative to median pay with one of the highest rates of labor
-informality in Latin America.
+Whether a minimum wage helps the workers it targets depends on how many of them it actually
+reaches. In developing countries a large share of employment lies outside the reach of labor
+regulation, so a statutory wage floor can raise pay for covered workers, displace some of
+them into the uncovered informal sector, or act only as a reference point for wages that
+formal firms would have paid in any case. Which of these forces dominates is an empirical
+question, and its answer turns on how binding the floor is, how well it is enforced, and how
+freely workers move between the formal and informal margins. I study these questions for
+Peru, a country that pairs a minimum wage high relative to median pay with one of the highest
+rates of labor informality in Latin America.
 
-I exploit the increase in Peru's national minimum wage (the \emph{Remuneraci\'on
-M\'inima Vital}, or RMV) from 930 to 1,025 soles, enacted by Supreme Decree
-003-2022-TR and effective on 1 May 2022. This 10.2 percent nominal increase was the
-first change to the RMV in four years, and it occurred as the labor market was
-emerging from the pandemic. A central institutional fact shapes the analysis: Peru
-sets a single national minimum wage, with no regional or sectoral variation in the
-general regime. There is therefore no cross-sectional variation in the level of the
-policy and no staggered adoption to exploit. As \citet{jimenez_2023} notes for the
-2016 reform, credible identification must instead come from differential
-\emph{exposure} to a policy that changes for everyone at the same time.
+I exploit the increase in Peru's national minimum wage (the \emph{Remuneraci\'on M\'inima
+Vital}, or RMV) from 930 to 1,025 soles, enacted by Supreme Decree 003-2022-TR and effective
+on 1 May 2022. This 10.2 percent nominal increase was the first change to the RMV in four
+years, and it occurred as the labor market was emerging from the pandemic. A central
+institutional fact shapes the analysis: Peru sets a single national minimum wage, with no
+regional or sectoral variation in the general regime. There is therefore no cross-sectional
+variation in the level of the policy and no staggered adoption to exploit. As
+\citet{jimenez_2023} notes for the 2016 reform, credible identification must instead come
+from differential \emph{exposure} to a policy that changes for everyone at the same time.
 
-My source of differential exposure is education. In the pre-reform quarters the
-median monthly wage of a dependent employee in Peru was almost exactly 930 soles,
-the old minimum, so the typical low-education worker sat right at the wage floor. A
-10 percent increase in that floor is highly binding for such workers. High-education
-workers, by contrast, have a median wage well above the minimum and are far less likely to
-be bound by its level, although some remain exposed through informal or own-account work.
-This gap in exposure, rather than a claim of zero exposure for the comparison group,
-motivates a difference-in-differences design that
-contrasts low-education workers (those with at most complete secondary schooling,
-who make up roughly two thirds of the working-age population) with high-education
-workers (those with any tertiary schooling). The design follows a long tradition of
-measuring minimum wage effects from variation in the ``bite'' of the policy across
-groups or regions \citep{card_1992, lee_1999, machin_manning_rahman_2003}, adapted
-here to a setting with a single national reform and rich, quarterly household data.
+My source of differential exposure is education. In the pre-reform quarters the median
+monthly wage of a dependent employee in Peru was almost exactly 930 soles, the old minimum,
+so the typical low-education worker sat right at the wage floor, and a ten percent increase
+in that floor is highly binding. High-education workers, by contrast, have a median wage well
+above the minimum and are far less likely to be bound by it, although some remain exposed
+through informal or own-account work. This gap in exposure, rather than a claim of zero
+exposure for the comparison group, motivates a difference-in-differences design that
+contrasts low-education workers (those with at most complete secondary schooling, about two
+thirds of the working-age population) with high-education workers (those with any tertiary
+schooling). The design applies a long tradition of measuring minimum wage effects from
+variation in the ``bite'' of the policy across groups or regions \citep{card_1992, lee_1999,
+machin_manning_rahman_2003} to a setting with a single national reform and rich, quarterly
+household data.
 
-I use the public-use quarterly employment modules of the Encuesta Nacional de
-Hogares (ENAHO) from the first quarter of 2021 through the fourth quarter of 2024,
-sixteen quarters that bracket the reform with five pre-reform and eleven post-reform
-periods. The panel structure of the data at the quarterly frequency lets me estimate
-a dynamic event study, test for differential pre-trends by skill, and trace the path
-of effects for more than two years after the reform. I examine a broad set of
-outcomes: real hourly wages and monthly earnings, the probability of employment and
-of labor force participation, the incidence of formal versus informal employment,
-hours of work, and the composition of employment between wage work and
-self-employment. Throughout I use survey weights and cluster inference by
-department, and I complement conventional cluster-robust standard errors with the
-small-sample correction of \citet{pustejovsky_tipton_2018} and with randomization
-inference, because the treatment is assigned at a coarse level.
+I use the public-use quarterly employment modules of the Encuesta Nacional de Hogares (ENAHO)
+from 2021Q1 through 2024Q4, sixteen quarters that bracket the reform with five pre-reform and
+eleven post-reform periods. The data are repeated cross-sections, and their quarterly
+frequency lets me estimate a dynamic event study, test for differential pre-trends by
+education, and trace the effect for more than two years after the reform. I examine a broad
+set of outcomes: real hourly wages and monthly earnings, the probability of employment and of
+labor force participation, the incidence of formal versus informal employment, hours of work,
+and the split of employment between wage work and self-employment. Throughout I weight by the
+survey weights and cluster inference by department, and because treatment is assigned at a
+coarse level I complement conventional cluster-robust standard errors with the small-sample
+correction of \citet{pustejovsky_tipton_2018} and with randomization inference.
 
-Three findings emerge. First, the reform did not raise the real wages of
-low-education workers relative to high-education workers. The estimated effect on the
-log real hourly wage is a precisely estimated null, and the event study shows no
-break at the reform and flat pre-trends. This is my most robust result. Second, the
-reform is associated with a decline in the probability that a low-education worker
-holds formal salaried employment and with an offsetting rise in self-employment, a
-pattern consistent with reallocation from the formal to the informal margin rather
-than with the compression of the formal wage distribution documented for earlier
-Peruvian reforms. Third, the employment rate of low-education workers falls modestly
-relative to that of high-education workers, though this margin is the least robust
-and is sensitive to the treatment of the pandemic recovery quarter of early 2021.
-For the wage and formality results, pre-trends are statistically flat; for
-employment and self-employment they are not, and I address this directly using the
-sensitivity analysis of \citet{rambachan_roth_2023} and a battery of specification
-and placebo checks. I further replicate the entire design on the subsequent reform
-of January 2025, which raised the RMV to 1,130 soles in a cleaner, post-pandemic
-window, and obtain a consistent picture.
+Three findings emerge. First, and most robustly, the reform did not raise the real wages of
+low-education workers relative to high-education workers. The effect on the log real hourly
+wage is a precisely estimated null, the event study shows flat pre-trends and no break at the
+reform, and the null holds across the wage distribution. Second, around 2022 the reform is
+associated with a decline in the probability that a low-education worker holds formal salaried
+employment and with an offsetting rise in self-employment, a pattern that points to
+reallocation from the formal to the informal margin rather than to compression of the formal
+wage distribution. Third, the employment rate of low-education workers falls modestly, but
+this margin is the least robust and is sensitive to the differential pandemic recovery of
+early 2021. For the wage and formality results pre-trends are statistically flat; for
+employment and self-employment they are not, so I bound their conclusions with the sensitivity
+analysis of \citet{rambachan_roth_2023} and a battery of specification and placebo checks. I
+then replicate the whole design on the January 2025 reform, which raised the RMV to 1,130
+soles in a cleaner, post-pandemic window. The wage null reappears; the compositional effects
+do not, which leads me to read them as specific to the 2022 episode.
 
-My contribution is threefold, and I am careful not to overstate it. First, I
-provide the first evaluation of the 2022 Peruvian minimum wage reform and, to my
-knowledge, the first study of any Peruvian reform using the post-pandemic quarterly
-ENAHO. The existing micro evidence for Peru stops at the 2016 reform
-\citep{jimenez_2023} or the reforms of the early 2000s \citep{jaramillo_lopez_2006,
-cespedes_2005}. Second, I make heterogeneity by education the central object of
-analysis at the worker level. Prior work cuts heterogeneity by income range or age,
-or constructs a department-level ``dose'' of exposure; none contrasts low- and
-high-education workers directly as treatment and comparison groups in an event study
-of the Peruvian minimum wage. Third, I place the informal margin at the center of
-the analysis and show that the adjustment to the reform runs through the composition
-of employment rather than through pay. I do not claim novelty for the underlying
-identification idea, which is the standard exposure or bite design, nor for the
-econometric toolkit, which is by now well established. The value added is the
-combination of a new reform, a new and policy-relevant period, an education-based
-worker-level design, and a careful treatment of the informal margin and of the
-threats to identification that such a design entails.
+The contribution is a combination rather than a new tool, and I state it without overclaiming.
+This is the first evaluation of the 2022 Peruvian minimum wage reform and, to my knowledge,
+the first study of any Peruvian reform using the post-pandemic quarterly ENAHO; the existing
+micro evidence stops at the 2016 reform \citep{jimenez_2023} or at the reforms of the early
+2000s \citep{jaramillo_lopez_2006, cespedes_2005}. It is also the first to make heterogeneity
+by education the central object of a worker-level event study of the Peruvian minimum wage,
+where prior work cuts heterogeneity by income range or age or constructs a department-level
+dose of exposure. And it places the informal margin at the center of the analysis, showing
+that adjustment runs through the composition of employment rather than through pay. I claim no
+novelty for the identification idea, which is the standard exposure or bite design, nor for
+the econometric toolkit; the value added is the pairing of a new reform and a policy-relevant
+post-pandemic period with an education-based worker-level design and a careful treatment of
+informality and of the threats to identification that such a design entails.
 
-The remainder of the paper is organized as follows. Section~\ref{sec:institutional}
-describes the Peruvian minimum wage and the reform. Section~\ref{sec:literature}
-reviews the related literature. Section~\ref{sec:data} presents the data and the
-construction of the key variables. Section~\ref{sec:strategy} sets out the empirical
-strategy and the identifying assumptions. Section~\ref{sec:results} reports the main
-results, Section~\ref{sec:robustness} the robustness and inference checks, and
-Section~\ref{sec:heterogeneity} the heterogeneity and distributional analysis.
-Section~\ref{sec:discussion} discusses mechanisms, external validity, and
-limitations, and Section~\ref{sec:conclusion} concludes.
+The rest of the paper proceeds as follows. Section~\ref{sec:institutional} describes the
+Peruvian minimum wage and the reform, and Section~\ref{sec:literature} places the paper in the
+literature. Section~\ref{sec:data} presents the data and the construction of the key
+variables, and Section~\ref{sec:strategy} sets out the empirical strategy and the identifying
+assumptions. Section~\ref{sec:results} reports the main results, Section~\ref{sec:robustness}
+the robustness and inference checks, and Section~\ref{sec:heterogeneity} the heterogeneity and
+distributional analysis. Section~\ref{sec:discussion} discusses mechanisms, external validity,
+and limitations, and Section~\ref{sec:conclusion} concludes.
