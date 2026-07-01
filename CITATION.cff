@@ -1,0 +1,36 @@
+cff-version: 1.2.0
+message: "If you use this replication package, please cite it as below."
+title: "Minimum Wages and Workers by Education Level: Evidence from Peru's 2022 Reform (replication package)"
+abstract: >-
+  Replication package for a difference-in-differences study of the May 2022
+  Peruvian minimum-wage reform (Remuneracion Minima Vital, from 930 to 1,025
+  soles), contrasting low- and high-education workers using the quarterly ENAHO
+  employment surveys, 2021-2024, with an out-of-sample validation on the January
+  2025 reform. Includes the data pipeline, estimation and robustness code, the
+  literature database, publication figures and tables, and the LaTeX manuscript.
+type: software
+authors:
+  - given-names: "[First name]"
+    family-names: "[Last name]"
+    email: etorresram@gmail.com
+    # TODO: replace the placeholder name (and add ORCID/affiliation) before release.
+version: "1.0.0"
+date-released: "2026-07-01"
+license: MIT
+repository-code: "https://github.com/etorresram/minimum-wage-peru-education"
+keywords:
+  - minimum wage
+  - informality
+  - education
+  - difference-in-differences
+  - Peru
+  - ENAHO
+  - labor economics
+references:
+  - type: data
+    title: "Encuesta Nacional de Hogares (ENAHO), quarterly employment modules"
+    authors:
+      - name: "Instituto Nacional de Estadistica e Informatica (INEI)"
+    year: 2025
+    url: "https://www.inei.gob.pe"
+    notes: "Public-use microdata; subject to INEI terms and not redistributed in this repository."
