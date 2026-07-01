@@ -10,10 +10,10 @@ abstract: >-
   literature database, publication figures and tables, and the LaTeX manuscript.
 type: software
 authors:
-  - given-names: "[First name]"
-    family-names: "[Last name]"
+  - given-names: "Eric"
+    family-names: "Torres Ramírez"
     email: etorresram@gmail.com
-    # TODO: replace the placeholder name (and add ORCID/affiliation) before release.
+    affiliation: "Pontificia Universidad Católica del Perú"
 version: "1.0.0"
 date-released: "2026-07-01"
 license: MIT
