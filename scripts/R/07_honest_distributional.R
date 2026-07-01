@@ -42,11 +42,14 @@ honest_one <- function(y, flt, name) {
       numPrePeriods=nPre, numPostPeriods=nPost, l_vec=rep(1/nPost, nPost)),
     error=function(e) NULL)
   if (is.null(rm)) return(NULL)
-  out <- as.data.table(rm); out[, outcome := name]
-  if (!is.null(orig)) out <- rbind(
-    data.table(lb=orig$lb, ub=orig$ub, method="Original", Delta=NA, Mbar=0, outcome=name),
-    out, fill=TRUE)
-  out
+  # extract clean numeric vectors (HonestDiD stores lb/ub as 1-column matrices)
+  res <- data.table(outcome=name, kind="RM", Mbar=as.numeric(rm$Mbar),
+                    lb=as.numeric(rm$lb), ub=as.numeric(rm$ub))
+  if (!is.null(orig)) res <- rbind(
+    data.table(outcome=name, kind="Original", Mbar=0,
+               lb=as.numeric(orig$lb), ub=as.numeric(orig$ub)),
+    res)
+  res
 }
 honest <- rbindlist(list(
   honest_one("log_wage_hr", quote(employed==1 & dependent==1 & is.finite(log_wage_hr)), "Log hourly wage"),
@@ -59,7 +62,7 @@ cat("==== HonestDiD relative-magnitudes sensitivity (first post period) ====\n")
 print(honest[, .(outcome, Mbar, lb=round(lb,4), ub=round(ub,4))])
 
 # breakdown Mbar: largest Mbar for which the robust CI still excludes 0
-bd <- honest[!is.na(Delta)][, .(breakdown = { s <- .SD[order(Mbar)];
+bd <- honest[kind=="RM"][, .(breakdown = { s <- .SD[order(Mbar)];
           excl <- s$lb>0 | s$ub<0;
           if (any(excl)) max(s$Mbar[excl]) else NA_real_ }), by=outcome]
 cat("\nBreakdown Mbar (largest relative-magnitude violation the result survives):\n")
@@ -67,8 +70,8 @@ print(bd)
 
 # sensitivity plot for employment and formality
 hp <- honest[outcome %in% c("Employment","Formal empl.")]
-hp[, Mlab := ifelse(is.na(Delta), "Original", paste0("Mbar=",Mbar))]
-hp <- hp[Mbar %in% c(0,0.1,0.2,0.3,0.4,0.5,1) | is.na(Delta)]
+hp <- hp[kind=="Original" | Mbar %in% c(0,0.1,0.2,0.3,0.4,0.5,1)]
+hp[, Mlab := ifelse(kind=="Original", "Original", paste0("Mbar=",Mbar))]
 hp[, Mlab := factor(Mlab, levels=c("Original", paste0("Mbar=",c(0,0.1,0.2,0.3,0.4,0.5,1))))]
 p7 <- ggplot(hp, aes(Mlab, ymin=lb, ymax=ub)) +
   geom_hline(yintercept=0, colour="grey55") +
