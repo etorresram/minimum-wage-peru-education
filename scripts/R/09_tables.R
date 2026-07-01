@@ -6,9 +6,22 @@ source(file.path(Sys.getenv("MW_PROJ_ROOT",
         "scripts", "R", "00_config.R"))
 
 star <- function(p) ifelse(is.na(p),"",ifelse(p<0.01,"***",ifelse(p<0.05,"**",ifelse(p<0.1,"*",""))))
-f3 <- function(x) formatC(x, format="f", digits=3)
-cell <- function(est,se,p) sprintf("%s$^{%s}$", f3(est), star(p))  # estimate with stars
+f3 <- function(x) formatC(x, format="f", digits=3)          # 3 decimals for all estimates
+cell <- function(est,se,p) {                                 # estimate with stars (no empty ^{})
+  s <- star(p); sprintf("%s%s", f3(est), if (nzchar(s)) paste0("$^{",s,"}$") else "")
+}
 secell <- function(se) sprintf("(%s)", f3(se))
+# canonical, uniform outcome labels used across every table
+LAB <- c("Log hourly wage"="Log real hourly wage", "Log real hourly wage"="Log real hourly wage",
+         "Formal empl."="Formal employment", "Formal employment"="Formal employment",
+         "Employment"="Employment", "Self-employment"="Self-employment",
+         "Log real monthly earnings"="Log real monthly earnings",
+         "Labour force part."="Labour force participation",
+         "Weekly hours"="Weekly hours", "Paid below MW"="Paid below the MW")
+canon <- function(x) ifelse(x %in% names(LAB), LAB[x], x)
+# shared significance-stars legend and clustering/weights note fragments
+STARS <- "$^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$."
+SE_NOTE <- "Standard errors clustered by department in parentheses; all estimates are weighted by ENAHO survey weights."
 
 wrap <- function(body, caption, label, notes, colspec, header, small=FALSE) {
   c("\\begin{table}[H]\\centering",
@@ -40,8 +53,8 @@ dr   <- fread(file.path(DIR_OUT, "drdid_coefs.csv"))
 pt   <- fread(file.path(DIR_OUT, "pretrend_tests.csv"))
 ord  <- c("log_wage_hr","log_ylab","employed","lfp","formal","self_emp","hours_main","below_mw")
 labs <- c(log_wage_hr="Log real hourly wage", log_ylab="Log real monthly earnings",
-          employed="Employment", lfp="Labour force part.", formal="Formal employment",
-          self_emp="Self-employment", hours_main="Weekly hours", below_mw="Paid below MW")
+          employed="Employment", lfp="Labour force participation", formal="Formal employment",
+          self_emp="Self-employment", hours_main="Weekly hours", below_mw="Paid below the MW")
 rows <- c()
 for (o in ord) {
   m <- main[outcome==o]; d <- dr[outcome==o]; p <- pt[outcome==o]
@@ -56,7 +69,7 @@ for (o in ord) {
 tab_main <- wrap(rows,
   "Difference-in-differences estimates of the 2022 minimum-wage reform",
   "tab:main", c(
-  "\\item Notes: Each row is a separate regression. Column (1) reports the two-way fixed-effects DiD coefficient on $\\mathrm{Low}\\times\\mathrm{Post}$ from equation~\\eqref{eq:twfe}, with department and quarter fixed effects and controls (age, age squared, sex, urban, marital status, years of education). Column (2) reports the doubly robust DiD estimator of \\citet{santanna_zhao_2020} collapsing to pre/post and dropping the transition quarter. Column (3) is the $p$-value of a joint test that the pre-reform event-study interactions are zero. Standard errors clustered by department in parentheses. Survey weights used throughout. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$."),
+  "\\item Notes: Each row is a separate regression. Column (1) reports the two-way fixed-effects DiD coefficient on $\\mathrm{Low}\\times\\mathrm{Post}$ from equation~\\eqref{eq:twfe}, with department and quarter fixed effects and controls (age, age squared, sex, urban, marital status, years of education). Column (2) reports the doubly robust DiD estimator of \\citet{santanna_zhao_2020} collapsing to pre/post and dropping the transition quarter. Column (3) is the $p$-value of a joint test that the pre-reform event-study interactions are zero. Standard errors clustered by department in parentheses; all estimates are weighted by ENAHO survey weights. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$."),
   "lccc",
   "Outcome & (1) TWFE DiD & (2) Doubly robust & (3) Pre-trend $p$ \\\\")
 writeLines(tab_main, file.path(DIR_TAB, "tab_main_did.tex"))
@@ -76,9 +89,10 @@ rows <- sapply(names(sp_ord), function(s) {
 })
 tab_sp <- wrap(as.vector(rows),
   "Specification robustness of the DiD estimates",
-  "tab:robspec", c("\\item Notes: Each cell is the $\\mathrm{Low}\\times\\mathrm{Post}$ DiD coefficient (standard error clustered by department below) for the outcome in the column heading, under the specification in the row. The baseline is equation~\\eqref{eq:twfe}. The alternative education cutoff defines low-skilled as at most incomplete secondary and high-skilled as at least complete non-university tertiary, dropping the boundary categories. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$."),
+  "tab:robspec", c("\\item Notes: Each cell is the $\\mathrm{Low}\\times\\mathrm{Post}$ DiD coefficient (standard error clustered by department below) for the outcome in the column heading, under the specification in the row; all estimates are weighted by ENAHO survey weights, and Log hourly wage denotes the log real hourly wage. The baseline is equation~\\eqref{eq:twfe}. The alternative education cutoff defines low-skilled as at most incomplete secondary and high-skilled as at least complete non-university tertiary, dropping the boundary categories. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$."),
   "lcccc",
-  paste0("Specification & ", paste(oc, collapse=" & "), " \\\\"))
+  paste0("Specification & ", paste(oc, collapse=" & "), " \\\\"),
+  small=TRUE)
 writeLines(tab_sp, file.path(DIR_TAB, "tab_robustness.tex"))
 
 ## ---- Table: inference and design robustness ---------------------------------
@@ -98,7 +112,7 @@ for (o in oc) {
 }
 tab_inf <- wrap(rows,
   "Inference robustness, design robustness, and out-of-sample validation",
-  "tab:inference", c("\\item Notes: Columns (1)--(4) report $p$-values for the baseline $\\mathrm{Low}\\times\\mathrm{Post}$ effect under, respectively, department clustering, department$\\times$skill clustering, the CR2 small-sample correction \\citep{pustejovsky_tipton_2018} applied to department-level collapsed cells, and randomization inference permuting the regional bite across departments (2{,}000 draws). Column (5) reports the continuous-exposure estimate, the coefficient on $\\mathrm{Post}\\times$(standardized department Kaitz index). Column (6) reports the DiD estimate for the January-2025 reform (window 2024--2025). $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$."),
+  "tab:inference", c("\\item Notes: Columns (1)--(4) report $p$-values for the baseline $\\mathrm{Low}\\times\\mathrm{Post}$ effect under, respectively, department clustering, department$\\times$skill clustering, the CR2 small-sample correction \\citep{pustejovsky_tipton_2018} applied to department-level collapsed cells, and randomization inference permuting the regional bite across departments (2{,}000 draws). Column (5) reports the continuous-exposure estimate, the coefficient on $\\mathrm{Post}\\times$(standardized department Kaitz index). Column (6) reports the DiD estimate for the January-2025 reform (window 2024--2025). Log hourly wage denotes the log real hourly wage; all estimates are weighted by ENAHO survey weights, and significance in columns (5)--(6) is based on department-clustered standard errors. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$."),
   "lcccccc",
   "Outcome & (1) Dept. & (2) Dept.$\\times$skill & (3) CR2 & (4) RI & (5) Continuous & (6) 2025 reform \\\\",
   small=TRUE)
@@ -109,7 +123,9 @@ pl <- fread(file.path(DIR_OUT, "rob_placebo.csv"))
 qlab <- c(`2`="2021Q2", `3`="2021Q3", `4`="2021Q4")
 prows <- sapply(unique(pl$outcome), function(o) {
   vals <- sapply(c(2,3,4), function(q){ r <- pl[outcome==o & placebo_reform_t==q]; cell(r$est,r$se,r$p) })
-  sprintf("%s & %s \\\\", o, paste(vals, collapse=" & "))
+  ses  <- sapply(c(2,3,4), function(q){ r <- pl[outcome==o & placebo_reform_t==q]; secell(r$se) })
+  c(sprintf("%s & %s \\\\", canon(o), paste(vals, collapse=" & ")),
+    sprintf(" & %s \\\\", paste(ses, collapse=" & ")))
 })
 plb <- c("\\begin{tabular}{lccc}", "\\toprule",
          "Outcome & Placebo 2021Q2 & Placebo 2021Q3 & Placebo 2021Q4 \\\\", "\\midrule",

@@ -40,7 +40,7 @@ tab1[, Difference := Low - High]
 fwrite(tab1, file.path(DIR_OUT, "tab_descriptives.csv"))
 
 # LaTeX
-fmt <- function(x) formatC(x, format="f", digits=3, big.mark=",")
+fmt <- function(x) sub("^-(0\\.0+)$", "\\1", formatC(x, format="f", digits=2, big.mark=","))
 lt <- c("\\begin{tabular}{lccc}", "\\toprule",
         " & Low-skilled & High-skilled & Difference \\\\",
         " & ($\\le$ sec. complete) & ($\\ge$ higher) & \\\\", "\\midrule")
