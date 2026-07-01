@@ -2,19 +2,19 @@
 
 \subsection{The ENAHO quarterly employment modules}
 
-We use the public-use quarterly files of the Encuesta Nacional de Hogares (ENAHO),
+I use the public-use quarterly files of the Encuesta Nacional de Hogares (ENAHO),
 the national household survey conducted by Peru's Instituto Nacional de Estad\'istica
 e Inform\'atica (INEI). ENAHO is a nationally representative, stratified,
 multi-stage survey with continuous fieldwork; the quarterly employment and income
 module (module 500) records detailed labor market information for each household
-member of working age. We pool the sixteen quarters from the first quarter of 2021
+member of working age. I pool the sixteen quarters from the first quarter of 2021
 through the fourth quarter of 2024, which yields about 347,000 person-quarter records
-of working-age individuals. We add the four quarters of 2025 for the out-of-sample
-validation exercise. All statistics use the module's sampling weights, and we cluster
+of working-age individuals. I add the four quarters of 2025 for the out-of-sample
+validation exercise. All statistics use the module's sampling weights, and I cluster
 inference by department.
 
-We restrict the sample to individuals of working age, defined as ages 14 to 65, and
-we drop observations with missing education. Our main wage analysis is further
+I restrict the sample to individuals of working age, defined as ages 14 to 65, and
+I drop observations with missing education. My main wage analysis is further
 restricted to dependent wage employees, for whom the minimum wage is the relevant
 statutory floor, while the employment, participation, formality, and self-employment
 outcomes are defined over the working-age population or over the employed, as
@@ -23,13 +23,13 @@ appropriate.
 \subsection{Education and the definition of skill groups}
 
 The treatment and comparison groups are defined by educational attainment, recorded
-in ENAHO variable \texttt{p301a}, the highest level of schooling completed. We
+in ENAHO variable \texttt{p301a}, the highest level of schooling completed. I
 validated the coding of this variable against the weighted distribution of attainment
 in the data; it corresponds to the standard INEI classification, ranging from no
-schooling through postgraduate study. We define \emph{low-skilled} workers as those
+schooling through postgraduate study. I define \emph{low-skilled} workers as those
 with at most complete secondary schooling (no education, initial, primary, or
 secondary), and \emph{high-skilled} workers as those with any tertiary schooling
-(non-university higher, university, or postgraduate). We exclude the small residual
+(non-university higher, university, or postgraduate). I exclude the small residual
 category of special education, which is not ordered on the skill dimension, and
 observations with missing education.
 
@@ -48,10 +48,10 @@ work that treats education as a primary determinant of where the minimum wage bi
 
 \subsection{Outcome variables}
 
-We construct the following outcomes. \emph{Real hourly wage} is monthly labor income
+I construct the following outcomes. \emph{Real hourly wage} is monthly labor income
 in the main occupation divided by monthly hours, deflated by the Lima consumer price
-index to December 2021 soles; we build monthly labor income following the ENAHO
-convention used by \citet{jimenez_2023}, and we winsorize the wage at the first and
+index to December 2021 soles; I build monthly labor income following the ENAHO
+convention used by \citet{jimenez_2023}, and I winsorize the wage at the first and
 last half-percentiles to limit the influence of outliers. \emph{Real monthly
 earnings} is the same numerator without the hours adjustment. \emph{Employment} is an
 indicator for being employed in the reference week, defined over the working-age
@@ -64,15 +64,15 @@ floor, a direct measure of the bite of and compliance with the policy.
 
 A measurement issue arises for informality. INEI's official informal-employment
 indicator, \texttt{ocupinf}, is present in the 2021 through 2023 files but is not
-released in the 2024 and 2025 files. Because our study window extends through 2024, we
+released in the 2024 and 2025 files. Because my study window extends through 2024, I
 reconstruct a consistent informality indicator from underlying primitives that are
 available in every year: pension affiliation, the possession of a formal labor
 contract, the registration status of the productive unit, and the category of
-employment. We validate the reconstruction against the official \texttt{ocupinf} in
+employment. I validate the reconstruction against the official \texttt{ocupinf} in
 2021 through 2023, where both are available, and obtain agreement of about 88 percent
 at the worker level, with an implied informality rate within one percentage point of
-the official figure. We use the official indicator wherever it exists and the
-reconstruction only for 2024 and 2025, and we report a robustness check that restricts
+the official figure. I use the official indicator wherever it exists and the
+reconstruction only for 2024 and 2025, and I report a robustness check that restricts
 the formality analysis to the years covered by the official measure. Full details of
 the construction are in Appendix~\ref{app:data}.
 
@@ -86,7 +86,7 @@ employment differs starkly: low-skilled workers are much more likely to be infor
 and self-employed, and far more likely to earn below the statutory minimum. Roughly
 seven in ten low-skilled dependent employees earn below the new minimum in the
 pre-reform period, against fewer than four in ten high-skilled employees, which is the
-exposure gap on which our design rests. The high informality of the low-skilled group,
+exposure gap on which my design rests. The high informality of the low-skilled group,
 around 85 percent against about 49 percent for the high-skilled, is central to
 interpreting the results: for most low-skilled workers the statutory floor is not
 directly enforced, so the margin along which the labor market can adjust is the
