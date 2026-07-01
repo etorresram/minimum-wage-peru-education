@@ -1,0 +1,30 @@
+# --- Raw and derived ENAHO microdata (NOT redistributable under INEI terms) ---
+data/raw/*
+!data/raw/.gitkeep
+data/processed/enaho_pooled.rds
+data/processed/enaho_analysis.csv
+data/interim/*
+output/es_wage_model.rds
+
+# --- Build artifacts ---
+*.Rhistory
+.RData
+.Rproj.user
+.DS_Store
+Rplots.pdf
+
+# LaTeX intermediates
+paper/*.aux
+paper/*.log
+paper/*.bbl
+paper/*.blg
+paper/*.out
+replication/overleaf/**/*.aux
+replication/overleaf/**/*.log
+replication/overleaf/**/*.bbl
+replication/overleaf/**/*.blg
+replication/overleaf/**/*.out
+
+# Logs
+logs/*.log
+logs/*.out

@@ -1,0 +1,102 @@
+\section{Empirical strategy}\label{sec:strategy}
+
+\subsection{Potential outcomes and the estimand}
+
+Let $i$ index individuals, $g\in\{\Low,\mathrm{High}\}$ their skill group, and $t$ the
+quarter. The reform becomes effective in the second quarter of 2022, which we denote
+$t^{\ast}$; define the post-reform indicator $\Post_t=\mathbf{1}\{t\ge t^{\ast}\}$ and
+the treatment indicator $\Low_i=\mathbf{1}\{g_i=\Low\}$. Following the potential-outcomes
+framework, let $Y_{it}(1)$ and $Y_{it}(0)$ denote the outcome of individual $i$ in
+quarter $t$ with and without the reform being in force. The parameter of interest is the
+average effect of the reform on the low-skilled, relative to the counterfactual in which
+they had experienced the same evolution as the high-skilled,
+\begin{equation}
+\mathrm{ATT} \;=\; \mathbb{E}\!\left[\,Y_{it}(1)-Y_{it}(0)\;\middle|\;\Low_i=1,\;t\ge t^{\ast}\right].
+\end{equation}
+The data are repeated cross-sections rather than a panel, so the object is identified from
+comparisons of group means over time rather than from within-person changes.
+
+Because Peru's minimum wage is national and changes on a single date, there is no variation
+in treatment \emph{timing}; every worker is exposed to the same policy at the same moment.
+Identification instead rests on variation in the \emph{intensity} of exposure across skill
+groups. The design is therefore a canonical two-group difference-in-differences with many
+periods, not a staggered-adoption design. This distinction matters for the choice of
+estimator. The recent econometric literature has shown that the two-way fixed-effects
+estimator can be badly biased when treatment timing is staggered and effects are
+heterogeneous \citep{goodmanbacon_2021, dechaisemartin_2020, sun_abraham_2021,
+callaway_santanna_2021}. With a common treatment date, however, these problems do not
+arise: the two-way fixed-effects estimator and its event-study analog recover a convex,
+properly weighted average of treatment effects \citep{roth_2023_trending,
+baker_larcker_wang_2022}. We nonetheless report the doubly robust estimator of
+\citet{santanna_zhao_2020} as a complementary building block.
+
+\subsection{Estimating equations}
+
+Our baseline specification is the two-way fixed-effects difference-in-differences model
+\begin{equation}
+Y_{idt} \;=\; \beta\,(\Low_i\times\Post_t) \;+\; \gamma\,\Low_i \;+\; \lambda_t \;+\; \mu_d
+\;+\; X_{it}'\theta \;+\; \varepsilon_{idt},
+\label{eq:twfe}
+\end{equation}
+where $d$ denotes the department, $\lambda_t$ are quarter fixed effects, $\mu_d$ are
+department fixed effects, and $X_{it}$ is a vector of controls comprising age, its square,
+sex, an urban indicator, marital status, and years of education (which captures variation
+in attainment within skill groups). The coefficient $\beta$ is the difference-in-differences
+estimate. The quarter fixed effects absorb any shock common to both skill groups in a given
+quarter, including aggregate inflation, so that estimates in logs are invariant to whether
+wages are expressed in nominal or in nationally deflated real terms. Observations are
+weighted by the survey weights, and standard errors are clustered by department.
+
+To trace the dynamics of the effect and to test the identifying assumption, we estimate the
+dynamic event-study specification
+\begin{equation}
+Y_{idt} \;=\; \sum_{k\neq -1}\beta_k\,\bigl(\Low_i\times\mathbf{1}\{t-t^{\ast}=k\}\bigr)
+\;+\; \gamma\,\Low_i \;+\; \lambda_t \;+\; \mu_d \;+\; X_{it}'\theta \;+\; \varepsilon_{idt},
+\label{eq:event}
+\end{equation}
+where $k$ indexes quarters relative to the reform and the quarter immediately before the
+reform ($k=-1$, the first quarter of 2022) is the omitted reference. The coefficients
+$\beta_k$ for $k<0$ measure differential pre-trends between the skill groups and provide a
+direct test of parallel trends; the coefficients for $k\ge 0$ trace the path of the effect.
+
+\subsection{Identifying assumptions and threats}
+
+Identification of the ATT from equation~\eqref{eq:twfe} requires that, absent the reform, the
+outcomes of low- and high-skilled workers would have followed parallel paths, conditional on
+the controls and fixed effects. Three threats deserve attention.
+
+First, \emph{differential trends}. Education is correlated with sector, region, and formality,
+and the two skill groups could have been on diverging paths for reasons unrelated to the
+minimum wage. We assess this directly through the pre-reform event-study coefficients and a
+joint test of their equality to zero, and we probe robustness to department-specific linear
+trends. Because our window opens in the depth of the pandemic recovery, when the employment of
+low- and high-skilled workers rebounded at different rates, we pay particular attention to the
+first quarter of 2021 and report specifications that drop it.
+
+Second, \emph{sensitivity to residual violations}. Even when pre-trends are statistically flat,
+they need not be exactly zero. We therefore report the sensitivity analysis of
+\citet{rambachan_roth_2023}, which asks how large a post-reform violation of parallel trends,
+relative to the largest violation observed before the reform, would be needed to overturn each
+conclusion.
+
+Third, \emph{spillovers and general equilibrium}. If the reform displaces low-skilled workers
+into the informal sector, it may indirectly depress wages there, and if high-skilled workers are
+imperfect substitutes their outcomes could also move, contaminating the comparison group. We
+cannot rule this out, and we interpret the estimates as relative effects. The comparison group is not
+entirely unexposed, since a minority of high-skilled workers also earn near the floor through
+informal or own-account work; this imperfect exposure attenuates our estimates toward zero, so
+the design understates rather than overstates the true effect on the fully exposed. We assess the
+plausibility of the comparison by showing that the median high-skilled wage sits well above the
+floor and that the high-skilled event-study path shows no break at the reform.
+
+\subsection{Inference}
+
+The treatment is assigned at a coarse level, the skill group, which raises the standard concern
+that conventional standard errors overstate precision \citep{bertrand_2004}. We address this in
+three ways. We cluster by department, which allows arbitrary within-department correlation across
+individuals and quarters; we report an alternative that clusters by department and skill group; and
+we apply the bias-reduced CR2 small-sample correction of \citet{pustejovsky_tipton_2018} to
+department-level collapsed cells, where it is computationally feasible. Finally, because these
+corrections may still be optimistic with a two-group design, we complement them with randomization
+inference at the department level, permuting the regional bite of the minimum wage across departments
+to construct an exact null distribution for the exposure-intensity design.

@@ -1,0 +1,29 @@
+\begin{table}[H]\centering
+\caption{Specification robustness of the DiD estimates}\label{tab:robspec}
+\begin{threeparttable}
+\begin{tabular}{lcccc}
+\toprule
+Specification & Log hourly wage & Employment & Formal empl. & Self-employment \\
+\midrule
+Baseline & -0.009$^{}$ & -0.025$^{***}$ & -0.036$^{***}$ & 0.029$^{***}$ \\
+ & (0.022) & (0.005) & (0.007) & (0.006) \\
+No controls & 0.016$^{}$ & -0.021$^{***}$ & -0.029$^{***}$ & 0.034$^{***}$ \\
+ & (0.023) & (0.005) & (0.007) & (0.006) \\
+Drop 2021Q1 (pandemic) & -0.012$^{}$ & -0.013$^{***}$ & -0.032$^{***}$ & 0.025$^{***}$ \\
+ & (0.018) & (0.004) & (0.008) & (0.005) \\
+Department linear trends & -0.003$^{}$ & -0.017$^{***}$ & -0.034$^{***}$ & 0.028$^{***}$ \\
+ & (0.022) & (0.005) & (0.007) & (0.006) \\
+Prime age (25--55) & -0.014$^{}$ & -0.022$^{***}$ & -0.030$^{***}$ & 0.021$^{***}$ \\
+ & (0.031) & (0.004) & (0.007) & (0.006) \\
+Alternative education cutoff & -0.008$^{}$ & -0.038$^{***}$ & -0.048$^{***}$ & 0.041$^{***}$ \\
+ & (0.018) & (0.006) & (0.006) & (0.007) \\
+Occupation \& industry FE & 0.000$^{}$ & -0.014$^{***}$ & -0.027$^{***}$ & 0.017$^{***}$ \\
+ & (0.022) & (0.004) & (0.006) & (0.004) \\
+Cluster dept.$\times$skill & -0.009$^{}$ & -0.025$^{}$ & -0.036$^{***}$ & 0.029$^{***}$ \\
+ & (0.026) & (0.019) & (0.006) & (0.006) \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}\footnotesize
+\item Notes: Each cell is the $\mathrm{Low}\times\mathrm{Post}$ DiD coefficient (standard error clustered by department below) for the outcome in the column heading, under the specification in the row. The baseline is equation~\eqref{eq:twfe}. The alternative education cutoff defines low-skilled as at most incomplete secondary and high-skilled as at least complete non-university tertiary, dropping the boundary categories. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$.
+\end{tablenotes}
+\end{threeparttable}\end{table}

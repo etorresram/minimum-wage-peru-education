@@ -1,0 +1,75 @@
+\section{Data appendix}\label{app:data}
+
+\subsection{Sample and variable construction}
+
+We pool the twenty quarterly ENAHO employment modules (module 500) for 2021Q1--2025Q4;
+the main analysis uses 2021Q1--2024Q4 and the validation uses 2024Q1--2025Q4. The
+working-age sample comprises individuals aged 14 to 65 with non-missing education. All
+statistics use the module employment weight (\texttt{fac500a}). Departments are the 25
+first-level administrative units derived from the first two digits of \texttt{ubigeo};
+the urban indicator is derived from the sampling stratum.
+
+\paragraph{Education and skill groups.} Educational attainment is ENAHO variable
+\texttt{p301a}. We verified its coding against the weighted attainment distribution.
+Low-skilled workers are those with \texttt{p301a} in 1--6 (no education through complete
+secondary); high-skilled workers are those with \texttt{p301a} in 7--11 (non-university
+higher through postgraduate). Special education (code 12) and missing values are excluded.
+
+\paragraph{Labor income and wages.} For dependent employees, monthly labor income in the
+main occupation is the reported gross pay including overtime (\texttt{p524a1}); for
+own-account workers it is net profit (\texttt{p530a}). We deflate by the Lima consumer
+price index to December 2021 soles. The real hourly wage divides monthly labor income by
+$4.345$ times weekly hours in the main occupation (\texttt{p513t}, imputed where missing).
+Wages are winsorized at the 0.5th and 99.5th percentiles. As a robustness check we also
+construct the imputed, deflated, annualized labor-income aggregate used by
+\citet{jimenez_2023}, namely the sum of \texttt{i524a1}, \texttt{d529t}, \texttt{i530a},
+and \texttt{d536} divided by twelve; results are unchanged.
+
+\paragraph{Informality.} INEI's official informal-employment indicator (\texttt{ocupinf},
+coded 1 for informal and 2 for formal in these files) is present for 2021--2023 but absent
+for 2024--2025. We reconstruct a consistent indicator from primitives available in every
+year. A wage employee or domestic worker is classified as formal if affiliated to a
+pension system (\texttt{p558a1}--\texttt{p558a4}) or holding a formal labor contract
+(\texttt{p511a} in 1--6); an employer or own-account worker is classified as formal if the
+productive unit is registered (\texttt{p510a1}); unpaid family workers are always informal.
+Validated against \texttt{ocupinf} on the overlapping years 2021--2023, this rule agrees
+with the official classification for 88.3 percent of employed workers and reproduces the
+official informality rate to within about two and a half percentage points. We use the
+official indicator wherever available and the reconstruction only for 2024--2025.
+
+\paragraph{Minimum wage and bite.} The statutory minimum wage schedule is taken from the
+decrees and verified against the Banco Central de Reserva del Per\'u series (PN02124PM).
+The department Kaitz index is the ratio of the post-reform minimum (1,025 soles) to the
+department's pre-reform (2021Q1--2022Q1) weighted median monthly wage of dependent
+employees. The fraction-affected measure is the pre-reform weighted share of dependent
+employees earning below 1,025 soles.
+
+\subsection{Supplementary results}
+
+Table~\ref{tab:placebo} reports the in-time placebo reforms and confirms that the wage
+placebos are null while the employment placebos are contaminated by the pandemic pre-trend.
+The doubly robust estimates of \citet{santanna_zhao_2020} appear alongside the two-way
+fixed-effects estimates in Table~\ref{tab:main}. Figure~\ref{fig:val2025} shows the
+event study around the January-2025 reform used in the out-of-sample validation.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{fig9_validation2025.pdf}
+\caption{Event study around the January-2025 reform (out-of-sample validation). Coefficients
+on the interaction of the low-skill indicator with quarter indicators, reference quarter
+2024Q4. Bands are ninety-five percent confidence intervals clustered by department.}
+\label{fig:val2025}
+\end{figure}
+
+\begin{table}[H]\centering
+\caption{In-time placebo reforms (pre-reform window only)}\label{tab:placebo}
+\begin{threeparttable}
+\input{../tables/tab_placebo_body}
+\begin{tablenotes}\footnotesize
+\item Notes: Each entry is the $\mathrm{Low}\times\mathrm{Post}$ coefficient from a placebo
+DiD that assigns a fake reform to the indicated quarter, estimated using only pre-reform
+data (2021Q1--2022Q1). Standard errors clustered by department. $^{*}p<0.1$, $^{**}p<0.05$,
+$^{***}p<0.01$.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

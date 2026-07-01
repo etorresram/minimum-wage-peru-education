@@ -1,0 +1,178 @@
+# ==============================================================================
+# 05_robustness.R
+# Purpose: Robustness and inference checks for the headline DiD estimates.
+#   A. Specification robustness (controls, sample, FE, education cutoff, window).
+#   B. Inference robustness (region cluster, region x skill cluster, CR2
+#      few-cluster correction, randomization inference).
+#   C. Design robustness (triple difference with regional bite; continuous
+#      Card-1992 exposure intensity).
+#   D. Leave-one-region-out and leave-one-quarter-out stability.
+#   E. In-time placebo reforms.
+# ==============================================================================
+source(file.path(Sys.getenv("MW_PROJ_ROOT",
+        "/Users/etorresram/Desktop/minimum_wage/project"),
+        "scripts", "R", "00_config.R"))
+source(file.path(PROJ_ROOT, "scripts", "R", "theme_paper.R"))
+suppressMessages({library(fixest); library(clubSandwich); library(ggplot2)})
+set.seed(20220501)
+
+DT <- readRDS(file.path(DIR_PROC, "enaho_pooled.rds"))
+D  <- DT[in_window==1 & working_age==1 & !is.na(skill)]
+D[, did := low*post]
+D[wage_ok <- (employed==1 & dependent==1 & wage_hr_real>0), log_wage_hr := log(winsorize(wage_hr_real))]
+D[, ft_main := as.integer(hours_main>=35)]
+CTRL <- "age+age2+female+married+urban+years_educ"
+
+OUTS <- list(
+  list(y="log_wage_hr", lab="Log hourly wage", flt=quote(employed==1 & dependent==1 & is.finite(log_wage_hr))),
+  list(y="employed",    lab="Employment",      flt=quote(rep(TRUE,.N))),
+  list(y="formal",      lab="Formal empl.",    flt=quote(employed==1)),
+  list(y="self_emp",    lab="Self-employment", flt=quote(employed==1)))
+
+# helper: DiD (Low x Post) coefficient for a given data set / formula pieces
+did_est <- function(dat, y, controls=CTRL, fe="t_index + region", clus=~region) {
+  f <- as.formula(sprintf("%s ~ did + low + %s | %s", y,
+                          ifelse(nchar(controls)>0, controls, "1"), fe))
+  m <- feols(f, data=dat, weights=~fac500a, cluster=clus)
+  ct <- coeftable(m)["did", ]
+  list(m=m, est=ct[["Estimate"]], se=ct[["Std. Error"]], p=ct[["Pr(>|t|)"]], n=nobs(m))
+}
+
+## ======================= A. Specification robustness =========================
+specs <- list(
+  baseline   = function(o) did_est(D[eval(o$flt)], o$y),
+  no_ctrl    = function(o) did_est(D[eval(o$flt)], o$y, controls=""),
+  drop_covid = function(o) did_est(D[eval(o$flt) & t_index>=2], o$y),
+  reg_trend  = function(o) did_est(D[eval(o$flt)], o$y, fe="t_index + region[t_index]"),
+  prime_age  = function(o) did_est(D[eval(o$flt) & age>=25 & age<=55], o$y),
+  alt_cutoff = function(o) {   # low <= sec. incomplete (<=5), high >= non-univ complete (>=8)
+    d2 <- D[eval(o$flt) & educ_code %in% c(1:5,8:11)]
+    d2[, low := as.integer(educ_code<=5)][, did := low*post]
+    did_est(d2, o$y)
+  },
+  occ_ind_fe = function(o) did_est(D[eval(o$flt) & !is.na(occ1)], o$y,
+                                   fe="t_index + region + occ1 + ind1"),
+  cluster_rs = function(o) {
+    d2 <- D[eval(o$flt)]; d2[, rs := paste(region, skill)]
+    did_est(d2, o$y, clus=~rs)
+  }
+)
+specA <- rbindlist(lapply(OUTS, function(o) {
+  rbindlist(lapply(names(specs), function(sp) {
+    r <- specs[[sp]](o)
+    data.table(outcome=o$lab, spec=sp, est=r$est, se=r$se, p=r$p, n=r$n)
+  }))
+}))
+fwrite(specA, file.path(DIR_OUT, "rob_specifications.csv"))
+cat("==== A. Specification robustness (Low x Post) ====\n")
+print(dcast(specA, spec~outcome, value.var="est")[match(names(specs), spec)])
+
+## ======================= B. Inference robustness =============================
+# Few-cluster inference is applied to region x skill x post cell means
+# (Bertrand, Duflo & Mullainathan 2004 collapse), where the CR2 small-sample
+# correction of Pustejovsky & Tipton (2018) is both feasible and appropriate.
+inf_tab <- rbindlist(lapply(OUTS, function(o) {
+  d <- D[eval(o$flt)]
+  base <- did_est(d, o$y)
+  d[, rs := paste(region, skill)]
+  rs <- did_est(d, o$y, clus=~rs)
+  # collapse to region x skill x post
+  cell <- d[, .(y=weighted.mean(get(o$y), fac500a, na.rm=TRUE), n=sum(fac500a)),
+            by=.(region, low, post)]
+  cell[, did := low*post]
+  mc <- feols(y ~ did + low + post | region, cell, weights=~n)
+  cr2 <- tryCatch({
+    vc <- clubSandwich::vcovCR(mc, cluster=cell$region, type="CR2")
+    ct <- clubSandwich::coef_test(mc, vcov=vc, coefs="did")
+    list(est=coef(mc)[["did"]], se=ct$SE, p=ct$p_Satt)
+  }, error=function(e) list(est=coef(mc)[["did"]], se=NA, p=NA))
+  data.table(outcome=o$lab, est=base$est,
+             se_region=base$se, p_region=base$p,
+             se_regionskill=rs$se, p_regionskill=rs$p,
+             est_collapse=cr2$est, se_CR2=cr2$se, p_CR2=cr2$p)
+}))
+fwrite(inf_tab, file.path(DIR_OUT, "rob_inference.csv"))
+cat("\n==== B. Inference robustness (CR2 on BDM-collapsed cells) ====\n"); print(inf_tab)
+
+## ======================= C. Design robustness ================================
+# Triple difference: Low x Post x HighBite (region above-median MW bite)
+ddd <- rbindlist(lapply(OUTS, function(o) {
+  d <- D[eval(o$flt) & !is.na(high_bite)]
+  m <- feols(as.formula(sprintf("%s ~ low*post*high_bite + %s | t_index + region", o$y, CTRL)),
+             d, weights=~fac500a, cluster=~region)
+  cn <- grep("low:post:high_bite", names(coef(m)), value=TRUE)
+  ct <- coeftable(m)[cn, ]
+  data.table(outcome=o$lab, est=ct[["Estimate"]], se=ct[["Std. Error"]], p=ct[["Pr(>|t|)"]])
+}))
+fwrite(ddd, file.path(DIR_OUT, "rob_triplediff.csv"))
+cat("\n==== C1. Triple difference (Low x Post x HighBite) ====\n"); print(ddd)
+
+# Continuous intensity (Card 1992): dependent employees, Post x standardized Kaitz
+cont <- rbindlist(lapply(OUTS, function(o) {
+  d <- D[eval(o$flt) & !is.na(exposure_z)]
+  m <- feols(as.formula(sprintf("%s ~ post:exposure_z + %s | t_index + region", o$y, CTRL)),
+             d, weights=~fac500a, cluster=~region)
+  ct <- coeftable(m)["post:exposure_z", ]
+  data.table(outcome=o$lab, est=ct[["Estimate"]], se=ct[["Std. Error"]], p=ct[["Pr(>|t|)"]])
+}))
+fwrite(cont, file.path(DIR_OUT, "rob_continuous.csv"))
+cat("\n==== C2. Continuous exposure (Post x Kaitz_z) ====\n"); print(cont)
+
+## ======================= D. Leave-one-out stability ==========================
+loo <- rbindlist(lapply(OUTS, function(o) {
+  d <- D[eval(o$flt)]
+  regs <- sort(unique(d$region)); qs <- sort(unique(d$t_index))
+  lr <- sapply(regs, function(r) did_est(d[region!=r], o$y)$est)
+  lq <- sapply(qs,   function(q) did_est(d[t_index!=q], o$y)$est)
+  data.table(outcome=o$lab, full=did_est(d,o$y)$est,
+             loro_min=min(lr), loro_max=max(lr),
+             loqo_min=min(lq), loqo_max=max(lq))
+}))
+fwrite(loo, file.path(DIR_OUT, "rob_leaveoneout.csv"))
+cat("\n==== D. Leave-one-out (region / quarter) ranges ====\n"); print(loo)
+
+## ======================= E. Randomization inference ==========================
+# Fisherian RI for the regional-exposure design, at the region level. We collapse
+# each outcome to region x quarter cell means and permute the 25 regional Kaitz
+# values across departments (2000 draws), re-estimating the Post x exposure slope.
+# Inference at the level of the assigned exposure (the department) is the honest
+# unit, and the collapse makes the permutation fast and serial-correlation robust.
+ri_outcomes <- c("employed","formal","self_emp","log_wage_hr")
+region_expo <- unique(D[, .(region, exposure_z)])[order(region)]
+RI <- 2000
+ri_res <- rbindlist(lapply(ri_outcomes, function(y) {
+  o <- OUTS[[which(sapply(OUTS,function(z) z$y)==y)]]
+  d <- D[eval(o$flt) & !is.na(exposure_z)]
+  cell <- d[, .(y=weighted.mean(get(y), fac500a, na.rm=TRUE), n=sum(fac500a),
+                post=post[1]), by=.(region, t_index)]
+  cell <- merge(cell, region_expo, by="region", sort=FALSE)
+  fit <- function(dat) feols(y ~ post:exposure_z | region + t_index, dat,
+                             weights=~n)$coefficients[["post:exposure_z"]]
+  obs <- fit(cell)
+  regs <- region_expo$region
+  null <- numeric(RI)
+  for (b in seq_len(RI)) {
+    lut <- data.table(region=regs, exposure_z=sample(region_expo$exposure_z))
+    c2 <- copy(cell); c2[, exposure_z := lut$exposure_z[match(region, lut$region)]]
+    null[b] <- fit(c2)
+  }
+  data.table(outcome=o$lab, obs=obs, ri_p=mean(abs(null)>=abs(obs)))
+}))
+fwrite(ri_res, file.path(DIR_OUT, "rob_randomization.csv"))
+cat("\n==== E. Randomization inference (permute regional exposure, 2000 draws) ====\n")
+print(ri_res)
+
+## ======================= F. In-time placebo reforms ==========================
+# Using only pre-reform data (t<=5, 2021Q1-2022Q1), assign a fake reform at each
+# interior quarter and estimate the placebo DiD (should be ~0).
+placebo <- rbindlist(lapply(OUTS, function(o) {
+  rbindlist(lapply(2:4, function(pq) {
+    d <- D[eval(o$flt) & t_index<=5]
+    d[, post := as.integer(t_index>=pq)][, did := low*post]
+    r <- did_est(d, o$y)
+    data.table(outcome=o$lab, placebo_reform_t=pq, est=r$est, se=r$se, p=r$p)
+  }))
+}))
+fwrite(placebo, file.path(DIR_OUT, "rob_placebo.csv"))
+cat("\n==== F. In-time placebo reforms (pre-period only) ====\n"); print(placebo)
+cat("\nDone: 05_robustness.R\n")

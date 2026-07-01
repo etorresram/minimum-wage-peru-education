@@ -1,0 +1,13 @@
+# R packages required (R >= 4.3)
+haven
+data.table
+fixest
+DRDID
+HonestDiD
+clubSandwich
+ggplot2
+matrixStats
+sandwich
+lmtest
+modelsummary
+kableExtra

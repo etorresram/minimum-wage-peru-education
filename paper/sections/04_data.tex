@@ -1,0 +1,129 @@
+\section{Data and measurement}\label{sec:data}
+
+\subsection{The ENAHO quarterly employment modules}
+
+We use the public-use quarterly files of the Encuesta Nacional de Hogares (ENAHO),
+the national household survey conducted by Peru's Instituto Nacional de Estad\'istica
+e Inform\'atica (INEI). ENAHO is a nationally representative, stratified,
+multi-stage survey with continuous fieldwork; the quarterly employment and income
+module (module 500) records detailed labor market information for each household
+member of working age. We pool the sixteen quarters from the first quarter of 2021
+through the fourth quarter of 2024, which yields about 347,000 person-quarter records
+of working-age individuals. We add the four quarters of 2025 for the out-of-sample
+validation exercise. All statistics use the module's sampling weights, and we cluster
+inference by department.
+
+We restrict the sample to individuals of working age, defined as ages 14 to 65, and
+we drop observations with missing education. Our main wage analysis is further
+restricted to dependent wage employees, for whom the minimum wage is the relevant
+statutory floor, while the employment, participation, formality, and self-employment
+outcomes are defined over the working-age population or over the employed, as
+appropriate.
+
+\subsection{Education and the definition of skill groups}
+
+The treatment and comparison groups are defined by educational attainment, recorded
+in ENAHO variable \texttt{p301a}, the highest level of schooling completed. We
+validated the coding of this variable against the weighted distribution of attainment
+in the data; it corresponds to the standard INEI classification, ranging from no
+schooling through postgraduate study. We define \emph{low-skilled} workers as those
+with at most complete secondary schooling (no education, initial, primary, or
+secondary), and \emph{high-skilled} workers as those with any tertiary schooling
+(non-university higher, university, or postgraduate). We exclude the small residual
+category of special education, which is not ordered on the skill dimension, and
+observations with missing education.
+
+This partition has three attractive features. First, it is a bright line in the
+Peruvian labor market: completion of tertiary schooling is the main credential that
+separates workers who compete for jobs paying near the minimum wage from those who do
+not. Second, it splits the working-age population into groups of comparable size,
+roughly two thirds low-skilled and one third high-skilled, which gives adequate
+statistical power on both sides. Third, and most important for identification, the two
+groups differ sharply in their exposure to the minimum wage. As
+Table~\ref{tab:desc} shows, in the pre-reform period the median monthly wage of a
+low-skilled dependent employee is close to the statutory floor, whereas the median
+high-skilled employee earns well above it. The classification follows a long line of
+work that treats education as a primary determinant of where the minimum wage bites
+\citep{lemos_2009, katzkowicz_2021_uruguay}.
+
+\subsection{Outcome variables}
+
+We construct the following outcomes. \emph{Real hourly wage} is monthly labor income
+in the main occupation divided by monthly hours, deflated by the Lima consumer price
+index to December 2021 soles; we build monthly labor income following the ENAHO
+convention used by \citet{jimenez_2023}, and we winsorize the wage at the first and
+last half-percentiles to limit the influence of outliers. \emph{Real monthly
+earnings} is the same numerator without the hours adjustment. \emph{Employment} is an
+indicator for being employed in the reference week, defined over the working-age
+population, and \emph{labor force participation} is an indicator for being employed or
+unemployed. \emph{Formal employment} is an indicator for holding a formal job among
+the employed. \emph{Self-employment} is an indicator for own-account work among the
+employed, \emph{weekly hours} is hours worked in the main occupation, and \emph{paid
+below the minimum} is an indicator that monthly earnings fall below the statutory
+floor, a direct measure of the bite of and compliance with the policy.
+
+A measurement issue arises for informality. INEI's official informal-employment
+indicator, \texttt{ocupinf}, is present in the 2021 through 2023 files but is not
+released in the 2024 and 2025 files. Because our study window extends through 2024, we
+reconstruct a consistent informality indicator from underlying primitives that are
+available in every year: pension affiliation, the possession of a formal labor
+contract, the registration status of the productive unit, and the category of
+employment. We validate the reconstruction against the official \texttt{ocupinf} in
+2021 through 2023, where both are available, and obtain agreement of about 88 percent
+at the worker level, with an implied informality rate within one percentage point of
+the official figure. We use the official indicator wherever it exists and the
+reconstruction only for 2024 and 2025, and we report a robustness check that restricts
+the formality analysis to the years covered by the official measure. Full details of
+the construction are in Appendix~\ref{app:data}.
+
+\subsection{Descriptive statistics}
+
+Table~\ref{tab:desc} reports weighted means of the main variables by skill group in
+the pre-reform period. The two groups differ in the expected ways. Low-skilled
+workers are older on average, more likely to be male and rural, and have far lower
+wages. The employment rate is similar across groups, but the composition of
+employment differs starkly: low-skilled workers are much more likely to be informal
+and self-employed, and far more likely to earn below the statutory minimum. Roughly
+seven in ten low-skilled dependent employees earn below the new minimum in the
+pre-reform period, against fewer than four in ten high-skilled employees, which is the
+exposure gap on which our design rests. The high informality of the low-skilled group,
+around 85 percent against about 49 percent for the high-skilled, is central to
+interpreting the results: for most low-skilled workers the statutory floor is not
+directly enforced, so the margin along which the labor market can adjust is the
+allocation of workers across formal and informal arrangements rather than the level of
+pay within formal jobs.
+
+\input{../tables/tab_descriptives_wrapped}
+
+Figure~\ref{fig:trends} plots the weighted quarterly means of the main outcomes by skill
+group over the study window, with the reform marked. The raw series already hint at the
+results that follow: the wage series of the two groups move in parallel throughout, while
+the formality and self-employment series begin to diverge around the reform. These are
+unconditional means; the regression analysis that follows adjusts for composition and
+seasonality.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth]{fig2_raw_trends.pdf}
+\caption{Raw outcome trends by skill group, 2021--2024. Weighted quarterly means for
+low- and high-skilled workers. The dashed vertical line marks the May 2022 reform.}
+\label{fig:trends}
+\end{figure}
+
+Figure~\ref{fig:bite} displays the regional variation in the bite of the minimum wage,
+measured by the Kaitz index, the ratio of the new minimum to the pre-reform median
+dependent wage in each department. The index ranges from about 0.79 in the richest
+department to about 2.79 in the poorest, so that in much of the country the new minimum
+exceeds the median wage. This variation is predetermined with respect to the reform and
+provides the basis for the triple-difference and continuous-intensity checks in
+Section~\ref{sec:robustness}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig3_regional_bite.pdf}
+\caption{Regional variation in the bite of the minimum wage. The Kaitz index is the
+ratio of the new minimum wage (1,025 soles) to the department's median monthly wage of
+dependent employees in the pre-reform quarters. Departments above the dashed line have
+a median wage below the new minimum.}
+\label{fig:bite}
+\end{figure}

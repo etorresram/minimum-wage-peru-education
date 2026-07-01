@@ -1,0 +1,5 @@
+# Python dependencies (used for initial data inspection and CPI/MW series)
+pandas>=2.0
+pyreadstat>=1.2
+openpyxl>=3.1
+numpy>=1.24

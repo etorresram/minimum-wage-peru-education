@@ -1,0 +1,91 @@
+\section{Main results}\label{sec:results}
+
+\subsection{The wage response}
+
+The central result of the paper is that the 2022 reform did not raise the real wages of
+low-skilled workers relative to high-skilled workers. Column (1) of
+Table~\ref{tab:main} reports the two-way fixed-effects difference-in-differences
+estimate from equation~\eqref{eq:twfe}. The coefficient on the interaction of the
+low-skill indicator with the post-reform indicator is $-0.009$ for the log real hourly
+wage, with a standard error of $0.022$, an estimate that is economically small and
+statistically indistinguishable from zero. The implied point estimate is a relative
+change of less than one percent, and the ninety-five percent confidence interval rules
+out relative wage gains larger than about three percent. The result for log monthly
+earnings is likewise a tight null. The doubly robust estimator of
+\citet{santanna_zhao_2020} in column (2) is negative and imprecise but tells the same
+qualitative story of no positive wage effect.
+
+The dynamic event study confirms that this null is not an artifact of averaging over
+offsetting periods. The top-left panel of Figure~\ref{fig:event} plots the coefficients
+$\beta_k$ from equation~\eqref{eq:event} for the log real hourly wage. The pre-reform
+coefficients are small and statistically insignificant, and a joint test of their
+equality to zero does not reject, with a $p$-value of $0.60$ reported in column (3) of
+Table~\ref{tab:main}. After the reform the coefficients hover around zero with no
+discernible break. The wage distribution tells a consistent story:
+Figure~\ref{fig:dist} shows the earnings distribution of low-skilled wage employees
+before and after the reform, with the old and new minima marked. There is a visible mass
+of workers near the old minimum, but the distribution does not shift appreciably toward
+the new floor, and a large share of workers remain below it, reflecting the pervasive
+non-compliance documented in Section~\ref{sec:data}.
+
+\input{../tables/tab_main_did}
+
+That the reform failed to lift wages at the bottom is not, in this setting, a surprising
+result. The nominal increase of ten percent was substantially eroded by inflation of
+about eight percent over 2022, so the real value of the floor rose only modestly. More
+fundamentally, most low-skilled workers are informal or self-employed, for whom the
+statutory minimum is not enforced. For them the minimum wage is at best a norm, and the
+data suggest it did not operate as a binding one around this reform. The precise null
+stands in contrast to the ``lighthouse'' pattern found for the 2016 reform by
+\citet{jimenez_2023}, and we return to this contrast in Section~\ref{sec:discussion}.
+
+\subsection{Employment and its composition}
+
+If the reform did not raise pay, did it affect employment or its composition? Here the
+evidence is more suggestive than conclusive, and it points to adjustment along the margin
+between formal and informal work rather than to large changes in the level of employment.
+
+The estimated effect on the probability of formal employment among the employed is
+$-0.036$ (column 1 of Table~\ref{tab:main}), a decline of about three and a half
+percentage points for low-skilled relative to high-skilled workers, and it is precisely
+estimated under department clustering. The pre-trend test does not reject parallel trends
+($p=0.44$), and the event study in Figure~\ref{fig:event} shows relative formality of the
+low-skilled drifting down after the reform. Mirroring this, the probability of
+self-employment rises by about three percentage points, an estimate that is statistically
+significant and, as shown below, robust to randomization inference. Taken together these
+two results describe a reallocation of low-skilled workers away from formal salaried jobs
+and toward own-account work, the classic informalization margin emphasized by
+\citet{jaramillo_lopez_2006} for Peru and by \citet{ham_2018_honduras} for Honduras. Weekly hours
+in the main occupation rise modestly, consistent with a shift toward self-employment,
+where hours are less constrained.
+
+The effect on the overall employment rate is negative, at about $-2.5$ percentage points,
+but it is the least robust of our estimates. As the event study makes clear, the employment
+series carries a differential pre-trend concentrated in the first quarter of 2021, when the
+labor market was still recovering unevenly from the pandemic across skill groups. Once that
+quarter is excluded the pre-trend test no longer rejects, but the point estimate also
+attenuates, and the effect does not survive our more conservative inference procedures. We
+therefore treat the employment-level result as inconclusive and place little weight on it,
+reserving the interpretive emphasis for the compositional shift, which is more stable.
+Finally, the indicator for being paid below the minimum shows no significant change, meaning
+that the reform did not measurably improve compliance at the bottom of the distribution.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.98\textwidth]{fig5_event_study.pdf}
+\caption{Event-study estimates of the 2022 reform. Each panel plots the coefficients
+$\beta_k$ on the interaction of the low-skill indicator with quarter indicators from
+equation~\eqref{eq:event}, relative to the omitted quarter 2022Q1 ($k=-1$). The reform is
+effective at $k=0$ (2022Q2). Shaded bands are ninety-five percent confidence intervals with
+standard errors clustered by department.}
+\label{fig:event}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig4_wage_distribution.pdf}
+\caption{Earnings distribution of low-skilled wage employees, before and after the reform.
+Weighted kernel densities of nominal monthly earnings, with the old (930) and new (1,025)
+minimum wage marked by dashed lines.}
+\label{fig:dist}
+\end{figure}

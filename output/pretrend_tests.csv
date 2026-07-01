@@ -1,0 +1,8 @@
+outcome,label,pretrend_F,pretrend_p
+log_wage_hr,Log real hourly wage,0.704256598544654,0.596791188327342
+log_ylab,Log real monthly earnings,3.01764411734861,0.0377594259684122
+employed,Employed (working age),8.74986620329307,0.000166662989552123
+formal,Formal employment,0.968992248176313,0.442635032741412
+hours_main,Weekly hours (main job),2.12496384146692,0.108841005805653
+self_emp,Self-employed,9.18252081517757,0.000119825077967333
+below_mw,Paid below the MW,0.778378070163002,0.550193631209409
