@@ -4,7 +4,10 @@
 
 Let $i$ index individuals, $g\in\{\Low,\mathrm{High}\}$ their skill group, and $t$ the
 quarter. The reform becomes effective in the second quarter of 2022, which I denote
-$t^{\ast}$; define the post-reform indicator $\Post_t=\mathbf{1}\{t\ge t^{\ast}\}$ and
+$t^{\ast}$;\footnote{Because the reform took effect on 1 May, the second quarter of 2022
+contains one pre-reform and two post-reform months. I treat it as the first post-reform
+quarter; the doubly robust estimator, which requires two periods, drops it as a transition
+quarter.} define the post-reform indicator $\Post_t=\mathbf{1}\{t\ge t^{\ast}\}$ and
 the treatment indicator $\Low_i=\mathbf{1}\{g_i=\Low\}$. Following the potential-outcomes
 framework, let $Y_{it}(1)$ and $Y_{it}(0)$ denote the outcome of individual $i$ in
 quarter $t$ with and without the reform being in force. The parameter of interest is the
@@ -93,7 +96,10 @@ floor and that the high-skilled event-study path shows no break at the reform.
 
 The treatment is assigned at a coarse level, the skill group, which raises the standard concern
 that conventional standard errors overstate precision \citep{bertrand_2004}. I address this in
-several complementary ways. My baseline clusters by department, which allows arbitrary
+several complementary ways. My baseline clusters by department,\footnote{The 25 clusters are
+Peru's 24 departments plus the Constitutional Province of Callao. With few clusters,
+conventional cluster-robust standard errors can understate uncertainty, which motivates the
+additional corrections below.} which allows arbitrary
 within-department correlation across individuals and quarters; I report an alternative that
 clusters by department and skill group; and I apply the bias-reduced CR2 small-sample correction
 of \citet{pustejovsky_tipton_2018} to department-level collapsed cells, where it is
