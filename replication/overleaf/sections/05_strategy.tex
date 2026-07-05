@@ -5,9 +5,11 @@
 Let $i$ index individuals, $g\in\{\Low,\mathrm{High}\}$ their skill group, and $t$ the
 quarter. The reform becomes effective in the second quarter of 2022, which I denote
 $t^{\ast}$;\footnote{Because the reform took effect on 1 May, the second quarter of 2022
-contains one pre-reform and two post-reform months. I treat it as the first post-reform
-quarter; the doubly robust estimator, which requires two periods, drops it as a transition
-quarter.} define the post-reform indicator $\Post_t=\mathbf{1}\{t\ge t^{\ast}\}$ and
+contains one pre-reform and two post-reform months, and reported incomes refer to the
+month before the interview, so even May interviews report pre-reform (April) earnings.
+I therefore exclude 2022Q2 from the baseline as a partially treated transition quarter
+and restore it in a robustness check; the first post-reform quarter in the baseline is
+2022Q3.} define the post-reform indicator $\Post_t=\mathbf{1}\{t\ge t^{\ast}\}$ and
 the treatment indicator $\Low_i=\mathbf{1}\{g_i=\Low\}$. Following the potential-outcomes
 framework, let $Y_{it}(1)$ and $Y_{it}(0)$ denote the outcome of individual $i$ in
 quarter $t$ with and without the reform being in force. The parameter of interest is the
@@ -85,12 +87,14 @@ conclusion.
 Third, \emph{spillovers and general equilibrium}. If the reform displaces low-skilled workers
 into the informal sector, it may indirectly depress wages there, and if high-skilled workers are
 imperfect substitutes their outcomes could also move, contaminating the comparison group. I
-cannot rule this out, and I interpret the estimates as relative effects. The comparison group is not
-entirely unexposed, since a minority of high-skilled workers also earn near the floor through
-informal or own-account work; this imperfect exposure attenuates my estimates toward zero, so
-the design understates rather than overstates the true effect on the fully exposed. I assess the
-plausibility of the comparison by showing that the median high-skilled wage sits well above the
-floor and that the high-skilled event-study path shows no break at the reform.
+cannot rule this out, and I interpret the estimates as relative effects. The comparison group is
+not entirely unexposed: 40 percent of high-skilled private wage earners were paid below the new
+floor before the reform, against 57 percent of the low-skilled. To first order this imperfect
+exposure attenuates the estimates toward zero---the design identifies the effect of the
+seventeen-point exposure \emph{gap}, so it understates the effect on the fully exposed---but I
+acknowledge that it also makes the estimates relative objects rather than absolute ones. For
+this reason I complement the education contrast with a continuous regional-exposure design
+that does not rely on the comparison group at all (Section~\ref{sec:robustness}).
 
 \subsection{Inference}
 

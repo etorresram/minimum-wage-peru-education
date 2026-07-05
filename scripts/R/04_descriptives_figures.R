@@ -11,23 +11,24 @@ suppressMessages({library(data.table); library(ggplot2); library(matrixStats)})
 
 DT <- readRDS(file.path(DIR_PROC, "enaho_pooled.rds"))
 W  <- DT[in_window==1 & working_age==1 & !is.na(skill)]
-W[, wage_hr_w := ifelse(employed==1 & dependent==1 & wage_hr_real>0, winsorize(wage_hr_real), NA)]
+W[, wage_hr_w := ifelse(wage_valid==1, winsorize(wage_hr_real), NA)]
 
 ## ============================ TABLE 1: descriptives ==========================
 wm  <- function(x,w) weighted.mean(x,w,na.rm=TRUE)
 vars <- list(
   c("age","Age"), c("female","Female"), c("urban","Urban"), c("married","Married"),
   c("years_educ","Years of education"), c("lfp","Labour force participation"),
-  c("employed","Employed"), c("dependent","Wage employee"), c("self_emp","Self-employed"),
+  c("employed","Employed"), c("wage_worker","Wage employee (incl. domestic)"),
+  c("self_emp","Self-employed"),
   c("formal","Formal (if employed)"), c("informal","Informal (if employed)"),
   c("hours_main","Weekly hours (if employed)"), c("wage_hr_w","Real hourly wage (S/)"),
-  c("ylab_real","Real monthly earnings (S/)"), c("below_mw","Below MW (if employed)"))
+  c("ylab_real","Real monthly earnings (S/)"), c("below_mw","Below MW (wage earners)"))
 pre <- W[t_index < 6]  # pre-reform descriptives
 mk_col <- function(d, v) {
   x <- d[[v]]
   if (v %in% c("formal","informal","hours_main","wage_hr_w","below_mw"))
     d2 <- d[employed==1] else d2 <- d
-  if (v=="wage_hr_w") d2 <- d[employed==1 & dependent==1]
+  if (v=="wage_hr_w") d2 <- d[wage_valid==1]
   if (v=="ylab_real") d2 <- d[employed==1]
   wm(d2[[v]], d2$fac500a)
 }
@@ -80,7 +81,7 @@ qtrend <- function(sub, yv) {
           n=.N), by=.(t_index, skill)][, `:=`(outcome=yv)]
 }
 emp <- W[employed==1]
-depw <- W[employed==1 & dependent==1 & !is.na(wage_hr_w)]
+depw <- W[wage_valid==1 & !is.na(wage_hr_w)]
 trd <- rbindlist(list(
   qtrend(W, "employed"),
   qtrend(emp, "formal"),
@@ -117,13 +118,12 @@ p3 <- ggplot(br, aes(reorder(dep, kaitz), kaitz, fill=factor(high_bite))) +
   scale_fill_manual(values=c("0"="#9ecae1","1"="#08519c"),
                     labels=c("0"="Low bite","1"="High bite")) +
   labs(x=NULL, y="Kaitz index (new MW / pre-reform median wage)", fill=NULL,
-       title="Minimum-wage bite across departments (pre-reform)",
-       caption="Kaitz > 1 (dashed) means the new MW exceeds the department's median dependent wage.") +
+       title="Minimum-wage bite across departments (pre-reform)") +
   theme_paper()
 save_fig(p3, "fig3_regional_bite", w=6.5, h=5.2)
 
 ## ============ FIGURE 4: wage distribution & bunching =========================
-bd <- W[employed==1 & dependent==1 & ylab_nom>0 & ylab_nom<4000]
+bd <- W[employed==1 & wage_worker==1 & public_sector==0 & ylab_nom>0 & ylab_nom<4000]
 bd[, period := ifelse(post==1, "Post (2022Q2-2024Q4)", "Pre (2021Q1-2022Q1)")]
 p4 <- ggplot(bd[skill=="Low"], aes(ylab_nom, weight=fac500a, colour=period)) +
   geom_vline(xintercept=c(930,1025), colour=c("#1b6ca8","#c1272d"), linetype=2) +
@@ -154,9 +154,9 @@ p5 <- ggplot(es, aes(event_k, est)) +
   geom_point(colour="#1b6ca8", size=1.1) +
   facet_wrap(~lab, scales="free_y") +
   scale_x_continuous(breaks=seq(-5,10,2)) +
-  labs(x="Quarters since reform (0 = 2022Q2)", y="Low x period coefficient",
+  labs(x="Quarters since reform (0 = 2022Q2, partially treated, excluded)", y="Low x period coefficient",
        title="Event-study estimates: low- vs high-skilled workers",
-       caption="Reference quarter 2022Q1 (k=-1). Bands: 95% CI, SE clustered by department.") +
+       caption="Reference quarter 2022Q1 (k=-1). The partially treated 2022Q2 (k=0) is excluded. Bands: 95% CI, SE clustered by department.") +
   theme_paper()
 save_fig(p5, "fig5_event_study", w=7.6, h=6)
 

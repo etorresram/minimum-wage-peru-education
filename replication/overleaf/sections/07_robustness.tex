@@ -2,56 +2,129 @@
 
 This section subjects the main results to a battery of specification, inference, and
 design checks, and then to an out-of-sample replication. The overall message is that the
-wage null is very robust, the compositional results are moderately robust, and the
-employment-level result is fragile.
+compositional results---the decline in formality and the rise in
+self-employment---are the most robust findings, corroborated by an independent
+continuous-exposure design under randomization inference; the wage evidence consistently
+shows no pay gain but carries a pre-trend caveat; and the employment-level result fails
+its diagnostics and should not be read causally.
 
 \subsection{Specification robustness}
 
 Table~\ref{tab:robspec} reports the $\mathrm{Low}\times\mathrm{Post}$ coefficient for the
-four headline outcomes under eight alternative specifications: dropping the controls,
+four headline outcomes under ten alternative specifications: dropping the controls,
 dropping the pandemic quarter of early 2021, adding department-specific linear trends,
 restricting to prime-age workers, using an alternative education cutoff that removes the
-categories at the boundary between the two groups, adding one-digit occupation and
-industry fixed effects, and clustering by department and skill. The wage estimate remains
-a tight null across every specification. The formality and self-employment estimates are
-stable in sign and magnitude throughout, moving within a narrow band. The employment
-estimate, by contrast, attenuates noticeably when the pandemic quarter is dropped or when
-department-specific trends are included, which reinforces my reluctance to interpret it
-causally.
+categories at the boundary between the two groups, adding occupation and industry fixed
+effects, clustering by department and skill, restoring the partially treated transition
+quarter 2022Q2, excluding agriculture (which is covered by the separate agrarian labor
+regime of Ley 31110 rather than the general minimum wage), and adding public-sector
+workers back into the job-conditional samples. The formality and self-employment
+estimates are stable in sign and magnitude throughout, moving within a narrow band. The
+wage estimate is negative or null in every specification and never significantly
+positive. The employment estimate, by contrast, attenuates noticeably when the pandemic
+quarter is dropped or when department-specific trends are included, which reinforces my
+reluctance to interpret it causally.
 
 \input{tables/tab_robustness}
 
 \subsection{Inference}
 
-Because the treatment is assigned at the level of the skill group, I assess whether the
-significance of the compositional results survives more demanding inference.
-Table~\ref{tab:inference} collects the evidence. Columns (1) through (4) report
-$p$-values for the baseline effect under department clustering, department-by-skill
-clustering, the CR2 small-sample correction of \citet{pustejovsky_tipton_2018} applied to
-department-level collapsed cells, and randomization inference that permutes the regional
-bite of the minimum wage across departments. The self-employment effect is the most
-resilient: it remains significant under department-by-skill clustering and under
-randomization inference. The formality effect is significant under both clustering schemes
-but only marginal under the most conservative CR2 and randomization procedures, which are
-low-powered with twenty-five departments. The employment effect loses significance under
-every procedure beyond simple department clustering. The wage null is, of course,
-unaffected.
+Because the treatment contrast varies only across two education groups, conventional
+department clustering does not by itself deliver design-based inference for the
+$\mathrm{Low}\times\mathrm{Post}$ coefficient, and I therefore report a menu of
+progressively more demanding procedures. Table~\ref{tab:inference} collects the
+evidence. Columns (1) through (3) report $p$-values for the baseline effect under
+department clustering (25 clusters), department-by-skill clustering (50 clusters), and
+the CR2 small-sample correction of \citet{pustejovsky_tipton_2018} applied to
+collapsed cells in the spirit of \citet{bertrand_2004}---here at the
+department$\times$group$\times$period level, the finest aggregation at which the CR2
+correction is computationally feasible.
+The formality and self-employment effects remain highly significant under both
+clustering schemes; under the collapsed-cell CR2 procedure, which is deliberately
+conservative and low-powered with twenty-five departments, self-employment remains
+marginally significant and formality does not. The employment effect loses significance
+under everything beyond simple department clustering. Because a permutation test of the
+two-group contrast is undefined, design-based randomization inference is conducted for
+the continuous-exposure design instead, where the assignment being permuted---the
+regional bite---has twenty-five values: column (4) reports these $p$-values, which
+belong to the column-(5) estimates, not to the education contrast.\footnote{A wild
+cluster bootstrap in the spirit of \citet{cameron_2008_bootstrap} is not available
+for survey-weighted estimation, so the CR2 and randomization procedures play that
+role here.}
 
 \input{tables/tab_inference}
 
 \subsection{Design robustness: bite intensity and triple differences}
 
 My identification rests on differential exposure by education, but the minimum wage also
-bites differentially across regions, and this provides an independent source of variation.
-Column (5) of Table~\ref{tab:inference} reports a continuous-exposure specification in the
-spirit of \citet{card_1992}, which replaces the binary treatment with the standardized
-department Kaitz index interacted with the post indicator. The results corroborate the
-skill-based design: in departments where the minimum wage bites harder, formal employment
-falls and self-employment rises by significantly more after the reform, while wages do not
-respond. A triple-difference specification that interacts the skill contrast with an
-indicator for high-bite departments is not statistically significant, which I read as a
-lack of power in the binary regional split rather than as evidence against the mechanism,
-given that the continuous version is informative.
+bites differentially across regions, and this provides an independent source of
+variation that does not rely on the education contrast at all. Column (5) of
+Table~\ref{tab:inference} reports a continuous-exposure specification in the spirit of
+\citet{card_1992}, which relates outcomes to the standardized pre-reform department
+Kaitz index interacted with the post indicator. The results corroborate the skill-based
+design on the compositional margins: in departments where the minimum wage bites harder,
+formal employment falls by 1.8 percentage points more per standard deviation of exposure
+($p<0.001$; randomization $p<0.001$) and self-employment rises by 1.0 point more
+($p=0.02$; randomization $p=0.02$) after the reform. Employment also declines with
+exposure in this design, though I discount that margin for the reasons above. Wages show
+no significant response. A triple-difference specification that interacts the skill
+contrast with an indicator for high-bite departments is not statistically significant
+for any outcome (Appendix Table~\ref{tab:ddd}), which I read as a lack of power in the
+coarse binary regional split rather than as evidence against the mechanism, given that
+the continuous version is informative and that the subgroup estimates in
+Section~\ref{sec:heterogeneity} move in the expected direction.
+
+Three further design checks discipline this corroboration (Appendix
+Tables~\ref{tab:expocells} and~\ref{tab:sectorocc}). First, the regional design passes
+its own leads diagnostic exactly where it matters: joint tests of the pre-reform
+quarter$\times$exposure interactions do not reject for formality ($p=0.84$),
+self-employment ($p=0.20$), or wages ($p=0.24$), and reject only for employment
+($p=0.002$), consistent with everything else about that margin. Second, in the spirit
+of full transparency I also estimate finer, cell-level fraction-affected designs
+\citep{card_1992, clemens_wither_2019}, with exposure measured within
+department$\times$skill$\times$age cells; these fail their leads diagnostics in both
+variants---fine-grained exposure is confounded with the cells' heterogeneous pandemic
+recoveries, and the between-floors variant even flips signs because cells with mass
+between the two floors are precisely the semi-formal cells that recovered fastest. I
+therefore treat the department as the credible level for exposure variation and
+report the cell designs in the appendix rather than suppressing them. Third, the
+reallocation is broad-based across sectors: the formality decline appears in the
+covered high-bite sectors, in other private sectors, and in agriculture alike. The
+agricultural estimate is not a falsification failure, because the agrarian regime's
+daily remuneration is indexed to the RMV and therefore rose with the reform;
+Peru leaves no large sector's floor unchanged, which is why coverage contrasts cannot
+be sharp here. An occupation-level dose response (exposure measured as the pre-reform
+share of the occupation's wage earners below the new floor) shows larger declines in
+sub-floor pay and, suggestively, relative wage gains in more-exposed occupations,
+though occupation is measured post-treatment and I read that panel as descriptive.
+
+As a final design check I estimate synthetic difference-in-differences
+\citep{arkhangelsky_2021_sdid} on department-by-quarter cells, treating high-bite
+departments as treated from 2022Q3 and letting the estimator re-weight low-bite
+departments to reconstruct their pre-reform path (Appendix
+Table~\ref{tab:sdidpower}). The estimates are directionally consistent with the
+reallocation---formality falls and self-employment rises, whether the outcome is the
+low-education mean or the low-minus-high skill gap---with magnitudes about half the
+TWFE estimates and precision limited by twenty-five aggregate units; the formality
+decline in low-education means is significant at five percent under the jackknife.
+
+\subsection{Selection and power}
+
+Because the reform moved workers out of the wage-earner sample, the wage DiD
+conditions on an endogenous population. Appendix Table~\ref{tab:leemde} bounds the
+resulting bias with the trimming approach of \citet{lee_2009}: the reform reduced
+low-skilled wage-sample inclusion by 2.1 percentage points (7.6 percent of the
+baseline rate), and trimming the low$\times$post wage distribution by that fraction
+from either tail brackets the unconditional 2$\times$2 wage DiD between $-0.10$ and
+$+0.10$. Selection alone could therefore mask wage effects of up to ten log points in
+either direction, a candid statement of what the wage evidence can and cannot rule
+out; the compliance and bunching evidence of Section~\ref{sec:results}, which
+conditions only on formality status, is not subject to this concern and is where I
+rest the enforcement conclusion. The same appendix table reports minimum detectable
+effects: at eighty percent power the design can detect wage effects of 3.4 log
+points, and effects of 2.1 and 1.7 percentage points on formality and
+self-employment---well below the estimated 4.6 and 3.6---so the compositional
+findings are not artifacts of an underpowered design straining at noise.
 
 \subsection{Sensitivity to violations of parallel trends}
 
@@ -59,14 +132,41 @@ Even flat pre-trends are estimated with error, so I apply the sensitivity analys
 \citet{rambachan_roth_2023}. Figure~\ref{fig:honest} plots the robust confidence set for
 the average post-reform effect on employment and formality as I allow the post-reform
 violation of parallel trends to be as large as a multiple $\bar{M}$ of the largest
-pre-reform violation. The formality effect remains bounded away from zero only for small
-departures, up to about $\bar{M}=0.1$, and the self-employment effect only under near-exact
-parallel trends, whereas the employment effect includes zero even under the smallest departure.
-The compositional results are thus robust to conventional inference but sensitive to modest
-trend violations, which reinforces my decision to emphasize the wage null, the one result
-that is both precisely estimated and replicated out of sample.
+pre-reform violation. The formality and self-employment effects remain bounded away from
+zero under exact parallel trends but include zero once violations as large as
+$\bar{M}=0.1$ are allowed, and the employment effect includes zero even at
+$\bar{M}=0$. This is the weakest link in the education-based design, and I flag it
+plainly: the compositional results are robust to conventional and to design-based
+inference, but not to modest violations of parallel trends in the education contrast.
+Their credibility therefore leans on the two pieces of evidence that do not depend on
+that contrast---the regional dose-response gradient and the continuous-exposure design
+with randomization inference. The power calculation of \citet{roth_2022_pretest}
+quantifies why I refuse to lean on passed pre-tests alone: a linear violation of
+parallel trends that my pre-test would detect only half the time would bias the average
+post-period formality effect by 0.042---nine tenths of the estimated effect
+(Appendix Table~\ref{tab:sdidpower}, Panel B). Passed pre-tests are reassuring but not
+dispositive, which is the posture the paper adopts throughout.
 
-\begin{figure}[H]
+Timing granularity does not drive the estimates either. Monthly event studies
+(Figure~\ref{fig:monthly}), which time wage outcomes by the income reference month and
+employment outcomes by the interview month, show the formality decline appearing
+immediately after May 2022 and persisting, with a suggestive dip in the weeks around
+the decree's publication on 3 April; and a quarterly event study that bins the right
+tail at $k\ge 8$, rather than estimating eleven free lags, leaves the estimates
+unchanged.\footnote{The full monthly and binned coefficient series are included in the
+replication package.}
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=0.98\textwidth]{fig11_monthly_event.pdf}
+\caption{Monthly event studies around the May-2022 reform. Wage outcomes are timed by
+the income reference month and employment outcomes by the interview month; endpoints
+binned at $\pm$13 months; reference month April 2022. Bands: 95 percent confidence
+intervals clustered by department.}
+\label{fig:monthly}
+\end{figure}
+
+\begin{figure}[!t]
 \centering
 \includegraphics[width=0.8\textwidth]{fig7_honestdid.pdf}
 \caption{Sensitivity to violations of parallel trends
@@ -79,24 +179,75 @@ $\bar{M}$ times the largest pre-reform violation.}
 \subsection{Placebo reforms and leave-one-out}
 
 I assign fake reforms to each interior quarter of the pre-reform window and re-estimate
-the DiD using only pre-reform data. The wage placebos are uniformly null, the formality and
-self-employment placebos are mostly null with one marginal case, but the employment placebos
-are significant, which is a direct symptom of the pandemic-driven pre-trend in that outcome.
-Leave-one-department-out and leave-one-quarter-out re-estimation leave the point estimates
-essentially unchanged for all four outcomes, indicating that no single region or quarter
-drives the results. These checks are reported in the appendix.
+the DiD using only pre-reform data (Appendix Table~\ref{tab:placebo}). The wage placebos
+are null and the self-employment placebos are marginal in two of three quarters. The
+employment placebos are large and significant in all three quarters, which
+is a direct symptom of the pandemic-driven pre-trend in that outcome and the basis for my
+refusal to interpret the employment estimate causally.
+
+The formality placebos deserve more than a pass-fail reading, because they and the joint
+pre-trend test answer the same question with different power. All three are negative
+($-0.024$, $-0.029$, $-0.017$, the last significant at five percent): although the joint
+test does not reject ($p=0.15$), the point pattern indicates a downward relative drift of
+roughly two percentage points across the pre-window. I therefore quantify what the
+formality estimate looks like under drift corrections of increasing severity rather than
+hide behind the passed test. Netting out the placebo-implied drift arithmetically leaves
+an effect of roughly $-0.02$ to $-0.03$---still more than a tenth of baseline formality,
+and strikingly close to the synthetic-DiD skill-gap estimate ($-0.028$), which is immune
+to group-level drift by construction. Two more aggressive corrections bound the extremes.
+A specification that allows the two education groups to diverge along a free linear trend
+over the whole window (Table~\ref{tab:robspec}) drives the compositional education-DiD
+estimates to zero---but this is mechanical, not diagnostic: an immediate and persistent
+level shift observed over ten post-reform quarters is itself well approximated by a
+trend, so this specification absorbs a true step effect along with any drift and is best
+read as a worst case. Symmetrically, the smoothness restriction of
+\citet{rambachan_roth_2023}, which extrapolates the fitted linear pre-trend into the post
+period, yields an uninformative formality interval ($[-0.045,\,0.041]$ at $M=0$):
+extrapolating four noisy pre-period points across ten post-period quarters explodes the
+variance. The honest summary is that the education contrast alone cannot separate a
+persistent level shift from a group trend over a window this long---which is precisely
+why the causal weight in this paper rests on the regional-exposure design, whose leads
+are flat, whose inference is design-based, and whose dose-response gradient a
+group-specific drift cannot generate; and on the convergence of the drift-adjusted
+education estimate with the synthetic-DiD estimate at $-0.02$ to $-0.03$.
+
+Leave-one-department-out and leave-one-quarter-out re-estimation
+(Appendix Table~\ref{tab:loo}) leaves the point estimates essentially unchanged for all
+four outcomes, indicating that no single region or quarter drives the results.
+
+\subsection{A pre-COVID extension of the parallel-trends check}
+
+Because my window opens inside the pandemic recovery, I also test the education
+contrast in normal times, using the annual ENAHO employment modules for 2018--2019 and
+the quiet window 2018Q3--2019Q4 (after the April-2018 RMV increase and before any
+further reform). The exercise is doubly informative. On one hand, it counsels
+humility about the education design in levels: joint tests of the
+$\mathrm{Low}\times$quarter interactions reject for wages, employment, and
+self-employment even in this quiet window---low- and high-education outcomes wobble
+relative to each other at low frequencies in normal times, which is an argument for
+resting causal weight on the regional-exposure design rather than on the education
+contrast alone. On the other hand, the \emph{direction} of the normal-times drift runs
+against my 2022 findings, not toward them: a placebo reform placed at 2019Q1 yields a
+\emph{negative} self-employment ``effect'' ($-2.2$ percentage points) and a positive,
+insignificant formality one ($+0.8$ points)---the mirror image of the post-reform
+pattern. Whatever secular divergence exists between the groups pushed low-education
+workers toward formality and away from self-employment before the pandemic, so it
+biases the 2022 reallocation estimates toward zero rather than generating them.
 
 \subsection{Out-of-sample validation: the 2025 reform}
 
 Finally, I replicate the entire design around the second reform, which raised the minimum
-wage to 1,130 soles on 1 January 2025, using the 2024 and 2025 quarters. This reform is of
-almost identical magnitude to the 2022 one but occurs in a calmer, post-pandemic
-environment. Column (6) of Table~\ref{tab:inference} reports the estimates. The wage effect
-is again a null, which strengthens my central finding considerably: across two independent
-reforms in different macroeconomic conditions, the minimum wage did not raise the relative
-wages of low-skilled workers. The compositional effects, however, do not replicate: the
-formality and employment effects are null around the 2025 reform, and the self-employment
-effect reverses sign. I take this seriously. It implies that the reallocation I document
-around 2022 is specific to that episode and may reflect the unusual dynamics of the
-post-pandemic labor market rather than a stable structural response to the minimum wage. The
-one conclusion that survives out of sample is the wage null.
+wage to 1,130 soles on 1 January 2025, using the 2024 and 2025 quarters. This reform is
+of almost identical magnitude to the 2022 one but occurs in a calmer, post-pandemic
+environment. Column (6) of Table~\ref{tab:inference} reports the estimates. No wage
+response appears ($0.002$, standard error $0.011$): across two reforms in different
+macroeconomic conditions, there is no evidence that the minimum wage raised the relative
+pay of low-skilled workers. The reallocation, however, does not replicate: the formality
+and employment effects are null around the 2025 reform, and the self-employment effect
+is small and of the opposite sign. I take this seriously rather than explain it away. It
+implies that the reallocation I document around 2022 is not a stable structural response
+that follows every minimum wage increase; it operated in a labor market still
+re-sorting after the pandemic, in which marginal formal matches were plausibly easiest
+to dissolve. Section~\ref{sec:discussion} develops this state-dependence interpretation
+and its alternatives, including the possibility that residual recovery dynamics
+contribute to the 2022 estimates.

@@ -17,14 +17,17 @@ DT <- readRDS(file.path(DIR_PROC, "enaho_pooled.rds"))
 V <- DT[t_index>=13 & working_age==1 & !is.na(skill)]
 V[, post2 := as.integer(t_index>=17)]
 V[, did := low*post2]
-V[(employed==1 & dependent==1 & wage_hr_real>0), log_wage_hr := log(winsorize(wage_hr_real))]
+# Wage outcomes use the canonical winsorized logs from 01_build_panel.R.
+# January-2025 interviews report DECEMBER-2024 incomes (pre-reform): exclude
+# them from the wage sample so the first post quarter is not partially treated.
+V[, wage_ref_pre2025 := as.integer(year==2025 & mes_i==1)]
 CTRL <- "age+age2+female+married+urban+years_educ"
 
 outs <- list(
-  list(y="log_wage_hr", lab="Log hourly wage", flt=quote(employed==1 & dependent==1 & is.finite(log_wage_hr))),
+  list(y="log_wage_hr", lab="Log hourly wage", flt=quote(wage_valid==1 & wage_ref_pre2025==0)),
   list(y="employed",    lab="Employment",      flt=quote(rep(TRUE,.N))),
-  list(y="formal",      lab="Formal empl.",    flt=quote(employed==1)),
-  list(y="self_emp",    lab="Self-employment", flt=quote(employed==1)))
+  list(y="formal",      lab="Formal empl.",    flt=quote(employed==1 & public_sector==0)),
+  list(y="self_emp",    lab="Self-employment", flt=quote(employed==1 & public_sector==0)))
 
 did2025 <- rbindlist(lapply(outs, function(o) {
   s <- V[eval(o$flt)]

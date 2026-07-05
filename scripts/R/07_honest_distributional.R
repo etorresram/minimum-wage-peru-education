@@ -13,9 +13,10 @@ source(file.path(PROJ_ROOT, "scripts", "R", "theme_paper.R"))
 suppressMessages({library(fixest); library(HonestDiD); library(ggplot2)})
 
 DT <- readRDS(file.path(DIR_PROC, "enaho_pooled.rds"))
-D  <- DT[in_window==1 & working_age==1 & !is.na(skill)]
+# Drops the partially treated 2022Q2 transition quarter (as in 03); canonical
+# winsorized wage outcomes come from 01_build_panel.R.
+D  <- DT[in_window==1 & working_age==1 & !is.na(skill) & transition==0]
 D[, did := low*post]
-D[(employed==1 & dependent==1 & wage_hr_real>0), log_wage_hr := log(winsorize(wage_hr_real))]
 CTRL <- "age+age2+female+married+urban+years_educ"
 
 ## ============================ (1) HonestDiD ==================================
@@ -28,10 +29,11 @@ honest_one <- function(y, flt, name) {
   m <- es_model(y, flt)
   b <- coef(m); V <- vcov(m)
   idx <- grep("^t_index::", names(b))
-  # order is t=1,2,3,4,6,...,16  ->  k=-5,-4,-3,-2, 0,...,10  (pre then post)
+  # order is t=1,2,3,4,7,...,16 -> k=-5..-2 (pre, ref k=-1) then k=1..10 (post;
+  # the partially treated 2022Q2, k=0, is excluded from the sample)
   bh <- b[idx]; Vh <- V[idx, idx]
   nPre <- 4L; nPost <- length(idx) - nPre
-  # relative-magnitudes restriction, effect in the first post period
+  # relative-magnitudes restriction; l_vec averages the post-period effects
   rm <- tryCatch(
     HonestDiD::createSensitivityResults_relativeMagnitudes(
       betahat=bh, sigma=Vh, numPrePeriods=nPre, numPostPeriods=nPost,
@@ -52,14 +54,40 @@ honest_one <- function(y, flt, name) {
   res
 }
 honest <- rbindlist(list(
-  honest_one("log_wage_hr", quote(employed==1 & dependent==1 & is.finite(log_wage_hr)), "Log hourly wage"),
+  honest_one("log_wage_hr", quote(wage_valid==1), "Log hourly wage"),
   honest_one("employed",    quote(rep(TRUE,.N)), "Employment"),
-  honest_one("formal",      quote(employed==1), "Formal empl."),
-  honest_one("self_emp",    quote(employed==1), "Self-employment")
+  honest_one("formal",      quote(employed==1 & public_sector==0), "Formal empl."),
+  honest_one("self_emp",    quote(employed==1 & public_sector==0), "Self-employment")
 ), fill=TRUE)
 fwrite(honest, file.path(DIR_OUT, "honestdid.csv"))
 cat("==== HonestDiD relative-magnitudes sensitivity (first post period) ====\n")
 print(honest[, .(outcome, Mbar, lb=round(lb,4), ub=round(ub,4))])
+
+## Smoothness (Delta^SD) restriction: M = 0 allows exact LINEAR extrapolation of
+## the pre-trend into the post period -- the principled "drift-adjusted" bound.
+honest_sd_one <- function(y, flt, name) {
+  m <- es_model(y, flt)
+  b <- coef(m); V <- vcov(m)
+  idx <- grep("^t_index::", names(b))
+  bh <- b[idx]; Vh <- V[idx, idx]
+  nPre <- 4L; nPost <- length(idx) - nPre
+  sd <- tryCatch(
+    HonestDiD::createSensitivityResults(
+      betahat=bh, sigma=Vh, numPrePeriods=nPre, numPostPeriods=nPost,
+      Mvec=c(0, 0.005, 0.01), l_vec=rep(1/nPost, nPost)),
+    error=function(e) { message("Honest SD failed for ", name); NULL })
+  if (is.null(sd)) return(NULL)
+  data.table(outcome=name, M=as.numeric(sd$M),
+             lb=as.numeric(sd$lb), ub=as.numeric(sd$ub))
+}
+honest_sd <- rbindlist(list(
+  honest_sd_one("formal",   quote(employed==1 & public_sector==0), "Formal empl."),
+  honest_sd_one("self_emp", quote(employed==1 & public_sector==0), "Self-employment"),
+  honest_sd_one("log_wage_hr", quote(wage_valid==1), "Log hourly wage")
+), fill=TRUE)
+fwrite(honest_sd, file.path(DIR_OUT, "honestdid_sd.csv"))
+cat("\n==== HonestDiD smoothness (SD) restriction; M=0 = linear extrapolation ====\n")
+print(honest_sd)
 
 # breakdown Mbar: largest Mbar for which the robust CI still excludes 0
 bd <- honest[kind=="RM"][, .(breakdown = { s <- .SD[order(Mbar)];
@@ -84,7 +112,7 @@ p7 <- ggplot(hp, aes(Mlab, ymin=lb, ymax=ub)) +
 save_fig(p7, "fig7_honestdid", w=7, h=4.2)
 
 ## ==================== (2) RIF unconditional-quantile DiD =====================
-W <- D[employed==1 & dependent==1 & is.finite(log_wage_hr)]
+W <- D[wage_valid==1]
 taus <- seq(0.1, 0.9, 0.1)
 # weighted quantile without extra deps
 wtd_quantile <- function(x, w, p) {
@@ -92,9 +120,14 @@ wtd_quantile <- function(x, w, p) {
   approx(cw, x, xout=p, rule=2, ties="ordered")$y
 }
 # recentered influence function for the tau-quantile (Firpo-Fortin-Lemieux 2009)
+# Bandwidth: weighted Silverman rule (base density() picks its bandwidth
+# ignoring the weights, which triggered warnings and misestimated f(q)).
 rif_quantile <- function(y, w, tau) {
   q <- wtd_quantile(y, w, tau)
-  fq <- density(y, weights=w/sum(w), n=512)
+  wm <- weighted.mean(y, w); wsd <- sqrt(weighted.mean((y-wm)^2, w))
+  n_eff <- sum(w)^2 / sum(w^2)
+  bw <- 0.9 * wsd * n_eff^(-1/5)
+  fq <- density(y, weights=w/sum(w), bw=bw, n=512)
   fhat <- approx(fq$x, fq$y, xout=q, rule=2)$y
   q + (tau - as.numeric(y <= q)) / fhat
 }

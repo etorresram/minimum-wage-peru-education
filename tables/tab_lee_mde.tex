@@ -1,0 +1,30 @@
+\begin{table}[H]\centering
+\caption{Selection bounds and statistical power}\label{tab:leemde}
+\begin{threeparttable}
+\footnotesize
+\begin{tabular}{lcc}
+\toprule
+\multicolumn{3}{l}{\emph{Panel A: Lee-type trimming bounds, unconditional 2$\times$2 log-wage DiD}}\\
+\midrule
+Selection DiD (wage-sample inclusion) & -0.021 & \\
+Trimming fraction & 0.076 & \\
+Untrimmed DiD & -0.005 & \\
+Bounds & [-0.099, 0.101] & \\
+\midrule
+\multicolumn{3}{l}{\emph{Panel B: minimum detectable effects (80\% power, 5\% size)}}\\
+Outcome & Estimate & MDE \\ \midrule
+Log real hourly wage & -0.021 & 0.034 \\
+Log real monthly earnings & -0.010 & 0.038 \\
+Employed (working age) & -0.025 & 0.016 \\
+Labour force participation & -0.008 & 0.012 \\
+Formal employment & -0.046 & 0.021 \\
+Weekly hours (main job) & 0.556 & 0.698 \\
+Full-time (>=35h) & -0.013 & 0.013 \\
+Self-employed & 0.036 & 0.017 \\
+Paid below the MW & -0.006 & 0.021 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}\footnotesize
+\item Notes: Panel A: bounds on the unconditional 2$\times$2 log hourly wage DiD following the trimming logic of \citet{lee_2009}: the reform reduced the probability that a low-education worker appears in the wage-earner sample (selection DiD), so the low$\times$post cell is trimmed from above and below by the implied fraction of its baseline rate. Panel B: minimum detectable effect $=2.8\times$ the department-clustered standard error of the baseline DiD.
+\end{tablenotes}
+\end{threeparttable}\end{table}

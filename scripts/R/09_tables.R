@@ -24,7 +24,7 @@ STARS <- "$^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$."
 SE_NOTE <- "Standard errors clustered by department in parentheses; all estimates are weighted by ENAHO survey weights."
 
 wrap <- function(body, caption, label, notes, colspec, header, small=FALSE) {
-  c("\\begin{table}[H]\\centering",
+  c("\\begin{table}[!tbp]\\centering",
     sprintf("\\caption{%s}\\label{%s}", caption, label),
     "\\begin{threeparttable}",
     if (small) "\\footnotesize" else NULL,
@@ -39,11 +39,11 @@ desc_body <- readLines(file.path(DIR_TAB, "tab_descriptives.tex"))
 # strip the tabular wrapper lines to reuse rows
 di <- which(grepl("\\\\toprule", desc_body))[1]; dj <- which(grepl("\\\\bottomrule", desc_body))[1]
 desc_rows <- desc_body[(di+1):(dj-1)]
-descw <- c("\\begin{table}[H]\\centering",
+descw <- c("\\begin{table}[!tbp]\\centering",
   "\\caption{Descriptive statistics by skill group, pre-reform period}\\label{tab:desc}",
   "\\begin{threeparttable}", "\\begin{tabular}{lccc}", "\\toprule", desc_rows, "\\bottomrule",
   "\\end{tabular}", "\\begin{tablenotes}\\footnotesize",
-  "\\item Notes: Weighted means using ENAHO survey weights, working-age individuals (14--65) in the pre-reform quarters (2021Q1--2022Q1). Low-skilled: education at most complete secondary (\\texttt{p301a}$\\le$6). High-skilled: any tertiary education (\\texttt{p301a}$\\ge$7). Wage and hours variables are conditional on employment; the hourly wage is further conditional on being a dependent employee.",
+  "\\item Notes: Weighted means using ENAHO survey weights, working-age individuals (14--65) in the pre-reform quarters (2021Q1--2022Q1). Low-skilled: education at most complete secondary (\\texttt{p301a}$\\le$6). High-skilled: any tertiary education (\\texttt{p301a}$\\ge$7). Wage-earner variables (hourly wage, below MW) are conditional on being a private-sector wage earner (employees and domestic workers, monthly-equivalent earnings); hours and formality are conditional on employment. Observation counts are unweighted. The below-MW row uses the statutory floor in force in the income reference month (930 soles throughout the pre-reform window); the exposure shares relative to the NEW floor (57 vs.\\ 40 percent) discussed in the text use 1{,}025 soles.",
   "\\end{tablenotes}", "\\end{threeparttable}\\end{table}")
 writeLines(descw, file.path(DIR_TAB, "tab_descriptives_wrapped.tex"))
 
@@ -59,19 +59,21 @@ rows <- c()
 for (o in ord) {
   m <- main[outcome==o]; d <- dr[outcome==o]; p <- pt[outcome==o]
   ptp <- if(nrow(p)) p$pretrend_p[1] else NA
+  el  <- if (!is.null(m$elasticity)) m$elasticity else NA
   rows <- c(rows,
-    sprintf("%s & %s & %s & %s \\\\", labs[o], cell(m$att,m$se,m$p),
-            cell(d$att,d$se,d$p), ifelse(is.na(ptp),"--",f3(ptp))),
-    sprintf(" & %s & %s & \\\\", secell(m$se), secell(d$se)),
-    sprintf(" & \\multicolumn{2}{c}{\\footnotesize $N=%s$, $\\bar{y}=%s$} & \\\\",
+    sprintf("%s & %s & %s & %s & %s \\\\", labs[o], cell(m$att,m$se,m$p),
+            cell(d$att,d$se,d$p), ifelse(is.na(ptp),"--",f3(ptp)),
+            ifelse(is.na(el),"--",formatC(el, format="f", digits=2))),
+    sprintf(" & %s & %s & & \\\\", secell(m$se), secell(d$se)),
+    sprintf(" & \\multicolumn{2}{c}{\\footnotesize $N=%s$, $\\bar{y}=%s$} & & \\\\",
             format(m$n,big.mark=","), f3(m$ymean)))
 }
 tab_main <- wrap(rows,
   "Difference-in-differences estimates of the 2022 minimum-wage reform",
   "tab:main", c(
-  "\\item Notes: Each row is a separate regression. Column (1) reports the two-way fixed-effects DiD coefficient on $\\mathrm{Low}\\times\\mathrm{Post}$ from equation~\\eqref{eq:twfe}, with department and quarter fixed effects and controls (age, age squared, sex, urban, marital status, years of education). Column (2) reports the doubly robust DiD estimator of \\citet{santanna_zhao_2020} collapsing to pre/post and dropping the transition quarter. Column (3) is the $p$-value of a joint test that the pre-reform event-study interactions are zero. Standard errors clustered by department in parentheses; all estimates are weighted by ENAHO survey weights. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$."),
-  "lccc",
-  "Outcome & (1) TWFE DiD & (2) Doubly robust & (3) Pre-trend $p$ \\\\")
+  "\\item Notes: Each row is a separate regression on ENAHO 2021Q1--2024Q4, excluding the partially treated transition quarter 2022Q2. Column (1) reports the two-way fixed-effects DiD coefficient on $\\mathrm{Low}\\times\\mathrm{Post}$ from equation~\\eqref{eq:twfe}, with department and quarter fixed effects and controls (age, age squared, sex, urban, marital status, years of education). Column (2) reports the doubly robust DiD estimator of \\citet{santanna_zhao_2020} collapsing to pre/post; its standard errors are clustered by department using the estimator's influence function. Column (3) is the $p$-value of a joint test that the pre-reform event-study interactions are zero. Column (4) converts the column-(1) estimate into an elasticity with respect to the 10.2 percent minimum-wage increase (for level outcomes, relative to the baseline mean $\\bar{y}$). Wage outcomes are for private-sector wage earners (employees and domestic workers, monthly-equivalent earnings); formality, hours, and self-employment are for private-sector workers. Standard errors clustered by department (25 clusters) in parentheses; all estimates are weighted by ENAHO survey weights. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$."),
+  "lcccc",
+  "Outcome & (1) TWFE DiD & (2) Doubly robust & (3) Pre-trend $p$ & (4) Elasticity \\\\")
 writeLines(tab_main, file.path(DIR_TAB, "tab_main_did.tex"))
 
 ## ---- Table: specification robustness ----------------------------------------
@@ -79,17 +81,27 @@ sp <- fread(file.path(DIR_OUT, "rob_specifications.csv"))
 sp_ord <- c(baseline="Baseline", no_ctrl="No controls", drop_covid="Drop 2021Q1 (pandemic)",
             reg_trend="Department linear trends", prime_age="Prime age (25--55)",
             alt_cutoff="Alternative education cutoff", occ_ind_fe="Occupation \\& industry FE",
-            cluster_rs="Cluster dept.$\\times$skill")
+            cluster_rs="Cluster dept.$\\times$skill",
+            low_trend="Low-skilled group linear trend",
+            incl_trans="Include transition quarter (2022Q2)",
+            excl_agri="Exclude agriculture (agrarian regime)",
+            incl_public="Include public-sector workers")
 oc <- c("Log hourly wage","Employment","Formal empl.","Self-employment")
+fmtN <- function(n) ifelse(is.na(n), "--", format(n, big.mark=","))
 rows <- sapply(names(sp_ord), function(s) {
-  vals <- sapply(oc, function(o){ r <- sp[spec==s & outcome==o]; if(nrow(r)) cell(r$est,r$se,r$p) else "" })
-  ses  <- sapply(oc, function(o){ r <- sp[spec==s & outcome==o]; if(nrow(r)) secell(r$se) else "" })
+  vals <- sapply(oc, function(o){ r <- sp[spec==s & outcome==o]
+    if(nrow(r) && !is.na(r$est)) cell(r$est,r$se,r$p) else "--" })
+  ses  <- sapply(oc, function(o){ r <- sp[spec==s & outcome==o]
+    if(nrow(r) && !is.na(r$est)) secell(r$se) else "" })
+  ns   <- sapply(oc, function(o){ r <- sp[spec==s & outcome==o]
+    if(nrow(r)) sprintf("\\footnotesize[%s]", fmtN(r$n)) else "" })
   c(sprintf("%s & %s \\\\", sp_ord[s], paste(vals, collapse=" & ")),
-    sprintf(" & %s \\\\", paste(ses, collapse=" & ")))
+    sprintf(" & %s \\\\", paste(ses, collapse=" & ")),
+    sprintf(" & %s \\\\", paste(ns, collapse=" & ")))
 })
 tab_sp <- wrap(as.vector(rows),
   "Specification robustness of the DiD estimates",
-  "tab:robspec", c("\\item Notes: Each cell is the $\\mathrm{Low}\\times\\mathrm{Post}$ DiD coefficient (standard error clustered by department below) for the outcome in the column heading, under the specification in the row; all estimates are weighted by ENAHO survey weights, and Log hourly wage denotes the log real hourly wage. The baseline is equation~\\eqref{eq:twfe}. The alternative education cutoff defines low-skilled as at most incomplete secondary and high-skilled as at least complete non-university tertiary, dropping the boundary categories. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$."),
+  "tab:robspec", c("\\item Notes: Each cell is the $\\mathrm{Low}\\times\\mathrm{Post}$ DiD coefficient (standard error clustered by department below; sample size in brackets) for the outcome in the column heading, under the specification in the row; all estimates are weighted by ENAHO survey weights, and Log hourly wage denotes the log real hourly wage. The baseline is equation~\\eqref{eq:twfe}, which excludes the partially treated 2022Q2. The alternative education cutoff defines low-skilled as at most incomplete secondary and high-skilled as at least complete non-university tertiary, dropping the boundary categories. The agriculture exclusion and the public-sector inclusion apply to job-conditional outcomes only (industry and sector are undefined for non-workers). $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$."),
   "lcccc",
   paste0("Specification & ", paste(oc, collapse=" & "), " \\\\"),
   small=TRUE)
@@ -104,19 +116,48 @@ v25 <- fread(file.path(DIR_OUT, "validation2025_did.csv"))
 pv <- function(p) ifelse(is.na(p),"--",f3(p))
 rows <- c()
 for (o in oc) {
-  a <- inf[outcome==o]; r <- ri[outcome==o]; cc <- cont[outcome==o]; dd <- ddd[outcome==o]; vv <- v25[outcome==o]
+  a <- inf[outcome==o]; r <- ri[outcome==o]; cc <- cont[outcome==o]; vv <- v25[outcome==o]
   rip <- if(nrow(r)) r$ri_p[1] else NA
-  rows <- c(rows, sprintf("%s & %s & %s & %s & %s & %s & %s \\\\", o,
-    pv(a$p_region), pv(a$p_regionskill), pv(a$p_CR2), pv(rip),
-    cell(cc$est,cc$se,cc$p), cell(vv$att,vv$se,vv$p)))
+  rows <- c(rows,
+    sprintf("%s & %s & %s & %s & %s & %s & %s \\\\", o,
+      pv(a$p_region), pv(a$p_regionskill), pv(a$p_CR2), pv(rip),
+      cell(cc$est,cc$se,cc$p), cell(vv$att,vv$se,vv$p)),
+    sprintf(" & & & & & %s & %s \\\\", secell(cc$se), secell(vv$se)))
 }
 tab_inf <- wrap(rows,
   "Inference robustness, design robustness, and out-of-sample validation",
-  "tab:inference", c("\\item Notes: Columns (1)--(4) report $p$-values for the baseline $\\mathrm{Low}\\times\\mathrm{Post}$ effect under, respectively, department clustering, department$\\times$skill clustering, the CR2 small-sample correction \\citep{pustejovsky_tipton_2018} applied to department-level collapsed cells, and randomization inference permuting the regional bite across departments (2{,}000 draws). Column (5) reports the continuous-exposure estimate, the coefficient on $\\mathrm{Post}\\times$(standardized department Kaitz index). Column (6) reports the DiD estimate for the January-2025 reform (window 2024--2025). Log hourly wage denotes the log real hourly wage; all estimates are weighted by ENAHO survey weights, and significance in columns (5)--(6) is based on department-clustered standard errors. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$."),
+  "tab:inference", c("\\item Notes: Columns (1)--(3) report $p$-values for the baseline $\\mathrm{Low}\\times\\mathrm{Post}$ effect under, respectively, department clustering (25 clusters), department$\\times$skill clustering (50 clusters), and the CR2 small-sample correction \\citep{pustejovsky_tipton_2018} applied to department-level collapsed cells. Column (4) reports the randomization-inference $p$-value for the CONTINUOUS-exposure design of column (5) -- not for the two-group $\\mathrm{Low}\\times\\mathrm{Post}$ contrast -- obtained by permuting the 25 regional Kaitz indices across departments (2{,}000 draws). Column (5) reports the continuous-exposure estimate, the coefficient on $\\mathrm{Post}\\times$(standardized department Kaitz index), with department-clustered standard errors in parentheses. Column (6) reports the $\\mathrm{Low}\\times\\mathrm{Post}$ DiD estimate for the January-2025 reform (window 2024--2025), with department-clustered standard errors in parentheses. Log hourly wage denotes the log real hourly wage; all estimates are weighted by ENAHO survey weights. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$."),
   "lcccccc",
-  "Outcome & (1) Dept. & (2) Dept.$\\times$skill & (3) CR2 & (4) RI & (5) Continuous & (6) 2025 reform \\\\",
+  "Outcome & (1) Dept. & (2) Dept.$\\times$skill & (3) CR2 & (4) RI (continuous) & (5) Continuous & (6) 2025 reform \\\\",
   small=TRUE)
 writeLines(tab_inf, file.path(DIR_TAB, "tab_inference.tex"))
+
+## ---- Appendix table: triple difference --------------------------------------
+rows <- c()
+for (o in oc) {
+  dd <- ddd[outcome==o]
+  rows <- c(rows, sprintf("%s & %s \\\\", o, cell(dd$est,dd$se,dd$p)),
+            sprintf(" & %s \\\\", secell(dd$se)))
+}
+tab_ddd <- wrap(rows,
+  "Triple-difference estimates: $\\mathrm{Low}\\times\\mathrm{Post}\\times\\mathrm{HighBite}$",
+  "tab:ddd", c("\\item Notes: Coefficient on the triple interaction $\\mathrm{Low}\\times\\mathrm{Post}\\times\\mathrm{HighBite}$, where HighBite indicates departments with an above-median pre-reform fraction of private wage earners paid below the new minimum wage. Department and quarter fixed effects, controls as in the baseline; standard errors clustered by department (25 clusters); ENAHO survey weights. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$."),
+  "lc", "Outcome & DDD estimate \\\\")
+writeLines(tab_ddd, file.path(DIR_TAB, "tab_triplediff.tex"))
+
+## ---- Appendix table: leave-one-out ranges ------------------------------------
+loo <- fread(file.path(DIR_OUT, "rob_leaveoneout.csv"))
+rows <- c()
+for (o in oc) {
+  l <- loo[outcome==o]
+  rows <- c(rows, sprintf("%s & %s & [%s, %s] & [%s, %s] \\\\", o, f3(l$full),
+    f3(l$loro_min), f3(l$loro_max), f3(l$loqo_min), f3(l$loqo_max)))
+}
+tab_loo <- wrap(rows,
+  "Leave-one-out stability of the baseline DiD estimates",
+  "tab:loo", c("\\item Notes: Ranges of the $\\mathrm{Low}\\times\\mathrm{Post}$ coefficient when re-estimating the baseline dropping one department at a time (25 estimates) or one quarter at a time (15 estimates). Full per-unit estimates are in the replication output (\\texttt{rob\\_leaveoneout\\_detail.csv})."),
+  "lccc", "Outcome & Full sample & Drop-one-department range & Drop-one-quarter range \\\\")
+writeLines(tab_loo, file.path(DIR_TAB, "tab_leaveoneout.tex"))
 
 ## ---- Appendix table: in-time placebo reforms -------------------------------
 pl <- fread(file.path(DIR_OUT, "rob_placebo.csv"))
@@ -131,5 +172,148 @@ plb <- c("\\begin{tabular}{lccc}", "\\toprule",
          "Outcome & Placebo 2021Q2 & Placebo 2021Q3 & Placebo 2021Q4 \\\\", "\\midrule",
          as.vector(prows), "\\bottomrule", "\\end{tabular}")
 writeLines(plb, file.path(DIR_TAB, "tab_placebo_body.tex"))
+
+## ---- Table: first stage (spike migration + compliance DiD) ------------------
+sk <- fread(file.path(DIR_OUT, "firststage_spikes.csv"))
+cm <- fread(file.path(DIR_OUT, "firststage_compliance.csv"))
+rows <- c("\\multicolumn{4}{l}{\\emph{Panel A: share of formal wage earners within $\\pm$2.5\\% of each floor}}\\\\")
+for (smp in unique(sk$sample)) {
+  s <- sk[sample==smp]
+  rows <- c(rows, sprintf("%s & & & \\\\", smp),
+    sprintf("\\quad At the old floor (930) & %s & %s & \\\\",
+            f3(s[window=="pre" & floor==930, share]), f3(s[window=="post" & floor==930, share])),
+    sprintf("\\quad At the new floor (1{,}025) & %s & %s & \\\\",
+            f3(s[window=="pre" & floor==1025, share]), f3(s[window=="post" & floor==1025, share])))
+}
+rows <- c(rows, "\\midrule",
+  "\\multicolumn{4}{l}{\\emph{Panel B: DiD on the share paid below 1{,}025 (fixed threshold)}}\\\\",
+  " & DiD & (s.e.) & Pre-trend $p$ \\\\ \\midrule")
+for (i in seq_len(nrow(cm))) {
+  rows <- c(rows, sprintf("%s & %s & %s & %s \\\\", cm$sample[i],
+    cell(cm$att[i], cm$se[i], cm$p[i]), secell(cm$se[i]), f3(cm$pretrend_p[i])))
+}
+tab_fs <- wrap(rows,
+  "First stage: spike migration and compliance at the wage floor",
+  "tab:firststage", c("\\item Notes: Panel A reports the weighted share of formal private wage earners (monthly-equivalent pay) within $\\pm$2.5 percent of each statutory floor, in symmetric three-quarter windows before (2021Q3--2022Q1) and after (2022Q3--2023Q1) the reform. Panel B reports $\\mathrm{Low}\\times\\mathrm{Post}$ DiD estimates for an indicator of monthly-equivalent pay below 1{,}025 soles (threshold held fixed in all periods), by formality status, with department-clustered standard errors and the joint pre-trend $p$-value in the last column. ENAHO survey weights throughout. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$."),
+  "lccc",
+  "  & Pre window & Post window & \\\\", small=TRUE)
+writeLines(tab_fs, file.path(DIR_TAB, "tab_firststage.tex"))
+
+## ---- Appendix table: granular exposure designs -------------------------------
+el <- fread(file.path(DIR_OUT, "exposure_leads.csv"))
+cd <- fread(file.path(DIR_OUT, "exposure_cell_did.csv"))
+rows <- c()
+for (i in seq_len(nrow(el)))
+  rows <- c(rows, sprintf("%s & \\multicolumn{4}{c}{leads $p$ = %s} \\\\",
+                          el$outcome[i], f3(el$leads_p[i])))
+rows <- c(rows, "\\midrule",
+  "\\multicolumn{5}{l}{\\emph{Panel B: cell-level fraction-affected designs (transparency exercise)}}\\\\",
+  "Outcome & Exposure & Estimate & (s.e.) & Leads $p$ \\\\ \\midrule")
+for (i in seq_len(nrow(cd)))
+  rows <- c(rows, sprintf("%s & %s & %s & %s & %s \\\\", cd$outcome[i],
+    gsub("_","\\\\_",cd$exposure[i]), cell(cd$est[i],cd$se[i],cd$p[i]),
+    secell(cd$se[i]), f3(cd$leads_p[i])))
+tab_ec <- wrap(rows,
+  "Exposure designs: diagnostics and cell-level estimates",
+  "tab:expocells", c("\\item Notes: Panel A: joint tests that the pre-reform quarter$\\times$exposure interactions are zero in the regional continuous-exposure design (standardized department Kaitz). Panel B: coefficients on $\\mathrm{Post}\\times$exposure from cell-level fraction-affected designs (department$\\times$skill$\\times$age cells; frac\\_below = pre-reform share of the cell's private wage earners paid below 1{,}025; frac\\_aff = share paid between 930 and 1{,}025), with cell and quarter fixed effects and department-clustered standard errors. Both cell-level variants fail their leads diagnostics -- fine-grained exposure is confounded with the cells' pandemic-recovery trajectories -- which is why the regional design is the preferred corroboration. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$."),
+  "lcccc",
+  "\\multicolumn{5}{l}{\\emph{Panel A: regional Kaitz design, exposure-leads joint tests}}\\\\", small=TRUE)
+writeLines(tab_ec, file.path(DIR_TAB, "tab_exposure.tex"))
+
+## ---- Appendix table: sector and occupation -----------------------------------
+sec <- fread(file.path(DIR_OUT, "sector_did.csv"))
+oc2 <- fread(file.path(DIR_OUT, "occ_doseresponse.csv"))
+rows <- c()
+for (o in unique(sec$outcome)) {
+  g <- function(s) { r <- sec[outcome==o & sector==s]
+    if (nrow(r)) cell(r$est,r$se,r$p) else "--" }
+  gs <- function(s) { r <- sec[outcome==o & sector==s]
+    if (nrow(r)) secell(r$se) else "" }
+  rows <- c(rows,
+    sprintf("%s & %s & %s & %s \\\\", o, g("Covered high-bite sectors"),
+            g("Agriculture (agrarian regime)"), g("Other private sectors")),
+    sprintf(" & %s & %s & %s \\\\", gs("Covered high-bite sectors"),
+            gs("Agriculture (agrarian regime)"), gs("Other private sectors")))
+}
+rows <- c(rows, "\\midrule",
+  "\\multicolumn{4}{l}{\\emph{Panel B: occupation-exposure dose response ($\\mathrm{Post}\\times$ occupation share below 1{,}025)}}\\\\",
+  "Outcome & Estimate & (s.e.) & Leads $p$ \\\\ \\midrule")
+for (i in seq_len(nrow(oc2)))
+  rows <- c(rows, sprintf("%s & %s & %s & %s \\\\", oc2$outcome[i],
+    cell(oc2$est[i],oc2$se[i],oc2$p[i]), secell(oc2$se[i]), f3(oc2$leads_p[i])))
+tab_so <- wrap(rows,
+  "Sectoral breadth and occupational dose response of the reallocation",
+  "tab:sectorocc", c("\\item Notes: Panel A: $\\mathrm{Low}\\times\\mathrm{Post}$ DiD within sector groups defined from CIIU Rev.4 divisions (covered high-bite: manufacturing 10--33, construction 41--43, trade 45--47, hotels and restaurants 55--56; agriculture: divisions 01--03, under the agrarian regime of Ley 31110, whose daily remuneration is indexed to the RMV and therefore rose with the reform). Panel B: coefficient on $\\mathrm{Post}\\times$(pre-reform share of the 2-digit occupation's private wage earners paid below 1{,}025), with occupation, quarter, and department fixed effects; occupation is measured at the interview and is therefore post-treatment for movers, so Panel B is descriptive corroboration rather than a primary design. Department-clustered standard errors; ENAHO survey weights. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$."),
+  "lccc",
+  c("\\multicolumn{4}{l}{\\emph{Panel A: education DiD by sector group}}\\\\",
+    "Outcome & Covered high-bite & Agriculture & Other private \\\\"), small=TRUE)
+writeLines(tab_so, file.path(DIR_TAB, "tab_sector_occ.tex"))
+
+## ---- Appendix table: Lee bounds and MDE ---------------------------------------
+lb <- fread(file.path(DIR_OUT, "lee_bounds.csv"))
+md <- fread(file.path(DIR_OUT, "mde.csv"))
+gv <- function(q) f3(lb[quantity==q, value])
+rows <- c(
+  sprintf("Selection DiD (wage-sample inclusion) & %s & \\\\", gv("selection_did")),
+  sprintf("Trimming fraction & %s & \\\\", gv("trim_fraction")),
+  sprintf("Untrimmed DiD & %s & \\\\", gv("raw_2x2_did")),
+  sprintf("Bounds & [%s, %s] & \\\\", gv("lower_bound"), gv("upper_bound")),
+  "\\midrule",
+  "\\multicolumn{3}{l}{\\emph{Panel B: minimum detectable effects (80\\% power, 5\\% size)}}\\\\",
+  "Outcome & Estimate & MDE \\\\ \\midrule")
+for (i in seq_len(nrow(md)))
+  rows <- c(rows, sprintf("%s & %s & %s \\\\", md$label[i], f3(md$att[i]), f3(md$mde_80[i])))
+tab_lm <- wrap(rows,
+  "Selection bounds and statistical power",
+  "tab:leemde", c("\\item Notes: Panel A: bounds on the unconditional 2$\\times$2 log hourly wage DiD following the trimming logic of \\citet{lee_2009}: the reform reduced the probability that a low-education worker appears in the wage-earner sample (selection DiD), so the low$\\times$post cell is trimmed from above and below by the implied fraction of its baseline rate. Panel B: minimum detectable effect $=2.8\\times$ the department-clustered standard error of the baseline DiD."),
+  "lcc",
+  "\\multicolumn{3}{l}{\\emph{Panel A: Lee-type trimming bounds, unconditional 2$\\times$2 log-wage DiD}}\\\\", small=TRUE)
+writeLines(tab_lm, file.path(DIR_TAB, "tab_lee_mde.tex"))
+
+## ---- Appendix table: SDID and pre-test power ---------------------------------
+sd2 <- fread(file.path(DIR_OUT, "sdid_results.csv"))
+pp <- fread(file.path(DIR_OUT, "pretest_power.csv"))
+rows <- c()
+for (o in unique(sd2$outcome)) {
+  a <- sd2[outcome==o & mode=="low_only"]; b <- sd2[outcome==o & mode=="skill_gap"]
+  rows <- c(rows,
+    sprintf("%s & %s & %s & \\\\", o, cell(a$att,a$se,a$p), cell(b$att,b$se,b$p)),
+    sprintf(" & %s & %s & \\\\", secell(a$se), secell(b$se)))
+}
+rows <- c(rows, "\\midrule",
+  "\\multicolumn{4}{l}{\\emph{Panel B: power of the pre-trends test against linear violations \\citep{roth_2022_pretest}}}\\\\",
+  "Outcome & Slope at 50\\% power & Implied bias (avg.\\ post) & Bias / estimate \\\\ \\midrule")
+for (i in seq_len(nrow(pp)))
+  rows <- c(rows, sprintf("%s & %s & %s & %s \\\\", pp$outcome[i],
+    f3(pp$slope_power50[i]), f3(pp$implied_bias_power50[i]),
+    formatC(pp$bias50_over_att[i], format="f", digits=2)))
+tab_sp3 <- wrap(rows,
+  "Synthetic DiD and the power of the pre-trends test",
+  "tab:sdidpower", c("\\item Notes: Panel A: synthetic DiD estimates \\citep{arkhangelsky_2021_sdid} on department$\\times$quarter cells, treating above-median-bite departments as treated from 2022Q3; column (1) uses low-education outcome means, column (2) the low-minus-high skill gap; jackknife standard errors in parentheses (the placebo variance is infeasible with 12 treated and 13 control units). Panel B: slope of a linear violation of parallel trends against which the conventional pre-test has only 50 percent power \\citep{roth_2022_pretest}, the bias such an undetected violation would induce in the average post-period effect, and its ratio to the estimated effect. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$."),
+  "lccc",
+  c("\\multicolumn{4}{l}{\\emph{Panel A: synthetic difference-in-differences (high-bite vs synthetic low-bite departments)}}\\\\",
+    "Outcome & Low-education means & Skill gap & \\\\"), small=TRUE)
+writeLines(tab_sp3, file.path(DIR_TAB, "tab_sdid_power.tex"))
+
+## ---- Appendix table: adjustment margins and new subgroups --------------------
+mg <- fread(file.path(DIR_OUT, "margins2.csv"))
+h2 <- fread(file.path(DIR_OUT, "heterogeneity2.csv"))
+rows <- c()
+for (i in seq_len(nrow(mg)))
+  rows <- c(rows, sprintf("%s & %s & %s & %s \\\\", mg$margin[i],
+    cell(mg$att[i],mg$se[i],mg$p[i]), secell(mg$se[i]), f3(mg$pre_mean[i])))
+rows <- c(rows, "\\midrule",
+  "\\multicolumn{4}{l}{\\emph{Panel B: subgroups by household role and ethnic self-identification}}\\\\",
+  "Outcome & Group & Estimate & (s.e.) \\\\ \\midrule")
+for (i in seq_len(nrow(h2)))
+  rows <- c(rows, sprintf("%s & %s & %s & %s \\\\", h2$outcome[i], h2$group[i],
+    cell(h2$att[i],h2$se[i],h2$p[i]), secell(h2$se[i])))
+tab_mg <- wrap(rows,
+  "Adjustment margins and additional subgroups",
+  "tab:margins", c("\\item Notes: Panel A: $\\mathrm{Low}\\times\\mathrm{Post}$ DiD estimates for mechanism-oriented outcomes: the share of private wage earners without a written contract (\\texttt{p511a}), the share of private workers in micro units of at most 20 workers (\\texttt{p512a}), the share of wage earners with under 12 months of tenure (\\texttt{p513a1/2}), and the decomposition of informal employment into informal-sector and formal-sector informal jobs (INEI \\texttt{emplpsec}, available 2021--2023). Panel B: baseline DiD within subgroups defined by household headship (\\texttt{p203}) and indigenous self-identification (\\texttt{p558c}). Department-clustered standard errors; ENAHO survey weights. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$."),
+  "lccc",
+  c("\\multicolumn{4}{l}{\\emph{Panel A: adjustment margins ($\\mathrm{Low}\\times\\mathrm{Post}$)}}\\\\",
+    "Margin & Estimate & (s.e.) & Pre-reform mean \\\\"), small=TRUE)
+writeLines(tab_mg, file.path(DIR_TAB, "tab_margins.tex"))
 
 cat("All LaTeX tables written to tables/.\n")

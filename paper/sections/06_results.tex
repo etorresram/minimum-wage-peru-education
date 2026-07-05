@@ -1,92 +1,166 @@
 \section{Main results}\label{sec:results}
 
-\subsection{The wage response}
+\subsection{The reallocation of low-skilled employment}
 
-The central result of the paper is that the 2022 reform did not raise the real wages of
-low-skilled workers relative to high-skilled workers. Column (1) of
-Table~\ref{tab:main} reports the two-way fixed-effects difference-in-differences
-estimate from equation~\eqref{eq:twfe}. The coefficient on the interaction of the
-low-skill indicator with the post-reform indicator is $-0.009$ for the log real hourly
-wage, with a standard error of $0.022$, an estimate that is economically small and
-statistically indistinguishable from zero. The implied point estimate is a relative
-change of less than one percent, and the ninety-five percent confidence interval rules
-out relative wage gains larger than about three percent. The result for log monthly
-earnings is likewise a tight null. The doubly robust estimator of
-\citet{santanna_zhao_2020} in column (2) is negative and imprecise but tells the same
-qualitative story of no positive wage effect.\footnote{The doubly robust estimator collapses
-the data to a single pre- and post-reform period and omits department fixed effects, so it is
-less comparable to the two-way fixed-effects specification and the event study; I report it as
-a complementary check rather than as the preferred estimate.}
+The central result of the paper is that the 2022 reform shifted the composition of
+low-skilled employment away from formal wage work and toward self-employment, without
+raising the pay of the workers it targeted. I present the compositional evidence first, then the
+first-stage evidence on where the floor binds, and the wage evidence third.
 
-The dynamic event study confirms that this null is not an artifact of averaging over
-offsetting periods. The top-left panel of Figure~\ref{fig:event} plots the coefficients
-$\beta_k$ from equation~\eqref{eq:event} for the log real hourly wage. The pre-reform
-coefficients are small and statistically insignificant, and a joint test of their
-equality to zero does not reject, with a $p$-value of $0.60$ reported in column (3) of
-Table~\ref{tab:main}. After the reform the coefficients hover around zero with no
-discernible break. The wage distribution tells a consistent story:
-Figure~\ref{fig:dist} shows the earnings distribution of low-skilled wage employees
-before and after the reform, with the old and new minima marked. There is a visible mass
-of workers near the old minimum, but the distribution does not shift appreciably toward
-the new floor, and a large share of workers remain below it, reflecting the pervasive
-non-compliance documented in Section~\ref{sec:data}.
+The estimated effect on the probability of formal employment among employed
+private-sector workers is $-0.046$ (column 1 of Table~\ref{tab:main}), a decline of 4.6
+percentage points for low-skilled relative to high-skilled workers---about a fifth of the
+group's 23 percent baseline formality rate---an arithmetically large semi-elasticity
+(about $-2$ with respect to the 10.2 percent increase, column 4 of
+Table~\ref{tab:main}) that reflects how small the formal base is for this group rather
+than an implausibly elastic response. The estimate is precisely estimated under
+department clustering, and the pre-trend test does not reject parallel trends
+($p=0.15$); Section~\ref{sec:robustness} takes the residual-drift concern seriously and
+shows that drift-adjusted magnitudes remain economically large and coincide with the
+synthetic-DiD estimate.
+The event study in Figure~\ref{fig:event} shows the relative formality of the low-skilled
+dropping immediately after the reform, by around four percentage points within a year,
+and persisting. Mirroring this, the probability of self-employment rises by 3.6
+percentage points. The self-employment series, unlike formality, does show a rejected
+pre-trend test ($p=0.003$), driven by one elevated quarter in mid-2021, so I lean on the
+formality margin as the cleaner of the two and treat the self-employment estimate as its
+corroborating mirror image. Weekly hours in the main occupation rise modestly and
+full-time status falls slightly, consistent with a shift toward own-account work, where
+hours are less standardized.
+
+Two independent pieces of evidence support a causal reading of this reallocation. First,
+it scales with exposure: as Section~\ref{sec:heterogeneity} shows, the formality decline
+and the self-employment rise are both larger in the departments where the new floor cuts
+deeper into the pre-reform wage distribution. Second, a continuous-exposure design in the
+spirit of \citet{card_1992}, which discards the education contrast altogether and relates
+outcomes to the standardized pre-reform regional Kaitz index, yields the same picture: a
+one-standard-deviation higher regional bite is associated with a 1.8 percentage-point
+larger decline in formality and a 1.0 point larger rise in self-employment after the
+reform, estimates that survive design-based randomization inference at the department
+level (Section~\ref{sec:robustness}). Taken together these results describe a
+reallocation of low-skilled workers away from formal salaried jobs and toward own-account
+work, the classic informalization margin emphasized by \citet{jaramillo_lopez_2006} for
+Peru and by \citet{ham_2018_honduras} for Honduras.
 
 \input{../tables/tab_main_did}
 
-That the reform failed to lift wages at the bottom is not surprising in this setting: once
-inflation is netted out the real value of the floor rose little, and most low-skilled workers
-are informal or self-employed, so the statutory minimum binds for only a minority of them. The
-precise null also contrasts with the ``lighthouse'' pattern that \citet{jimenez_2023} finds
-for the 2016 reform. I take up these mechanisms, and the contrast with earlier reforms, in
-Section~\ref{sec:discussion}.
+\subsection{The first stage: where the floor is enforced, it binds}
 
-\subsection{Employment and its composition}
+Where does the statutory floor actually bind? Pinning this down first disciplines
+the interpretation of the pay results that follow. Table~\ref{tab:firststage} and Figure~\ref{fig:bunching}
+examine the earnings distribution of \emph{formal} private wage earners, the segment
+where enforcement is concentrated, in symmetric three-quarter windows around the
+reform. Before the reform, 14 percent of low-skilled formal wage earners are paid
+within 2.5 percent of the old floor of 930 soles---a visible spike, in the manner of
+\citet{cengiz_2019} and \citet{engbom_moser_2022}. After the reform the spike
+migrates essentially completely: the mass at 930 collapses to under 2 percent and an
+almost identical spike, 14 percent, appears at the new floor of 1,025. Formal-sector
+employers, in other words, complied with the new minimum.
 
-If the reform did not raise pay, did it affect employment or its composition? Here the
-evidence is more suggestive than conclusive, and it points to adjustment along the margin
-between formal and informal work rather than to large changes in the level of employment.
+The compliance response splits exactly along the enforcement boundary. Panel B of
+Table~\ref{tab:firststage} estimates the DiD for an indicator of pay below 1,025
+soles, holding the threshold fixed in all periods. Among formal wage earners the
+share below the new floor falls by five percentage points for low- relative to
+high-skilled workers (marginally significant, $p=0.10$); among \emph{informal} wage
+earners it \emph{rises} by four percentage points ($p=0.002$)---informal pay drifted
+further below a floor that does not apply in practice. The two responses offset in
+the pooled fixed-threshold estimate (last row of Panel B), which is also why the
+statutory below-minimum indicator of Table~\ref{tab:main} shows no change. Together
+with the reallocation results, this evidence describes a coherent two-sector
+adjustment: the floor binds and is honored inside the formal sector, formal
+employment of the affected group contracts, and the displaced margin reappears as
+self-employment and informal work whose pay the floor does not reach.
 
-The estimated effect on the probability of formal employment among the employed is
-$-0.036$ (column 1 of Table~\ref{tab:main}), a decline of about three and a half
-percentage points for low-skilled relative to high-skilled workers, and it is precisely
-estimated under department clustering. The pre-trend test does not reject parallel trends
-($p=0.44$), and the event study in Figure~\ref{fig:event} shows relative formality of the
-low-skilled drifting down after the reform. Mirroring this, the probability of
-self-employment rises by about three percentage points, an estimate that is statistically
-significant and, as shown below, robust to randomization inference. Taken together these
-two results describe a reallocation of low-skilled workers away from formal salaried jobs
-and toward own-account work, the classic informalization margin emphasized by
-\citet{jaramillo_lopez_2006} for Peru and by \citet{ham_2018_honduras} for Honduras. Weekly hours
-in the main occupation rise modestly, consistent with a shift toward self-employment,
-where hours are less constrained.
+\begin{figure}[!t]
+\centering
+\includegraphics[width=0.8\textwidth]{fig10_bunching.pdf}
+\caption{Spike migration at the wage floor among low-skilled formal private wage
+earners. Weighted histograms of nominal monthly-equivalent earnings (50-sol bins) in
+symmetric three-quarter windows before (2021Q3--2022Q1) and after (2022Q3--2023Q1)
+the reform. Dashed lines mark the old (930) and new (1,025) minimum wage.}
+\label{fig:bunching}
+\end{figure}
 
-The effect on the overall employment rate is negative, at about $-2.5$ percentage points,
-but it is the least robust of my estimates. As the event study makes clear, the employment
-series carries a differential pre-trend concentrated in the first quarter of 2021, when the
-labor market was still recovering unevenly from the pandemic across skill groups. Once that
-quarter is excluded the pre-trend test no longer rejects, but the point estimate also
-attenuates, and the effect does not survive my more conservative inference procedures. I
-therefore treat the employment-level result as inconclusive and place little weight on it,
-reserving the interpretive emphasis for the compositional shift, which is more stable.
-Finally, the indicator for being paid below the minimum shows no significant change, meaning
-that the reform did not measurably improve compliance at the bottom of the distribution.
+\input{../tables/tab_firststage}
 
-\begin{figure}[H]
+\subsection{The wage response}
+
+If covered employers complied with the new floor, did the pay of the low-skilled group
+rise as a whole? On average, no. The
+coefficient on the interaction of the low-skill indicator with the post-reform indicator
+is $-0.021$ for the log real hourly wage, with a standard error of $0.012$: negative,
+marginally insignificant, and inconsistent with the reform having lifted relative pay.
+The estimate for log monthly earnings is similarly null. I am deliberately careful about
+how much this regression can bound, for a transparent reason reported in column (3) of
+Table~\ref{tab:main}: the joint pre-trend test for the hourly wage rejects ($p=0.001$),
+driven by a single positive spike in 2021Q2 ($k=-4$) rather than by a systematic trend.
+Once violations of parallel trends are allowed, the education contrast cannot pin the
+wage effect tightly in either direction: under the relative-magnitudes restriction of
+\citet{rambachan_roth_2023} the robust interval at exact parallel trends reaches
+$+2.9$ percent, and under linear extrapolation of the (gently declining) pre-trend even
+larger positive values are admissible. I therefore do not rest the no-lift conclusion on
+the average wage regression. It rests on the two pieces of pay evidence whose
+diagnostics are clean and which do not depend on the education pre-trend.
+
+First, the share of wage earners paid below the statutory floor---35 percent of
+low-skilled wage earners at baseline---does not fall after the reform (the estimate is
+$-0.006$ with $p=0.45$, and its pre-trends are flat, $p=0.13$). If firms had complied
+with the new floor for the marginal worker, this share would have dropped mechanically.
+Second, the earnings distribution in Figure~\ref{fig:dist} shows visible mass near the
+old minimum before the reform but no appreciable migration of that mass toward the new
+floor afterward, reflecting the pervasive non-compliance documented in
+Section~\ref{sec:data}; the unconditional-quantile estimates of
+Section~\ref{sec:heterogeneity} likewise show no gain at any decile, including the
+bottom ones where an enforced floor must compress the distribution. The doubly robust estimator of \citet{santanna_zhao_2020} in
+column (2) is negative and imprecise for wages and insignificant for every other outcome
+once its standard errors are clustered by department.\footnote{The doubly robust
+estimator collapses the data to a single pre- and post-reform period and omits department
+fixed effects, so it is both less comparable to the two-way fixed-effects specification
+and much less precise under department clustering; I report it as a complementary check
+rather than as the preferred estimate.}
+
+That the reform failed to lift wages at the bottom is not surprising in this setting:
+once inflation is netted out the real value of the floor rose little, most low-skilled
+workers are informal or self-employed, and enforcement is thin, so the statutory minimum
+constrains pay for only a minority. The absence of a pay response contrasts with the
+``lighthouse'' pattern that \citet{jimenez_2023} finds for the 2016 reform. I take up
+these mechanisms, and the contrast with earlier reforms, in Section~\ref{sec:discussion}.
+
+
+\subsection{The level of employment}
+
+The estimated effect on the overall employment rate is $-2.5$ percentage points, which
+would imply an employment elasticity with respect to the minimum wage of about $-0.35$,
+more than twice the largest estimates in the earlier Peruvian literature
+\citep{cespedes_2005}. I do not give this estimate a causal interpretation, for three
+reasons documented in Section~\ref{sec:robustness}: the employment series carries a
+clear differential pandemic-recovery pre-trend concentrated in early 2021 (pre-trend
+$p<0.001$); in-time placebo reforms placed in the pre-period produce ``effects'' of
+similar magnitude and significance; and, unlike the compositional margins, the
+employment effect does not scale with regional exposure---if anything it is smaller in
+high-bite departments. Once 2021Q1 is excluded the point estimate roughly halves, and it
+does not survive the more conservative inference procedures. I therefore treat the
+employment-level result as reflecting differential recovery dynamics rather than the
+minimum wage, and place the interpretive weight on the compositional shift, whose
+diagnostics are clean.
+
+\begin{figure}[!t]
 \centering
 \includegraphics[width=0.98\textwidth]{fig5_event_study.pdf}
 \caption{Event-study estimates of the 2022 reform. Each panel plots the coefficients
 $\beta_k$ on the interaction of the low-skill indicator with quarter indicators from
-equation~\eqref{eq:event}, relative to the omitted quarter 2022Q1 ($k=-1$). The reform is
-effective at $k=0$ (2022Q2). Shaded bands are ninety-five percent confidence intervals with
-standard errors clustered by department.}
+equation~\eqref{eq:event}, relative to the omitted quarter 2022Q1 ($k=-1$). The partially
+treated transition quarter 2022Q2 ($k=0$) is excluded. Shaded bands are ninety-five
+percent confidence intervals with standard errors clustered by department.}
 \label{fig:event}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[!t]
 \centering
 \includegraphics[width=0.72\textwidth]{fig4_wage_distribution.pdf}
-\caption{Earnings distribution of low-skilled wage employees, before and after the reform.
-Weighted kernel densities of nominal monthly earnings, with the old (930) and new (1,025)
-minimum wage marked by dashed lines.}
+\caption{Earnings distribution of low-skilled wage earners, before and after the reform.
+Weighted kernel densities of nominal monthly-equivalent earnings (private-sector
+employees and domestic workers), with the old (930) and new (1,025) minimum wage marked
+by dashed lines.}
 \label{fig:dist}
 \end{figure}

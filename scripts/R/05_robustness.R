@@ -17,17 +17,19 @@ suppressMessages({library(fixest); library(clubSandwich); library(ggplot2)})
 set.seed(20220501)
 
 DT <- readRDS(file.path(DIR_PROC, "enaho_pooled.rds"))
-D  <- DT[in_window==1 & working_age==1 & !is.na(skill)]
-D[, did := low*post]
-D[wage_ok <- (employed==1 & dependent==1 & wage_hr_real>0), log_wage_hr := log(winsorize(wage_hr_real))]
-D[, ft_main := as.integer(hours_main>=35)]
+# D_all keeps the partially treated 2022Q2 transition quarter (for the
+# "include transition" specification); the baseline D drops it, as in 03.
+D_all <- DT[in_window==1 & working_age==1 & !is.na(skill)]
+D_all[, did := low*post]
+D_all[, ft_main := as.integer(hours_main>=35)]
+D <- D_all[transition==0]
 CTRL <- "age+age2+female+married+urban+years_educ"
 
 OUTS <- list(
-  list(y="log_wage_hr", lab="Log hourly wage", flt=quote(employed==1 & dependent==1 & is.finite(log_wage_hr))),
+  list(y="log_wage_hr", lab="Log hourly wage", flt=quote(wage_valid==1)),
   list(y="employed",    lab="Employment",      flt=quote(rep(TRUE,.N))),
-  list(y="formal",      lab="Formal empl.",    flt=quote(employed==1)),
-  list(y="self_emp",    lab="Self-employment", flt=quote(employed==1)))
+  list(y="formal",      lab="Formal empl.",    flt=quote(employed==1 & public_sector==0)),
+  list(y="self_emp",    lab="Self-employment", flt=quote(employed==1 & public_sector==0)))
 
 # helper: DiD (Low x Post) coefficient for a given data set / formula pieces
 did_est <- function(dat, y, controls=CTRL, fe="t_index + region", clus=~region) {
@@ -50,11 +52,45 @@ specs <- list(
     d2[, low := as.integer(educ_code<=5)][, did := low*post]
     did_est(d2, o$y)
   },
-  occ_ind_fe = function(o) did_est(D[eval(o$flt) & !is.na(occ1)], o$y,
-                                   fe="t_index + region + occ1 + ind1"),
+  occ_ind_fe = function(o) did_est(D[eval(o$flt) & !is.na(occ1) & !is.na(ind_div)],
+                                   o$y, fe="t_index + region + occ1 + ind_div"),
   cluster_rs = function(o) {
     d2 <- D[eval(o$flt)]; d2[, rs := paste(region, skill)]
     did_est(d2, o$y, clus=~rs)
+  },
+  # include the partially treated 2022Q2 transition quarter (baseline drops it)
+  incl_trans = function(o) {
+    d2 <- D_all[eval(o$flt)]
+    did_est(d2, o$y)
+  },
+  # exclude agriculture (divisions 01-03: separate agrarian regime, Ley 31110);
+  # only defined for job-conditional outcomes (industry unknown for non-workers)
+  excl_agri  = function(o) {
+    if (o$y == "employed") return(list(est=NA_real_, se=NA_real_, p=NA_real_, n=NA_integer_))
+    did_est(D[eval(o$flt) & agri==0], o$y)
+  },
+  # group-specific linear trend: allows Low vs High to diverge linearly over the
+  # whole window, so the DiD is identified from the deviation off that trend.
+  # Conservative: with an immediate-and-persistent effect, part of the true
+  # effect is absorbed by the trend, so this bounds the drift story from below.
+  low_trend  = function(o) {
+    d <- D[eval(o$flt)]
+    f <- as.formula(sprintf("%s ~ did + low + low:t_index + %s | t_index + region",
+                            o$y, CTRL))
+    m <- feols(f, data=d, weights=~fac500a, cluster=~region)
+    ct <- coeftable(m)["did", ]
+    list(est=ct[["Estimate"]], se=ct[["Std. Error"]], p=ct[["Pr(>|t|)"]], n=nobs(m))
+  },
+  # add public-sector workers back into the job-conditional samples
+  incl_public = function(o) {
+    if (o$y == "employed") return(list(est=NA_real_, se=NA_real_, p=NA_real_, n=NA_integer_))
+    f2 <- switch(o$y,
+      log_wage_hr = quote(employed==1 & wage_worker==1 & is.finite(wage_hr_real) & wage_hr_real>0),
+      formal      = quote(employed==1),
+      self_emp    = quote(employed==1))
+    d2 <- D[eval(f2)]
+    if (o$y == "log_wage_hr") d2[, log_wage_hr := log(winsorize(wage_hr_real))]
+    did_est(d2, o$y)
   }
 )
 specA <- rbindlist(lapply(OUTS, function(o) {
@@ -119,24 +155,38 @@ fwrite(cont, file.path(DIR_OUT, "rob_continuous.csv"))
 cat("\n==== C2. Continuous exposure (Post x Kaitz_z) ====\n"); print(cont)
 
 ## ======================= D. Leave-one-out stability ==========================
-loo <- rbindlist(lapply(OUTS, function(o) {
+# Full per-unit estimates are saved (rob_leaveoneout_detail.csv) for the
+# appendix table/figure; the summary keeps the min-max ranges.
+loo_detail <- rbindlist(lapply(OUTS, function(o) {
   d <- D[eval(o$flt)]
   regs <- sort(unique(d$region)); qs <- sort(unique(d$t_index))
-  lr <- sapply(regs, function(r) did_est(d[region!=r], o$y)$est)
-  lq <- sapply(qs,   function(q) did_est(d[t_index!=q], o$y)$est)
-  data.table(outcome=o$lab, full=did_est(d,o$y)$est,
-             loro_min=min(lr), loro_max=max(lr),
-             loqo_min=min(lq), loqo_max=max(lq))
+  rbind(
+    rbindlist(lapply(regs, function(r) { e <- did_est(d[region!=r], o$y)
+      data.table(outcome=o$lab, drop_type="region", dropped=r,
+                 est=e$est, se=e$se, p=e$p) })),
+    rbindlist(lapply(qs, function(q) { e <- did_est(d[t_index!=q], o$y)
+      data.table(outcome=o$lab, drop_type="quarter", dropped=as.character(q),
+                 est=e$est, se=e$se, p=e$p) }))
+  )
 }))
+fwrite(loo_detail, file.path(DIR_OUT, "rob_leaveoneout_detail.csv"))
+full_est <- rbindlist(lapply(OUTS, function(o)
+  data.table(outcome=o$lab, full=did_est(D[eval(o$flt)], o$y)$est)))
+loo <- merge(full_est, loo_detail[, .(
+    loro_min = min(est[drop_type=="region"]),  loro_max = max(est[drop_type=="region"]),
+    loqo_min = min(est[drop_type=="quarter"]), loqo_max = max(est[drop_type=="quarter"])),
+  by=outcome], by="outcome")
 fwrite(loo, file.path(DIR_OUT, "rob_leaveoneout.csv"))
 cat("\n==== D. Leave-one-out (region / quarter) ranges ====\n"); print(loo)
 
 ## ======================= E. Randomization inference ==========================
-# Fisherian RI for the regional-exposure design, at the region level. We collapse
+# IMPORTANT (labelling): this is Fisherian RI for the CONTINUOUS REGIONAL-
+# EXPOSURE design (Post x Kaitz slope of section C2), NOT for the education-
+# group Low x Post contrast -- with only two education groups a group-level
+# permutation test of the main DiD is undefined. Tables and text must present
+# it as design-based inference for the continuous specification. We collapse
 # each outcome to region x quarter cell means and permute the 25 regional Kaitz
 # values across departments (2000 draws), re-estimating the Post x exposure slope.
-# Inference at the level of the assigned exposure (the department) is the honest
-# unit, and the collapse makes the permutation fast and serial-correlation robust.
 ri_outcomes <- c("employed","formal","self_emp","log_wage_hr")
 region_expo <- unique(D[, .(region, exposure_z)])[order(region)]
 RI <- 2000
@@ -158,9 +208,19 @@ ri_res <- rbindlist(lapply(ri_outcomes, function(y) {
   }
   data.table(outcome=o$lab, obs=obs, ri_p=mean(abs(null)>=abs(obs)))
 }))
+setnames(ri_res, "obs", "obs_exposure_slope")
 fwrite(ri_res, file.path(DIR_OUT, "rob_randomization.csv"))
-cat("\n==== E. Randomization inference (permute regional exposure, 2000 draws) ====\n")
+cat("\n==== E. Randomization inference: CONTINUOUS-EXPOSURE design",
+    "(permute regional Kaitz, 2000 draws) ====\n")
 print(ri_res)
+
+## ================= E2. Wild cluster bootstrap: NOT FEASIBLE ==================
+# The Cameron-Gelbach-Miller wild cluster bootstrap-t (fwildclusterboot) does
+# not support weighted least squares, and all estimates here use ENAHO survey
+# weights. Few-cluster inference is instead addressed by (i) the CR2/
+# Satterthwaite correction on BDM-collapsed cells (section B) and (ii) the
+# design-based randomization inference for the continuous-exposure design (E).
+# The manuscript must NOT claim wild-bootstrap p-values.
 
 ## ======================= F. In-time placebo reforms ==========================
 # Using only pre-reform data (t<=5, 2021Q1-2022Q1), assign a fake reform at each

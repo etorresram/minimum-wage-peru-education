@@ -16,30 +16,35 @@ source(file.path(Sys.getenv("MW_PROJ_ROOT",
 suppressMessages({library(fixest); library(DRDID)})
 
 DT <- readRDS(file.path(DIR_PROC, "enaho_pooled.rds"))
-D  <- DT[in_window == 1 & working_age == 1 & !is.na(skill)]
+# Main sample DROPS the partially treated transition quarter 2022Q2 (the reform
+# took effect 1 May; April interviews and April reference incomes are untreated).
+# The "include transition quarter" specification is reported in 05_robustness.R.
+D  <- DT[in_window == 1 & working_age == 1 & !is.na(skill) & transition == 0]
 D[, did := low * post]
 D[, yqf := factor(t_index)]
 D[, ft_main := as.integer(hours_main >= 35)]   # full-time based on main-job hours
-
-# winsorize wage outcomes within the wage sample
-wage_ok <- D$employed==1 & D$dependent==1 & !is.na(D$wage_hr_real) & D$wage_hr_real>0
-D[wage_ok, log_wage_hr := log(winsorize(wage_hr_real))]
-D[wage_ok, log_ylab    := log(winsorize(ylab_real))]
+# Wage outcomes (log_wage_hr, log_ylab) are winsorized ONCE in 01_build_panel.R
+# on the canonical private wage-earner sample (wage_valid / earn_valid).
 
 CTRL <- c("age","age2","female","married","urban","years_educ")
 ctrl_fml <- paste(CTRL, collapse = " + ")
 
+# statutory size of the reform (10.2 percent) for elasticity conversions
+MW_PCT <- 1025/930 - 1
+
 ## ---- Outcome catalogue: name, label, sample filter ---------------------------
+# Conditional (job-level) outcomes are restricted to the PRIVATE sector: public
+# pay scales do not respond to the RMV. Employment/LFP are unconditional.
 outcomes <- list(
-  list(y="log_wage_hr", lab="Log real hourly wage",   flt=quote(employed==1 & dependent==1 & is.finite(log_wage_hr))),
-  list(y="log_ylab",    lab="Log real monthly earnings",flt=quote(employed==1 & dependent==1 & is.finite(log_ylab))),
+  list(y="log_wage_hr", lab="Log real hourly wage",   flt=quote(wage_valid==1)),
+  list(y="log_ylab",    lab="Log real monthly earnings",flt=quote(earn_valid==1)),
   list(y="employed",    lab="Employed (working age)",  flt=quote(rep(TRUE,.N))),
   list(y="lfp",         lab="Labour force participation",flt=quote(rep(TRUE,.N))),
-  list(y="formal",      lab="Formal employment",       flt=quote(employed==1)),
-  list(y="hours_main",  lab="Weekly hours (main job)",  flt=quote(employed==1 & !is.na(hours_main))),
-  list(y="ft_main",     lab="Full-time (>=35h)",        flt=quote(employed==1 & !is.na(hours_main))),
-  list(y="self_emp",    lab="Self-employed",           flt=quote(employed==1)),
-  list(y="below_mw",    lab="Paid below the MW",       flt=quote(employed==1 & dependent==1 & !is.na(ylab_nom)))
+  list(y="formal",      lab="Formal employment",       flt=quote(employed==1 & public_sector==0)),
+  list(y="hours_main",  lab="Weekly hours (main job)",  flt=quote(employed==1 & public_sector==0 & !is.na(hours_main))),
+  list(y="ft_main",     lab="Full-time (>=35h)",        flt=quote(employed==1 & public_sector==0 & !is.na(hours_main))),
+  list(y="self_emp",    lab="Self-employed",           flt=quote(employed==1 & public_sector==0)),
+  list(y="below_mw",    lab="Paid below the MW",       flt=quote(employed==1 & wage_worker==1 & public_sector==0 & !is.na(below_mw)))
 )
 
 ## ---- (a) TWFE DiD -----------------------------------------------------------
@@ -54,9 +59,14 @@ run_twfe <- function(o) {
 }
 main_tab <- rbindlist(lapply(outcomes, run_twfe))
 main_tab[, pct_effect := ifelse(grepl("^log", outcome), 100*(exp(att)-1), NA)]
+# Elasticities w.r.t. the 10.2% statutory MW increase:
+#   log outcomes: att / %ΔMW ; level outcomes: (att / baseline mean) / %ΔMW
+main_tab[, elasticity := ifelse(grepl("^log", outcome),
+                                att / MW_PCT, (att / ymean) / MW_PCT)]
 fwrite(main_tab, file.path(DIR_OUT, "main_did_coefs.csv"))
 cat("==== (a) TWFE DiD: Low x Post ====\n"); print(main_tab[, .(label,n,ymean=round(ymean,3),
-     att=round(att,4), se=round(se,4), p=round(p,4), pct=round(pct_effect,2))])
+     att=round(att,4), se=round(se,4), p=round(p,4), pct=round(pct_effect,2),
+     elast=round(elasticity,2))])
 
 ## ---- (b) Event study --------------------------------------------------------
 # i(t_index, low, ref=5): low x quarter interactions, omitted quarter = 2022Q1
@@ -100,19 +110,26 @@ fwrite(es_tab, file.path(DIR_OUT, "event_study_coefs.csv"))
 cat("\n==== (b) Event study saved (", nrow(es_tab), "coefs ) ====\n")
 
 ## ---- (c) Doubly-robust DiD (Sant'Anna-Zhao, repeated cross sections) --------
-# Collapse to pre (t<6) vs clean-post (t>6, dropping the 2022Q2 transition).
+# Pre (t<6) vs post (t>6); the 2022Q2 transition quarter is already excluded
+# from D. Standard errors are CLUSTERED BY DEPARTMENT using the estimator's
+# influence function (the package default assumes independent observations,
+# which is not comparable to the region-clustered TWFE column).
 run_drdid <- function(o) {
-  s <- D[eval(o$flt) & t_index != 6]
-  s <- s[, .(y=get(o$y), post=as.numeric(t_index>6), D=low,
+  s <- D[eval(o$flt)]
+  s <- s[, .(y=get(o$y), post=as.numeric(t_index>6), D=low, region,
              age,age2,female,married,urban,years_educ, w=fac500a)]
   s <- s[complete.cases(s)]
   cov <- as.matrix(s[, .(one=1,age,age2,female,married,urban,years_educ)])
   out <- tryCatch(DRDID::drdid_rc(y=s$y, post=s$post, D=s$D, covariates=cov,
-                                  i.weights=s$w),
+                                  i.weights=s$w, inffunc=TRUE),
                   error=function(e) NULL)
-  if (is.null(out)) return(data.table(outcome=o$y,label=o$lab,att=NA,se=NA,p=NA))
-  data.table(outcome=o$y, label=o$lab, att=out$ATT, se=out$se,
-             p=2*pnorm(-abs(out$ATT/out$se)))
+  if (is.null(out)) return(data.table(outcome=o$y,label=o$lab,att=NA,se=NA,se_iid=NA,p=NA))
+  # cluster-robust SE from the influence function: Var = sum_g (sum_i psi_i)^2 / n^2
+  psi <- as.numeric(out$att.inf.func)
+  gsum <- tapply(psi, s$region, sum)
+  se_cl <- sqrt(sum(gsum^2)) / length(psi)
+  data.table(outcome=o$y, label=o$lab, att=out$ATT, se=se_cl, se_iid=out$se,
+             p=2*pnorm(-abs(out$ATT/se_cl)))
 }
 dr_tab <- rbindlist(lapply(outcomes, run_drdid))
 fwrite(dr_tab, file.path(DIR_OUT, "drdid_coefs.csv"))
@@ -120,7 +137,7 @@ cat("\n==== (c) Doubly-robust DiD (Sant'Anna-Zhao) ====\n")
 print(dr_tab[, .(label, att=round(att,4), se=round(se,4), p=round(p,4))])
 
 ## ---- Save an estimation object for HonestDiD (log wage event study) ---------
-s <- D[employed==1 & dependent==1 & is.finite(log_wage_hr)]
+s <- D[wage_valid==1]
 m_es_wage <- feols(log_wage_hr ~ i(t_index, low, ref=5) + low + age+age2+female+married+urban+years_educ |
                    t_index + region, data=s, weights=~fac500a, cluster=~region)
 saveRDS(m_es_wage, file.path(DIR_OUT, "es_wage_model.rds"))

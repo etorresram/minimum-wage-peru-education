@@ -4,15 +4,19 @@
 \footnotesize
 \begin{tabular}{lcccccc}
 \toprule
-Outcome & (1) Dept. & (2) Dept.$\times$skill & (3) CR2 & (4) RI & (5) Continuous & (6) 2025 reform \\
+Outcome & (1) Dept. & (2) Dept.$\times$skill & (3) CR2 & (4) RI (continuous) & (5) Continuous & (6) 2025 reform \\
 \midrule
-Log hourly wage & 0.704 & 0.740 & 0.728 & 0.310 & -0.013 & 0.027 \\
-Employment & 0.000 & 0.213 & 0.505 & 0.213 & -0.020$^{**}$ & -0.002 \\
-Formal empl. & 0.000 & 0.000 & 0.132 & 0.234 & -0.008$^{***}$ & 0.004 \\
-Self-employment & 0.000 & 0.000 & 0.141 & 0.021 & 0.010$^{***}$ & -0.014$^{**}$ \\
+Log hourly wage & 0.106 & 0.126 & 0.854 & 0.029 & 0.017 & 0.002 \\
+ & & & & & (0.012) & (0.011) \\
+Employment & 0.000 & 0.210 & 0.507 & 0.003 & -0.034$^{***}$ & -0.002 \\
+ & & & & & (0.012) & (0.005) \\
+Formal empl. & 0.000 & 0.000 & 0.244 & 0.000 & -0.018$^{***}$ & -0.001 \\
+ & & & & & (0.003) & (0.008) \\
+Self-employment & 0.000 & 0.000 & 0.093 & 0.024 & 0.010$^{**}$ & -0.014$^{**}$ \\
+ & & & & & (0.004) & (0.006) \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}\footnotesize
-\item Notes: Columns (1)--(4) report $p$-values for the baseline $\mathrm{Low}\times\mathrm{Post}$ effect under, respectively, department clustering, department$\times$skill clustering, the CR2 small-sample correction \citep{pustejovsky_tipton_2018} applied to department-level collapsed cells, and randomization inference permuting the regional bite across departments (2{,}000 draws). Column (5) reports the continuous-exposure estimate, the coefficient on $\mathrm{Post}\times$(standardized department Kaitz index). Column (6) reports the DiD estimate for the January-2025 reform (window 2024--2025). Log hourly wage denotes the log real hourly wage; all estimates are weighted by ENAHO survey weights, and significance in columns (5)--(6) is based on department-clustered standard errors. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$.
+\item Notes: Columns (1)--(3) report $p$-values for the baseline $\mathrm{Low}\times\mathrm{Post}$ effect under, respectively, department clustering (25 clusters), department$\times$skill clustering (50 clusters), and the CR2 small-sample correction \citep{pustejovsky_tipton_2018} applied to department-level collapsed cells. Column (4) reports the randomization-inference $p$-value for the CONTINUOUS-exposure design of column (5) -- not for the two-group $\mathrm{Low}\times\mathrm{Post}$ contrast -- obtained by permuting the 25 regional Kaitz indices across departments (2{,}000 draws). Column (5) reports the continuous-exposure estimate, the coefficient on $\mathrm{Post}\times$(standardized department Kaitz index), with department-clustered standard errors in parentheses. Column (6) reports the $\mathrm{Low}\times\mathrm{Post}$ DiD estimate for the January-2025 reform (window 2024--2025), with department-clustered standard errors in parentheses. Log hourly wage denotes the log real hourly wage; all estimates are weighted by ENAHO survey weights. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$.
 \end{tablenotes}
 \end{threeparttable}\end{table}

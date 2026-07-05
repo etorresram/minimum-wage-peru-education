@@ -21,11 +21,12 @@ variation in the level of the policy and no staggered adoption to exploit. As
 from differential \emph{exposure} to a policy that changes for everyone at the same time.
 
 My source of differential exposure is education. In the pre-reform quarters the median
-monthly wage of a dependent employee in Peru was almost exactly 930 soles, the old minimum,
-so the typical low-education worker sat right at the wage floor, and a ten percent increase
-in that floor is highly binding. High-education workers, by contrast, have a median wage well
-above the minimum and are far less likely to be bound by it, although some remain exposed
-through informal or own-account work. This gap in exposure, rather than a claim of zero
+monthly-equivalent wage of a low-education private wage earner was 950 soles, almost exactly
+the old minimum of 930, and 57 percent of low-education wage earners were paid below the
+\emph{new} floor of 1,025 soles on the eve of the reform; a ten percent increase in that
+floor is therefore highly binding for this group. High-education workers, by contrast, have
+a median wage well above the minimum and are less likely to be bound by it, although a
+substantial minority remains exposed through informal or own-account work. This gap in exposure, rather than a claim of zero
 exposure for the comparison group, motivates a difference-in-differences design that
 contrasts low-education workers (those with at most complete secondary schooling, about two
 thirds of the working-age population) with high-education workers (those with any tertiary
@@ -35,8 +36,9 @@ machin_manning_rahman_2003} to a setting with a single national reform and rich,
 household data.
 
 I use the public-use quarterly employment modules of the Encuesta Nacional de Hogares (ENAHO)
-from 2021Q1 through 2024Q4, sixteen quarters that bracket the reform with five pre-reform and
-eleven post-reform periods. The data are repeated cross-sections, and their quarterly
+from 2021Q1 through 2024Q4, which bracket the reform with five pre-reform and ten clean
+post-reform quarters; the transition quarter 2022Q2, in which the reform took effect
+mid-quarter, is excluded from the baseline and restored in a robustness check. The data are repeated cross-sections, and their quarterly
 frequency lets me estimate a dynamic event study, test for differential pre-trends by
 education, and trace the effect for more than two years after the reform. I examine a broad
 set of outcomes: real hourly wages and monthly earnings, the probability of employment and of
@@ -46,24 +48,37 @@ survey weights and cluster inference by department, and because treatment is ass
 coarse level I complement conventional cluster-robust standard errors with the small-sample
 correction of \citet{pustejovsky_tipton_2018} and with randomization inference.
 
-Three findings emerge. First, and most robustly, the reform did not raise the real wages of
-low-education workers relative to high-education workers. The effect on the log real hourly
-wage is a precisely estimated null, the event study shows flat pre-trends and no break at the
-reform, and the null holds across the wage distribution. Second, around 2022 the reform is
-associated with a decline in the probability that a low-education worker holds formal salaried
-employment and with an offsetting rise in self-employment, a pattern that points to
-reallocation from the formal to the informal margin rather than to compression of the formal
-wage distribution. Third, the employment rate of low-education workers falls modestly, but
-this margin is the least robust and is sensitive to the differential pandemic recovery of
-early 2021. For the wage and formality results pre-trends are statistically flat; for
-employment and self-employment they are not, so I bound their conclusions with the sensitivity
-analysis of \citet{rambachan_roth_2023} and a battery of specification and placebo checks. I
-then replicate the whole design on the January 2025 reform, which raised the RMV to 1,130
-soles in a cleaner, post-pandemic window. The wage null reappears; the compositional effects
-do not, which leads me to read them as specific to the 2022 episode.
+Three findings emerge. First, and most robustly, the reform shifted the \emph{composition}
+of low-education employment away from formal wage work. The probability that a low-education
+worker holds formal employment falls by 4.6 percentage points---about a fifth of the group's
+23 percent baseline formality rate---and self-employment rises by 3.6 points. These estimates
+have statistically flat pre-reform trends (for formality), appear immediately after the
+reform and persist, are larger in the departments where the new floor cuts deeper into the
+wage distribution, and are confirmed by an independent continuous-exposure design that
+relates outcomes to the pre-reform regional Kaitz index and supports design-based
+randomization inference. Second, there is no evidence that the reform lifted the group's pay---but not because
+the floor is a dead letter. Within the formal sector, where enforcement operates, the
+earnings spike at the old minimum migrates almost completely to the new one, and the
+share of formal wage earners paid below the new floor falls; among informal wage
+earners that share \emph{rises}, and because only 13 percent of employed low-education
+workers are formal, the two responses cancel: the aggregate below-floor share does not
+move, no decile of the wage distribution shows a gain, and the estimated effect on the
+average log real hourly wage is negative and insignificant. The no-lift conclusion
+rests on the compliance and distributional evidence, whose diagnostics are clean; the
+average wage regression itself carries a rejected pre-trend test, driven by a single
+early-2021 quarter, and I bound rather than oversell what it can rule out. Third, the employment
+rate of low-education workers falls by 2.5 percentage points, but this margin is the least
+robust: it fails in-time placebo tests, has a clear differential pandemic-recovery
+pre-trend, and does not scale with regional exposure, so I do not give it a causal
+interpretation. Throughout I bound conclusions with the sensitivity analysis of
+\citet{rambachan_roth_2023} and a battery of specification and placebo checks. I then
+replicate the whole design on the January 2025 reform, which raised the RMV to 1,130 soles
+in a calmer, post-pandemic window: no wage response appears there either, and neither does
+the reallocation, which I interpret as evidence that the margin along which the minimum
+wage binds depends on the state of the labor market.
 
 The contribution is a combination rather than a new tool, and I state it without overclaiming.
-This is the first evaluation of the 2022 Peruvian minimum wage reform and, to my knowledge,
+To my knowledge this is the first evaluation of the 2022 Peruvian minimum wage reform and
 the first study of any Peruvian reform using the post-pandemic quarterly ENAHO; the existing
 micro evidence stops at the 2016 reform \citep{jimenez_2023} or at the reforms of the early
 2000s \citep{jaramillo_lopez_2006, cespedes_2005}. It is also the first to make heterogeneity

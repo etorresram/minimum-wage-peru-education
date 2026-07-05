@@ -11,9 +11,10 @@ source(file.path(PROJ_ROOT, "scripts", "R", "theme_paper.R"))
 suppressMessages({library(fixest); library(ggplot2)})
 
 DT <- readRDS(file.path(DIR_PROC, "enaho_pooled.rds"))
-D  <- DT[in_window==1 & working_age==1 & !is.na(skill)]
+# Baseline sample: drops the partially treated 2022Q2 transition quarter (as in
+# 03); wage outcomes use the canonical winsorized logs built in 01_build_panel.R.
+D  <- DT[in_window==1 & working_age==1 & !is.na(skill) & transition==0]
 D[, did := low*post]
-D[(employed==1 & dependent==1 & wage_hr_real>0), log_wage_hr := log(winsorize(wage_hr_real))]
 D[, agegrp := fifelse(age<=25,"Youth (14-25)", fifelse(age<=45,"Prime (26-45)","Older (46-65)"))]
 CTRL <- "age+age2+female+married+urban+years_educ"
 
@@ -28,9 +29,9 @@ did_sub <- function(dat, y, flt) {
 }
 
 outs <- list(c("employed","Employment", "rep(TRUE,.N)"),
-             c("formal","Formal empl.","employed==1"),
-             c("self_emp","Self-employment","employed==1"),
-             c("log_wage_hr","Log hourly wage","employed==1 & dependent==1 & is.finite(log_wage_hr)"))
+             c("formal","Formal empl.","employed==1 & public_sector==0"),
+             c("self_emp","Self-employment","employed==1 & public_sector==0"),
+             c("log_wage_hr","Log hourly wage","wage_valid==1"))
 
 subgroups <- list(
   list(dim="Overall",   lab="All",           flt=quote(rep(TRUE,.N))),
