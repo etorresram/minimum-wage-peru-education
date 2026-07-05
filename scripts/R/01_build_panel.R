@@ -162,9 +162,15 @@ DT[, new_hire := as.integer(tenure_yrs < 1)]
 # household head and ethnic self-identification (p558c: 1-4 indigenous groups)
 DT[, hh_head := as.integer(p203 == 1)]
 DT[, indigenous := fifelse(is.na(p558c), NA_integer_, as.integer(p558c %in% 1:4))]
-# no formal contract among wage earners (p511a == 7 "sin contrato")
+# No formal contract among wage earners (p511a == 7 "sin contrato").
+# February 2021 exception: the reduced telephone questionnaire applied in 15
+# regions that month dropped the contract item (p511a missing for 51% of wage
+# earners vs ~1% in every other month), so missing p511a in 2021m2 is coded NA
+# rather than "no contract".
 DT[, no_contract := fifelse(wage_worker == 1 & employed == 1,
                             as.integer(is.na(p511a) | p511a == 7), NA_integer_)]
+DT[wage_worker == 1 & employed == 1 & is.na(p511a) &
+   year == 2021 & mes_i == 2L, no_contract := NA_integer_]
 # informal-employment decomposition (emplpsec, available 2021-2023):
 #   1 = informal job in the informal sector, 2 = informal job in the formal sector
 DT[, inf_insector  := fifelse(employed == 1 & !is.na(ocupinf),
