@@ -23,11 +23,12 @@ canon <- function(x) ifelse(x %in% names(LAB), LAB[x], x)
 STARS <- "$^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$."
 SE_NOTE <- "Standard errors clustered by department in parentheses; all estimates are weighted by ENAHO survey weights."
 
-wrap <- function(body, caption, label, notes, colspec, header, small=FALSE) {
+wrap <- function(body, caption, label, notes, colspec, header, small=FALSE, colsep=NULL) {
   c("\\begin{table}[!tbp]\\centering",
     sprintf("\\caption{%s}\\label{%s}", caption, label),
     "\\begin{threeparttable}",
     if (small) "\\footnotesize" else NULL,
+    if (!is.null(colsep)) sprintf("\\setlength{\\tabcolsep}{%s}", colsep) else NULL,
     sprintf("\\begin{tabular}{%s}", colspec), "\\toprule",
     header, "\\midrule", body, "\\bottomrule", "\\end{tabular}",
     "\\begin{tablenotes}\\footnotesize", notes, "\\end{tablenotes}",
@@ -73,7 +74,8 @@ tab_main <- wrap(rows,
   "tab:main", c(
   "\\item Notes: Each row is a separate regression on ENAHO 2021Q1--2024Q4, excluding the partially treated transition quarter 2022Q2. Column (1) reports the two-way fixed-effects DiD coefficient on $\\mathrm{Low}\\times\\mathrm{Post}$ from equation~\\eqref{eq:twfe}, with department and quarter fixed effects and controls (age, age squared, sex, urban, marital status, years of education). Column (2) reports the doubly robust DiD estimator of \\citet{santanna_zhao_2020} collapsing to pre/post; its standard errors are clustered by department using the estimator's influence function. Column (3) is the $p$-value of a joint test that the pre-reform event-study interactions are zero. Column (4) converts the column-(1) estimate into an elasticity with respect to the 10.2 percent minimum-wage increase (for level outcomes, relative to the baseline mean $\\bar{y}$). Wage outcomes are for private-sector wage earners (employees and domestic workers, monthly-equivalent earnings); formality, hours, and self-employment are for private-sector workers. Standard errors clustered by department (25 clusters) in parentheses; all estimates are weighted by ENAHO survey weights. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$."),
   "lcccc",
-  "Outcome & (1) TWFE DiD & (2) Doubly robust & (3) Pre-trend $p$ & (4) Elasticity \\\\")
+  "Outcome & (1) TWFE DiD & (2) Doubly robust & (3) Pre-trend $p$ & (4) Elasticity \\\\",
+  small=TRUE, colsep="4pt")
 writeLines(tab_main, file.path(DIR_TAB, "tab_main_did.tex"))
 
 ## ---- Table: specification robustness ----------------------------------------
@@ -104,7 +106,7 @@ tab_sp <- wrap(as.vector(rows),
   "tab:robspec", c("\\item Notes: Each cell is the $\\mathrm{Low}\\times\\mathrm{Post}$ DiD coefficient (standard error clustered by department below; sample size in brackets) for the outcome in the column heading, under the specification in the row; all estimates are weighted by ENAHO survey weights, and Log hourly wage denotes the log real hourly wage. The baseline is equation~\\eqref{eq:twfe}, which excludes the partially treated 2022Q2. The alternative education cutoff defines low-skilled as at most incomplete secondary and high-skilled as at least complete non-university tertiary, dropping the boundary categories. The agriculture exclusion and the public-sector inclusion apply to job-conditional outcomes only (industry and sector are undefined for non-workers). $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$."),
   "lcccc",
   paste0("Specification & ", paste(oc, collapse=" & "), " \\\\"),
-  small=TRUE)
+  small=TRUE, colsep="4pt")
 writeLines(tab_sp, file.path(DIR_TAB, "tab_robustness.tex"))
 
 ## ---- Table: inference and design robustness ---------------------------------
@@ -128,8 +130,8 @@ tab_inf <- wrap(rows,
   "Inference robustness, design robustness, and out-of-sample validation",
   "tab:inference", c("\\item Notes: Columns (1)--(3) report $p$-values for the baseline $\\mathrm{Low}\\times\\mathrm{Post}$ effect under, respectively, department clustering (25 clusters), department$\\times$skill clustering (50 clusters), and the CR2 small-sample correction \\citep{pustejovsky_tipton_2018} applied to department-level collapsed cells. Column (4) reports the randomization-inference $p$-value for the CONTINUOUS-exposure design of column (5), not for the two-group $\\mathrm{Low}\\times\\mathrm{Post}$ contrast, obtained by permuting the 25 regional Kaitz indices across departments (2{,}000 draws). Column (5) reports the continuous-exposure estimate, the coefficient on $\\mathrm{Post}\\times$(standardized department Kaitz index), with department-clustered standard errors in parentheses. Column (6) reports the $\\mathrm{Low}\\times\\mathrm{Post}$ DiD estimate for the January-2025 reform (window 2024--2025), with department-clustered standard errors in parentheses. Log hourly wage denotes the log real hourly wage; all estimates are weighted by ENAHO survey weights. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$."),
   "lcccccc",
-  "Outcome & (1) Dept. & (2) Dept.$\\times$skill & (3) CR2 & (4) RI (continuous) & (5) Continuous & (6) 2025 reform \\\\",
-  small=TRUE)
+  "Outcome & (1) Dept. & (2) Dept.$\\times$sk. & (3) CR2 & (4) RI (cont.) & (5) Continuous & (6) 2025 \\\\",
+  small=TRUE, colsep="3.5pt")
 writeLines(tab_inf, file.path(DIR_TAB, "tab_inference.tex"))
 
 ## ---- Appendix table: triple difference --------------------------------------
