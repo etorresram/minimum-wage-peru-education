@@ -15,6 +15,24 @@ excluded; see Section~\ref{sec:strategy}). I add the four quarters of 2025 for t
 out-of-sample validation exercise. All statistics use the module's sampling weights;
 the treatment of standard errors is discussed in Section~\ref{sec:strategy}.
 
+The quarterly frequency I exploit is part of the survey design rather than an ad hoc
+partition of an annual file. ENAHO's technical documentation lists two official
+inference levels for the integrated sample: annual (national, urban and rural,
+each of the 24 departments, natural regions, and metropolitan Lima) and
+\emph{quarterly} (national, urban national, and rural national), so national
+quarterly estimation is sanctioned by the sampling design itself. Moreover, in the
+non-panel sample the same conglomerates are visited in the same month every year,
+with different dwellings drawn within them, so the geographic and seasonal
+composition of each quarter is held fixed across years; in my files, 70 percent of
+primary sampling units overlap between the same quarter of consecutive years,
+against 5 percent between different quarters. Each quarter contains close to one
+fourth of the annual sample (about 1{,}340 conglomerates and 21{,}000--22{,}000
+working-age records) with stable composition across quarters. Department-level
+inference, by contrast, is annual only; accordingly, I use department-by-quarter
+variation solely through fixed effects and collapsed cells, and I measure the
+regional bite by pooling the five pre-reform quarters, which approaches the annual
+level at which departmental estimates are representative.
+
 I restrict the sample to individuals of working age, defined as ages 14 to 65,\footnote{Fourteen
 is the minimum legal working age in Peru; 65 is the conventional upper bound of the working-age
 population.} and

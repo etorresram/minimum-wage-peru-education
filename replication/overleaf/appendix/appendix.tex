@@ -5,7 +5,16 @@
 I pool the twenty quarterly ENAHO employment modules (module 500) for 2021Q1--2025Q4;
 the main analysis uses 2021Q1--2024Q4 and the validation uses 2024Q1--2025Q4. The
 working-age sample comprises individuals aged 14 to 65 with non-missing education. All
-statistics use the module employment weight (\texttt{fac500a}). Departments are the 25
+statistics use the module employment weight (\texttt{fac500a}). This weight is
+calibrated so that the full year of interviews expands to the annual population
+projection; each quarterly subsample therefore expands to roughly one fourth of the
+population, which is immaterial for the weighted means, shares, and regression
+estimates used throughout (numerator and denominator scale together) and would matter
+only for population totals, which I never estimate. The quarterly partition follows
+the interview month and matches the survey's own design: quarterly national inference
+is an official inference level of ENAHO, and the non-panel sample revisits the same
+conglomerates in the same months every year, so quarters are internally balanced
+replicas of the design and comparable across years. Departments are the 25
 first-level administrative units derived from the first two digits of \texttt{ubigeo};
 the urban indicator is derived from the sampling stratum.
 
