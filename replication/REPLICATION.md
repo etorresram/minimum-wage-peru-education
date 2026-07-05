@@ -1,7 +1,7 @@
 # Replication notes
 
 This file documents the exact steps and design decisions needed to reproduce the paper
-"Minimum Wages and Workers by Education Level: Evidence from Peru's 2022 Reform."
+"Shifting, Not Lifting: Minimum Wages, Informality, and Low-Skilled Workers in Peru."
 
 ## Environment used
 

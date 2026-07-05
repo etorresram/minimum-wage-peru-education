@@ -1,4 +1,4 @@
-# Minimum Wages and Workers by Education Level: Evidence from Peru's 2022 Reform
+# Shifting, Not Lifting: Minimum Wages, Informality, and Low-Skilled Workers in Peru
 
 Replication package for the paper studying how Peru's May 2022 minimum wage increase
 (from 930 to 1,025 soles, Supreme Decree 003-2022-TR) affected workers with different
