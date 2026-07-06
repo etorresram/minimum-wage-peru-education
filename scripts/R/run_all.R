@@ -27,6 +27,7 @@ steps <- c(
   "15_monthly_event.R",      # monthly event studies + binned-endpoint quarterly ES
   "16_heterogeneity2.R",     # adjustment margins, household role, ethnicity
   "17_pretest_power.R",      # Roth (2022) power of the pre-trends test
+  "18_migration.R",          # robustness to the Venezuelan immigration wave
   "09_tables.R"              # assemble all LaTeX tables (runs last: consumes all output)
 )
 # NOTE: step 13 requires the 2018-2019 ENAHO module-05 files (INEI surveys 634

@@ -318,4 +318,24 @@ tab_mg <- wrap(rows,
     "Margin & Estimate & (s.e.) & Pre-reform mean \\\\"), small=TRUE)
 writeLines(tab_mg, file.path(DIR_TAB, "tab_margins.tex"))
 
+## ---- Appendix table: Venezuelan migration robustness --------------------------
+mig <- fread(file.path(DIR_OUT, "rob_migration.csv"))
+mig_lab <- c(baseline="Baseline", region_x_quarter_fe="Department$\\times$quarter FE",
+             excl_lima_callao="Excluding Lima and Callao",
+             excl_top8_migration="Excluding top-8 migrant-hosting departments")
+oc4 <- c("Log hourly wage","Employment","Formal empl.","Self-employment")
+rows <- c()
+for (sp in names(mig_lab)) {
+  vals <- sapply(oc4, function(o){ r <- mig[spec==sp & outcome==o]; cell(r$est,r$se,r$p) })
+  ses  <- sapply(oc4, function(o){ r <- mig[spec==sp & outcome==o]; secell(r$se) })
+  rows <- c(rows, sprintf("%s & %s \\\\", mig_lab[sp], paste(vals, collapse=" & ")),
+            sprintf(" & %s \\\\", paste(ses, collapse=" & ")))
+}
+tab_mig <- wrap(rows,
+  "Robustness to the Venezuelan immigration wave",
+  "tab:migration", c("\\item Notes: $\\mathrm{Low}\\times\\mathrm{Post}$ DiD estimates under specifications that address the Venezuelan immigration inflow. Department$\\times$quarter fixed effects absorb any local shock common to both education groups within a department-quarter, including migrant arrivals and regularization waves. The top-8 exclusion drops Lima, Callao, La Libertad, Arequipa, Lambayeque, Piura, Ica, and Tumbes, the departments hosting the large majority of the Venezuelan population. Department-clustered standard errors; ENAHO survey weights. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$."),
+  "lcccc",
+  paste0("Specification & ", paste(oc4, collapse=" & "), " \\\\"), small=TRUE, colsep="4pt")
+writeLines(tab_mig, file.path(DIR_TAB, "tab_migration.tex"))
+
 cat("All LaTeX tables written to tables/.\n")
