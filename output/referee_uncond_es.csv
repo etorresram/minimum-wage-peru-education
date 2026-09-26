@@ -1,0 +1,43 @@
+outcome,label,t_index,event_k,est,se
+formal_u,Private formal employment / pop.,1,-5,0.0323298567529022,0.0114938573934968
+formal_u,Private formal employment / pop.,2,-4,0.0299928941865488,0.00849318528696629
+formal_u,Private formal employment / pop.,3,-3,-0.000384172210739829,0.0140712874433756
+formal_u,Private formal employment / pop.,4,-2,-0.0129054512159506,0.016712576819929
+formal_u,Private formal employment / pop.,7,1,-0.00735595491508643,0.0173469842491919
+formal_u,Private formal employment / pop.,8,2,-0.0242517757839938,0.00957030801183322
+formal_u,Private formal employment / pop.,9,3,-0.0265601397122602,0.0098434554977072
+formal_u,Private formal employment / pop.,10,4,-0.0187302640734569,0.0126665543264413
+formal_u,Private formal employment / pop.,11,5,-0.0129819616928912,0.00871512267122079
+formal_u,Private formal employment / pop.,12,6,-0.00374448034468432,0.0068848086018465
+formal_u,Private formal employment / pop.,13,7,-0.0401843897748925,0.017907747752885
+formal_u,Private formal employment / pop.,14,8,-0.0436390268298306,0.0135228330130377
+formal_u,Private formal employment / pop.,15,9,-0.0199809596682966,0.0113262244350684
+formal_u,Private formal employment / pop.,16,10,-0.030206024912069,0.00841141773177588
+self_u,Self-employment / pop.,1,-5,-0.00117394757932434,0.00919657074732391
+self_u,Self-employment / pop.,2,-4,0.0221856593487104,0.00995537761104905
+self_u,Self-employment / pop.,3,-3,-0.0103999253668036,0.00964043171554438
+self_u,Self-employment / pop.,4,-2,0.00682757549927934,0.0117473284366863
+self_u,Self-employment / pop.,7,1,0.0112576559187468,0.00724430265275656
+self_u,Self-employment / pop.,8,2,0.0135465937089566,0.00892635797499561
+self_u,Self-employment / pop.,9,3,0.0118050652100203,0.0148010909605457
+self_u,Self-employment / pop.,10,4,0.0130974090533202,0.00855752751074051
+self_u,Self-employment / pop.,11,5,0.0225910125839357,0.0145081646763585
+self_u,Self-employment / pop.,12,6,0.0231471325427086,0.010201529946468
+self_u,Self-employment / pop.,13,7,0.027943571089282,0.0105495981164653
+self_u,Self-employment / pop.,14,8,0.0307156902164493,0.0100491319440828
+self_u,Self-employment / pop.,15,9,0.0203097672419764,0.0111966726680049
+self_u,Self-employment / pop.,16,10,0.0296845518082745,0.0106710727374052
+informal_u,Private informal employment / pop.,1,-5,0.0217768211679165,0.0146756327440217
+informal_u,Private informal employment / pop.,2,-4,0.00653449346262027,0.0170896246722663
+informal_u,Private informal employment / pop.,3,-3,0.0104615043618768,0.0267027501448348
+informal_u,Private informal employment / pop.,4,-2,0.0082822725850952,0.0262828490661096
+informal_u,Private informal employment / pop.,7,1,-0.000318460509032657,0.0233147506652951
+informal_u,Private informal employment / pop.,8,2,0.0209480175328954,0.0225650126638632
+informal_u,Private informal employment / pop.,9,3,0.0149319478287918,0.0140802711678036
+informal_u,Private informal employment / pop.,10,4,0.0181741181006321,0.0172887226191097
+informal_u,Private informal employment / pop.,11,5,0.0376155871492342,0.018480324567764
+informal_u,Private informal employment / pop.,12,6,-0.012124813549024,0.0203920259490515
+informal_u,Private informal employment / pop.,13,7,0.0308022476845149,0.0273024178546457
+informal_u,Private informal employment / pop.,14,8,0.030738612572354,0.0184875473815044
+informal_u,Private informal employment / pop.,15,9,0.0145029749990837,0.0163399325038722
+informal_u,Private informal employment / pop.,16,10,0.0205396707223489,0.0264677337390908

@@ -338,4 +338,106 @@ tab_mig <- wrap(rows,
   paste0("Specification & ", paste(oc4, collapse=" & "), " \\\\"), small=TRUE, colsep="4pt")
 writeLines(tab_mig, file.path(DIR_TAB, "tab_migration.tex"))
 
+## ---- Table: political-crisis robustness of the regional design ---------------
+pc <- fread(file.path(DIR_OUT, "referee_protest_control.csv"))
+rc <- fread(file.path(DIR_OUT, "referee_regional_crisis.csv"))
+oc_cr <- data.table(
+  y   = c("log_wage_hr","employed","formal","self_emp"),
+  lab = c("Log hourly wage","Employment","Formal empl.","Self-employment"))
+crisis_cols <- function(y) {
+  a <- pc[outcome==y & spec=="no_control"]
+  b <- pc[outcome==y & spec=="post_x_protest"]
+  d <- pc[outcome==y & spec=="crisis_x_protest"]
+  e <- rc[outcome==y & variant=="excl_south_bloc"]
+  f <- rc[outcome==y & variant=="post_2022only"]
+  g <- rc[outcome==y & variant=="excl_south_AND_2022only"]
+  list(est = c(cell(a$kaitz_est,a$kaitz_se,a$kaitz_p), cell(b$kaitz_est,b$kaitz_se,b$kaitz_p),
+               cell(d$kaitz_est,d$kaitz_se,d$kaitz_p), cell(e$est,e$se,e$p),
+               cell(f$est,f$se,f$p), cell(g$est,g$se,g$p)),
+       se  = c(secell(a$kaitz_se), secell(b$kaitz_se), secell(d$kaitz_se),
+               secell(e$se), secell(f$se), secell(g$se)),
+       rip = sprintf("[%s]", f3(c(a$kaitz_ri_p, b$kaitz_ri_p, d$kaitz_ri_p,
+                                  e$ri_p, f$ri_p, g$ri_p))))
+}
+rows <- c()
+for (i in seq_len(nrow(oc_cr))) {
+  cc <- crisis_cols(oc_cr$y[i])
+  rows <- c(rows,
+    sprintf("%s & %s \\\\", oc_cr$lab[i], paste(cc$est, collapse=" & ")),
+    sprintf(" & %s \\\\", paste(cc$se,  collapse=" & ")),
+    sprintf(" & %s \\\\", paste(cc$rip, collapse=" & ")))
+}
+tab_cr <- wrap(rows,
+  "The 2022--23 political crisis and the continuous regional-exposure design",
+  "tab:crisis", c("\\item Notes: Each cell reports the coefficient on $\\mathrm{Post}\\times$(standardized department Kaitz index) from the continuous-exposure design, with department-clustered standard errors in parentheses and the randomization-inference $p$-value (permuting the Kaitz indices across the included departments, 1{,}000 draws, protest control held at its true assignment) in brackets. Column (1) is the baseline of Table~\\ref{tab:inference}, column (5). Columns (2) and (3) add the standardized per-capita peak protest mobilization interacted with the post indicator and with an indicator for 2023Q1 onward, respectively; protest intensity is the January--February 2023 maximum number of persons mobilized in each department, from the monthly conflict reports of the Presidencia del Consejo de Ministros, divided by the department's working-age population. Column (4) excludes the six southern departments at the center of the December-2022--March-2023 protests (Apur\\'imac, Arequipa, Ayacucho, Cusco, Madre de Dios, Puno). Column (5) restricts the post-reform window to 2022Q3--Q4, before the ouster of President Castillo on 7 December 2022, and column (6) combines both restrictions. All estimates weighted by ENAHO survey weights. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$."),
+  "lcccccc",
+  c("& (1) Baseline & (2) +Post$\\times$ & (3) +2023$\\times$ & (4) Excl.\\ south & (5) Post = & (6) (4)+(5) \\\\",
+    "Outcome & & protest & protest & bloc & 2022 only & \\\\"), small=TRUE, colsep="3pt")
+writeLines(tab_cr, file.path(DIR_TAB, "tab_crisis.tex"))
+
+## ---- Appendix table: unconditional compositional outcomes ---------------------
+un <- fread(file.path(DIR_OUT, "referee_uncond.csv"))
+un_lab <- c(formal_u="Private formal employment", self_u="Self-employment",
+            informal_u="Private informal employment")
+rows <- c()
+for (y in names(un_lab)) {
+  r <- un[outcome==y]
+  rows <- c(rows, sprintf("%s & %s & %s & %s & %s & %s \\\\",
+    un_lab[y], f3(r$ymean), cell(r$did_est,r$did_se,r$did_p), f3(r$pretrend_p),
+    cell(r$cont_est,r$cont_se,r$cont_p), f3(r$cont_ri_p)),
+    sprintf(" & & %s & & %s & \\\\", secell(r$did_se), secell(r$cont_se)))
+}
+tab_un <- wrap(rows,
+  "Unconditional compositional outcomes (shares of the working-age population)",
+  "tab:uncond", c("\\item Notes: Outcomes are defined for every working-age individual: an individual counts as (private) formally employed only if employed, in the private sector, and formal, and analogously for self-employment and private informal employment; the non-employed and public-sector workers count as zeros. Column (2) reports the baseline $\\mathrm{Low}\\times\\mathrm{Post}$ education DiD with department-clustered standard errors; column (3) the joint $p$-value of the pre-reform event-study interactions; column (4) the coefficient on $\\mathrm{Post}\\times$(standardized department Kaitz index) from the continuous regional-exposure design; column (5) its randomization-inference $p$-value (permuting the Kaitz indices across departments, 1{,}000 draws). Because these outcomes embed the employment margin, the education-DiD versions inherit its differential pandemic-recovery pre-trend and are reported for transparency rather than leaned on; the regional-design estimates do not depend on the education contrast. All estimates weighted by ENAHO survey weights. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$."),
+  "lccccc",
+  c("& Pre-reform & Education DiD & Pre-trend & Kaitz slope & RI \\\\",
+    "Outcome & mean & (Low$\\times$Post) & $p$ & (Post$\\times z$) & $p$ \\\\"), small=TRUE, colsep="4pt")
+writeLines(tab_un, file.path(DIR_TAB, "tab_uncond.tex"))
+
+## ---- Table: worker-level transitions (ENAHO Panel 2020-2024) -------------------
+tr_mat <- tryCatch(fread(file.path(DIR_OUT, "panel_transitions_matrix.csv")),
+                   error = function(e) NULL)
+if (!is.null(tr_mat)) {
+  tr_did <- fread(file.path(DIR_OUT, "panel_transitions_did.csv"))
+  tr_ent <- fread(file.path(DIR_OUT, "panel_entry_did.csv"))
+  per_lab <- c(PRE="Pre-reform pairs", REFORM="Reform-window pairs", POST="Post-reform pairs")
+  dest_ord <- c("still formal","informal wage job","self-employment",
+                "other employed","non-employed")
+  rows <- c()
+  for (p in c("PRE","REFORM","POST")) {
+    rows <- c(rows, sprintf("\\multicolumn{4}{l}{%s}\\\\", per_lab[p]))
+    for (d in dest_ord) {
+      r <- tr_mat[period==p & destination==d]
+      rows <- c(rows, sprintf("\\quad %s & %s & %s & %s \\\\",
+        paste(toupper(substr(d,1,1)), substr(d,2,nchar(d)), sep=""),
+        f3(r$low_educ), f3(r$high_educ), f3(r$low_educ - r$high_educ)))
+    }
+  }
+  rows <- c(rows, "\\midrule",
+    "\\multicolumn{4}{l}{\\emph{Panel B: stacked transition DiD (Low $\\times$ period, pair and department FE)}}\\\\",
+    " & Low$\\times$Reform & Low$\\times$Post & Pre-reform mean (low) \\\\ \\midrule")
+  for (i in seq_len(nrow(tr_did))) {
+    r <- tr_did[i]
+    rows <- c(rows, sprintf("%s & %s & %s & %s \\\\", r$outcome,
+      cell(r$b_reform, r$se_reform, r$p_reform), cell(r$b_post, r$se_post, r$p_post),
+      f3(r$base_pre_low)),
+      sprintf(" & %s & %s & \\\\", secell(r$se_reform), secell(r$se_post)))
+  }
+  r <- tr_ent[1]
+  rows <- c(rows, sprintf("%s & %s & %s & %s \\\\", "Informal $\\to$ formal (entry)",
+    cell(r$b_reform, r$se_reform, r$p_reform), cell(r$b_post, r$se_post, r$p_post),
+    f3(r$base_pre_low)),
+    sprintf(" & %s & %s & \\\\", secell(r$se_reform), secell(r$se_post)))
+  tab_tr <- wrap(rows,
+    "Worker-level transitions across the reform (ENAHO Panel 2020--2024)",
+    "tab:transitions", sprintf("\\item Notes: Linked persons from the ENAHO Panel 2020--2024 (INEI survey 978), year pairs $t\\to t{+}1$ for $t=2020,\\dots,2023$, panel weights \\texttt{facpanel}. Pair-observations are classified relative to the 1-May-2022 reform using the 2022 interview month: pre-reform (2020--21; 2021--22 interviewed January--April 2022), reform-window (2021--22 interviewed from May 2022; 2022--23 interviewed January--April 2022, whose base state predates the reform), and post-reform (2022--23 interviewed from May 2022; 2023--24). Panel A reports weighted destination shares of workers holding a formal private job in the base year (%s pair-observations). Panel B reports coefficients from stacked regressions of each transition indicator on Low$\\times$Reform, Low$\\times$Post, and Low, with pair and department fixed effects and age, age squared, and sex as controls; the entry row conditions on informal employment (wage or self-employment) in the base year (%s observations). Employment states replicate the main text definitions; informality uses the official indicator where released and the reconstruction elsewhere. Standard errors clustered by base-year department in parentheses. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$.", format(tr_did$n[1], big.mark=","), format(tr_ent$n[1], big.mark=",")),
+    "lccc",
+    c("\\multicolumn{4}{l}{\\emph{Panel A: destination shares of base-year formal private workers}}\\\\",
+      " & Low-educated & High-educated & Low $-$ High \\\\"), small=TRUE, colsep="5pt")
+  writeLines(tab_tr, file.path(DIR_TAB, "tab_transitions.tex"))
+} else {
+  message("panel_transitions_matrix.csv not found; tab_transitions not built.")
+}
+
 cat("All LaTeX tables written to tables/.\n")

@@ -1,0 +1,22 @@
+\begin{table}[!tbp]\centering
+\caption{Unconditional compositional outcomes (shares of the working-age population)}\label{tab:uncond}
+\begin{threeparttable}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lccccc}
+\toprule
+& Pre-reform & Education DiD & Pre-trend & Kaitz slope & RI \\
+Outcome & mean & (Low$\times$Post) & $p$ & (Post$\times z$) & $p$ \\
+\midrule
+Private formal employment & 0.148 & -0.033$^{***}$ & 0.014 & -0.016$^{***}$ & 0.000 \\
+ & & (0.006) & & (0.003) & \\
+Self-employment & 0.252 & 0.017$^{***}$ & 0.000 & -0.004$^{*}$ & 0.115 \\
+ & & (0.004) & & (0.003) & \\
+Private informal employment & 0.500 & 0.009 & 0.306 & -0.019$^{**}$ & 0.009 \\
+ & & (0.006) & & (0.008) & \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}\footnotesize
+\item Notes: Outcomes are defined for every working-age individual: an individual counts as (private) formally employed only if employed, in the private sector, and formal, and analogously for self-employment and private informal employment; the non-employed and public-sector workers count as zeros. Column (2) reports the baseline $\mathrm{Low}\times\mathrm{Post}$ education DiD with department-clustered standard errors; column (3) the joint $p$-value of the pre-reform event-study interactions; column (4) the coefficient on $\mathrm{Post}\times$(standardized department Kaitz index) from the continuous regional-exposure design; column (5) its randomization-inference $p$-value (permuting the Kaitz indices across departments, 1{,}000 draws). Because these outcomes embed the employment margin, the education-DiD versions inherit its differential pandemic-recovery pre-trend and are reported for transparency rather than leaned on; the regional-design estimates do not depend on the education contrast. All estimates weighted by ENAHO survey weights. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$.
+\end{tablenotes}
+\end{threeparttable}\end{table}

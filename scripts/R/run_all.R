@@ -28,6 +28,10 @@ steps <- c(
   "16_heterogeneity2.R",     # adjustment margins, household role, ethnicity
   "17_pretest_power.R",      # Roth (2022) power of the pre-trends test
   "18_migration.R",          # robustness to the Venezuelan immigration wave
+  "19_referee_checks.R",     # unconditional outcomes + regional-design crisis checks
+  "20_protest_control.R",    # 2022-23 political-crisis protest-intensity control
+  "21_panel_transitions.R",  # worker-level transitions, ENAHO Panel 2020-2024
+  "22_state_dependence.R",   # state-dependence probe: floor position vs market churn
   "09_tables.R"              # assemble all LaTeX tables (runs last: consumes all output)
 )
 # NOTE: step 13 requires the 2018-2019 ENAHO module-05 files (INEI surveys 634
