@@ -126,6 +126,24 @@ points, and effects of 2.1 and 1.7 percentage points on formality and
 self-employment, both well below the estimated 4.6 and 3.6, so the compositional
 findings are not an artifact of low statistical power.
 
+The same selection logic applies to the compositional outcomes themselves, which
+are defined among the employed while the employment margin carries a recovery
+pre-trend. Appendix Table~\ref{tab:uncond} therefore reports unconditional
+versions, defined as shares of the working-age population, which involve no
+conditioning on employment. In the education contrast the unconditional estimates
+are larger (formal employment $-3.3$ points, self-employment $+1.7$), but they
+inherit the employment margin's differential pandemic-recovery pre-trend and fail
+its diagnostic, so I report them for transparency rather than lean on them. The
+informative result is in the regional design, which does not use the education
+contrast: unconditional formal employment falls by 1.6 percentage points per
+standard deviation of exposure (randomization $p<0.001$), so the decline in formal
+employment is not an artifact of conditioning on a shifting employed population.
+Unconditional self-employment, by contrast, does not rise with regional exposure;
+in that design the rise in the self-employment \emph{share} of employment operates
+through the shrinking employment denominator, and the absolute reallocation into
+self-employment is a feature of the education contrast specifically. I return to
+this distinction in Section~\ref{sec:discussion}.
+
 \subsection{Sensitivity to violations of parallel trends}
 
 Even flat pre-trends are estimated with error, so I apply the sensitivity analysis of
@@ -238,6 +256,56 @@ inflow of 2018--2019 predates my window, and the pre-COVID check of the next
 subsection, estimated precisely over those peak-inflow years, shows the education
 contrast drifting in the direction opposite to my 2022 estimates.
 
+\subsection{The political crisis of 2022--2023}
+
+A second aggregate shock overlaps the post-reform window: the political crisis that
+followed the ouster of President Castillo on 7 December 2022, with protests, road
+blockades, and states of emergency between December 2022 and March 2023, followed by
+a recession in 2023. The protests were concentrated in the southern sierra, and
+several of their epicenters are also high-bite departments, so the concern is
+specific: unrest-driven declines in formal employment could load onto the regional
+Kaitz gradient that carries part of the causal weight of this paper. For the
+education contrast the department$\times$quarter fixed effects of
+Table~\ref{tab:migration} already absorb any department-quarter shock, including the
+crisis; the regional design, however, is identified precisely from
+department-by-time variation and requires a direct answer.
+
+I measure the local intensity of the crisis with the monthly conflict reports of the
+Presidencia del Consejo de Ministros, which record, for each department, the maximum
+number of persons mobilized in protest actions; I take each department's peak across
+January and February 2023, the months in which the national mobilization peaked,
+express it per working-age resident, and standardize it across departments (Appendix
+A details the source). Three results in Appendix Table~\ref{tab:crisis} indicate
+that the crisis does not generate the regional gradient. First, the geography of the
+protests is not the geography of the bite: the cross-department correlation between
+protest intensity and the Kaitz exposure is 0.19. Hu\'anuco, the highest-Kaitz
+department, saw almost no mobilization, while Arequipa and Tacna, among the most
+mobilized, sit in the lower half of the exposure distribution. Second, controlling
+for protest intensity interacted with the post indicator, or with an indicator for
+2023 onward, leaves the Kaitz slopes essentially unchanged (formality $-0.018$ at
+baseline against $-0.016$ to $-0.017$ with the controls, randomization $p \le
+0.001$ throughout; self-employment $+0.010$ against $+0.008$), while the protest
+control itself enters significantly with the expected signs, so the measure has
+identifying power and simply does not account for the gradient. Third, excluding the
+six southern departments at the center of the protests leaves the gradient intact
+($-0.016$ for formality, randomization $p = 0.002$).
+
+One timing pattern deserves a candid statement. Restricting the post-reform window
+to 2022Q3--Q4, the two quarters after the reform but before the crisis, shrinks the
+regional formality slope to $-0.006$ and it loses significance; the gradient is
+therefore estimated mostly from 2023 onward, when it coexists with the crisis and
+the recession. Three observations keep me from reading the gradient as a crisis
+artifact: the education contrast is already fully present in those two pre-crisis
+quarters (formality $-0.029$, $p<0.01$, with the same magnitude under
+department$\times$quarter fixed effects that absorb all local crisis shocks); the
+event studies show the compositional effect building gradually over the first year,
+so a small early-window slope is what the dynamics imply rather than a discrepancy;
+and the direct protest control above, which is exactly the variable a crisis
+confound would load on, moves nothing. Still, the fair reading is that the regional
+corroboration is strongest for the medium-run persistence of the effect, and the
+education contrast with local-shock absorption carries the evidence on immediate
+timing.
+
 \subsection{A pre-COVID extension of the parallel-trends check}
 
 Because my window opens inside the pandemic recovery, I also test the education
@@ -269,8 +337,8 @@ pay of low-skilled workers. The reallocation, however, does not replicate: the f
 and employment effects are null around the 2025 reform, and the self-employment effect
 is small and of the opposite sign. I take this result seriously rather than explain it away. It
 implies that the reallocation I document around 2022 is not a stable structural response
-that follows every minimum wage increase; it operated in a labor market still
-re-sorting after the pandemic, in which marginal formal matches were plausibly easiest
-to dissolve. Section~\ref{sec:discussion} develops this state-dependence interpretation
-and its alternatives, including the possibility that residual recovery dynamics
-contribute to the 2022 estimates.
+that follows every minimum wage increase; it operated when the incoming floor swept a
+dense band of formal pay, a condition the 2025 increase no longer met.
+Section~\ref{sec:discussion} develops this state-dependence interpretation, probes its
+two candidate state variables directly, and discusses the alternatives, including the
+possibility that residual recovery dynamics contribute to the 2022 estimates.

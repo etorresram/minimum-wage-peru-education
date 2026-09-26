@@ -46,7 +46,11 @@ higher through postgraduate). Special education (code 12) and missing values are
 earners are paid at non-monthly frequencies, against fifteen percent of high-education
 wage earners, so I convert all payments to monthly equivalents using the same factors
 implied by INEI's own annualized income variable (\texttt{i524a1}): 25 for daily, $52/12$
-for weekly, 2 for fortnightly, and 1 for monthly. Wage earners comprise employees and
+for weekly, 2 for fortnightly, and 1 for monthly. The full weighted frequency
+distribution among private wage earners with valid earnings is 2 percent daily, 45
+weekly, 9 fortnightly, and 45 monthly for the low-education group, against 1, 18, 6,
+and 76 percent for the high-education group; the frequency variable is never missing
+in that sample. Wage earners comprise employees and
 domestic workers (\texttt{p507} in $\{3,4,6\}$); domestic workers have been entitled to
 the minimum wage since Law 31047. For employers and own-account workers, labor income is
 net profit (\texttt{p530a}), which is already monthly. Because reported income refers to
@@ -55,7 +59,9 @@ roll back to December of the previous year) using the Lima consumer price index
 rebased to December 2021, and I evaluate the statutory minimum in force in the same
 reference month when classifying workers as paid below the floor. The real hourly wage
 divides monthly-equivalent labor income by $4.345$ times weekly hours in the main
-occupation (\texttt{p513t}, imputed where missing). Wage outcomes exclude public-sector
+occupation (\texttt{p513t}; INEI's imputed hours variable \texttt{i513t} substitutes
+where \texttt{p513t} is missing, but no observation in the wage-analysis sample and
+fewer than 0.01 percent of the hours sample require it). Wage outcomes exclude public-sector
 workers, whose pay is set by separate scales, and are winsorized once at the 0.5th and
 99.5th percentiles of the pooled private wage-earner sample.
 
@@ -83,6 +89,35 @@ pre-reform (2021Q1--2022Q1) weighted median monthly-equivalent wage of private w
 earners. The fraction-affected measure is the pre-reform weighted share of private wage
 earners paid below 1,025 soles.
 
+\paragraph{The ENAHO Panel.} The transition analysis of Section~\ref{sec:transitions}
+uses the ENAHO Panel 2020--2024 (INEI survey 978, published November 2025), whose
+employment module (\texttt{enaho01a-2020-2024-500-panel.dta}) contains one record per
+person with year-suffixed variables for 2020 through 2024. Persons observed in both
+years of a pair are flagged by the indicators \texttt{perpanel} (23,983 linked persons
+for 2021--22 and 23,245 for 2022--23) and weighted with the INEI panel expansion
+factors \texttt{facpanel}, which adjust for attrition and non-response; official
+inference for consecutive-year pairs is national, urban and rural, and by natural
+region. Employment states replicate the cross-section definitions exactly: employed
+is \texttt{ocu500}${}=1$; the formal private state requires private-sector employment
+with a formal job; informality uses the official \texttt{ocupinf} where released and
+the Rule-F reconstruction above elsewhere; self-employment comprises own-account
+workers and employers. Base-year education defines the skill groups. Because the
+panel is annual and the reform took effect on 1 May 2022, pair-observations are
+classified with the 2022 interview month as described in the notes to
+Table~\ref{tab:transitions}.
+
+\paragraph{Protest intensity.} The department-level intensity of the 2022--23
+political crisis is measured from the monthly conflict reports of the Presidencia del
+Consejo de Ministros (Secretar\'ia de Gesti\'on Social y Di\'alogo, ``Reporte de
+Conflictos Sociales''), whose crisis-monitoring tables record the maximum number of
+persons mobilized in protest actions in each department in each week and month. I take
+each department's maximum across the January and February 2023 reports, the two months
+in which national mobilization peaked (the December-2022 report predates the table),
+divide it by the department's working-age population (four times the mean quarterly sum
+of the ENAHO expansion weights), and standardize the result across the 25 departments.
+The transcribed table and the source documents are included in the replication
+package.
+
 \subsection{Supplementary results}
 
 Table~\ref{tab:ddd} reports the triple-difference estimates and Table~\ref{tab:loo}
@@ -90,6 +125,9 @@ the leave-one-out stability ranges discussed in Section~\ref{sec:robustness};
 Tables~\ref{tab:expocells}--\ref{tab:margins} collect the exposure-design diagnostics,
 the sectoral and occupational checks, the selection bounds and power calculations, the
 synthetic-DiD and pre-test-power results, and the adjustment margins.
+Table~\ref{tab:crisis} reports the political-crisis robustness of the continuous
+regional-exposure design and Table~\ref{tab:uncond} the unconditional compositional
+outcomes, both discussed in Section~\ref{sec:robustness}.
 Table~\ref{tab:placebo} reports the in-time placebo reforms and confirms that the wage
 placebos are null while the employment placebos are contaminated by the pandemic
 pre-trend. The doubly robust estimates of \citet{santanna_zhao_2020} appear alongside
@@ -112,6 +150,10 @@ the out-of-sample validation.
 \input{../tables/tab_margins}
 
 \input{../tables/tab_migration}
+
+\input{../tables/tab_crisis}
+
+\input{../tables/tab_uncond}
 
 \paragraph{Deflators.} All wage regressions include quarter fixed effects, which
 absorb national inflation, so log-wage DiD estimates are invariant to the national

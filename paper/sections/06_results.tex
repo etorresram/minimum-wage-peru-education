@@ -111,13 +111,22 @@ old minimum before the reform but no appreciable migration of that mass toward t
 floor afterward, reflecting the pervasive non-compliance documented in
 Section~\ref{sec:data}; the unconditional-quantile estimates of
 Section~\ref{sec:heterogeneity} likewise show no gain at any decile, including the
-bottom ones where an enforced floor must compress the distribution. The doubly robust estimator of \citet{santanna_zhao_2020} in
-column (2) is negative and imprecise for wages and insignificant for every other outcome
-once its standard errors are clustered by department.\footnote{The doubly robust
-estimator collapses the data to a single pre- and post-reform period and omits department
-fixed effects, so it is both less comparable to the two-way fixed-effects specification
-and much less precise under department clustering; I report it as a complementary check
-rather than as the preferred estimate.}
+bottom ones where an enforced floor must compress the distribution.
+
+The doubly robust estimator of \citet{santanna_zhao_2020} in column (2) of
+Table~\ref{tab:main} deserves a candid reading rather than a footnote. It collapses
+the sixteen quarters to a single pre- and post-reform comparison and omits department
+fixed effects, and under department-clustered standard errors it is imprecise for
+every outcome: the wage estimate is negative ($-0.056$, standard error $0.137$) and
+the formality estimate is a null ($+0.006$, standard error $0.040$) rather than the
+two-way fixed-effects $-0.046$. I read this as the familiar cost of discarding the
+time-series structure \citep{bertrand_2004}: collapsing to two periods and twenty-five
+clusters leaves little identifying variation, and the resulting confidence intervals
+contain both zero and effects twice my baseline. It is why I treat the doubly robust
+column as a conservative complementary check rather than as the preferred estimate,
+and why the corroboration I lean on instead comes from designs that retain
+independent variation: the synthetic-DiD estimate on department cells and the
+continuous regional-exposure design of Section~\ref{sec:robustness}.
 
 That the reform failed to lift wages at the bottom is not surprising in this setting:
 once inflation is netted out the real value of the floor rose little, most low-skilled
@@ -143,6 +152,51 @@ does not survive the more conservative inference procedures. I therefore treat t
 employment-level result as reflecting differential recovery dynamics rather than the
 minimum wage, and place the interpretive weight on the compositional shift, whose
 diagnostics are clean.
+
+\subsection{Worker-level transitions: the entry margin}\label{sec:transitions}
+
+The compositional results describe net stocks. To identify the gross flow behind
+them, I complement the repeated cross-sections with the ENAHO Panel 2020--2024,
+which re-interviews the same dwellings annually and links persons across years
+(Section~\ref{sec:data}; construction details in Appendix~A). I stack the four
+year-to-year pairs from 2020--21 through 2023--24 and classify each pair relative
+to the reform using the 2022 interview month: pre-reform pairs, reform-window pairs
+whose base state is measured before May 2022 and whose destination is measured
+after, and post-reform pairs. Among workers holding a formal private job in the
+base year, I estimate a stacked difference-in-differences for each destination
+state, with pair and department fixed effects, individual controls, panel weights
+that adjust for attrition, and standard errors clustered by department.
+Table~\ref{tab:transitions} reports the destination shares and the estimates.
+
+Two findings sharpen the mechanism. First, incumbents were not pushed out.
+Relative to high-educated formal workers, the probability that a low-educated
+formal worker remains formal \emph{rises} across the reform window (8.3 percentage
+points, $p=0.055$), and the transition into informal wage work falls
+($-4.8$ points, $p=0.076$); transitions into self-employment and non-employment do
+not move. This is exactly what the first stage implies: within the enforced
+segment, incumbent workers received the mandated raise and kept their jobs.
+Second, the entry door closed. Among workers who were informally employed in the
+base year, the probability that a low-educated worker moves \emph{into} a formal
+private job falls by 2.1 percentage points ($p=0.011$) in the post-reform pairs,
+nearly half of the group's 4.5 percent baseline entry rate. The decline in the
+formality stock documented in Section~\ref{sec:results} is therefore a
+hiring-margin phenomenon: the reform did not dissolve existing formal matches, it
+reduced the rate at which new ones were created for low-educated workers. This
+reading is consistent with the incidence of the compositional effects among the
+young, women, and secondary earners, the workers most likely to be marginal
+entrants rather than protected incumbents.
+
+Three caveats bound this evidence. The panel is annual, so I cannot time
+transitions within the year beyond the interview-month split; the pre-reform
+benchmark pairs include transitions out of the pandemic year 2020, which were
+unusually churning; and the formal-base sample is modest (about 7,000
+pair-observations), so the retention estimate is only marginally significant.
+The entry response appears in the post-reform pairs rather than in the immediate
+reform window, consistent with hiring flows adjusting with a lag. I therefore read
+the panel evidence as qualitative corroboration of the mechanism, incumbent
+retention plus reduced formal entry, rather than as precise magnitudes.
+
+\input{../tables/tab_transitions}
 
 \begin{figure}[!t]
 \centering

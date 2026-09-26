@@ -28,6 +28,34 @@ Step `13_pretrend_extension.R` uses the annual ENAHO employment modules for 2018
     curl -O https://proyectos.inei.gob.pe/iinei/srienaho/descarga/STATA/687-Modulo05.zip
     unzip 634-Modulo05.zip -d 634 && unzip 687-Modulo05.zip -d 687
 
+## External data for the political-crisis control (step 20)
+
+Step `20_protest_control.R` uses department-level protest intensity during the
+2022-23 political crisis, transcribed from the monthly conflict reports of the
+Presidencia del Consejo de Ministros (SGSD), "Reporte de Conflictos Sociales",
+gob.pe collection 11518. The tables "Maximo numero de personas movilizadas por
+region" from the January-2023 and February-2023 reports (the peak months; the
+December-2022 report predates that table) are transcribed in
+`Data/conflictos/protest_intensity.csv`; the source PDFs are stored alongside
+(`conflictos_2023_01.pdf`, `conflictos_2023_02.pdf`, downloaded 2026-07-12 from
+https://www.gob.pe/institucion/pcm/colecciones/11518-reportes-de-conflictos-sociales).
+
+## External data for the panel transitions (step 21)
+
+Step `21_panel_transitions.R` uses the ENAHO Panel 2020-2024 (INEI survey 978,
+published November 2025). Download the employment module (about 217 MB zipped,
+4.3 GB extracted) to `Data/ENAHO/panel/`:
+
+    mkdir -p Data/ENAHO/panel && cd Data/ENAHO/panel
+    curl -O https://proyectos.inei.gob.pe/iinei/srienaho/descarga/STATA/978-Modulo1477.zip
+    unzip 978-Modulo1477.zip
+
+Module map for survey 978 (numbering is NOT the usual panel convention):
+1474 = module 100 (dwelling; contains the Ficha Tecnica and the dictionary),
+1479 = module 200, 1475 = module 300, 1476 = module 400, **1477 = module 500
+(employment and income, `enaho01a-2020-2024-500-panel.dta`)**, 1478 = sumaria.
+The script skips itself with a message if the file is absent.
+
 ## Pipeline order
 
 Run `scripts/R/run_all.R` (about 20--35 minutes). The steps, in order, are:
@@ -55,7 +83,18 @@ Run `scripts/R/run_all.R` (about 20--35 minutes). The steps, in order, are:
 15. `16_heterogeneity2.R` -- adjustment margins (contract, firm size, tenure, emplpsec) and
     subgroups (household head, ethnicity).
 16. `17_pretest_power.R` -- Roth (2022) power of the pre-trends test.
-17. `09_tables.R` -- assemble all LaTeX tables (runs last).
+17. `18_migration.R` -- robustness to the Venezuelan immigration wave.
+18. `19_referee_checks.R` -- unconditional compositional outcomes (shares of the
+    working-age population); regional-design sample checks (southern-bloc exclusion,
+    2022-only post window) with randomization inference.
+19. `20_protest_control.R` -- direct protest-intensity control in the continuous
+    regional design (needs Data/conflictos/protest_intensity.csv, see above).
+20. `21_panel_transitions.R` -- worker-level transitions across the reform using the
+    ENAHO Panel 2020-2024 (needs Data/ENAHO/panel/, see above; skips if absent).
+21. `22_state_dependence.R` -- state-dependence probe: floor position (swept band,
+    bunching) vs labor-market churn (new-hire share) on the eve of each reform,
+    plus department-level match-creation dose tests for both reforms.
+22. `09_tables.R` -- assemble all LaTeX tables (runs last).
 
 R packages beyond CRAN: `synthdid` and `pretrends` are installed from GitHub
 (`synth-inference/synthdid`, `jonathandroth/pretrends`).

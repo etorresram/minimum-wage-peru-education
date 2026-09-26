@@ -1,0 +1,47 @@
+\begin{table}[!tbp]\centering
+\caption{Worker-level transitions across the reform (ENAHO Panel 2020--2024)}\label{tab:transitions}
+\begin{threeparttable}
+\footnotesize
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{lccc}
+\toprule
+\multicolumn{4}{l}{\emph{Panel A: destination shares of base-year formal private workers}}\\
+ & Low-educated & High-educated & Low $-$ High \\
+\midrule
+\multicolumn{4}{l}{Pre-reform pairs}\\
+\quad Still formal & 0.626 & 0.694 & -0.067 \\
+\quad Informal wage job & 0.151 & 0.116 & 0.035 \\
+\quad Self-employment & 0.128 & 0.067 & 0.061 \\
+\quad Other employed & 0.033 & 0.037 & -0.004 \\
+\quad Non-employed & 0.062 & 0.086 & -0.024 \\
+\multicolumn{4}{l}{Reform-window pairs}\\
+\quad Still formal & 0.717 & 0.697 & 0.020 \\
+\quad Informal wage job & 0.081 & 0.082 & -0.001 \\
+\quad Self-employment & 0.123 & 0.110 & 0.013 \\
+\quad Other employed & 0.029 & 0.048 & -0.019 \\
+\quad Non-employed & 0.050 & 0.063 & -0.013 \\
+\multicolumn{4}{l}{Post-reform pairs}\\
+\quad Still formal & 0.589 & 0.674 & -0.085 \\
+\quad Informal wage job & 0.109 & 0.050 & 0.059 \\
+\quad Self-employment & 0.213 & 0.150 & 0.063 \\
+\quad Other employed & 0.026 & 0.052 & -0.025 \\
+\quad Non-employed & 0.062 & 0.075 & -0.012 \\
+\midrule
+\multicolumn{4}{l}{\emph{Panel B: stacked transition DiD (Low $\times$ period, pair and department FE)}}\\
+ & Low$\times$Reform & Low$\times$Post & Pre-reform mean (low) \\ \midrule
+Still formal private & 0.083$^{*}$ & -0.022 & 0.626 \\
+ & (0.041) & (0.022) & \\
+To informal wage job & -0.048$^{*}$ & 0.020 & 0.151 \\
+ & (0.026) & (0.014) & \\
+To self-employment & -0.005 & 0.009 & 0.128 \\
+ & (0.017) & (0.011) & \\
+To non-employment & -0.010 & 0.011 & 0.062 \\
+ & (0.012) & (0.013) & \\
+Informal $\to$ formal (entry) & -0.006 & -0.021$^{**}$ & 0.045 \\
+ & (0.005) & (0.008) & \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}\footnotesize
+\item Notes: Linked persons from the ENAHO Panel 2020--2024 (INEI survey 978), year pairs $t\to t{+}1$ for $t=2020,\dots,2023$, panel weights \texttt{facpanel}. Pair-observations are classified relative to the 1-May-2022 reform using the 2022 interview month: pre-reform (2020--21; 2021--22 interviewed January--April 2022), reform-window (2021--22 interviewed from May 2022; 2022--23 interviewed January--April 2022, whose base state predates the reform), and post-reform (2022--23 interviewed from May 2022; 2023--24). Panel A reports weighted destination shares of workers holding a formal private job in the base year (7,011 pair-observations). Panel B reports coefficients from stacked regressions of each transition indicator on Low$\times$Reform, Low$\times$Post, and Low, with pair and department fixed effects and age, age squared, and sex as controls; the entry row conditions on informal employment (wage or self-employment) in the base year (33,076 observations). Employment states replicate the main text definitions; informality uses the official indicator where released and the reconstruction elsewhere. Standard errors clustered by base-year department in parentheses. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$.
+\end{tablenotes}
+\end{threeparttable}\end{table}

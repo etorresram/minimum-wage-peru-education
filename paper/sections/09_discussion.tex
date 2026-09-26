@@ -10,9 +10,24 @@ classic one, a binding floor in the covered sector inducing reallocation to the 
 sector, the displacement channel that \citet{jaramillo_lopez_2006} documents for Peru
 and \citet{ham_2018_honduras} for Honduras. Its incidence is exactly where that mechanism
 predicts: among the young, among women, and in high-bite departments, the workers and
-places where the new floor cut deepest into the wage distribution. The accompanying rise
+places where the new floor cut deepest into the wage distribution. The panel
+transitions of Section~\ref{sec:transitions} identify the flow behind the stock
+change and refine the mechanism in one important way: retention of incumbent formal
+workers did not fall, while entry into formal jobs from informality dropped by
+nearly half, so the reallocation operated through the creation of formal matches
+rather than through their destruction. The floor did not push incumbents out; it
+closed the door on new formal matches for low-educated workers. This is the same
+hiring-margin adjustment that \citet{dustmann_2022} document for Germany, and it
+explains why the burden falls on marginal entrants, secondary earners, the young,
+and women, rather than on protected incumbents. The accompanying rise
 in hours is consistent with movement toward self-employment, where hours are less
-constrained.
+constrained. One nuance qualifies the destination of the displaced margin: in the
+regional design the unconditional self-employment rate does not rise with exposure
+(Appendix Table~\ref{tab:uncond}), so across departments the robust absolute margin is
+the destruction of formal employment, and the rise in the self-employment share of
+employment partly reflects the shrinking employment base; the absolute shift into
+own-account work appears in the education contrast, where the displaced workers and
+their closest substitutes are compared directly.
 
 Why did no aggregate pay response accompany the reallocation? Not because the floor is
 a dead letter: the first-stage evidence shows that within the formal sector the spike
@@ -36,17 +51,21 @@ to design-based inference, is sensitive to modest violations of parallel trends 
 education contrast \citep{rambachan_roth_2023}, and it does not reappear around the 2025
 reform, where the same design and the same magnitudes yield nulls on every margin and a
 small opposite-signed self-employment estimate. I interpret the contrast between the two
-episodes as state dependence: the 2022 increase hit a labor market still re-sorting after
-the pandemic, in which marginal formal matches (new hires, young workers, small
-firms) were plentiful and easy to dissolve, whereas the 2025 increase arrived in a
-settled market with far fewer marginal matches at the floor. I cannot, however, fully
+episodes as state dependence, and Section~\ref{sec:reconciliation} probes the two
+candidate state variables directly: the evidence favors the position of the floor in
+the formal pay distribution, the 2022 increase swept a band holding a quarter of
+low-educated formal pay while the 2025 increase swept a thinner one, and it rejects
+the labor-market-churn version, since formal match creation was in fact higher on
+the eve of 2025. The entry-margin evidence of Section~\ref{sec:transitions}
+identifies the margin through which any such state dependence must operate: the
+creation of new formal matches, whose profitability the floor governs. I cannot, however, fully
 exclude the alternative reading, that residual recovery dynamics correlated with
 education contribute to the 2022 compositional estimates; the dose-response and
 continuous-exposure evidence is what tilts me toward a causal interpretation, since
 differential recovery by education has no reason to track the pre-reform regional Kaitz
 index.
 
-\subsection{Reconciliation with the previous literature}
+\subsection{Reconciliation with the previous literature}\label{sec:reconciliation}
 
 My results sit comfortably with some of the prior evidence and in tension with the rest, and
 the pattern is itself informative. They echo the older Peruvian work of
@@ -77,6 +96,26 @@ market is doing: a moderate floor rising in a stable market can lift norms (2016
 floor rising amid post-pandemic re-sorting moves the composition margin (2022); and a
 high floor rising in a settled market moves nothing (2025).
 
+Because a story with two free state variables can rationalize almost anything, I
+probe both directly and let the data discard one. The floor-position variable
+behaves as the story requires: on the eve of the 2022 reform, 24 percent of
+low-educated formal wage earners were paid inside the band the incoming floor was
+about to sweep and 16 percent bunched at the old floor, whereas on the eve of the
+2025 reform those shares had fallen to 17 and 14 percent. The re-sorting variable
+does not: the new-hire share among low-educated formal workers was \emph{higher} in
+2024 (41 percent) than before the 2022 reform (32 percent), so the 2025 null cannot
+be attributed to a scarcity of new formal matches. A department-level dose test
+points the same way: interacting the education contrast with pre-reform formal
+match creation yields no gradient in either episode, with or without the Kaitz
+control.\footnote{The state-variable moments and the dose estimates are included in
+the replication package (\texttt{state\_premise.csv}, \texttt{state\_dose.csv}).}
+I therefore retire the churn version of the argument and rest the
+interpretation on the floor's position: the entry margin closes when the incoming
+floor sweeps a dense band of formal pay, as in 2022, and has little left to close
+when the floor has already moved past the range that formal pay practice honors, as
+in 2025. The swept-band contrast is real but modest, so I present this as the
+reading most consistent with the evidence rather than as established.
+
 \subsection{External validity and limitations}
 
 Five limitations bound the interpretation. First, identification rests on the assumption
@@ -90,10 +129,12 @@ effects on low-skilled workers relative to high-skilled workers. The comparison 
 not entirely unexposed (40 percent of high-skilled wage earners sat below the new floor
 pre-reform), so the estimates are relative objects that, to first order, understate the
 effect on the fully exposed; the continuous-exposure design partly addresses this by
-dispensing with the comparison group. Third, the data are repeated cross-sections, so I
-cannot follow individuals across the reform or separate worker-level transitions out of
-formality from changes in the composition of hiring; the compositional results describe
-net stocks, not gross flows. Fourth, informality in 2024 is measured with a reconstructed
+dispensing with the comparison group. Third, the main design uses repeated
+cross-sections; the ENAHO Panel analysis of Section~\ref{sec:transitions} addresses
+the flow-versus-stock distinction directly, but it is annual rather than quarterly,
+its pre-reform benchmark includes transitions out of the pandemic year 2020, and its
+formal-base samples are modest, so I treat it as corroborating the mechanism rather
+than as delivering precise magnitudes. Fourth, informality in 2024 is measured with a reconstructed
 indicator rather than the official one; within the 2025 validation window the indicator
 is reconstructed consistently in every quarter, but the 2024 splice adds measurement
 error to the tail of the 2022 event study. Finally, the window spans at most ten clean
