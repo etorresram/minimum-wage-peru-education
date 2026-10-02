@@ -12,7 +12,7 @@
 # Output: output/pretrend_precovid.csv
 # ==============================================================================
 source(file.path(Sys.getenv("MW_PROJ_ROOT",
-        "/Users/etorresram/Desktop/minimum_wage/project"),
+        "."),
         "scripts", "R", "00_config.R"))
 suppressMessages(library(fixest))
 

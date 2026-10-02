@@ -22,10 +22,10 @@ if (!exists("PROJ_ROOT")) {
 # Fallback: allow explicit override via environment variable.
 if (!dir.exists(file.path(PROJ_ROOT, "scripts"))) {
   PROJ_ROOT <- Sys.getenv("MW_PROJ_ROOT",
-                          "/Users/etorresram/Desktop/minimum_wage/project")
+                          ".")
 }
 RAW_ENAHO   <- Sys.getenv("MW_ENAHO_DIR",
-                          "/Users/etorresram/Desktop/minimum_wage/Data/ENAHO")
+                          file.path(PROJ_ROOT, "..", "Data", "ENAHO"))
 DIR_PROC    <- file.path(PROJ_ROOT, "data", "processed")
 DIR_INT     <- file.path(PROJ_ROOT, "data", "interim")
 DIR_FIG     <- file.path(PROJ_ROOT, "figures")

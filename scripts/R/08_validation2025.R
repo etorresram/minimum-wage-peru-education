@@ -7,7 +7,7 @@
 #          in 2024-2025), so it is measured consistently within this window.
 # ==============================================================================
 source(file.path(Sys.getenv("MW_PROJ_ROOT",
-        "/Users/etorresram/Desktop/minimum_wage/project"),
+        "."),
         "scripts", "R", "00_config.R"))
 source(file.path(PROJ_ROOT, "scripts", "R", "theme_paper.R"))
 suppressMessages({library(fixest); library(ggplot2)})

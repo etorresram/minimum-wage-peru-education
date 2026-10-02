@@ -2,7 +2,7 @@
 
 **Purpose.** Structured methods notes for an empirical labor-economics paper on the effects of Peru's **single national minimum-wage reform (May 2022)**, affecting all workers simultaneously. In our design, **treatment timing is common to everyone; treatment *intensity* varies cross-sectionally by worker skill/education** (a bite / exposure design), not by adoption date. Every entry below closes with an explicit read on whether the tool needs *staggered timing* (which we do NOT have) or applies to a *single-date / 2-group* design (which we DO have). See the **Recommendation Matrix** at the end for the bottom line.
 
-Source folder: `/Users/etorresram/Desktop/minimum_wage/Papers y documentos/DiD/`
+Source folder: `Papers y documentos/DiD/` (carpeta local, fuera del repositorio)
 
 ---
 

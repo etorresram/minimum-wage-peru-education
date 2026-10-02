@@ -21,7 +21,7 @@
 # Output: output/sector_did.csv, occ_doseresponse.csv
 # ==============================================================================
 source(file.path(Sys.getenv("MW_PROJ_ROOT",
-        "/Users/etorresram/Desktop/minimum_wage/project"),
+        "."),
         "scripts", "R", "00_config.R"))
 suppressMessages(library(fixest))
 

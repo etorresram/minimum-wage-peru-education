@@ -5,7 +5,7 @@
 # Output:  output/heterogeneity.csv, figures/fig6_heterogeneity.(pdf|png)
 # ==============================================================================
 source(file.path(Sys.getenv("MW_PROJ_ROOT",
-        "/Users/etorresram/Desktop/minimum_wage/project"),
+        "."),
         "scripts", "R", "00_config.R"))
 source(file.path(PROJ_ROOT, "scripts", "R", "theme_paper.R"))
 suppressMessages({library(fixest); library(ggplot2)})

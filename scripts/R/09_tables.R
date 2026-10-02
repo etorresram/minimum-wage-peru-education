@@ -2,7 +2,7 @@
 # 09_tables.R  --  Build publication LaTeX tables (booktabs) from output CSVs.
 # ==============================================================================
 source(file.path(Sys.getenv("MW_PROJ_ROOT",
-        "/Users/etorresram/Desktop/minimum_wage/project"),
+        "."),
         "scripts", "R", "00_config.R"))
 
 star <- function(p) ifelse(is.na(p),"",ifelse(p<0.01,"***",ifelse(p<0.05,"**",ifelse(p<0.1,"*",""))))
