@@ -442,7 +442,7 @@ if (!is.null(tr_mat)) {
 
 cat("All LaTeX tables written to tables/.\n")
 
-## ---- Spanish versions (tables/es/) for paper/espanol ------------------------
+## ---- Spanish versions (tables/es/) for paper_espanol.tex ------------------------
 source(file.path(PROJ_ROOT, "scripts", "R", "i18n_es.R"))
 translate_tables_es()
 cat("Spanish tables written to tables/es/.\n")

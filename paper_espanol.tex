@@ -1,9 +1,9 @@
 % ============================================================================
-% main.tex  --  Versión en español del paper (la versión en inglés está en
-% paper/english/). Tablas en tables/es/ y figuras en figures/es/, generadas por
-% scripts/R/09_tables.R y save_fig() con las etiquetas en español.
-% Compila con pdflatex + bibtex (author-year via natbib/apalike), o tectonic.
-%   pdflatex main ; bibtex main ; pdflatex main ; pdflatex main
+% paper_espanol.tex  --  Versión en español. Texto en paper/espanol/; tablas en
+% tables/es/ y figuras en figures/es/, generadas por scripts/R/09_tables.R y
+% save_fig(). Está en la raíz del repositorio para que todas las rutas
+% funcionen igual en local y en Overleaf, donde BibTeX corre desde la raíz.
+%   pdflatex paper_espanol ; bibtex paper_espanol ; pdflatex x2   (o tectonic)
 % ============================================================================
 \documentclass[12pt]{article}
 
@@ -21,7 +21,7 @@
 \usepackage[margin=1in]{geometry}
 \usepackage{setspace}
 \usepackage[authoryear,round]{natbib}
-\bibliographystyle{apalike-es}
+\bibliographystyle{paper/espanol/apalike-es}
 \usepackage[hidelinks]{hyperref}
 \usepackage{xcolor}
 \usepackage{siunitx}
@@ -29,7 +29,7 @@
 
 \captionsetup{font=small,labelfont=bf}
 \setlength{\parskip}{2pt}
-\graphicspath{{../../figures/es/}}
+\graphicspath{{figures/es/}}
 
 \newcommand{\Low}{\mathrm{Low}}
 \newcommand{\Post}{\mathrm{Post}}
@@ -56,16 +56,16 @@ evidencia para el Perú}\thanks{Este documento utiliza los módulos trimestrales
 \newpage
 \setstretch{1.15}
 
-\input{sections/01_introduction}
-\input{sections/02_institutional}
-\input{sections/03_literature}
-\input{sections/04_data}
-\input{sections/05_strategy}
-\input{sections/06_results}
-\input{sections/07_robustness}
-\input{sections/08_heterogeneity}
-\input{sections/09_discussion}
-\input{sections/10_conclusion}
+\input{paper/espanol/sections/01_introduction}
+\input{paper/espanol/sections/02_institutional}
+\input{paper/espanol/sections/03_literature}
+\input{paper/espanol/sections/04_data}
+\input{paper/espanol/sections/05_strategy}
+\input{paper/espanol/sections/06_results}
+\input{paper/espanol/sections/07_robustness}
+\input{paper/espanol/sections/08_heterogeneity}
+\input{paper/espanol/sections/09_discussion}
+\input{paper/espanol/sections/10_conclusion}
 
 \section*{Declaraciones}
 \noindent\textbf{Conflictos de interés:} ninguno.\\
@@ -73,10 +73,10 @@ evidencia para el Perú}\thanks{Este documento utiliza los módulos trimestrales
 \textbf{Disponibilidad de datos:} los microdatos de la ENAHO están disponibles públicamente en el Instituto Nacional de Estadística e Informática (INEI). El código que reproduce cada tabla y figura está disponible en el repositorio de replicación en línea.
 
 \newpage
-\bibliography{../references}
+\bibliography{paper/references}
 
 \newpage
 \appendix
-\input{appendix/appendix}
+\input{paper/espanol/appendix/appendix}
 
 \end{document}

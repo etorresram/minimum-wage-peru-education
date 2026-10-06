@@ -20,25 +20,25 @@ I pool the twenty quarterly ENAHO employment modules (module 500) for 2021Q1--20
 
 Table~\ref{tab:ddd} reports the triple-difference estimates and Table~\ref{tab:loo} the leave-one-out stability ranges discussed in Section~\ref{sec:robustness}; Tables~\ref{tab:expocells}--\ref{tab:margins} collect the exposure-design diagnostics, the sectoral and occupational checks, the selection bounds and power calculations, the synthetic-DiD and pre-test-power results, and the adjustment margins. Table~\ref{tab:crisis} reports the political-crisis robustness of the continuous regional-exposure design and Table~\ref{tab:uncond} the unconditional compositional outcomes, both discussed in Section~\ref{sec:robustness}. Table~\ref{tab:placebo} reports the in-time placebo reforms and confirms that the wage placebos are null while the employment placebos are contaminated by the pandemic pre-trend. The doubly robust estimates of \citet{santanna_zhao_2020} appear alongside the two-way fixed-effects estimates in Table~\ref{tab:main}. Figure~\ref{fig:val2025} shows the event study around the January-2025 reform used in the out-of-sample validation.
 
-\input{../../tables/tab_triplediff}
+\input{tables/tab_triplediff}
 
-\input{../../tables/tab_leaveoneout}
+\input{tables/tab_leaveoneout}
 
-\input{../../tables/tab_exposure}
+\input{tables/tab_exposure}
 
-\input{../../tables/tab_sector_occ}
+\input{tables/tab_sector_occ}
 
-\input{../../tables/tab_lee_mde}
+\input{tables/tab_lee_mde}
 
-\input{../../tables/tab_sdid_power}
+\input{tables/tab_sdid_power}
 
-\input{../../tables/tab_margins}
+\input{tables/tab_margins}
 
-\input{../../tables/tab_migration}
+\input{tables/tab_migration}
 
-\input{../../tables/tab_crisis}
+\input{tables/tab_crisis}
 
-\input{../../tables/tab_uncond}
+\input{tables/tab_uncond}
 
 \paragraph{Deflators.} All wage regressions include quarter fixed effects, which absorb national inflation, so log-wage DiD estimates are invariant to the national deflator; and the bite measures compare nominal wages with the nominal statutory floor, so they involve no deflation at all. Department-specific price deflation would matter only for cross-departmental comparisons of real wage \emph{levels}, which play no role in the identification.
 
@@ -52,7 +52,7 @@ Table~\ref{tab:ddd} reports the triple-difference estimates and Table~\ref{tab:l
 \begin{table}[!tbp]\centering
 \caption{In-time placebo reforms (pre-reform window only)}\label{tab:placebo}
 \begin{threeparttable}
-\input{../../tables/tab_placebo_body}
+\input{tables/tab_placebo_body}
 \begin{tablenotes}\footnotesize
 \item Notes: Each entry is the $\mathrm{Low}\times\mathrm{Post}$ coefficient from a placebo DiD that assigns a fake reform to the indicated quarter, estimated using only pre-reform data (2021Q1--2022Q1). Standard errors clustered by department in parentheses; all estimates are weighted by ENAHO survey weights. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$.
 \end{tablenotes}

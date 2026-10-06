@@ -38,9 +38,11 @@ project/
   tables/           # publication LaTeX tables; es/ holds the Spanish versions
   output/           # estimation output as CSV
   logs/             # run logs
+  paper_english.tex # main file, English version (compile from the root)
+  paper_espanol.tex # main file, Spanish version
   paper/            # LaTeX manuscript, synced to Overleaf through GitHub
-    english/        # English version: main.tex, sections/, appendix/, main.pdf
-    espanol/        # Spanish version, same structure (uses tables/es, figures/es)
+    english/        # English text: sections/, appendix/, paper_english.pdf
+    espanol/        # Spanish text, same structure, plus apalike-es.bst
     references.bib  # shared by both versions
   literature/       # structured literature database built from the source PDFs
   docs/             # institutional background and notes
@@ -76,14 +78,16 @@ install.packages(c("haven","data.table","fixest","DRDID","HonestDiD",
 
    This builds the analysis dataset, runs all estimation, and writes every figure and
    table. Expected time is about 15--25 minutes.
-3. Compile the paper (English in `paper/english`, Spanish in `paper/espanol`):
+3. Compile the paper from the repository root. The two main files live there so that
+   every path resolves the same way locally and in Overleaf:
 
    ```bash
-   cd paper/english && pdflatex main && bibtex main && pdflatex main && pdflatex main
+   pdflatex paper_english && bibtex paper_english && pdflatex paper_english && pdflatex paper_english
    ```
 
    In Overleaf, choose the version with Menu > Main document
-   (`paper/english/main.tex` or `paper/espanol/main.tex`).
+   (`paper_english.tex` or `paper_espanol.tex`). The Spanish version uses
+   `tables/es/` and `figures/es/`.
 
 ## Script guide
 

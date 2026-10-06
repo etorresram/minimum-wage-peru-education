@@ -20,25 +20,25 @@ Agrupo los veinte módulos trimestrales de empleo de la ENAHO (módulo 500) para
 
 El Cuadro~\ref{tab:ddd} presenta las estimaciones de triple diferencia y el Cuadro~\ref{tab:loo} los rangos de estabilidad excluyendo un departamento a la vez discutidos en la Sección~\ref{sec:robustness}; los Cuadros~\ref{tab:expocells}--\ref{tab:margins} reúnen los diagnósticos del diseño de exposición, las verificaciones sectoriales y ocupacionales, las cotas de selección y los cálculos de potencia, los resultados de diferencias en diferencias sintéticas y de potencia de la prueba previa, y los márgenes de ajuste. El Cuadro~\ref{tab:crisis} presenta la robustez del diseño de exposición regional continua frente a la crisis política y el Cuadro~\ref{tab:uncond} los resultados de composición incondicionales, ambos discutidos en la Sección~\ref{sec:robustness}. El Cuadro~\ref{tab:placebo} presenta las reformas placebo en el tiempo y confirma que los placebos salariales son nulos, mientras que los placebos de empleo están contaminados por la tendencia previa de la pandemia. Las estimaciones doblemente robustas de \citet{santanna_zhao_2020} aparecen junto a las estimaciones con efectos fijos bidireccionales en el Cuadro~\ref{tab:main}. El Figura~\ref{fig:val2025} muestra el estudio de eventos en torno a la reforma de enero de 2025 usado en la validación fuera de muestra.
 
-\input{../../tables/es/tab_triplediff}
+\input{tables/es/tab_triplediff}
 
-\input{../../tables/es/tab_leaveoneout}
+\input{tables/es/tab_leaveoneout}
 
-\input{../../tables/es/tab_exposure}
+\input{tables/es/tab_exposure}
 
-\input{../../tables/es/tab_sector_occ}
+\input{tables/es/tab_sector_occ}
 
-\input{../../tables/es/tab_lee_mde}
+\input{tables/es/tab_lee_mde}
 
-\input{../../tables/es/tab_sdid_power}
+\input{tables/es/tab_sdid_power}
 
-\input{../../tables/es/tab_margins}
+\input{tables/es/tab_margins}
 
-\input{../../tables/es/tab_migration}
+\input{tables/es/tab_migration}
 
-\input{../../tables/es/tab_crisis}
+\input{tables/es/tab_crisis}
 
-\input{../../tables/es/tab_uncond}
+\input{tables/es/tab_uncond}
 
 \paragraph{Deflactores.} Todas las regresiones salariales incluyen efectos fijos de trimestre, que absorben la inflación nacional, de modo que las estimaciones de diferencias en diferencias del logaritmo del salario no dependen del deflactor nacional; y las medidas de incidencia comparan salarios nominales con el piso legal nominal, por lo que no involucran deflactación alguna. Una deflactación de precios específica por departamento solo importaría para comparaciones entre departamentos de \emph{niveles} de salario real, que no cumplen ningún papel en la identificación.
 
@@ -52,7 +52,7 @@ El Cuadro~\ref{tab:ddd} presenta las estimaciones de triple diferencia y el Cuad
 \begin{table}[!tbp]\centering
 \caption{Reformas placebo en el tiempo (solo ventana previa a la reforma)}\label{tab:placebo}
 \begin{threeparttable}
-\input{../../tables/es/tab_placebo_body}
+\input{tables/es/tab_placebo_body}
 \begin{tablenotes}\footnotesize
 \item Notas: Cada celda es el coeficiente $\mathrm{Low}\times\mathrm{Post}$ de una estimación placebo de diferencias en diferencias que asigna una reforma ficticia al trimestre indicado, estimada usando solo datos previos a la reforma (2021Q1--2022Q1). Errores estándar agrupados por departamento entre paréntesis; todas las estimaciones se ponderan con los factores de expansión de la ENAHO. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$.
 \end{tablenotes}

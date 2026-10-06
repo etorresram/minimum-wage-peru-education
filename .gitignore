@@ -23,3 +23,11 @@ paper/**/*.out
 # Logs
 logs/*.log
 logs/*.out
+/paper_*.aux
+/paper_*.log
+/paper_*.bbl
+/paper_*.blg
+/paper_*.out
+/paper_*.synctex.gz
+/paper_*.fls
+/paper_*.fdb_latexmk

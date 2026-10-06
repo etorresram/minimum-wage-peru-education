@@ -1,7 +1,9 @@
 % ============================================================================
-% main.tex  --  Minimum wages and workers by education level in Peru
-% Compiles with pdflatex + bibtex (author-year via natbib/apalike), or tectonic.
-%   pdflatex main ; bibtex main ; pdflatex main ; pdflatex main
+% paper_english.tex  --  English version. Text in paper/english/, Spanish
+% version in paper_espanol.tex. Lives at the repository root so every path
+% (tables/, figures/, paper/references.bib) resolves the same way locally and
+% in Overleaf, where BibTeX runs from the project root.
+%   pdflatex paper_english ; bibtex paper_english ; pdflatex x2   (or tectonic)
 % ============================================================================
 \documentclass[12pt]{article}
 
@@ -27,7 +29,7 @@
 
 \captionsetup{font=small,labelfont=bf}
 \setlength{\parskip}{2pt}
-\graphicspath{{../../figures/}}
+\graphicspath{{figures/}}
 
 \newcommand{\Low}{\mathrm{Low}}
 \newcommand{\Post}{\mathrm{Post}}
@@ -54,16 +56,16 @@ Evidence from Peru}\thanks{This paper uses the public-use quarterly employment m
 \newpage
 \setstretch{1.15}
 
-\input{sections/01_introduction}
-\input{sections/02_institutional}
-\input{sections/03_literature}
-\input{sections/04_data}
-\input{sections/05_strategy}
-\input{sections/06_results}
-\input{sections/07_robustness}
-\input{sections/08_heterogeneity}
-\input{sections/09_discussion}
-\input{sections/10_conclusion}
+\input{paper/english/sections/01_introduction}
+\input{paper/english/sections/02_institutional}
+\input{paper/english/sections/03_literature}
+\input{paper/english/sections/04_data}
+\input{paper/english/sections/05_strategy}
+\input{paper/english/sections/06_results}
+\input{paper/english/sections/07_robustness}
+\input{paper/english/sections/08_heterogeneity}
+\input{paper/english/sections/09_discussion}
+\input{paper/english/sections/10_conclusion}
 
 \section*{Declarations}
 \noindent\textbf{Declarations of interest:} none.\\
@@ -71,10 +73,10 @@ Evidence from Peru}\thanks{This paper uses the public-use quarterly employment m
 \textbf{Data availability:} the ENAHO microdata are publicly available from the Instituto Nacional de Estadística e Informática (INEI). The code that reproduces every table and figure is available in the online replication repository.
 
 \newpage
-\bibliography{../references}
+\bibliography{paper/references}
 
 \newpage
 \appendix
-\input{appendix/appendix}
+\input{paper/english/appendix/appendix}
 
 \end{document}

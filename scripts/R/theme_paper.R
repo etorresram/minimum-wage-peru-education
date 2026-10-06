@@ -29,7 +29,7 @@ save_fig <- function(p, name, w = 6.5, h = 4.2) {
   ggsave(file.path(DIR_FIG, paste0(name, ".pdf")), p, width = w, height = h,
          device = "pdf", useDingbats = FALSE)
   ggsave(file.path(DIR_FIG, paste0(name, ".png")), p, width = w, height = h, dpi = 200)
-  # Spanish version for paper/espanol (labels from i18n/figures_es.tsv)
+  # Spanish version for paper_espanol.tex (labels from i18n/figures_es.tsv)
   dir_es <- file.path(DIR_FIG, "es"); dir.create(dir_es, showWarnings = FALSE)
   q <- translate_plot(p)
   ggsave(file.path(dir_es, paste0(name, ".pdf")), q, width = w, height = h,

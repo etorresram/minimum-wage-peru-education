@@ -101,14 +101,14 @@ R packages beyond CRAN: `synthdid` and `pretrends` are installed from GitHub
 
 ## Building the paper
 
-- `cd paper/english && tectonic -X compile main.tex` (or `pdflatex; bibtex; pdflatex; pdflatex`).
-  The Spanish version is built the same way from `paper/espanol/`.
+- From the repository root: `tectonic paper_english.tex` (or `pdflatex; bibtex; pdflatex;
+  pdflatex`). The Spanish version is `paper_espanol.tex`, its text in `paper/espanol/`.
 - Spanish tables (`tables/es/`) and figures (`figures/es/`) are produced by the same run:
   `09_tables.R` and `save_fig()` translate them with the catalogs in `scripts/R/i18n/`.
   A segment missing from a catalog (for instance after a note or a number changes) stays
   in English and is listed in a warning.
 - Overleaf is linked to this repository through GitHub Sync; choose the version with
-  Menu > Main document (`paper/english/main.tex` or `paper/espanol/main.tex`).
+  Menu > Main document (`paper_english.tex` or `paper_espanol.tex`).
 
 ## Key measurement decisions
 
