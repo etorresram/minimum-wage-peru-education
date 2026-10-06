@@ -1,7 +1,7 @@
 # Replication notes
 
 This file documents the exact steps and design decisions needed to reproduce the paper
-"Minimum Wage Increases and the Formal-Informal Margin: Evidence from Peru."
+"Differential Exposure to a National Minimum Wage: Wages, Formal Hiring, and Informality in Peru."
 
 ## Environment used
 
