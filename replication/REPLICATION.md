@@ -1,7 +1,7 @@
 # Replication notes
 
 This file documents the exact steps and design decisions needed to reproduce the paper
-"Shifting, Not Lifting: Minimum Wages, Informality, and Low-Skilled Workers in Peru."
+"Minimum Wage Increases and the Formal-Informal Margin: Evidence from Peru."
 
 ## Environment used
 

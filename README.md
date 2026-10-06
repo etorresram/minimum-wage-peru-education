@@ -1,4 +1,4 @@
-# Shifting, Not Lifting: Minimum Wages, Informality, and Low-Skilled Workers in Peru
+# Minimum Wage Increases and the Formal-Informal Margin: Evidence from Peru
 
 Replication package for the paper studying how Peru's May 2022 minimum wage increase
 (from 930 to 1,025 soles, Supreme Decree 003-2022-TR) affected workers with different
