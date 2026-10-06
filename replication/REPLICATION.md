@@ -107,8 +107,8 @@ R packages beyond CRAN: `synthdid` and `pretrends` are installed from GitHub
   `09_tables.R` and `save_fig()` translate them with the catalogs in `scripts/R/i18n/`.
   A segment missing from a catalog (for instance after a note or a number changes) stays
   in English and is listed in a warning.
-- For an Overleaf-ready, self-contained bundle: `bash scripts/make_overleaf.sh`, which
-  writes `replication/overleaf/` and `replication/overleaf_project.zip`.
+- Overleaf is linked to this repository through GitHub Sync; choose the version with
+  Menu > Main document (`paper/english/main.tex` or `paper/espanol/main.tex`).
 
 ## Key measurement decisions
 

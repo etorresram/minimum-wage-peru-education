@@ -14,16 +14,11 @@ output/es_wage_model.rds
 Rplots.pdf
 
 # LaTeX intermediates
-paper/*.aux
-paper/*.log
-paper/*.bbl
-paper/*.blg
-paper/*.out
-replication/overleaf/**/*.aux
-replication/overleaf/**/*.log
-replication/overleaf/**/*.bbl
-replication/overleaf/**/*.blg
-replication/overleaf/**/*.out
+paper/**/*.aux
+paper/**/*.log
+paper/**/*.bbl
+paper/**/*.blg
+paper/**/*.out
 
 # Logs
 logs/*.log
