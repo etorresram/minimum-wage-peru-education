@@ -2,138 +2,23 @@
 
 \subsection{Sample and variable construction}
 
-I pool the twenty quarterly ENAHO employment modules (module 500) for 2021Q1--2025Q4;
-the main analysis uses 2021Q1--2024Q4 and the validation uses 2024Q1--2025Q4. The
-working-age sample comprises individuals aged 14 to 65 with non-missing education. All
-statistics use the module employment weight (\texttt{fac500a}). This weight is
-calibrated so that the full year of interviews expands to the annual population
-projection; each quarterly subsample therefore expands to roughly one fourth of the
-population, which is immaterial for the weighted means, shares, and regression
-estimates used throughout (numerator and denominator scale together) and would matter
-only for population totals, which I never estimate. The quarterly partition follows
-the interview month and matches the survey's own design: quarterly national inference
-is an official inference level of ENAHO in the technical sheets of both 2021 and 2025,
-and the non-panel sample revisits the same conglomerates in the same months every
-year. I verify both properties in the microdata for the full window: all 5{,}359
-conglomerates appear in every year from 2021 to 2025, the overlap of primary sampling
-units between the same quarter of consecutive years ranges from 70 to 92 percent
-(against 2 to 5 percent between different quarters), and each quarter is an
-internally balanced replica of the design. Two survey changes over the window are
-worth recording. First, the mixed interview modality adopted during the pandemic
-(face-to-face prioritized, telephone follow-up for absent members) remained the
-standard through 2025, so the mode is broadly consistent across my study period; the
-one exception is February 2021, when a reduced telephone questionnaire in fifteen
-regions dropped, among other items, the contract-type question (missing for half of
-that month's wage earners), which affects none of the baseline outcomes (2021
-informality comes from INEI's official indicator and income items were retained) and
-is handled explicitly in the one appendix margin that uses contracts. Second, the
-2025 technical sheet describes the design as two-stage with urban conglomerates of
-about 140 dwellings, against the multi-stage description of 2021; the conglomerate
-identifiers and counts are nonetheless continuous across the window, so this is a
-reframing of the documentation rather than a break in the sample. Departments are the 25
-first-level administrative units derived from the first two digits of \texttt{ubigeo};
-the urban indicator is derived from the sampling stratum.
+I pool the twenty quarterly ENAHO employment modules (module 500) for 2021Q1--2025Q4; the main analysis uses 2021Q1--2024Q4 and the validation uses 2024Q1--2025Q4. The working-age sample comprises individuals aged 14 to 65 with non-missing education. All statistics use the module employment weight (\texttt{fac500a}). This weight is calibrated so that the full year of interviews expands to the annual population projection; each quarterly subsample therefore expands to roughly one fourth of the population, which is immaterial for the weighted means, shares, and regression estimates used throughout (numerator and denominator scale together) and would matter only for population totals, which I never estimate. The quarterly partition follows the interview month and matches the survey's own design: quarterly national inference is an official inference level of ENAHO in the technical sheets of both 2021 and 2025, and the non-panel sample revisits the same conglomerates in the same months every year. I verify both properties in the microdata for the full window: all 5{,}359 conglomerates appear in every year from 2021 to 2025, the overlap of primary sampling units between the same quarter of consecutive years ranges from 70 to 92 percent (against 2 to 5 percent between different quarters), and each quarter is an internally balanced replica of the design. Two survey changes over the window are worth recording. First, the mixed interview modality adopted during the pandemic (face-to-face prioritized, telephone follow-up for absent members) remained the standard through 2025, so the mode is broadly consistent across my study period; the one exception is February 2021, when a reduced telephone questionnaire in fifteen regions dropped, among other items, the contract-type question (missing for half of that month's wage earners), which affects none of the baseline outcomes (2021 informality comes from INEI's official indicator and income items were retained) and is handled explicitly in the one appendix margin that uses contracts. Second, the 2025 technical sheet describes the design as two-stage with urban conglomerates of about 140 dwellings, against the multi-stage description of 2021; the conglomerate identifiers and counts are nonetheless continuous across the window, so this is a reframing of the documentation rather than a break in the sample. Departments are the 25 first-level administrative units derived from the first two digits of \texttt{ubigeo}; the urban indicator is derived from the sampling stratum.
 
-\paragraph{Education and skill groups.} Educational attainment is ENAHO variable
-\texttt{p301a}. I verified its coding against the weighted attainment distribution.
-Low-skilled workers are those with \texttt{p301a} in 1--6 (no education through complete
-secondary); high-skilled workers are those with \texttt{p301a} in 7--11 (non-university
-higher through postgraduate). Special education (code 12) and missing values are excluded.
+\paragraph{Education and skill groups.} Educational attainment is ENAHO variable \texttt{p301a}. I verified its coding against the weighted attainment distribution. Low-skilled workers are those with \texttt{p301a} in 1--6 (no education through complete secondary); high-skilled workers are those with \texttt{p301a} in 7--11 (non-university higher through postgraduate). Special education (code 12) and missing values are excluded.
 
-\paragraph{Labor income and wages.} ENAHO records the pay of wage earners per pay period:
-\texttt{p524a1} is the gross payment including overtime and \texttt{p523} its frequency
-(daily, weekly, fortnightly, or monthly). Fifty-four percent of low-education wage
-earners are paid at non-monthly frequencies, against fifteen percent of high-education
-wage earners, so I convert all payments to monthly equivalents using the same factors
-implied by INEI's own annualized income variable (\texttt{i524a1}): 25 for daily, $52/12$
-for weekly, 2 for fortnightly, and 1 for monthly. The full weighted frequency
-distribution among private wage earners with valid earnings is 2 percent daily, 45
-weekly, 9 fortnightly, and 45 monthly for the low-education group, against 1, 18, 6,
-and 76 percent for the high-education group; the frequency variable is never missing
-in that sample. Wage earners comprise employees and
-domestic workers (\texttt{p507} in $\{3,4,6\}$); domestic workers have been entitled to
-the minimum wage since Law 31047. For employers and own-account workers, labor income is
-net profit (\texttt{p530a}), which is already monthly. Because reported income refers to
-the month before the interview, I deflate at that reference month (January interviews
-roll back to December of the previous year) using the Lima consumer price index
-rebased to December 2021, and I evaluate the statutory minimum in force in the same
-reference month when classifying workers as paid below the floor. The real hourly wage
-divides monthly-equivalent labor income by $4.345$ times weekly hours in the main
-occupation (\texttt{p513t}; INEI's imputed hours variable \texttt{i513t} substitutes
-where \texttt{p513t} is missing, but no observation in the wage-analysis sample and
-fewer than 0.01 percent of the hours sample require it). Wage outcomes exclude public-sector
-workers, whose pay is set by separate scales, and are winsorized once at the 0.5th and
-99.5th percentiles of the pooled private wage-earner sample.
+\paragraph{Labor income and wages.} ENAHO records the pay of wage earners per pay period: \texttt{p524a1} is the gross payment including overtime and \texttt{p523} its frequency (daily, weekly, fortnightly, or monthly). Fifty-four percent of low-education wage earners are paid at non-monthly frequencies, against fifteen percent of high-education wage earners, so I convert all payments to monthly equivalents using the same factors implied by INEI's own annualized income variable (\texttt{i524a1}): 25 for daily, $52/12$ for weekly, 2 for fortnightly, and 1 for monthly. The full weighted frequency distribution among private wage earners with valid earnings is 2 percent daily, 45 weekly, 9 fortnightly, and 45 monthly for the low-education group, against 1, 18, 6, and 76 percent for the high-education group; the frequency variable is never missing in that sample. Wage earners comprise employees and domestic workers (\texttt{p507} in $\{3,4,6\}$); domestic workers have been entitled to the minimum wage since Law 31047. For employers and own-account workers, labor income is net profit (\texttt{p530a}), which is already monthly. Because reported income refers to the month before the interview, I deflate at that reference month (January interviews roll back to December of the previous year) using the Lima consumer price index rebased to December 2021, and I evaluate the statutory minimum in force in the same reference month when classifying workers as paid below the floor. The real hourly wage divides monthly-equivalent labor income by $4.345$ times weekly hours in the main occupation (\texttt{p513t}; INEI's imputed hours variable \texttt{i513t} substitutes where \texttt{p513t} is missing, but no observation in the wage-analysis sample and fewer than 0.01 percent of the hours sample require it). Wage outcomes exclude public-sector workers, whose pay is set by separate scales, and are winsorized once at the 0.5th and 99.5th percentiles of the pooled private wage-earner sample.
 
-\paragraph{Informality.} INEI's official informal-employment indicator (\texttt{ocupinf},
-coded 1 for informal and 2 for formal in these files) is present for 2021--2023 but absent
-for 2024--2025. I reconstruct a consistent indicator from primitives available in every
-year. A wage employee or domestic worker is classified as formal if affiliated to a
-pension system (\texttt{p558a1}--\texttt{p558a4}, whose selected options are marked with
-their option codes rather than with ones) or holding a formal labor contract
-(\texttt{p511a} in 1--6); an employer or own-account worker is classified as formal if the
-productive unit is registered (\texttt{p510a1}); unpaid family workers are always informal.
-Validated against \texttt{ocupinf} on the overlapping years 2021--2023, this rule agrees
-with the official classification for 87.8 percent of employed workers and yields an
-informality rate of 74.9 percent against the official 79.1 percent. I use the official
-indicator wherever available and the reconstruction only for 2024--2025; within the
-2024--2025 validation window the indicator is reconstructed in every quarter, so it is
-measured consistently there.
+\paragraph{Informality.} INEI's official informal-employment indicator (\texttt{ocupinf}, coded 1 for informal and 2 for formal in these files) is present for 2021--2023 but absent for 2024--2025. I reconstruct a consistent indicator from primitives available in every year. A wage employee or domestic worker is classified as formal if affiliated to a pension system (\texttt{p558a1}--\texttt{p558a4}, whose selected options are marked with their option codes rather than with ones) or holding a formal labor contract (\texttt{p511a} in 1--6); an employer or own-account worker is classified as formal if the productive unit is registered (\texttt{p510a1}); unpaid family workers are always informal. Validated against \texttt{ocupinf} on the overlapping years 2021--2023, this rule agrees with the official classification for 87.8 percent of employed workers and yields an informality rate of 74.9 percent against the official 79.1 percent. I use the official indicator wherever available and the reconstruction only for 2024--2025; within the 2024--2025 validation window the indicator is reconstructed in every quarter, so it is measured consistently there.
 
-\paragraph{Minimum wage and bite.} The statutory minimum wage schedule is taken from the
-decrees and verified against the Banco Central de Reserva del Perú series (PN02124PM);
-the CPI deflator is BCRP series PN38705PM (Lima, December 2021 $=$ 100), and both inputs
-are regenerated by a documented script in the replication package. The department Kaitz
-index is the ratio of the post-reform minimum (1,025 soles) to the department's
-pre-reform (2021Q1--2022Q1) weighted median monthly-equivalent wage of private wage
-earners. The fraction-affected measure is the pre-reform weighted share of private wage
-earners paid below 1,025 soles.
+\paragraph{Minimum wage and bite.} The statutory minimum wage schedule is taken from the decrees and verified against the Banco Central de Reserva del Perú series (PN02124PM); the CPI deflator is BCRP series PN38705PM (Lima, December 2021 $=$ 100), and both inputs are regenerated by a documented script in the replication package. The department Kaitz index is the ratio of the post-reform minimum (1,025 soles) to the department's pre-reform (2021Q1--2022Q1) weighted median monthly-equivalent wage of private wage earners. The fraction-affected measure is the pre-reform weighted share of private wage earners paid below 1,025 soles.
 
-\paragraph{The ENAHO Panel.} The transition analysis of Section~\ref{sec:transitions}
-uses the ENAHO Panel 2020--2024 (INEI survey 978, published November 2025), whose
-employment module (\texttt{enaho01a-2020-2024-500-panel.dta}) contains one record per
-person with year-suffixed variables for 2020 through 2024. Persons observed in both
-years of a pair are flagged by the indicators \texttt{perpanel} (23,983 linked persons
-for 2021--22 and 23,245 for 2022--23) and weighted with the INEI panel expansion
-factors \texttt{facpanel}, which adjust for attrition and non-response; official
-inference for consecutive-year pairs is national, urban and rural, and by natural
-region. Employment states replicate the cross-section definitions exactly: employed
-is \texttt{ocu500}${}=1$; the formal private state requires private-sector employment
-with a formal job; informality uses the official \texttt{ocupinf} where released and
-the Rule-F reconstruction above elsewhere; self-employment comprises own-account
-workers and employers. Base-year education defines the skill groups. Because the
-panel is annual and the reform took effect on 1 May 2022, pair-observations are
-classified with the 2022 interview month as described in the notes to
-Table~\ref{tab:transitions}.
+\paragraph{The ENAHO Panel.} The transition analysis of Section~\ref{sec:transitions} uses the ENAHO Panel 2020--2024 (INEI survey 978, published November 2025), whose employment module (\texttt{enaho01a-2020-2024-500-panel.dta}) contains one record per person with year-suffixed variables for 2020 through 2024. Persons observed in both years of a pair are flagged by the indicators \texttt{perpanel} (23,983 linked persons for 2021--22 and 23,245 for 2022--23) and weighted with the INEI panel expansion factors \texttt{facpanel}, which adjust for attrition and non-response; official inference for consecutive-year pairs is national, urban and rural, and by natural region. Employment states replicate the cross-section definitions exactly: employed is \texttt{ocu500}${}=1$; the formal private state requires private-sector employment with a formal job; informality uses the official \texttt{ocupinf} where released and the Rule-F reconstruction above elsewhere; self-employment comprises own-account workers and employers. Base-year education defines the skill groups. Because the panel is annual and the reform took effect on 1 May 2022, pair-observations are classified with the 2022 interview month as described in the notes to Table~\ref{tab:transitions}.
 
-\paragraph{Protest intensity.} The department-level intensity of the 2022--23
-political crisis is measured from the monthly conflict reports of the Presidencia del
-Consejo de Ministros (Secretar\'ia de Gesti\'on Social y Di\'alogo, ``Reporte de
-Conflictos Sociales''), whose crisis-monitoring tables record the maximum number of
-persons mobilized in protest actions in each department in each week and month. I take
-each department's maximum across the January and February 2023 reports, the two months
-in which national mobilization peaked (the December-2022 report predates the table),
-divide it by the department's working-age population (four times the mean quarterly sum
-of the ENAHO expansion weights), and standardize the result across the 25 departments.
-The transcribed table and the source documents are included in the replication
-package.
+\paragraph{Protest intensity.} The department-level intensity of the 2022--23 political crisis is measured from the monthly conflict reports of the Presidencia del Consejo de Ministros (Secretar\'ia de Gesti\'on Social y Di\'alogo, ``Reporte de Conflictos Sociales''), whose crisis-monitoring tables record the maximum number of persons mobilized in protest actions in each department in each week and month. I take each department's maximum across the January and February 2023 reports, the two months in which national mobilization peaked (the December-2022 report predates the table), divide it by the department's working-age population (four times the mean quarterly sum of the ENAHO expansion weights), and standardize the result across the 25 departments. The transcribed table and the source documents are included in the replication package.
 
 \subsection{Supplementary results}
 
-Table~\ref{tab:ddd} reports the triple-difference estimates and Table~\ref{tab:loo}
-the leave-one-out stability ranges discussed in Section~\ref{sec:robustness};
-Tables~\ref{tab:expocells}--\ref{tab:margins} collect the exposure-design diagnostics,
-the sectoral and occupational checks, the selection bounds and power calculations, the
-synthetic-DiD and pre-test-power results, and the adjustment margins.
-Table~\ref{tab:crisis} reports the political-crisis robustness of the continuous
-regional-exposure design and Table~\ref{tab:uncond} the unconditional compositional
-outcomes, both discussed in Section~\ref{sec:robustness}.
-Table~\ref{tab:placebo} reports the in-time placebo reforms and confirms that the wage
-placebos are null while the employment placebos are contaminated by the pandemic
-pre-trend. The doubly robust estimates of \citet{santanna_zhao_2020} appear alongside
-the two-way fixed-effects estimates in Table~\ref{tab:main}.
-Figure~\ref{fig:val2025} shows the event study around the January-2025 reform used in
-the out-of-sample validation.
+Table~\ref{tab:ddd} reports the triple-difference estimates and Table~\ref{tab:loo} the leave-one-out stability ranges discussed in Section~\ref{sec:robustness}; Tables~\ref{tab:expocells}--\ref{tab:margins} collect the exposure-design diagnostics, the sectoral and occupational checks, the selection bounds and power calculations, the synthetic-DiD and pre-test-power results, and the adjustment margins. Table~\ref{tab:crisis} reports the political-crisis robustness of the continuous regional-exposure design and Table~\ref{tab:uncond} the unconditional compositional outcomes, both discussed in Section~\ref{sec:robustness}. Table~\ref{tab:placebo} reports the in-time placebo reforms and confirms that the wage placebos are null while the employment placebos are contaminated by the pandemic pre-trend. The doubly robust estimates of \citet{santanna_zhao_2020} appear alongside the two-way fixed-effects estimates in Table~\ref{tab:main}. Figure~\ref{fig:val2025} shows the event study around the January-2025 reform used in the out-of-sample validation.
 
 \input{../../tables/tab_triplediff}
 
@@ -155,19 +40,12 @@ the out-of-sample validation.
 
 \input{../../tables/tab_uncond}
 
-\paragraph{Deflators.} All wage regressions include quarter fixed effects, which
-absorb national inflation, so log-wage DiD estimates are invariant to the national
-deflator; and the bite measures compare nominal wages with the nominal statutory
-floor, so they involve no deflation at all. Department-specific price deflation would
-matter only for cross-departmental comparisons of real wage \emph{levels}, which play
-no role in the identification.
+\paragraph{Deflators.} All wage regressions include quarter fixed effects, which absorb national inflation, so log-wage DiD estimates are invariant to the national deflator; and the bite measures compare nominal wages with the nominal statutory floor, so they involve no deflation at all. Department-specific price deflation would matter only for cross-departmental comparisons of real wage \emph{levels}, which play no role in the identification.
 
 \begin{figure}[!t]
 \centering
 \includegraphics[width=0.9\textwidth]{fig9_validation2025.pdf}
-\caption{Event study around the January-2025 reform (out-of-sample validation). Coefficients
-on the interaction of the low-skill indicator with quarter indicators, reference quarter
-2024Q4. Bands are ninety-five percent confidence intervals clustered by department.}
+\caption{Event study around the January-2025 reform (out-of-sample validation). Coefficients on the interaction of the low-skill indicator with quarter indicators, reference quarter 2024Q4. Bands are ninety-five percent confidence intervals clustered by department.}
 \label{fig:val2025}
 \end{figure}
 
@@ -176,10 +54,7 @@ on the interaction of the low-skill indicator with quarter indicators, reference
 \begin{threeparttable}
 \input{../../tables/tab_placebo_body}
 \begin{tablenotes}\footnotesize
-\item Notes: Each entry is the $\mathrm{Low}\times\mathrm{Post}$ coefficient from a placebo
-DiD that assigns a fake reform to the indicated quarter, estimated using only pre-reform
-data (2021Q1--2022Q1). Standard errors clustered by department in parentheses; all estimates
-are weighted by ENAHO survey weights. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$.
+\item Notes: Each entry is the $\mathrm{Low}\times\mathrm{Post}$ coefficient from a placebo DiD that assigns a fake reform to the indicated quarter, estimated using only pre-reform data (2021Q1--2022Q1). Standard errors clustered by department in parentheses; all estimates are weighted by ENAHO survey weights. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$.
 \end{tablenotes}
 \end{threeparttable}
 \end{table}

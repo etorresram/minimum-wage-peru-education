@@ -2,172 +2,46 @@
 
 \subsection{The ENAHO quarterly employment modules}
 
-I use the public-use quarterly files of the Encuesta Nacional de Hogares (ENAHO),
-the national household survey conducted by Peru's Instituto Nacional de Estadística
-e Informática (INEI). ENAHO is a nationally representative, stratified,
-multi-stage survey with continuous fieldwork; the quarterly employment and income
-module (module 500) records detailed labor market information for each household
-member of working age. I pool the sixteen quarters from the first quarter of 2021
-through the fourth quarter of 2024, about 347,000 person-quarter records in total, of
-which roughly 278,000 working-age observations with non-missing education enter the
-baseline estimation sample (the partially treated transition quarter 2022Q2 is
-excluded; see Section~\ref{sec:strategy}). I add the four quarters of 2025 for the
-out-of-sample validation exercise. All statistics use the module's sampling weights;
-the treatment of standard errors is discussed in Section~\ref{sec:strategy}.
+I use the public-use quarterly files of the Encuesta Nacional de Hogares (ENAHO), the national household survey conducted by Peru's Instituto Nacional de Estadística e Informática (INEI). ENAHO is a nationally representative, stratified, multi-stage survey with continuous fieldwork; the quarterly employment and income module (module 500) records detailed labor market information for each household member of working age. I pool the sixteen quarters from the first quarter of 2021 through the fourth quarter of 2024, about 347,000 person-quarter records in total, of which roughly 278,000 working-age observations with non-missing education enter the baseline estimation sample (the partially treated transition quarter 2022Q2 is excluded; see Section~\ref{sec:strategy}). I add the four quarters of 2025 for the out-of-sample validation exercise. All statistics use the module's sampling weights; the treatment of standard errors is discussed in Section~\ref{sec:strategy}.
 
-For the worker-level transition analysis of Section~\ref{sec:transitions} I
-complement the quarterly cross-sections with the ENAHO Panel 2020--2024, the
-survey's linked component, which re-interviews the same dwellings annually and
-identifies the same persons across years. Consecutive-year pairs link 23,000 to
-24,000 persons, and INEI publishes dedicated panel expansion factors that adjust
-for attrition and non-response. Appendix~A documents the source files, the
-linkage indicators, and the construction of the transition states.
+For the worker-level transition analysis of Section~\ref{sec:transitions} I complement the quarterly cross-sections with the ENAHO Panel 2020--2024, the survey's linked component, which re-interviews the same dwellings annually and identifies the same persons across years. Consecutive-year pairs link 23,000 to 24,000 persons, and INEI publishes dedicated panel expansion factors that adjust for attrition and non-response. Appendix~A documents the source files, the linkage indicators, and the construction of the transition states.
 
-The quarterly frequency I exploit is part of the survey design rather than an ad hoc
-partition of an annual file. ENAHO's technical documentation lists two official
-inference levels for the integrated sample: annual (national, urban and rural,
-each of the 24 departments, natural regions, and metropolitan Lima) and
-\emph{quarterly} (national, urban national, and rural national), so national
-quarterly estimation is sanctioned by the sampling design itself. Moreover, in the
-non-panel sample the same conglomerates are visited in the same month every year,
-with different dwellings drawn within them, so the geographic and seasonal
-composition of each quarter is held fixed across years; in my files, 70 percent of
-primary sampling units overlap between the same quarter of consecutive years,
-against 5 percent between different quarters. Each quarter contains close to one
-fourth of the annual sample (about 1{,}340 conglomerates and 21{,}000--22{,}000
-working-age records) with stable composition across quarters. Department-level
-inference, by contrast, is annual only; accordingly, I use department-by-quarter
-variation solely through fixed effects and collapsed cells, and I measure the
-regional bite by pooling the five pre-reform quarters, which approaches the annual
-level at which departmental estimates are representative.
+The quarterly frequency I exploit is part of the survey design rather than an ad hoc partition of an annual file. ENAHO's technical documentation lists two official inference levels for the integrated sample: annual (national, urban and rural, each of the 24 departments, natural regions, and metropolitan Lima) and \emph{quarterly} (national, urban national, and rural national), so national quarterly estimation is sanctioned by the sampling design itself. Moreover, in the non-panel sample the same conglomerates are visited in the same month every year, with different dwellings drawn within them, so the geographic and seasonal composition of each quarter is held fixed across years; in my files, 70 percent of primary sampling units overlap between the same quarter of consecutive years, against 5 percent between different quarters. Each quarter contains close to one fourth of the annual sample (about 1{,}340 conglomerates and 21{,}000--22{,}000 working-age records) with stable composition across quarters. Department-level inference, by contrast, is annual only; accordingly, I use department-by-quarter variation solely through fixed effects and collapsed cells, and I measure the regional bite by pooling the five pre-reform quarters, which approaches the annual level at which departmental estimates are representative.
 
-I restrict the sample to individuals of working age, defined as ages 14 to 65,\footnote{Fourteen
-is the minimum legal working age in Peru; 65 is the conventional upper bound of the working-age
-population.} and
-I drop observations with missing education. My main wage analysis is further
-restricted to private-sector wage earners,\footnote{White- and blue-collar employees and
-domestic workers, ENAHO occupational-category variable \texttt{p507} equal to 3, 4, or 6;
-domestic workers have been entitled to the minimum wage since Law 31047 (2020).
-Employers, own-account workers, and unpaid family workers are treated as separate
-categories, and public-sector workers are excluded from job-level outcomes because their
-pay is set by separate scales.} for whom the minimum wage is the relevant
-statutory floor, while the employment and participation outcomes are defined over the
-working-age population and the formality and self-employment outcomes over employed
-private-sector workers.
+I restrict the sample to individuals of working age, defined as ages 14 to 65,\footnote{Fourteen is the minimum legal working age in Peru; 65 is the conventional upper bound of the working-age population.} and I drop observations with missing education. My main wage analysis is further restricted to private-sector wage earners,\footnote{White- and blue-collar employees and domestic workers, ENAHO occupational-category variable \texttt{p507} equal to 3, 4, or 6; domestic workers have been entitled to the minimum wage since Law 31047 (2020). Employers, own-account workers, and unpaid family workers are treated as separate categories, and public-sector workers are excluded from job-level outcomes because their pay is set by separate scales.} for whom the minimum wage is the relevant statutory floor, while the employment and participation outcomes are defined over the working-age population and the formality and self-employment outcomes over employed private-sector workers.
 
 \subsection{Education and the definition of skill groups}
 
-The treatment and comparison groups are defined by educational attainment, recorded
-in ENAHO variable \texttt{p301a}, the highest level of schooling completed. I
-validated the coding of this variable against the weighted distribution of attainment
-in the data; it corresponds to the standard INEI classification, ranging from no
-schooling through postgraduate study. I define \emph{low-skilled} workers as those
-with at most complete secondary schooling (no education, initial, primary, or
-secondary), and \emph{high-skilled} workers as those with any tertiary schooling
-(non-university higher, university, or postgraduate). I exclude the small residual
-category of special education, which is not ordered on the skill dimension, and
-observations with missing education.
+The treatment and comparison groups are defined by educational attainment, recorded in ENAHO variable \texttt{p301a}, the highest level of schooling completed. I validated the coding of this variable against the weighted distribution of attainment in the data; it corresponds to the standard INEI classification, ranging from no schooling through postgraduate study. I define \emph{low-skilled} workers as those with at most complete secondary schooling (no education, initial, primary, or secondary), and \emph{high-skilled} workers as those with any tertiary schooling (non-university higher, university, or postgraduate). I exclude the small residual category of special education, which is not ordered on the skill dimension, and observations with missing education.
 
-This partition has three attractive features. First, it is a bright line in the
-Peruvian labor market: completion of tertiary schooling is the main credential that
-separates workers who compete for jobs paying near the minimum wage from those who do
-not. Second, it splits the working-age population into groups of comparable size,
-roughly two thirds low-skilled and one third high-skilled, which gives adequate
-statistical power on both sides. Third, and most important for identification, the two
-groups differ sharply in their exposure to the minimum wage. As
-Table~\ref{tab:desc} shows, in the pre-reform period the median monthly wage of a
-low-skilled dependent employee is close to the statutory floor, whereas the median
-high-skilled employee earns well above it. The classification follows a long line of
-work that treats education as a primary determinant of where the minimum wage bites
-\citep{lemos_2009, katzkowicz_2021_uruguay}.
+This partition has three attractive features. First, it is a bright line in the Peruvian labor market: completion of tertiary schooling is the main credential that separates workers who compete for jobs paying near the minimum wage from those who do not. Second, it splits the working-age population into groups of comparable size, roughly two thirds low-skilled and one third high-skilled, which gives adequate statistical power on both sides. Third, and most important for identification, the two groups differ sharply in their exposure to the minimum wage. As Table~\ref{tab:desc} shows, in the pre-reform period the median monthly wage of a low-skilled dependent employee is close to the statutory floor, whereas the median high-skilled employee earns well above it. The classification follows a long line of work that treats education as a primary determinant of where the minimum wage bites \citep{lemos_2009, katzkowicz_2021_uruguay}.
 
 \subsection{Outcome variables}
 
-The outcomes fall into three groups. On \emph{pay}, ENAHO records wage earners' pay per
-pay period together with its frequency; because over half of low-education wage earners
-are paid daily, weekly, or fortnightly, against fifteen percent of high-education wage
-earners, I convert all payments to monthly equivalents using the frequency variable
-before any comparison across groups (Appendix~\ref{app:data} details the conversion,
-which matches INEI's own annualization). The real hourly wage divides this
-monthly-equivalent labor income by monthly hours, deflated by the Lima consumer price
-index at the month the income refers to, in December 2021 soles, and winsorized at the
-first and last half-percentiles; real monthly earnings is the same numerator without the
-hours adjustment. On \emph{quantities}, employment and labor force participation are
-indicators defined over the working-age population, and weekly hours is hours worked in
-the main occupation. On \emph{composition}, formal employment and self-employment are
-defined among employed private-sector workers, and an indicator for being paid below the
-statutory minimum in force in the income reference month is defined among private wage
-earners; the last is a direct measure of the bite of and compliance with the policy.
+The outcomes fall into three groups. On \emph{pay}, ENAHO records wage earners' pay per pay period together with its frequency; because over half of low-education wage earners are paid daily, weekly, or fortnightly, against fifteen percent of high-education wage earners, I convert all payments to monthly equivalents using the frequency variable before any comparison across groups (Appendix~\ref{app:data} details the conversion, which matches INEI's own annualization). The real hourly wage divides this monthly-equivalent labor income by monthly hours, deflated by the Lima consumer price index at the month the income refers to, in December 2021 soles, and winsorized at the first and last half-percentiles; real monthly earnings is the same numerator without the hours adjustment. On \emph{quantities}, employment and labor force participation are indicators defined over the working-age population, and weekly hours is hours worked in the main occupation. On \emph{composition}, formal employment and self-employment are defined among employed private-sector workers, and an indicator for being paid below the statutory minimum in force in the income reference month is defined among private wage earners; the last is a direct measure of the bite of and compliance with the policy.
 
-A measurement issue arises for informality. INEI's official informal-employment
-indicator, \texttt{ocupinf}, is present in the 2021 through 2023 files but is not
-released in the 2024 and 2025 files. Because my study window extends through 2024, I
-reconstruct a consistent informality indicator from underlying primitives that are
-available in every year: pension affiliation, the possession of a formal labor
-contract, the registration status of the productive unit, and the category of
-employment. I validate the reconstruction against the official \texttt{ocupinf} in
-2021 through 2023, where both are available, and obtain agreement of about 88 percent
-at the worker level, with an implied informality rate of 74.9 percent against the
-official 79.1 percent. I use the official indicator wherever it exists and the
-reconstruction only for 2024 and 2025, and I report a robustness check that restricts
-the formality analysis to the years covered by the official measure. Full details of
-the construction are in Appendix~\ref{app:data}.
+A measurement issue arises for informality. INEI's official informal-employment indicator, \texttt{ocupinf}, is present in the 2021 through 2023 files but is not released in the 2024 and 2025 files. Because my study window extends through 2024, I reconstruct a consistent informality indicator from underlying primitives that are available in every year: pension affiliation, the possession of a formal labor contract, the registration status of the productive unit, and the category of employment. I validate the reconstruction against the official \texttt{ocupinf} in 2021 through 2023, where both are available, and obtain agreement of about 88 percent at the worker level, with an implied informality rate of 74.9 percent against the official 79.1 percent. I use the official indicator wherever it exists and the reconstruction only for 2024 and 2025, and I report a robustness check that restricts the formality analysis to the years covered by the official measure. Full details of the construction are in Appendix~\ref{app:data}.
 
 \subsection{Descriptive statistics}
 
-Table~\ref{tab:desc} reports weighted means of the main variables by skill group in
-the pre-reform period. The two groups differ in the expected ways. Low-skilled
-workers are older on average, more likely to be married and rural, and have far lower
-wages. The employment rate is similar across groups, but the composition of
-employment differs starkly: low-skilled workers are much more likely to be informal
-and self-employed, and far more likely to earn below the statutory minimum. Among
-private wage earners, 57 percent of the low-skilled were paid below the \emph{new}
-minimum of 1,025 soles on the eve of the reform, against 40 percent of the
-high-skilled. This is the exposure gap on which my design rests, though the substantial
-exposure of the comparison group also means the design estimates a relative rather
-than an absolute effect. The high informality of the low-skilled group, 87 percent
-against 53 percent for the high-skilled, is central to interpreting the results: for
-most low-skilled workers the statutory floor is not directly enforced, so the margin
-along which the labor market can adjust is the allocation of workers across formal and
-informal arrangements rather than the level of pay within formal jobs.
+Table~\ref{tab:desc} reports weighted means of the main variables by skill group in the pre-reform period. The two groups differ in the expected ways. Low-skilled workers are older on average, more likely to be married and rural, and have far lower wages. The employment rate is similar across groups, but the composition of employment differs starkly: low-skilled workers are much more likely to be informal and self-employed, and far more likely to earn below the statutory minimum. Among private wage earners, 57 percent of the low-skilled were paid below the \emph{new} minimum of 1,025 soles on the eve of the reform, against 40 percent of the high-skilled. This is the exposure gap on which my design rests, though the substantial exposure of the comparison group also means the design estimates a relative rather than an absolute effect. The high informality of the low-skilled group, 87 percent against 53 percent for the high-skilled, is central to interpreting the results: for most low-skilled workers the statutory floor is not directly enforced, so the margin along which the labor market can adjust is the allocation of workers across formal and informal arrangements rather than the level of pay within formal jobs.
 
 \input{../../tables/tab_descriptives_wrapped}
 
-Figure~\ref{fig:trends} plots the weighted quarterly means of the main outcomes by skill
-group over the study window, with the reform marked. The raw series already hint at the
-results that follow: the wage series of the two groups move in parallel throughout, while
-the formality and self-employment series begin to diverge around the reform. The figure
-also makes visible a fact that matters for the analysis: in the employment panel it is
-the \emph{high}-education series that swings, rebounding sharply through 2021 and
-oscillating thereafter, while the low-education series is comparatively flat, so any
-employment ``effect'' in the education contrast is driven largely by movements of the
-comparison group; this is part of why Section~\ref{sec:results} declines to interpret
-that margin causally. These are unconditional means; the regression analysis that
-follows adjusts for composition and seasonality.
+Figure~\ref{fig:trends} plots the weighted quarterly means of the main outcomes by skill group over the study window, with the reform marked. The raw series already hint at the results that follow: the wage series of the two groups move in parallel throughout, while the formality and self-employment series begin to diverge around the reform. The figure also makes visible a fact that matters for the analysis: in the employment panel it is the \emph{high}-education series that swings, rebounding sharply through 2021 and oscillating thereafter, while the low-education series is comparatively flat, so any employment ``effect'' in the education contrast is driven largely by movements of the comparison group; this is part of why Section~\ref{sec:results} declines to interpret that margin causally. These are unconditional means; the regression analysis that follows adjusts for composition and seasonality.
 
 \begin{figure}[!t]
 \centering
 \includegraphics[width=0.95\textwidth]{fig2_raw_trends.pdf}
-\caption{Raw outcome trends by skill group, 2021--2024. Weighted quarterly means for
-low- and high-skilled workers. The dashed vertical line marks the May 2022 reform.}
+\caption{Raw outcome trends by skill group, 2021--2024. Weighted quarterly means for low- and high-skilled workers. The dashed vertical line marks the May 2022 reform.}
 \label{fig:trends}
 \end{figure}
 
-Figure~\ref{fig:bite} displays the regional variation in the bite of the minimum wage,
-measured by the Kaitz index, the ratio of the new minimum to the pre-reform median
-monthly-equivalent wage of private wage earners in each department. The index ranges
-from about 0.79 in Ica to about 1.97 in Huánuco, and it exceeds one in eighteen of the
-twenty-five departments, so that in much of the country the new minimum exceeds the
-median wage. This variation is predetermined with respect to the reform and
-provides the basis for the triple-difference and continuous-intensity checks in
-Section~\ref{sec:robustness}.
+Figure~\ref{fig:bite} displays the regional variation in the bite of the minimum wage, measured by the Kaitz index, the ratio of the new minimum to the pre-reform median monthly-equivalent wage of private wage earners in each department. The index ranges from about 0.79 in Ica to about 1.97 in Huánuco, and it exceeds one in eighteen of the twenty-five departments, so that in much of the country the new minimum exceeds the median wage. This variation is predetermined with respect to the reform and provides the basis for the triple-difference and continuous-intensity checks in Section~\ref{sec:robustness}.
 
 \begin{figure}[!t]
 \centering
 \includegraphics[width=0.72\textwidth]{fig3_regional_bite.pdf}
-\caption{Regional variation in the bite of the minimum wage. The Kaitz index is the
-ratio of the new minimum wage (1,025 soles) to the department's median monthly-equivalent
-wage of private wage earners in the pre-reform quarters. Departments above the dashed
-line have a median wage below the new minimum.}
+\caption{Regional variation in the bite of the minimum wage. The Kaitz index is the ratio of the new minimum wage (1,025 soles) to the department's median monthly-equivalent wage of private wage earners in the pre-reform quarters. Departments above the dashed line have a median wage below the new minimum.}
 \label{fig:bite}
 \end{figure}

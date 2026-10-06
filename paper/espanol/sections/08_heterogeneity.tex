@@ -2,108 +2,34 @@
 
 \subsection{¿Quién se ajusta?}
 
-La Figura~\ref{fig:het} reporta la estimación de diferencias en diferencias entre
-trabajadores poco calificados y calificados para cada resultado principal dentro de
-subgrupos demográficos y regionales.\footnote{Cada estimación corresponde a las diferencias
-en diferencias dentro del subgrupo, de modo que pregunta si el contraste entre poco
-calificados y calificados difiere, por ejemplo, entre hombres y mujeres, y no cuál es el
-efecto en niveles para un subgrupo.} Destacan tres patrones, coherentes con la intuición
-económica sobre dónde el salario mínimo es más vinculante.
+La Figura~\ref{fig:het} reporta la estimación de diferencias en diferencias entre trabajadores poco calificados y calificados para cada resultado principal dentro de subgrupos demográficos y regionales.\footnote{Cada estimación corresponde a las diferencias en diferencias dentro del subgrupo, de modo que pregunta si el contraste entre poco calificados y calificados difiere, por ejemplo, entre hombres y mujeres, y no cuál es el efecto en niveles para un subgrupo.} Destacan tres patrones, coherentes con la intuición económica sobre dónde el salario mínimo es más vinculante.
 
-Primero, ningún subgrupo muestra ganancias salariales. Ya sea que se definan por sexo,
-edad, área o incidencia (\emph{bite}) regional, todas las estimaciones salariales por
-subgrupo son negativas o indistinguibles de cero. La ausencia de respuesta en las
-remuneraciones es un rasgo generalizado de los datos y no un promedio que esconda efectos
-que se compensan.
+Primero, ningún subgrupo muestra ganancias salariales. Ya sea que se definan por sexo, edad, área o incidencia (\emph{bite}) regional, todas las estimaciones salariales por subgrupo son negativas o indistinguibles de cero. La ausencia de respuesta en las remuneraciones es un rasgo generalizado de los datos y no un promedio que esconda efectos que se compensan.
 
-Segundo, el ajuste de la composición crece con la exposición. La caída del empleo formal
-es mayor en los departamentos de alta incidencia ($-5.5$ puntos porcentuales) que en los de
-baja incidencia ($-3.6$ puntos), y lo mismo ocurre con el aumento del trabajo independiente
-($+5.0$ frente a $+2.8$ puntos). Este patrón de dosis y respuesta es el que debería
-producir un efecto causal del piso salarial, y es la contraparte transversal de los
-resultados de exposición continua de la Sección~\ref{sec:robustness}. La estimación del
-nivel de empleo, en cambio, \emph{no} crece con la incidencia (es menor y no significativa
-en los departamentos de alta incidencia), lo que constituye una razón adicional para
-atribuirla a la recuperación diferencial y no a la reforma.
+Segundo, el ajuste de la composición crece con la exposición. La caída del empleo formal es mayor en los departamentos de alta incidencia ($-5.5$ puntos porcentuales) que en los de baja incidencia ($-3.6$ puntos), y lo mismo ocurre con el aumento del trabajo independiente ($+5.0$ frente a $+2.8$ puntos). Este patrón de dosis y respuesta es el que debería producir un efecto causal del piso salarial, y es la contraparte transversal de los resultados de exposición continua de la Sección~\ref{sec:robustness}. La estimación del nivel de empleo, en cambio, \emph{no} crece con la incidencia (es menor y no significativa en los departamentos de alta incidencia), lo que constituye una razón adicional para atribuirla a la recuperación diferencial y no a la reforma.
 
-Tercero, la reasignación se concentra entre los jóvenes y las mujeres. La caída del empleo
-formal es mayor para los trabajadores de catorce a veinticinco años ($-5.8$ puntos) y para
-las mujeres ($-5.5$ puntos), los grupos cuyos salarios tienen mayor probabilidad de
-ubicarse cerca del piso y cuyo vínculo con el empleo formal es más frágil; el aumento del
-trabajo independiente es el doble de grande para las mujeres que para los hombres. Para los
-trabajadores mayores de cuarenta y cinco años, el efecto sobre la formalidad es cercano a
-cero, aunque su trabajo independiente también aumenta. Esto replica el énfasis en los
-jóvenes de la literatura peruana previa \citep{cespedes_2005, jaramillo_lopez_2006} y el
-énfasis en las mujeres y en los menos calificados de la evidencia para países en
-desarrollo \citep{katzkowicz_2021_uruguay, lemos_2009}.
+Tercero, la reasignación se concentra entre los jóvenes y las mujeres. La caída del empleo formal es mayor para los trabajadores de catorce a veinticinco años ($-5.8$ puntos) y para las mujeres ($-5.5$ puntos), los grupos cuyos salarios tienen mayor probabilidad de ubicarse cerca del piso y cuyo vínculo con el empleo formal es más frágil; el aumento del trabajo independiente es el doble de grande para las mujeres que para los hombres. Para los trabajadores mayores de cuarenta y cinco años, el efecto sobre la formalidad es cercano a cero, aunque su trabajo independiente también aumenta. Esto replica el énfasis en los jóvenes de la literatura peruana previa \citep{cespedes_2005, jaramillo_lopez_2006} y el énfasis en las mujeres y en los menos calificados de la evidencia para países en desarrollo \citep{katzkowicz_2021_uruguay, lemos_2009}.
 
 \begin{figure}[!t]
 \centering
 \includegraphics[width=0.98\textwidth]{fig6_heterogeneity.pdf}
-\caption{Efectos heterogéneos de la reforma de 2022. Cada punto es la estimación de
-diferencias en diferencias $\mathrm{Low}\times\mathrm{Post}$ dentro del subgrupo indicado,
-con intervalos de confianza al noventa y cinco por ciento basados en errores estándar
-agrupados por departamento.}
+\caption{Efectos heterogéneos de la reforma de 2022. Cada punto es la estimación de diferencias en diferencias $\mathrm{Low}\times\mathrm{Post}$ dentro del subgrupo indicado, con intervalos de confianza al noventa y cinco por ciento basados en errores estándar agrupados por departamento.}
 \label{fig:het}
 \end{figure}
 
 \subsection{Márgenes de ajuste}
 
-¿Dónde ocurre exactamente la reasignación? Cuatro márgenes orientados a los mecanismos
-precisan el panorama (Cuadro~\ref{tab:margins} del Apéndice). Primero, la proporción de
-asalariados de baja educación empleados \emph{sin contrato escrito} aumenta en 3.1 puntos
-porcentuales respecto de los asalariados de alta educación, de modo que la informalización
-opera dentro del empleo asalariado y no solo mediante salidas hacia el trabajo
-independiente.\footnote{La pregunta sobre el contrato se eliminó del cuestionario reducido
-que se aplicó en quince regiones en febrero de 2021; codifico esas observaciones como
-faltantes y no como carentes de contrato, lo que importa para este margen.} Segundo, el
-empleo se recompone hacia las \emph{microunidades}: la probabilidad de que un trabajador de
-baja educación esté empleado en un establecimiento de a lo sumo veinte trabajadores
-aumenta en 2.8 puntos, y las unidades pequeñas son precisamente donde la fiscalización es
-más escasa. Tercero, según la descomposición del empleo informal del INEI (disponible hasta
-2023), el margen desplazado recae en el \emph{sector informal} propiamente dicho (+2.4
-puntos) y no en empleos no registrados dentro de empresas formales (+0.8, no
-significativo): los trabajadores no se quedaron con empleadores formales de manera
-irregular, sino que se trasladaron a unidades productivas informales. Cuarto, la
-proporción de asalariados con menos de un año de antigüedad no se mueve, de modo que el
-ajuste no se manifiesta como un congelamiento de contrataciones entre quienes siguen siendo
-asalariados.
+¿Dónde ocurre exactamente la reasignación? Cuatro márgenes orientados a los mecanismos precisan el panorama (Cuadro~\ref{tab:margins} del Apéndice). Primero, la proporción de asalariados de baja educación empleados \emph{sin contrato escrito} aumenta en 3.1 puntos porcentuales respecto de los asalariados de alta educación, de modo que la informalización opera dentro del empleo asalariado y no solo mediante salidas hacia el trabajo independiente.\footnote{La pregunta sobre el contrato se eliminó del cuestionario reducido que se aplicó en quince regiones en febrero de 2021; codifico esas observaciones como faltantes y no como carentes de contrato, lo que importa para este margen.} Segundo, el empleo se recompone hacia las \emph{microunidades}: la probabilidad de que un trabajador de baja educación esté empleado en un establecimiento de a lo sumo veinte trabajadores aumenta en 2.8 puntos, y las unidades pequeñas son precisamente donde la fiscalización es más escasa. Tercero, según la descomposición del empleo informal del INEI (disponible hasta 2023), el margen desplazado recae en el \emph{sector informal} propiamente dicho (+2.4 puntos) y no en empleos no registrados dentro de empresas formales (+0.8, no significativo): los trabajadores no se quedaron con empleadores formales de manera irregular, sino que se trasladaron a unidades productivas informales. Cuarto, la proporción de asalariados con menos de un año de antigüedad no se mueve, de modo que el ajuste no se manifiesta como un congelamiento de contrataciones entre quienes siguen siendo asalariados.
 
-Dos divisiones adicionales por subgrupo ubican la carga. Los efectos de composición se
-concentran casi por completo entre los \emph{no jefes} de hogar (perceptores secundarios de
-ingreso, cuya formalidad cae 6.8 puntos, frente a un efecto nulo para los jefes de hogar) y
-entre los trabajadores no indígenas, lo que es coherente con los mercados laborales urbanos
-de la costa, donde se concentra el empleo formal en torno al piso. En suma, los empleos
-formales marginales que se disolvieron fueron los de perceptores secundarios en pequeñas
-empresas urbanas.
+Dos divisiones adicionales por subgrupo ubican la carga. Los efectos de composición se concentran casi por completo entre los \emph{no jefes} de hogar (perceptores secundarios de ingreso, cuya formalidad cae 6.8 puntos, frente a un efecto nulo para los jefes de hogar) y entre los trabajadores no indígenas, lo que es coherente con los mercados laborales urbanos de la costa, donde se concentra el empleo formal en torno al piso. En suma, los empleos formales marginales que se disolvieron fueron los de perceptores secundarios en pequeñas empresas urbanas.
 
 \subsection{Efectos salariales distributivos}
 
-La ausencia de un efecto salarial promedio podría, en principio, ocultar movimientos que se
-compensan en distintos puntos de la distribución salarial, dado que se espera que un
-salario mínimo comprima la cola inferior. Para examinarlo, estimo regresiones por cuantiles
-incondicionales (función de influencia recentrada) a la manera de
-\citet{firpo_fortin_lemieux_2009}, aplicando la especificación de diferencias en
-diferencias a la función de influencia de cada decil del logaritmo del salario real por
-hora. La Figura~\ref{fig:rif} grafica el coeficiente $\mathrm{Low}\times\mathrm{Post}$ a lo
-largo de los deciles. Las estimaciones son no positivas en todos los deciles, en su mayoría
-entre $-2$ y $-4$ por ciento y significativas en algunos deciles intermedios; lo crucial es
-que no hay ningún efecto positivo en los deciles inferiores, donde un salario mínimo
-vinculante y fiscalizado comprimiría la distribución desde abajo. La evidencia distributiva
-refuerza, por lo tanto, la ausencia de respuesta en las remuneraciones: la reforma no elevó
-la cola inferior de la distribución salarial de los poco calificados respecto de la de los
-calificados. Esto es coherente con la distribución de ingresos de la Figura~\ref{fig:dist},
-que muestra poco movimiento hacia el nuevo piso, y con la interpretación de que, en un
-mercado laboral con incumplimiento generalizado, el mínimo legal no fue vinculante para la
-mayoría de los trabajadores poco calificados.
+La ausencia de un efecto salarial promedio podría, en principio, ocultar movimientos que se compensan en distintos puntos de la distribución salarial, dado que se espera que un salario mínimo comprima la cola inferior. Para examinarlo, estimo regresiones por cuantiles incondicionales (función de influencia recentrada) a la manera de \citet{firpo_fortin_lemieux_2009}, aplicando la especificación de diferencias en diferencias a la función de influencia de cada decil del logaritmo del salario real por hora. La Figura~\ref{fig:rif} grafica el coeficiente $\mathrm{Low}\times\mathrm{Post}$ a lo largo de los deciles. Las estimaciones son no positivas en todos los deciles, en su mayoría entre $-2$ y $-4$ por ciento y significativas en algunos deciles intermedios; lo crucial es que no hay ningún efecto positivo en los deciles inferiores, donde un salario mínimo vinculante y fiscalizado comprimiría la distribución desde abajo. La evidencia distributiva refuerza, por lo tanto, la ausencia de respuesta en las remuneraciones: la reforma no elevó la cola inferior de la distribución salarial de los poco calificados respecto de la de los calificados. Esto es coherente con la distribución de ingresos de la Figura~\ref{fig:dist}, que muestra poco movimiento hacia el nuevo piso, y con la interpretación de que, en un mercado laboral con incumplimiento generalizado, el mínimo legal no fue vinculante para la mayoría de los trabajadores poco calificados.
 
 \begin{figure}[!t]
 \centering
 \includegraphics[width=0.72\textwidth]{fig8_rif_quantile.pdf}
-\caption{Efectos salariales distributivos. Cada punto es el coeficiente de diferencias en
-diferencias $\mathrm{Low}\times\mathrm{Post}$ de una regresión por cuantiles
-incondicionales (RIF) en el decil indicado del logaritmo del salario real por hora
-\citep{firpo_fortin_lemieux_2009}. Las bandas son intervalos de confianza al noventa y
-cinco por ciento con errores agrupados por departamento.}
+\caption{Efectos salariales distributivos. Cada punto es el coeficiente de diferencias en diferencias $\mathrm{Low}\times\mathrm{Post}$ de una regresión por cuantiles incondicionales (RIF) en el decil indicado del logaritmo del salario real por hora \citep{firpo_fortin_lemieux_2009}. Las bandas son intervalos de confianza al noventa y cinco por ciento con errores agrupados por departamento.}
 \label{fig:rif}
 \end{figure}

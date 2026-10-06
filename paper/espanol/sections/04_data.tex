@@ -2,183 +2,46 @@
 
 \subsection{Los módulos trimestrales de empleo de la ENAHO}
 
-Utilizo los archivos trimestrales de uso público de la Encuesta Nacional de Hogares
-(ENAHO), la encuesta nacional de hogares que levanta el Instituto Nacional de
-Estadística e Informática (INEI) del Perú. La ENAHO es una encuesta representativa a
-nivel nacional, estratificada y multietápica, con trabajo de campo continuo; el módulo
-trimestral de empleo e ingresos (módulo 500) registra información detallada del mercado
-laboral para cada miembro del hogar en edad de trabajar. Agrupo los dieciséis trimestres
-comprendidos entre el primer trimestre de 2021 y el cuarto trimestre de 2024, alrededor de
-347\,000 registros persona-trimestre en total, de los cuales unas 278\,000 observaciones en
-edad de trabajar y con información de educación ingresan a la muestra de estimación base
-(se excluye el trimestre de transición 2022Q2, parcialmente tratado; véase la
-Sección~\ref{sec:strategy}). Para el ejercicio de validación fuera de muestra añado los
-cuatro trimestres de 2025. Todas las estadísticas usan los factores de expansión del
-módulo; el tratamiento de los errores estándar se discute en la Sección~\ref{sec:strategy}.
+Utilizo los archivos trimestrales de uso público de la Encuesta Nacional de Hogares (ENAHO), la encuesta nacional de hogares que levanta el Instituto Nacional de Estadística e Informática (INEI) del Perú. La ENAHO es una encuesta representativa a nivel nacional, estratificada y multietápica, con trabajo de campo continuo; el módulo trimestral de empleo e ingresos (módulo 500) registra información detallada del mercado laboral para cada miembro del hogar en edad de trabajar. Agrupo los dieciséis trimestres comprendidos entre el primer trimestre de 2021 y el cuarto trimestre de 2024, alrededor de 347\,000 registros persona-trimestre en total, de los cuales unas 278\,000 observaciones en edad de trabajar y con información de educación ingresan a la muestra de estimación base (se excluye el trimestre de transición 2022Q2, parcialmente tratado; véase la Sección~\ref{sec:strategy}). Para el ejercicio de validación fuera de muestra añado los cuatro trimestres de 2025. Todas las estadísticas usan los factores de expansión del módulo; el tratamiento de los errores estándar se discute en la Sección~\ref{sec:strategy}.
 
-Para el análisis de transiciones a nivel de trabajador de la
-Sección~\ref{sec:transitions}, complemento los cortes transversales trimestrales con el
-Panel ENAHO 2020--2024, el componente longitudinal de la encuesta, que vuelve a
-entrevistar las mismas viviendas cada año e identifica a las mismas personas a lo largo
-del tiempo. Los pares de años consecutivos enlazan entre 23\,000 y 24\,000 personas, y el
-INEI publica factores de expansión propios del panel que corrigen por desgaste y no
-respuesta. El Apéndice~A documenta los archivos fuente, los indicadores de enlace y la
-construcción de los estados de transición.
+Para el análisis de transiciones a nivel de trabajador de la Sección~\ref{sec:transitions}, complemento los cortes transversales trimestrales con el Panel ENAHO 2020--2024, el componente longitudinal de la encuesta, que vuelve a entrevistar las mismas viviendas cada año e identifica a las mismas personas a lo largo del tiempo. Los pares de años consecutivos enlazan entre 23\,000 y 24\,000 personas, y el INEI publica factores de expansión propios del panel que corrigen por desgaste y no respuesta. El Apéndice~A documenta los archivos fuente, los indicadores de enlace y la construcción de los estados de transición.
 
-La frecuencia trimestral que aprovecho forma parte del diseño de la encuesta y no es una
-partición ad hoc de un archivo anual. La documentación técnica de la ENAHO establece dos
-niveles oficiales de inferencia para la muestra integrada: anual (nacional, urbano y rural,
-cada uno de los 24 departamentos, regiones naturales y Lima Metropolitana) y
-\emph{trimestral} (nacional, nacional urbano y nacional rural), de modo que el propio
-diseño muestral respalda la estimación nacional trimestral. Además, en la muestra no panel
-los mismos conglomerados se visitan en el mismo mes cada año, con viviendas distintas
-seleccionadas dentro de ellos, por lo que la composición geográfica y estacional de cada
-trimestre se mantiene fija entre años; en mis archivos, el 70 por ciento de las unidades
-primarias de muestreo coincide entre el mismo trimestre de años consecutivos, frente a un
-5 por ciento entre trimestres distintos. Cada trimestre contiene cerca de la cuarta parte
-de la muestra anual (alrededor de 1340 conglomerados y entre 21\,000 y 22\,000 registros en
-edad de trabajar), con una composición estable entre trimestres. La inferencia a nivel
-departamental, en cambio, solo es anual; por ello, utilizo la variación
-departamento-trimestre únicamente a través de efectos fijos y celdas agregadas, y mido la
-incidencia (\emph{bite}) regional agrupando los cinco trimestres previos a la reforma, lo
-que se aproxima al nivel anual en el que las estimaciones departamentales son
-representativas.
+La frecuencia trimestral que aprovecho forma parte del diseño de la encuesta y no es una partición ad hoc de un archivo anual. La documentación técnica de la ENAHO establece dos niveles oficiales de inferencia para la muestra integrada: anual (nacional, urbano y rural, cada uno de los 24 departamentos, regiones naturales y Lima Metropolitana) y \emph{trimestral} (nacional, nacional urbano y nacional rural), de modo que el propio diseño muestral respalda la estimación nacional trimestral. Además, en la muestra no panel los mismos conglomerados se visitan en el mismo mes cada año, con viviendas distintas seleccionadas dentro de ellos, por lo que la composición geográfica y estacional de cada trimestre se mantiene fija entre años; en mis archivos, el 70 por ciento de las unidades primarias de muestreo coincide entre el mismo trimestre de años consecutivos, frente a un 5 por ciento entre trimestres distintos. Cada trimestre contiene cerca de la cuarta parte de la muestra anual (alrededor de 1340 conglomerados y entre 21\,000 y 22\,000 registros en edad de trabajar), con una composición estable entre trimestres. La inferencia a nivel departamental, en cambio, solo es anual; por ello, utilizo la variación departamento-trimestre únicamente a través de efectos fijos y celdas agregadas, y mido la incidencia (\emph{bite}) regional agrupando los cinco trimestres previos a la reforma, lo que se aproxima al nivel anual en el que las estimaciones departamentales son representativas.
 
-Restrinjo la muestra a las personas en edad de trabajar, definidas como aquellas de 14 a
-65 años,\footnote{Catorce años es la edad mínima legal para trabajar en el Perú; 65 es el
-límite superior convencional de la población en edad de trabajar.} y elimino las
-observaciones sin información de educación. El análisis salarial principal se restringe
-además a los asalariados del sector privado,\footnote{Empleados, obreros y trabajadores del
-hogar, es decir, la variable de categoría ocupacional de la ENAHO \texttt{p507} igual a 3,
-4 o 6; los trabajadores del hogar tienen derecho al salario mínimo desde la Ley 31047
-(2020). Los empleadores, los trabajadores por cuenta propia y los trabajadores familiares no
-remunerados se tratan como categorías aparte, y los trabajadores del sector público se
-excluyen de los resultados referidos al puesto de trabajo porque su remuneración se rige por
-escalas propias.} para quienes el salario mínimo es el piso legal relevante, mientras que
-los resultados de empleo y participación se definen sobre la población en edad de trabajar,
-y los de formalidad y trabajo independiente, sobre los trabajadores ocupados del sector
-privado.
+Restrinjo la muestra a las personas en edad de trabajar, definidas como aquellas de 14 a 65 años,\footnote{Catorce años es la edad mínima legal para trabajar en el Perú; 65 es el límite superior convencional de la población en edad de trabajar.} y elimino las observaciones sin información de educación. El análisis salarial principal se restringe además a los asalariados del sector privado,\footnote{Empleados, obreros y trabajadores del hogar, es decir, la variable de categoría ocupacional de la ENAHO \texttt{p507} igual a 3, 4 o 6; los trabajadores del hogar tienen derecho al salario mínimo desde la Ley 31047 (2020). Los empleadores, los trabajadores por cuenta propia y los trabajadores familiares no remunerados se tratan como categorías aparte, y los trabajadores del sector público se excluyen de los resultados referidos al puesto de trabajo porque su remuneración se rige por escalas propias.} para quienes el salario mínimo es el piso legal relevante, mientras que los resultados de empleo y participación se definen sobre la población en edad de trabajar, y los de formalidad y trabajo independiente, sobre los trabajadores ocupados del sector privado.
 
 \subsection{Educación y definición de los grupos de calificación}
 
-Los grupos de tratamiento y de comparación se definen según el nivel educativo, registrado
-en la variable \texttt{p301a} de la ENAHO, que recoge el nivel de estudios más alto
-alcanzado. Validé la codificación de esta variable contra la distribución ponderada del
-nivel educativo en los datos; corresponde a la clasificación estándar del INEI, que va desde
-sin nivel hasta posgrado. Defino como trabajadores \emph{poco calificados} a quienes tienen
-como máximo secundaria completa (sin nivel, inicial, primaria o secundaria), y como
-\emph{calificados} a quienes tienen algún estudio superior (superior no universitaria,
-universitaria o posgrado). Excluyo la pequeña categoría residual de educación básica
-especial, que no se ordena en la dimensión de calificación, y las observaciones sin
-información de educación.
+Los grupos de tratamiento y de comparación se definen según el nivel educativo, registrado en la variable \texttt{p301a} de la ENAHO, que recoge el nivel de estudios más alto alcanzado. Validé la codificación de esta variable contra la distribución ponderada del nivel educativo en los datos; corresponde a la clasificación estándar del INEI, que va desde sin nivel hasta posgrado. Defino como trabajadores \emph{poco calificados} a quienes tienen como máximo secundaria completa (sin nivel, inicial, primaria o secundaria), y como \emph{calificados} a quienes tienen algún estudio superior (superior no universitaria, universitaria o posgrado). Excluyo la pequeña categoría residual de educación básica especial, que no se ordena en la dimensión de calificación, y las observaciones sin información de educación.
 
-Esta partición tiene tres rasgos atractivos. Primero, marca una frontera nítida en el
-mercado laboral peruano: la educación superior es la principal credencial que separa a los
-trabajadores que compiten por empleos con remuneraciones cercanas al salario mínimo de
-quienes no lo hacen. Segundo, divide a la población en edad de trabajar en grupos de tamaño
-comparable, aproximadamente dos tercios de poco calificados y un tercio de calificados, lo
-que otorga un poder estadístico adecuado a ambos lados. Tercero, y lo más importante para la
-identificación, los dos grupos difieren marcadamente en su exposición al salario mínimo.
-Como muestra la Cuadro~\ref{tab:desc}, en el periodo previo a la reforma la mediana del
-salario mensual de un asalariado poco calificado está cerca del piso legal, mientras que la
-del asalariado calificado se sitúa muy por encima. La clasificación sigue una larga
-tradición de trabajos que consideran la educación como un determinante principal de dónde
-incide el salario mínimo \citep{lemos_2009, katzkowicz_2021_uruguay}.
+Esta partición tiene tres rasgos atractivos. Primero, marca una frontera nítida en el mercado laboral peruano: la educación superior es la principal credencial que separa a los trabajadores que compiten por empleos con remuneraciones cercanas al salario mínimo de quienes no lo hacen. Segundo, divide a la población en edad de trabajar en grupos de tamaño comparable, aproximadamente dos tercios de poco calificados y un tercio de calificados, lo que otorga un poder estadístico adecuado a ambos lados. Tercero, y lo más importante para la identificación, los dos grupos difieren marcadamente en su exposición al salario mínimo. Como muestra la Cuadro~\ref{tab:desc}, en el periodo previo a la reforma la mediana del salario mensual de un asalariado poco calificado está cerca del piso legal, mientras que la del asalariado calificado se sitúa muy por encima. La clasificación sigue una larga tradición de trabajos que consideran la educación como un determinante principal de dónde incide el salario mínimo \citep{lemos_2009, katzkowicz_2021_uruguay}.
 
 \subsection{Variables de resultado}
 
-Los resultados se agrupan en tres bloques. En cuanto a la \emph{remuneración}, la ENAHO
-registra el pago de los asalariados por periodo de pago junto con su frecuencia; dado que
-más de la mitad de los asalariados de baja educación cobra de forma diaria, semanal o
-quincenal, frente al quince por ciento de los de alta educación, convierto todos los pagos
-a equivalentes mensuales con la variable de frecuencia antes de cualquier comparación entre
-grupos (el Apéndice~\ref{app:data} detalla la conversión, que coincide con la anualización
-del propio INEI). El salario real por hora divide este ingreso laboral mensual equivalente
-entre las horas mensuales, se deflacta con el índice de precios al consumidor de Lima del
-mes al que se refiere el ingreso, en soles de diciembre de 2021, y se winsoriza en el medio
-percentil inferior y superior; el ingreso mensual real es el mismo numerador sin el ajuste
-por horas. En cuanto a las \emph{cantidades}, el empleo y la participación laboral son
-indicadores definidos sobre la población en edad de trabajar, y las horas semanales
-corresponden a las horas trabajadas en la ocupación principal. En cuanto a la
-\emph{composición}, el empleo formal y el trabajo independiente se definen entre los
-trabajadores ocupados del sector privado, y un indicador de percibir menos que el mínimo
-legal vigente en el mes de referencia del ingreso se define entre los asalariados privados;
-este último es una medida directa de la incidencia de la política y de su cumplimiento.
+Los resultados se agrupan en tres bloques. En cuanto a la \emph{remuneración}, la ENAHO registra el pago de los asalariados por periodo de pago junto con su frecuencia; dado que más de la mitad de los asalariados de baja educación cobra de forma diaria, semanal o quincenal, frente al quince por ciento de los de alta educación, convierto todos los pagos a equivalentes mensuales con la variable de frecuencia antes de cualquier comparación entre grupos (el Apéndice~\ref{app:data} detalla la conversión, que coincide con la anualización del propio INEI). El salario real por hora divide este ingreso laboral mensual equivalente entre las horas mensuales, se deflacta con el índice de precios al consumidor de Lima del mes al que se refiere el ingreso, en soles de diciembre de 2021, y se winsoriza en el medio percentil inferior y superior; el ingreso mensual real es el mismo numerador sin el ajuste por horas. En cuanto a las \emph{cantidades}, el empleo y la participación laboral son indicadores definidos sobre la población en edad de trabajar, y las horas semanales corresponden a las horas trabajadas en la ocupación principal. En cuanto a la \emph{composición}, el empleo formal y el trabajo independiente se definen entre los trabajadores ocupados del sector privado, y un indicador de percibir menos que el mínimo legal vigente en el mes de referencia del ingreso se define entre los asalariados privados; este último es una medida directa de la incidencia de la política y de su cumplimiento.
 
-La informalidad plantea un problema de medición. El indicador oficial de empleo informal del
-INEI, \texttt{ocupinf}, figura en los archivos de 2021 a 2023, pero no se publica en los de
-2024 y 2025. Como mi ventana de estudio se extiende hasta 2024, reconstruyo un indicador de
-informalidad consistente a partir de componentes básicos disponibles en todos los años: la
-afiliación a un sistema de pensiones, la tenencia de un contrato de trabajo formal, la
-condición de registro de la unidad productiva y la categoría ocupacional. Valido la
-reconstrucción contra el \texttt{ocupinf} oficial en 2021--2023, años en que ambos están
-disponibles, y obtengo una coincidencia de alrededor del 88 por ciento a nivel de
-trabajador, con una tasa de informalidad implícita de 74.9 por ciento frente al 79.1 por
-ciento oficial. Uso el indicador oficial siempre que existe y la reconstrucción solo para
-2024 y 2025, y presento una prueba de robustez que restringe el análisis de formalidad a
-los años cubiertos por la medida oficial. Los detalles completos de la construcción se
-encuentran en el Apéndice~\ref{app:data}.
+La informalidad plantea un problema de medición. El indicador oficial de empleo informal del INEI, \texttt{ocupinf}, figura en los archivos de 2021 a 2023, pero no se publica en los de 2024 y 2025. Como mi ventana de estudio se extiende hasta 2024, reconstruyo un indicador de informalidad consistente a partir de componentes básicos disponibles en todos los años: la afiliación a un sistema de pensiones, la tenencia de un contrato de trabajo formal, la condición de registro de la unidad productiva y la categoría ocupacional. Valido la reconstrucción contra el \texttt{ocupinf} oficial en 2021--2023, años en que ambos están disponibles, y obtengo una coincidencia de alrededor del 88 por ciento a nivel de trabajador, con una tasa de informalidad implícita de 74.9 por ciento frente al 79.1 por ciento oficial. Uso el indicador oficial siempre que existe y la reconstrucción solo para 2024 y 2025, y presento una prueba de robustez que restringe el análisis de formalidad a los años cubiertos por la medida oficial. Los detalles completos de la construcción se encuentran en el Apéndice~\ref{app:data}.
 
 \subsection{Estadísticas descriptivas}
 
-La Cuadro~\ref{tab:desc} presenta las medias ponderadas de las principales variables por
-grupo de calificación en el periodo previo a la reforma. Los dos grupos difieren en la
-dirección esperada. Los trabajadores poco calificados son en promedio de mayor edad, con
-mayor probabilidad están casados y viven en zonas rurales, y tienen salarios mucho más
-bajos. La tasa de empleo es similar entre grupos, pero la composición del empleo difiere
-de manera marcada: los poco calificados tienen una probabilidad mucho mayor de ser
-informales y de trabajar de forma independiente, y una probabilidad mucho mayor de ganar
-menos que el mínimo legal. Entre los asalariados privados, el 57 por ciento de los poco
-calificados percibía menos que el \emph{nuevo} mínimo de 1025 soles en la víspera de la
-reforma, frente al 40 por ciento de los calificados. Esta es la brecha de exposición sobre
-la que descansa mi diseño, aunque la exposición sustancial del grupo de comparación implica
-también que el diseño estima un efecto relativo y no absoluto. La alta informalidad del
-grupo poco calificado, 87 por ciento frente a 53 por ciento entre los calificados, es
-central para interpretar los resultados: para la mayoría de los trabajadores poco
-calificados el piso legal no se fiscaliza directamente, de modo que el margen por el que
-puede ajustarse el mercado laboral es la asignación de los trabajadores entre arreglos
-formales e informales, y no el nivel de la remuneración dentro de los empleos formales.
+La Cuadro~\ref{tab:desc} presenta las medias ponderadas de las principales variables por grupo de calificación en el periodo previo a la reforma. Los dos grupos difieren en la dirección esperada. Los trabajadores poco calificados son en promedio de mayor edad, con mayor probabilidad están casados y viven en zonas rurales, y tienen salarios mucho más bajos. La tasa de empleo es similar entre grupos, pero la composición del empleo difiere de manera marcada: los poco calificados tienen una probabilidad mucho mayor de ser informales y de trabajar de forma independiente, y una probabilidad mucho mayor de ganar menos que el mínimo legal. Entre los asalariados privados, el 57 por ciento de los poco calificados percibía menos que el \emph{nuevo} mínimo de 1025 soles en la víspera de la reforma, frente al 40 por ciento de los calificados. Esta es la brecha de exposición sobre la que descansa mi diseño, aunque la exposición sustancial del grupo de comparación implica también que el diseño estima un efecto relativo y no absoluto. La alta informalidad del grupo poco calificado, 87 por ciento frente a 53 por ciento entre los calificados, es central para interpretar los resultados: para la mayoría de los trabajadores poco calificados el piso legal no se fiscaliza directamente, de modo que el margen por el que puede ajustarse el mercado laboral es la asignación de los trabajadores entre arreglos formales e informales, y no el nivel de la remuneración dentro de los empleos formales.
 
 \input{../../tables/es/tab_descriptives_wrapped}
 
-La Figura~\ref{fig:trends} muestra las medias trimestrales ponderadas de los principales
-resultados por grupo de calificación a lo largo de la ventana de estudio, con la reforma
-señalada. Las series en bruto ya anticipan los resultados que siguen: las series salariales
-de ambos grupos se mueven en paralelo durante todo el periodo, mientras que las de
-formalidad y trabajo independiente empiezan a divergir alrededor de la reforma. La figura
-deja ver además un hecho que importa para el análisis: en el panel de empleo es la serie de
-\emph{alta} educación la que oscila, con un fuerte repunte a lo largo de 2021 y vaivenes
-posteriores, mientras que la serie de baja educación es comparativamente plana, de modo que
-cualquier ``efecto'' sobre el empleo en el contraste por educación responde en buena medida
-a los movimientos del grupo de comparación; esta es una de las razones por las que la
-Sección~\ref{sec:results} no interpreta causalmente ese margen. Se trata de medias no
-condicionadas; el análisis de regresión que sigue ajusta por composición y estacionalidad.
+La Figura~\ref{fig:trends} muestra las medias trimestrales ponderadas de los principales resultados por grupo de calificación a lo largo de la ventana de estudio, con la reforma señalada. Las series en bruto ya anticipan los resultados que siguen: las series salariales de ambos grupos se mueven en paralelo durante todo el periodo, mientras que las de formalidad y trabajo independiente empiezan a divergir alrededor de la reforma. La figura deja ver además un hecho que importa para el análisis: en el panel de empleo es la serie de \emph{alta} educación la que oscila, con un fuerte repunte a lo largo de 2021 y vaivenes posteriores, mientras que la serie de baja educación es comparativamente plana, de modo que cualquier ``efecto'' sobre el empleo en el contraste por educación responde en buena medida a los movimientos del grupo de comparación; esta es una de las razones por las que la Sección~\ref{sec:results} no interpreta causalmente ese margen. Se trata de medias no condicionadas; el análisis de regresión que sigue ajusta por composición y estacionalidad.
 
 \begin{figure}[!t]
 \centering
 \includegraphics[width=0.95\textwidth]{fig2_raw_trends.pdf}
-\caption{Tendencias en bruto de los resultados por grupo de calificación, 2021--2024.
-Medias trimestrales ponderadas para trabajadores poco calificados y calificados. La línea
-vertical discontinua señala la reforma de mayo de 2022.}
+\caption{Tendencias en bruto de los resultados por grupo de calificación, 2021--2024. Medias trimestrales ponderadas para trabajadores poco calificados y calificados. La línea vertical discontinua señala la reforma de mayo de 2022.}
 \label{fig:trends}
 \end{figure}
 
-La Figura~\ref{fig:bite} muestra la variación regional en la incidencia del salario mínimo,
-medida con el índice de Kaitz, el cociente entre el nuevo mínimo y la mediana previa a la
-reforma del salario mensual equivalente de los asalariados privados en cada departamento.
-El índice va desde alrededor de 0.79 en Ica hasta cerca de 1.97 en Huánuco, y supera la
-unidad en dieciocho de los veinticinco departamentos, de modo que en buena parte del país
-el nuevo mínimo excede la mediana salarial. Esta variación está predeterminada respecto de
-la reforma y sirve de base para las pruebas de triple diferencia y de intensidad continua de
-la Sección~\ref{sec:robustness}.
+La Figura~\ref{fig:bite} muestra la variación regional en la incidencia del salario mínimo, medida con el índice de Kaitz, el cociente entre el nuevo mínimo y la mediana previa a la reforma del salario mensual equivalente de los asalariados privados en cada departamento. El índice va desde alrededor de 0.79 en Ica hasta cerca de 1.97 en Huánuco, y supera la unidad en dieciocho de los veinticinco departamentos, de modo que en buena parte del país el nuevo mínimo excede la mediana salarial. Esta variación está predeterminada respecto de la reforma y sirve de base para las pruebas de triple diferencia y de intensidad continua de la Sección~\ref{sec:robustness}.
 
 \begin{figure}[!t]
 \centering
 \includegraphics[width=0.72\textwidth]{fig3_regional_bite.pdf}
-\caption{Variación regional en la incidencia del salario mínimo. El índice de Kaitz es el
-cociente entre el nuevo salario mínimo (1025 soles) y la mediana del salario mensual
-equivalente de los asalariados privados del departamento en los trimestres previos a la
-reforma. Los departamentos por encima de la línea discontinua tienen una mediana salarial
-inferior al nuevo mínimo.}
+\caption{Variación regional en la incidencia del salario mínimo. El índice de Kaitz es el cociente entre el nuevo salario mínimo (1025 soles) y la mediana del salario mensual equivalente de los asalariados privados del departamento en los trimestres previos a la reforma. Los departamentos por encima de la línea discontinua tienen una mediana salarial inferior al nuevo mínimo.}
 \label{fig:bite}
 \end{figure}
