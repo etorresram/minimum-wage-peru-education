@@ -101,7 +101,12 @@ R packages beyond CRAN: `synthdid` and `pretrends` are installed from GitHub
 
 ## Building the paper
 
-- `cd paper && tectonic -X compile main.tex` (or `pdflatex; bibtex; pdflatex; pdflatex`).
+- `cd paper/english && tectonic -X compile main.tex` (or `pdflatex; bibtex; pdflatex; pdflatex`).
+  The Spanish version is built the same way from `paper/espanol/`.
+- Spanish tables (`tables/es/`) and figures (`figures/es/`) are produced by the same run:
+  `09_tables.R` and `save_fig()` translate them with the catalogs in `scripts/R/i18n/`.
+  A segment missing from a catalog (for instance after a note or a number changes) stays
+  in English and is listed in a warning.
 - For an Overleaf-ready, self-contained bundle: `bash scripts/make_overleaf.sh`, which
   writes `replication/overleaf/` and `replication/overleaf_project.zip`.
 

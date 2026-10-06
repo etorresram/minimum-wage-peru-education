@@ -1,0 +1,39 @@
+\begin{table}[!tbp]\centering
+\caption{Estimaciones de diferencias en diferencias de la reforma del salario mínimo de 2022}\label{tab:main}
+\begin{threeparttable}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lcccc}
+\toprule
+Resultado & (1) DiD TWFE & (2) Doblemente robusto & (3) $p$ tend. previa & (4) Elasticidad \\
+\midrule
+Log salario real por hora & -0.021 & -0.056 & 0.001 & -0.20 \\
+ & (0.012) & (0.137) & & \\
+ & \multicolumn{2}{c}{\footnotesize $N=69\,534$, $\bar{y}=1.744$} & & \\
+Log ingreso real mensual & -0.010 & -0.047 & 0.079 & -0.10 \\
+ & (0.013) & (0.097) & & \\
+ & \multicolumn{2}{c}{\footnotesize $N=70\,691$, $\bar{y}=6.901$} & & \\
+Empleo & -0.025$^{***}$ & 0.020 & 0.000 & -0.35 \\
+ & (0.006) & (0.037) & & \\
+ & \multicolumn{2}{c}{\footnotesize $N=278\,064$, $\bar{y}=0.707$} & & \\
+Participación laboral & -0.008$^{*}$ & -0.015 & -- & -0.10 \\
+ & (0.004) & (0.034) & & \\
+ & \multicolumn{2}{c}{\footnotesize $N=278\,064$, $\bar{y}=0.744$} & & \\
+Empleo formal & -0.046$^{***}$ & 0.006 & 0.148 & -1.99 \\
+ & (0.007) & (0.040) & & \\
+ & \multicolumn{2}{c}{\footnotesize $N=181\,317$, $\bar{y}=0.228$} & & \\
+Trab. independiente & 0.036$^{***}$ & 0.046 & 0.003 & 0.91 \\
+ & (0.006) & (0.045) & & \\
+ & \multicolumn{2}{c}{\footnotesize $N=181\,317$, $\bar{y}=0.389$} & & \\
+Horas semanales & 0.556$^{**}$ & -0.424 & 0.034 & 0.13 \\
+ & (0.249) & (0.872) & & \\
+ & \multicolumn{2}{c}{\footnotesize $N=179\,111$, $\bar{y}=40.655$} & & \\
+Gana menos que el SM & -0.006 & -0.007 & 0.128 & -0.16 \\
+ & (0.007) & (0.039) & & \\
+ & \multicolumn{2}{c}{\footnotesize $N=70\,691$, $\bar{y}=0.352$} & & \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}\footnotesize
+\item Notas: Cada fila es una regresión distinta sobre la ENAHO 2021Q1--2024Q4, que excluye el trimestre de transición 2022Q2, parcialmente tratado. La columna (1) reporta el coeficiente DiD de efectos fijos bidireccionales sobre $\mathrm{Low}\times\mathrm{Post}$ de la ecuación~\eqref{eq:twfe}, con efectos fijos de departamento y trimestre y controles (edad, edad al cuadrado, sexo, área urbana, estado civil, años de educación). La columna (2) reporta el estimador DiD doblemente robusto de \citet{santanna_zhao_2020}, colapsado a pre/post; sus errores estándar se agrupan por departamento usando la función de influencia del estimador. La columna (3) es el valor $p$ de una prueba conjunta de que las interacciones del estudio de eventos previas a la reforma son cero. La columna (4) convierte la estimación de la columna (1) en una elasticidad respecto del aumento de 10.2 por ciento del salario mínimo (para los resultados en niveles, en relación con la media base $\bar{y}$). Los resultados salariales corresponden a asalariados del sector privado (empleados y trabajadores del hogar, ingresos mensuales equivalentes); la formalidad, las horas y el trabajo independiente corresponden a trabajadores del sector privado. Errores estándar agrupados por departamento (25 grupos) entre paréntesis; todas las estimaciones están ponderadas con los factores de expansión de la ENAHO. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$.
+\end{tablenotes}
+\end{threeparttable}\end{table}

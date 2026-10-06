@@ -1,0 +1,30 @@
+\begin{table}[!tbp]\centering
+\caption{Diferencias en diferencias sintéticas y poder de la prueba de tendencias previas}\label{tab:sdidpower}
+\begin{threeparttable}
+\footnotesize
+\begin{tabular}{lccc}
+\toprule
+\multicolumn{4}{l}{\emph{Panel A: DiD sintéticas (deptos. de alta incidencia vs.\ sintéticos de baja)}} \\
+Resultado & Medias, baja educ. & Brecha educativa & \\
+\midrule
+Log salario/hora & 0.041 & -0.028 & \\
+ & (0.025) & (0.048) & \\
+Empleo & -0.039$^{***}$ & -0.016 & \\
+ & (0.010) & (0.011) & \\
+Empleo formal & -0.013$^{**}$ & -0.028 & \\
+ & (0.007) & (0.017) & \\
+Trab. independiente & 0.011 & 0.023 & \\
+ & (0.011) & (0.019) & \\
+\midrule
+\multicolumn{4}{l}{\emph{Panel B: poder de la prueba de tendencias previas frente a violaciones lineales \citep{roth_2022_pretest}}} \\
+Resultado & Pendiente (50\% potencia) & Sesgo impl. (prom.\ post) & Sesgo / estimación \\ \midrule
+Log salario/hora & 0.008 & 0.052 & -2.53 \\
+Empleo & 0.006 & 0.036 & -1.43 \\
+Empleo formal & 0.006 & 0.041 & -0.89 \\
+Trab. independiente & 0.006 & 0.041 & 1.13 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}\footnotesize
+\item Notas: Panel A: estimaciones de diferencias en diferencias sintéticas \citep{arkhangelsky_2021_sdid} sobre celdas departamento$\times$trimestre, que tratan como tratados desde 2022Q3 a los departamentos con incidencia por encima de la mediana; la columna (1) usa las medias de los resultados de baja educación y la columna (2), la brecha entre baja y alta educación; errores estándar jackknife entre paréntesis (la varianza placebo no es factible con 12 unidades tratadas y 13 de control). Panel B: pendiente de una violación lineal de las tendencias paralelas frente a la cual la prueba previa convencional tiene solo 50 por ciento de poder \citep{roth_2022_pretest}, el sesgo que tal violación no detectada induciría en el efecto promedio posterior y su razón respecto del efecto estimado. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$.
+\end{tablenotes}
+\end{threeparttable}\end{table}

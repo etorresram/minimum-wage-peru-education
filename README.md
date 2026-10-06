@@ -34,12 +34,14 @@ project/
   scripts/
     R/              # all analysis code (see below)
     python/
-  figures/          # publication figures (pdf + png)
-  tables/           # publication LaTeX tables
+  figures/          # publication figures (pdf + png); es/ holds the Spanish versions
+  tables/           # publication LaTeX tables; es/ holds the Spanish versions
   output/           # estimation output as CSV
   logs/             # run logs
-  paper/            # LaTeX manuscript (Overleaf-ready)
-    sections/ appendix/ tables/ figures/ references.bib main.tex
+  paper/            # LaTeX manuscript, synced to Overleaf through GitHub
+    english/        # English version: main.tex, sections/, appendix/, main.pdf
+    espanol/        # Spanish version, same structure (uses tables/es, figures/es)
+    references.bib  # shared by both versions
   literature/       # structured literature database built from the source PDFs
   docs/             # institutional background and notes
   replication/      # replication notes
@@ -74,11 +76,14 @@ install.packages(c("haven","data.table","fixest","DRDID","HonestDiD",
 
    This builds the analysis dataset, runs all estimation, and writes every figure and
    table. Expected time is about 15--25 minutes.
-3. Compile the paper:
+3. Compile the paper (English in `paper/english`, Spanish in `paper/espanol`):
 
    ```bash
-   cd paper && pdflatex main && bibtex main && pdflatex main && pdflatex main
+   cd paper/english && pdflatex main && bibtex main && pdflatex main && pdflatex main
    ```
+
+   In Overleaf, choose the version with Menu > Main document
+   (`paper/english/main.tex` or `paper/espanol/main.tex`).
 
 ## Script guide
 
@@ -93,7 +98,8 @@ install.packages(c("haven","data.table","fixest","DRDID","HonestDiD",
 | `06_heterogeneity.R` | Subgroup effects and Figure 6 |
 | `07_honest_distributional.R` | HonestDiD sensitivity and RIF unconditional-quantile DiD (Figures 7--8) |
 | `08_validation2025.R` | Out-of-sample validation on the 2025 reform (Figure 9) |
-| `09_tables.R` | Assemble all LaTeX tables |
+| `09_tables.R` | Assemble all LaTeX tables, plus their Spanish versions in `tables/es/` |
+| `i18n_es.R` | Spanish tables and figures from the catalogs in `i18n/` (`tables_es.tsv`, `figures_es.tsv`); `save_fig()` writes `figures/es/` |
 | `run_all.R` | Master script running the full pipeline |
 
 ## Data provenance

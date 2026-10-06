@@ -1,0 +1,30 @@
+\begin{table}[!tbp]\centering
+\caption{Cotas por selección y poder estadístico}\label{tab:leemde}
+\begin{threeparttable}
+\footnotesize
+\begin{tabular}{lcc}
+\toprule
+\multicolumn{3}{l}{\emph{Panel A: cotas de recorte tipo Lee, DiD 2$\times$2 incondicional del log del salario}} \\
+\midrule
+DiD de selección (inclusión en la muestra salarial) & -0.021 & \\
+Fracción de recorte & 0.076 & \\
+DiD sin recorte & -0.005 & \\
+Cotas & [-0.099, 0.101] & \\
+\midrule
+\multicolumn{3}{l}{\emph{Panel B: efectos mínimos detectables (poder de 80\%, tamaño de 5\%)}} \\
+Resultado & Estimación & EMD \\ \midrule
+Log salario real por hora & -0.021 & 0.034 \\
+Log ingreso real mensual & -0.010 & 0.038 \\
+Ocupado (edad de trabajar) & -0.025 & 0.016 \\
+Participación laboral & -0.008 & 0.012 \\
+Empleo formal & -0.046 & 0.021 \\
+Horas semanales (empleo principal) & 0.556 & 0.698 \\
+Tiempo completo (>=35h) & -0.013 & 0.013 \\
+Independiente & 0.036 & 0.017 \\
+Gana menos que el SM & -0.006 & 0.021 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}\footnotesize
+\item Notas: Panel A: cotas para el DiD 2$\times$2 incondicional del log del salario por hora, siguiendo la lógica de recorte de \citet{lee_2009}: la reforma redujo la probabilidad de que un trabajador de baja educación aparezca en la muestra de asalariados (DiD de selección), por lo que la celda low$\times$post se recorta por arriba y por abajo en la fracción implícita de su tasa base. Panel B: efecto mínimo detectable $=2.8\times$ el error estándar agrupado por departamento del DiD de base.
+\end{tablenotes}
+\end{threeparttable}\end{table}

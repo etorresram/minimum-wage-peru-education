@@ -1,0 +1,23 @@
+\begin{table}[!tbp]\centering
+\caption{Robustez de la inferencia, robustez del diseño y validación fuera de muestra}\label{tab:inference}
+\begin{threeparttable}
+\footnotesize
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{lcccccc}
+\toprule
+Resultado & (1) Dpto. & (2) Dpto.$\times$ed. & (3) CR2 & (4) RI (cont.) & (5) Continuo & (6) 2025 \\
+\midrule
+Log salario/hora & 0.106 & 0.126 & 0.854 & 0.029 & 0.017 & 0.002 \\
+ & & & & & (0.012) & (0.011) \\
+Empleo & 0.000 & 0.210 & 0.507 & 0.003 & -0.034$^{***}$ & -0.002 \\
+ & & & & & (0.012) & (0.005) \\
+Empleo formal & 0.000 & 0.000 & 0.244 & 0.000 & -0.018$^{***}$ & -0.001 \\
+ & & & & & (0.003) & (0.008) \\
+Trab. independiente & 0.000 & 0.000 & 0.093 & 0.024 & 0.010$^{**}$ & -0.014$^{**}$ \\
+ & & & & & (0.004) & (0.006) \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}\footnotesize
+\item Notas: Las columnas (1)--(3) reportan valores $p$ del efecto de base $\mathrm{Low}\times\mathrm{Post}$ bajo, respectivamente, agrupación por departamento (25 grupos), agrupación por departamento$\times$educación (50 grupos) y la corrección CR2 para muestras pequeñas \citep{pustejovsky_tipton_2018} aplicada a celdas colapsadas a nivel de departamento. La columna (4) reporta el valor $p$ de inferencia por aleatorización (RI) del diseño de exposición CONTINUA de la columna (5), no del contraste de dos grupos $\mathrm{Low}\times\mathrm{Post}$, obtenido permutando los 25 índices regionales de Kaitz entre departamentos (2000 extracciones). La columna (5) reporta la estimación de exposición continua, el coeficiente de $\mathrm{Post}\times$(índice de Kaitz departamental estandarizado), con errores estándar agrupados por departamento entre paréntesis. La columna (6) reporta la estimación DiD de $\mathrm{Low}\times\mathrm{Post}$ para la reforma de enero de 2025 (ventana 2024--2025), con errores estándar agrupados por departamento entre paréntesis. Log salario por hora denota el log del salario real por hora; todas las estimaciones están ponderadas con los factores de expansión de la ENAHO. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$.
+\end{tablenotes}
+\end{threeparttable}\end{table}

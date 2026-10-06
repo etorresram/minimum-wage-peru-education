@@ -1,0 +1,22 @@
+\begin{table}[!tbp]\centering
+\caption{Resultados composicionales incondicionales (proporciones de la población en edad de trabajar)}\label{tab:uncond}
+\begin{threeparttable}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lccccc}
+\toprule
+& Media previa & DiD por educación & Tend. previa & Pendiente de Kaitz & RI \\
+Resultado & a la reforma & (Low$\times$Post) & $p$ & (Post$\times z$) & $p$ \\
+\midrule
+Empleo formal privado & 0.148 & -0.033$^{***}$ & 0.014 & -0.016$^{***}$ & 0.000 \\
+ & & (0.006) & & (0.003) & \\
+Trab. independiente & 0.252 & 0.017$^{***}$ & 0.000 & -0.004$^{*}$ & 0.115 \\
+ & & (0.004) & & (0.003) & \\
+Empleo informal privado & 0.500 & 0.009 & 0.306 & -0.019$^{**}$ & 0.009 \\
+ & & (0.006) & & (0.008) & \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}\footnotesize
+\item Notas: Los resultados se definen para toda persona en edad de trabajar: una persona cuenta como ocupada formal (privada) solo si está ocupada, en el sector privado y es formal, y de manera análoga para el trabajo independiente y el empleo informal privado; los no ocupados y los trabajadores del sector público cuentan como ceros. La columna (2) reporta el DiD por educación de base $\mathrm{Low}\times\mathrm{Post}$ con errores estándar agrupados por departamento; la columna (3), el valor $p$ conjunto de las interacciones del estudio de eventos previas a la reforma; la columna (4), el coeficiente de $\mathrm{Post}\times$(índice de Kaitz departamental estandarizado) del diseño de exposición regional continua; la columna (5), su valor $p$ de inferencia por aleatorización (permutando los índices de Kaitz entre departamentos, 1000 extracciones). Como estos resultados incorporan el margen de empleo, las versiones DiD por educación heredan su tendencia previa diferencial asociada a la recuperación pospandemia y se reportan por transparencia, sin apoyarse en ellas; las estimaciones del diseño regional no dependen del contraste por educación. Todas las estimaciones están ponderadas con los factores de expansión de la ENAHO. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$.
+\end{tablenotes}
+\end{threeparttable}\end{table}

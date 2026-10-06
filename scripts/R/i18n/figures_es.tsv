@@ -1,0 +1,111 @@
+en	es
+Age	Edad
+All	Todos
+Area	Área
+Gender	Sexo
+Apurimac	Apurímac
+Huanuco	Huánuco
+Junin	Junín
+San Martin	San Martín
+Dashed lines: old (930, blue) and new (1,025, red) minimum wage. Formal private-sector wage earners only.	Líneas discontinuas: salario mínimo anterior (930, azul) y nuevo (1025, rojo). Solo asalariados formales del sector privado.
+Dashed lines: old (930) and new (1025) minimum wage. Weighted kernel densities.	Líneas discontinuas: salario mínimo anterior (930) y nuevo (1025). Densidades kernel ponderadas.
+Density	Densidad
+Distributional wage effects across the wage distribution	Efectos a lo largo de la distribución salarial
+Each point: low- vs high-skilled DiD within the subgroup. Bars: 95% CI, SE clustered by department.	Cada punto: DiD de baja frente a alta educación dentro del subgrupo. Barras: IC al 95%, EE agrupados por departamento.
+Earnings distribution of low-skilled FORMAL wage earners	Distribución de ingresos de los asalariados FORMALES de baja educación
+Earnings distribution of low-skilled wage employees	Distribución de ingresos de los asalariados de baja educación
+Employment	Empleo
+Employment (working age)	Empleo (edad de trabajar)
+Employment rate	Tasa de empleo
+Event-study estimates: low- vs high-skilled workers	Estudio de eventos: trabajadores de baja frente a alta educación
+Formal empl.	Empleo formal
+Formal employment	Empleo formal
+Formal share (empl.)	Proporción formal (ocupados)
+Heterogeneous effects of the May-2022 minimum-wage reform	Efectos heterogéneos de la reforma del salario mínimo de mayo de 2022
+High	Alta
+Low	Baja
+High bite	Alta incidencia
+Low bite	Baja incidencia
+High-bite reg.	Reg. de alta incidencia
+Low-bite reg.	Reg. de baja incidencia
+HonestDiD sensitivity to parallel-trends violations	Sensibilidad HonestDiD a violaciones de tendencias paralelas
+Kaitz index (new MW / pre-reform median wage)	Índice de Kaitz (nuevo SM / salario mediano previo a la reforma)
+Log hourly wage	Log del salario por hora
+Log real hourly wage	Log del salario real por hora
+Log real monthly earnings	Log del ingreso real mensual
+Low x month coefficient (pre-period average = 0)	Coeficiente Low x mes (promedio del periodo previo = 0)
+Low x period coefficient	Coeficiente Low x periodo
+Low x Post DiD (RIF)	DiD Low x Post (RIF)
+Low x Post DiD estimate	Estimación DiD Low x Post
+Mbar=0	Mbar=0
+Mbar=0.1	Mbar=0.1
+Mbar=0.2	Mbar=0.2
+Mbar=0.3	Mbar=0.3
+Mbar=0.4	Mbar=0.4
+Mbar=0.5	Mbar=0.5
+Mbar=1	Mbar=1
+Mean log real hourly wage	Media del log del salario real por hora
+Men	Hombres
+Women	Mujeres
+Minimum-wage bite across departments (pre-reform)	Incidencia del salario mínimo por departamento (antes de la reforma)
+Monthly event studies around the May-2022 reform	Estudios de eventos mensuales en torno a la reforma de mayo de 2022
+Months since the reform (0 = May 2022); endpoints binned at +/-13	Meses desde la reforma (0 = mayo de 2022); extremos agrupados en +/-13
+MW bite	Incidencia del SM
+Nominal monthly earnings (S/)	Ingreso mensual nominal (S/)
+Nominal monthly-equivalent earnings (S/), 50-sol bins	Ingreso mensual equivalente nominal (S/), intervalos de 50 soles
+Nominal MW	SM nominal
+Real MW (Dec-2021 S/)	SM real (S/ de dic. 2021)
+Normalized so the pre-period average is zero. 95% CI clustered by department.	Normalizado para que el promedio del periodo previo sea cero. IC al 95%, agrupados por departamento.
+Older (46-65)	Mayores (46-65)
+Prime (26-45)	Edad central (26-45)
+Youth (14-25)	Jóvenes (14-25)
+Original	Original
+Out-of-sample validation: the January-2025 minimum-wage reform	Validación fuera de muestra: la reforma del salario mínimo de enero de 2025
+Overall	Total
+Paid below MW	Gana menos que el SM
+Post (2022Q2-2024Q4)	Post (2022Q2-2024Q4)
+Post (2022Q3-2023Q1)	Post (2022Q3-2023Q1)
+Pre (2021Q1-2022Q1)	Pre (2021Q1-2022Q1)
+Pre (2021Q3-2022Q1)	Pre (2021Q3-2022Q1)
+Quantile of the log real hourly wage	Cuantil del log del salario real por hora
+Quarters since 2025 reform (0 = 2025Q1)	Trimestres desde la reforma de 2025 (0 = 2025Q1)
+Quarters since reform (0 = 2022Q2, partially treated, excluded)	Trimestres desde la reforma (0 = 2022Q2, parcialmente tratado, excluido)
+Raw outcome trends by skill group	Tendencias de los resultados por nivel educativo, sin ajustar
+Reference quarter 2022Q1 (k=-1). The partially treated 2022Q2 (k=0) is excluded. Bands: 95% CI, SE clustered by department.	Trimestre de referencia 2022Q1 (k=-1). Se excluye 2022Q2 (k=0), parcialmente tratado. Bandas: IC al 95%, EE agrupados por departamento.
+Reference quarter 2024Q4. Bands: 95% CI clustered by department.	Trimestre de referencia 2024Q4. Bandas: IC al 95%, agrupados por departamento.
+Relative-magnitudes restriction (Rambachan & Roth 2023). Mbar bounds post-period trend by Mbar times the largest pre-period violation.	Restricción de magnitudes relativas (Rambachan y Roth 2023). Mbar acota la tendencia posterior a Mbar veces la mayor violación del periodo previo.
+Restriction on post-period trend violation	Restricción sobre la violación de tendencia en el periodo posterior
+Robust CI (average post-reform effect)	IC robusto (efecto promedio posterior a la reforma)
+Rural	Rural
+Urban	Urbano
+Self-employed share (empl.)	Proporción independiente (ocupados)
+Self-employment	Trabajo independiente
+Skill	Educación
+Soles per month	Soles por mes
+The Peruvian minimum wage, 2021-2025	El salario mínimo peruano, 2021-2025
+Unconditional-quantile (RIF) regressions, Firpo-Fortin-Lemieux (2009). Bands: 95% CI clustered by department.	Regresiones de cuantiles incondicionales (RIF), Firpo, Fortin y Lemieux (2009). Bandas: IC al 95%, agrupados por departamento.
+Vertical lines: reforms effective 1 May 2022 and 1 Jan 2025. Real series deflated by Lima CPI (Dec-2021=100).	Líneas verticales: reformas vigentes desde el 1 de mayo de 2022 y el 1 de enero de 2025. Series reales deflactadas con el IPC de Lima (dic. 2021=100).
+Weekly hours	Horas semanales
+Weighted frequency	Frecuencia ponderada
+Weighted quarterly means. Dashed line: May-2022 reform.	Promedios trimestrales ponderados. Línea punteada: reforma de mayo de 2022.
+Amazonas	Amazonas
+Arequipa	Arequipa
+Ayacucho	Ayacucho
+Cajamarca	Cajamarca
+Callao	Callao
+Cusco	Cusco
+Huancavelica	Huancavelica
+Ica	Ica
+La Libertad	La Libertad
+Lambayeque	Lambayeque
+Lima	Lima
+Loreto	Loreto
+Madre de Dios	Madre de Dios
+Moquegua	Moquegua
+Pasco	Pasco
+Piura	Piura
+Puno	Puno
+Tacna	Tacna
+Tumbes	Tumbes
+Ucayali	Ucayali
+Ancash	Áncash

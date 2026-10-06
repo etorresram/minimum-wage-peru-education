@@ -1,0 +1,51 @@
+\begin{table}[!tbp]\centering
+\caption{Robustez de las estimaciones DiD a la especificación}\label{tab:robspec}
+\begin{threeparttable}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lcccc}
+\toprule
+Especificación & Log salario/hora & Empleo & Empleo formal & Trab. independiente \\
+\midrule
+Base & -0.021 & -0.025$^{***}$ & -0.046$^{***}$ & 0.036$^{***}$ \\
+ & (0.012) & (0.006) & (0.007) & (0.006) \\
+ & \footnotesize[69\,534] & \footnotesize[278\,064] & \footnotesize[181\,317] & \footnotesize[181\,317] \\
+Sin controles & -0.008 & -0.021$^{***}$ & -0.042$^{***}$ & 0.042$^{***}$ \\
+ & (0.012) & (0.006) & (0.007) & (0.006) \\
+ & \footnotesize[69\,534] & \footnotesize[278\,064] & \footnotesize[181\,317] & \footnotesize[181\,317] \\
+Sin 2021Q1 (pandemia) & -0.023$^{*}$ & -0.014$^{***}$ & -0.042$^{***}$ & 0.031$^{***}$ \\
+ & (0.012) & (0.005) & (0.008) & (0.005) \\
+ & \footnotesize[65\,279] & \footnotesize[259\,135] & \footnotesize[168\,908] & \footnotesize[168\,908] \\
+Tendencias lineales por depto. & -0.022$^{*}$ & -0.017$^{***}$ & -0.040$^{***}$ & 0.034$^{***}$ \\
+ & (0.012) & (0.006) & (0.007) & (0.006) \\
+ & \footnotesize[69\,534] & \footnotesize[278\,064] & \footnotesize[181\,317] & \footnotesize[181\,317] \\
+Edad central (25--55) & -0.030$^{*}$ & -0.023$^{***}$ & -0.042$^{***}$ & 0.029$^{***}$ \\
+ & (0.015) & (0.004) & (0.008) & (0.007) \\
+ & \footnotesize[46\,021] & \footnotesize[161\,115] & \footnotesize[119\,540] & \footnotesize[119\,540] \\
+Corte educativo alternativo & -0.015 & -0.039$^{***}$ & -0.065$^{***}$ & 0.050$^{***}$ \\
+ & (0.012) & (0.007) & (0.006) & (0.007) \\
+ & \footnotesize[40\,526] & \footnotesize[186\,263] & \footnotesize[117\,174] & \footnotesize[117\,174] \\
+EF de ocupación y actividad & -0.007 & -0.016$^{***}$ & -0.036$^{***}$ & 0.027$^{***}$ \\
+ & (0.011) & (0.003) & (0.006) & (0.005) \\
+ & \footnotesize[69\,534] & \footnotesize[213\,810] & \footnotesize[181\,317] & \footnotesize[181\,317] \\
+Agrupación dpto.$\times$ed. & -0.021 & -0.025 & -0.046$^{***}$ & 0.036$^{***}$ \\
+ & (0.013) & (0.020) & (0.007) & (0.007) \\
+ & \footnotesize[69\,534] & \footnotesize[278\,064] & \footnotesize[181\,317] & \footnotesize[181\,317] \\
+Tendencia lineal, baja educación & -0.021 & -0.005 & -0.004 & 0.006 \\
+ & (0.019) & (0.008) & (0.010) & (0.009) \\
+ & \footnotesize[69\,534] & \footnotesize[278\,064] & \footnotesize[181\,317] & \footnotesize[181\,317] \\
+Con trim. de transición (2022Q2) & -0.018 & -0.025$^{***}$ & -0.044$^{***}$ & 0.035$^{***}$ \\
+ & (0.012) & (0.005) & (0.007) & (0.006) \\
+ & \footnotesize[74\,310] & \footnotesize[296\,954] & \footnotesize[193\,762] & \footnotesize[193\,762] \\
+Sin agricultura (régimen agrario) & -0.022$^{*}$ & -- & -0.038$^{***}$ & 0.028$^{***}$ \\
+ & (0.012) &  & (0.007) & (0.005) \\
+ & \footnotesize[53\,755] & \footnotesize[--] & \footnotesize[114\,212] & \footnotesize[114\,212] \\
+Con sector público & -0.002 & -- & -0.037$^{***}$ & 0.030$^{***}$ \\
+ & (0.010) &  & (0.008) & (0.006) \\
+ & \footnotesize[87\,033] & \footnotesize[--] & \footnotesize[200\,383] & \footnotesize[200\,383] \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}\footnotesize
+\item Notas: Cada celda es el coeficiente DiD de $\mathrm{Low}\times\mathrm{Post}$ (debajo, el error estándar agrupado por departamento; entre corchetes, el tamaño de muestra) para el resultado del encabezado de la columna, bajo la especificación de la fila; todas las estimaciones están ponderadas con los factores de expansión de la ENAHO, y Log salario por hora denota el log del salario real por hora. La especificación de base es la ecuación~\eqref{eq:twfe}, que excluye el trimestre 2022Q2, parcialmente tratado. El corte educativo alternativo define baja educación como a lo sumo secundaria incompleta y alta educación como al menos superior no universitaria completa, y excluye las categorías límite. La exclusión de la agricultura y la inclusión del sector público se aplican solo a los resultados condicionados al empleo (la actividad y el sector no están definidos para quienes no trabajan). $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$.
+\end{tablenotes}
+\end{threeparttable}\end{table}

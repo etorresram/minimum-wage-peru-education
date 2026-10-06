@@ -1,0 +1,47 @@
+\begin{table}[!tbp]\centering
+\caption{Transiciones individuales en torno a la reforma (Panel ENAHO 2020--2024)}\label{tab:transitions}
+\begin{threeparttable}
+\footnotesize
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{lccc}
+\toprule
+\multicolumn{4}{l}{\emph{Panel A: proporciones de destino de los trabajadores privados formales en el año base}} \\
+ & Baja educación & Alta educación & Baja $-$ Alta \\
+\midrule
+\multicolumn{4}{l}{Pares previos a la reforma} \\
+\quad Sigue formal & 0.626 & 0.694 & -0.067 \\
+\quad Asalariado informal & 0.151 & 0.116 & 0.035 \\
+\quad Trabajo independiente & 0.128 & 0.067 & 0.061 \\
+\quad Otro ocupado & 0.033 & 0.037 & -0.004 \\
+\quad No ocupado & 0.062 & 0.086 & -0.024 \\
+\multicolumn{4}{l}{Pares de la ventana de la reforma} \\
+\quad Sigue formal & 0.717 & 0.697 & 0.020 \\
+\quad Asalariado informal & 0.081 & 0.082 & -0.001 \\
+\quad Trabajo independiente & 0.123 & 0.110 & 0.013 \\
+\quad Otro ocupado & 0.029 & 0.048 & -0.019 \\
+\quad No ocupado & 0.050 & 0.063 & -0.013 \\
+\multicolumn{4}{l}{Pares posteriores a la reforma} \\
+\quad Sigue formal & 0.589 & 0.674 & -0.085 \\
+\quad Asalariado informal & 0.109 & 0.050 & 0.059 \\
+\quad Trabajo independiente & 0.213 & 0.150 & 0.063 \\
+\quad Otro ocupado & 0.026 & 0.052 & -0.025 \\
+\quad No ocupado & 0.062 & 0.075 & -0.012 \\
+\midrule
+\multicolumn{4}{l}{\emph{Panel B: DiD apilado de transiciones (Low $\times$ período, EF de par y departamento)}} \\
+ & Low$\times$Reforma & Low$\times$Post & Media previa a la reforma (baja) \\ \midrule
+Sigue formal privado & 0.083$^{*}$ & -0.022 & 0.626 \\
+ & (0.041) & (0.022) & \\
+A asalariado informal & -0.048$^{*}$ & 0.020 & 0.151 \\
+ & (0.026) & (0.014) & \\
+A trabajo independiente & -0.005 & 0.009 & 0.128 \\
+ & (0.017) & (0.011) & \\
+A no ocupación & -0.010 & 0.011 & 0.062 \\
+ & (0.012) & (0.013) & \\
+Informal $\to$ formal (ingreso) & -0.006 & -0.021$^{**}$ & 0.045 \\
+ & (0.005) & (0.008) & \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}\footnotesize
+\item Notas: Personas enlazadas del Panel ENAHO 2020--2024 (encuesta INEI 978), pares de años $t\to t{+}1$ para $t=2020,\dots,2023$, factores de expansión de panel \texttt{facpanel}. Los pares se clasifican respecto de la reforma del 1 de mayo de 2022 según el mes de entrevista de 2022: previos a la reforma (2020--21; 2021--22 entrevistados entre enero y abril de 2022), de la ventana de la reforma (2021--22 entrevistados desde mayo de 2022; 2022--23 entrevistados entre enero y abril de 2022, cuyo estado base es anterior a la reforma) y posteriores a la reforma (2022--23 entrevistados desde mayo de 2022; 2023--24). El panel A reporta las proporciones ponderadas de destino de los trabajadores con un empleo privado formal en el año base (7011 pares-observación). El panel B reporta coeficientes de regresiones apiladas de cada indicador de transición sobre Low$\times$Reform, Low$\times$Post y Low, con efectos fijos de par y departamento y con edad, edad al cuadrado y sexo como controles; la fila de ingreso se condiciona al empleo informal (asalariado o independiente) en el año base (33\,076 observaciones). Los estados de empleo replican las definiciones del texto principal; la informalidad usa el indicador oficial donde está publicado y la reconstrucción en los demás casos. Errores estándar agrupados por departamento del año base entre paréntesis. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$.
+\end{tablenotes}
+\end{threeparttable}\end{table}

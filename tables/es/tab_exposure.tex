@@ -1,0 +1,29 @@
+\begin{table}[!tbp]\centering
+\caption{Diseños de exposición: diagnósticos y estimaciones a nivel de celda}\label{tab:expocells}
+\begin{threeparttable}
+\footnotesize
+\begin{tabular}{lcccc}
+\toprule
+\multicolumn{5}{l}{\emph{Panel A: diseño regional de Kaitz, pruebas conjuntas de adelantos de la exposición}} \\
+\midrule
+Log salario/hora & \multicolumn{4}{c}{adelantos $p$ = 0.243} \\
+Empleo & \multicolumn{4}{c}{adelantos $p$ = 0.002} \\
+Empleo formal & \multicolumn{4}{c}{adelantos $p$ = 0.842} \\
+Trab. independiente & \multicolumn{4}{c}{adelantos $p$ = 0.202} \\
+\midrule
+\multicolumn{5}{l}{\emph{Panel B: diseños de fracción afectada a nivel de celda (ejercicio de transparencia)}} \\
+Resultado & Exposición & Estimación & (s.e.) & $p$ adelantos \\ \midrule
+Log salario/hora & frac\_below & 0.129$^{**}$ & (0.056) & 0.011 \\
+Log salario/hora & frac\_aff & 0.016 & (0.133) & 0.004 \\
+Empleo & frac\_below & -0.225$^{***}$ & (0.032) & 0.000 \\
+Empleo & frac\_aff & 0.391$^{***}$ & (0.072) & 0.000 \\
+Empleo formal & frac\_below & -0.074$^{***}$ & (0.014) & 0.007 \\
+Empleo formal & frac\_aff & 0.303$^{***}$ & (0.039) & 0.031 \\
+Trab. independiente & frac\_below & 0.079$^{***}$ & (0.018) & 0.244 \\
+Trab. independiente & frac\_aff & -0.155$^{**}$ & (0.065) & 0.045 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}\footnotesize
+\item Notas: Panel A: pruebas conjuntas de que las interacciones trimestre previo a la reforma$\times$exposición son cero en el diseño regional de exposición continua (índice de Kaitz departamental estandarizado). Panel B: coeficientes de $\mathrm{Post}\times$exposición en diseños de fracción afectada a nivel de celda (celdas departamento$\times$educación$\times$edad; frac\_below = proporción de los asalariados privados de la celda que ganaba menos de 1025 antes de la reforma; frac\_aff = proporción que ganaba entre 930 y 1025), con efectos fijos de celda y trimestre y errores estándar agrupados por departamento. Ambas variantes a nivel de celda fallan sus diagnósticos de adelantos (la exposición de grano fino se confunde con las trayectorias de recuperación pospandemia de las celdas), por lo que el diseño regional es la corroboración preferida. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$.
+\end{tablenotes}
+\end{threeparttable}\end{table}

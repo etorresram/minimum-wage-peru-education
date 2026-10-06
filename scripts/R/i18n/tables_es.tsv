@@ -1,0 +1,196 @@
+en	es
+The 2022--23 political crisis and the continuous regional-exposure design	La crisis política de 2022--23 y el diseño de exposición regional continua
+& (1) Baseline	& (1) Base
+(2) +Post$\times$	(2) +Post$\times$
+(4) Excl.\ south	(4) Excl.\ bloque
+(5) Post =	(5) Post =
+Outcome	Resultado
+& protest	& protesta
+protest	protesta
+bloc	sur
+2022 only &	solo 2022 &
+Log hourly wage	Log salario/hora
+Employment	Empleo
+Formal empl.	Empleo formal
+Self-employment	Trab. independiente
+Notes: Each cell reports the coefficient on $\mathrm{Post}\times$(standardized department Kaitz index) from the continuous-exposure design, with department-clustered standard errors in parentheses and the randomization-inference $p$-value (permuting the Kaitz indices across the included departments, 1{,}000 draws, protest control held at its true assignment) in brackets. Column (1) is the baseline of Table~\ref{tab:inference}, column (5). Columns (2) and (3) add the standardized per-capita peak protest mobilization interacted with the post indicator and with an indicator for 2023Q1 onward, respectively; protest intensity is the January--February 2023 maximum number of persons mobilized in each department, from the monthly conflict reports of the Presidencia del Consejo de Ministros, divided by the department's working-age population. Column (4) excludes the six southern departments at the center of the December-2022--March-2023 protests (Apur\'imac, Arequipa, Ayacucho, Cusco, Madre de Dios, Puno). Column (5) restricts the post-reform window to 2022Q3--Q4, before the ouster of President Castillo on 7 December 2022, and column (6) combines both restrictions. All estimates weighted by ENAHO survey weights. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$.	Notas: Cada celda reporta el coeficiente de $\mathrm{Post}\times$(índice de Kaitz departamental estandarizado) del diseño de exposición continua, con errores estándar agrupados por departamento entre paréntesis y, entre corchetes, el valor $p$ de inferencia por aleatorización (permutando los índices de Kaitz entre los departamentos incluidos, 1000 extracciones, con el control de protestas fijo en su asignación real). La columna (1) es la especificación de base del Cuadro~\ref{tab:inference}, columna (5). Las columnas (2) y (3) añaden la movilización máxima de protesta per cápita estandarizada, interactuada con el indicador posterior a la reforma y con un indicador desde 2023Q1, respectivamente; la intensidad de las protestas es el número máximo de personas movilizadas en cada departamento en enero--febrero de 2023, según los reportes mensuales de conflictos de la Presidencia del Consejo de Ministros, dividido entre la población en edad de trabajar del departamento. La columna (4) excluye los seis departamentos del sur que fueron el centro de las protestas de diciembre de 2022 a marzo de 2023 (Apur\'imac, Arequipa, Ayacucho, Cusco, Madre de Dios, Puno). La columna (5) restringe la ventana posterior a la reforma a 2022Q3--Q4, antes de la destitución del presidente Castillo el 7 de diciembre de 2022, y la columna (6) combina ambas restricciones. Todas las estimaciones están ponderadas con los factores de expansión de la ENAHO. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$.
+Descriptive statistics by skill group, pre-reform period	Estadísticas descriptivas por grupo educativo, período previo a la reforma
+Low-skilled	Baja educación
+High-skilled	Alta educación
+Difference	Diferencia
+($\le$ sec. complete)	($\le$ sec. completa)
+($\ge$ higher) &	($\ge$ superior) &
+Age	Edad
+Female	Mujer
+Urban	Urbano
+Married	Casado(a)
+Years of education	Años de educación
+Labour force participation	Participación laboral
+Employed	Ocupado
+Wage employee (incl. domestic)	Asalariado (incl. del hogar)
+Self-employed	Independiente
+Formal (if employed)	Formal (si está ocupado)
+Informal (if employed)	Informal (si está ocupado)
+Weekly hours (if employed)	Horas semanales (si está ocupado)
+Real hourly wage (S/)	Salario real por hora (S/)
+Real monthly earnings (S/)	Ingreso laboral real mensual (S/)
+Below MW (wage earners)	Bajo el SM (asalariados)
+Observations	Observaciones
+Notes: Weighted means using ENAHO survey weights, working-age individuals (14--65) in the pre-reform quarters (2021Q1--2022Q1). Low-skilled: education at most complete secondary (\texttt{p301a}$\le$6). High-skilled: any tertiary education (\texttt{p301a}$\ge$7). Wage-earner variables (hourly wage, below MW) are conditional on being a private-sector wage earner (employees and domestic workers, monthly-equivalent earnings); hours and formality are conditional on employment. Observation counts are unweighted. The below-MW row uses the statutory floor in force in the income reference month (930 soles throughout the pre-reform window); the exposure shares relative to the NEW floor (57 vs.\ 40 percent) discussed in the text use 1{,}025 soles.	Notas: Medias ponderadas con los factores de expansión de la ENAHO; personas en edad de trabajar (14--65) en los trimestres previos a la reforma (2021Q1--2022Q1). Baja educación: a lo sumo secundaria completa (\texttt{p301a}$\le$6). Alta educación: cualquier nivel de educación superior (\texttt{p301a}$\ge$7). Las variables de asalariados (salario por hora, bajo el SM) se condicionan a ser asalariado del sector privado (empleados y trabajadores del hogar, ingresos mensuales equivalentes); las horas y la formalidad se condicionan a estar ocupado. Los conteos de observaciones no están ponderados. La fila de bajo el SM usa el mínimo legal vigente en el mes de referencia del ingreso (930 soles durante toda la ventana previa a la reforma); las proporciones de exposición respecto del NUEVO mínimo (57 frente a 40 por ciento) que se discuten en el texto usan 1025 soles.
+Exposure designs: diagnostics and cell-level estimates	Diseños de exposición: diagnósticos y estimaciones a nivel de celda
+\multicolumn{5}{l}{\emph{Panel A: regional Kaitz design, exposure-leads joint tests}}	\multicolumn{5}{l}{\emph{Panel A: diseño regional de Kaitz, pruebas conjuntas de adelantos de la exposición}}
+\multicolumn{4}{c}{leads $p$ = 0.243}	\multicolumn{4}{c}{adelantos $p$ = 0.243}
+\multicolumn{4}{c}{leads $p$ = 0.002}	\multicolumn{4}{c}{adelantos $p$ = 0.002}
+\multicolumn{4}{c}{leads $p$ = 0.842}	\multicolumn{4}{c}{adelantos $p$ = 0.842}
+\multicolumn{4}{c}{leads $p$ = 0.202}	\multicolumn{4}{c}{adelantos $p$ = 0.202}
+\multicolumn{5}{l}{\emph{Panel B: cell-level fraction-affected designs (transparency exercise)}}	\multicolumn{5}{l}{\emph{Panel B: diseños de fracción afectada a nivel de celda (ejercicio de transparencia)}}
+frac\_below	frac\_below
+frac\_aff	frac\_aff
+Notes: Panel A: joint tests that the pre-reform quarter$\times$exposure interactions are zero in the regional continuous-exposure design (standardized department Kaitz). Panel B: coefficients on $\mathrm{Post}\times$exposure from cell-level fraction-affected designs (department$\times$skill$\times$age cells; frac\_below = pre-reform share of the cell's private wage earners paid below 1{,}025; frac\_aff = share paid between 930 and 1{,}025), with cell and quarter fixed effects and department-clustered standard errors. Both cell-level variants fail their leads diagnostics (fine-grained exposure is confounded with the cells' pandemic-recovery trajectories), which is why the regional design is the preferred corroboration. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$.	Notas: Panel A: pruebas conjuntas de que las interacciones trimestre previo a la reforma$\times$exposición son cero en el diseño regional de exposición continua (índice de Kaitz departamental estandarizado). Panel B: coeficientes de $\mathrm{Post}\times$exposición en diseños de fracción afectada a nivel de celda (celdas departamento$\times$educación$\times$edad; frac\_below = proporción de los asalariados privados de la celda que ganaba menos de 1025 antes de la reforma; frac\_aff = proporción que ganaba entre 930 y 1025), con efectos fijos de celda y trimestre y errores estándar agrupados por departamento. Ambas variantes a nivel de celda fallan sus diagnósticos de adelantos (la exposición de grano fino se confunde con las trayectorias de recuperación pospandemia de las celdas), por lo que el diseño regional es la corroboración preferida. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$.
+First stage: spike migration and compliance at the wage floor	Primera etapa: migración del pico y cumplimiento del salario mínimo
+Pre window	Ventana previa
+Post window &	Ventana posterior &
+\multicolumn{4}{l}{\emph{Panel A: share of formal wage earners within $\pm$2.5\% of each floor}}	\multicolumn{4}{l}{\emph{Panel A: proporción de asalariados formales a $\pm$2.5\% de cada mínimo}}
+All formal wage earners	Todos los asalariados formales
+\quad At the old floor (930)	\quad En el mínimo anterior (930)
+\quad At the new floor (1{,}025)	\quad En el nuevo mínimo (1025)
+Low-skilled formal wage earners	Asalariados formales de baja educación
+\multicolumn{4}{l}{\emph{Panel B: DiD on the share paid below 1{,}025 (fixed threshold)}}	\multicolumn{4}{l}{\emph{Panel B: DiD sobre la proporción que gana menos de 1025 (umbral fijo)}}
+Formal wage earners	Asalariados formales
+Informal wage earners	Asalariados informales
+All wage earners	Todos los asalariados
+Notes: Panel A reports the weighted share of formal private wage earners (monthly-equivalent pay) within $\pm$2.5 percent of each statutory floor, in symmetric three-quarter windows before (2021Q3--2022Q1) and after (2022Q3--2023Q1) the reform. Panel B reports $\mathrm{Low}\times\mathrm{Post}$ DiD estimates for an indicator of monthly-equivalent pay below 1{,}025 soles (threshold held fixed in all periods), by formality status, with department-clustered standard errors and the joint pre-trend $p$-value in the last column. ENAHO survey weights throughout. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$.	Notas: El panel A reporta la proporción ponderada de asalariados privados formales (remuneración mensual equivalente) a $\pm$2.5 por ciento de cada mínimo legal, en ventanas simétricas de tres trimestres antes (2021Q3--2022Q1) y después (2022Q3--2023Q1) de la reforma. El panel B reporta estimaciones DiD de $\mathrm{Low}\times\mathrm{Post}$ para un indicador de remuneración mensual equivalente menor a 1025 soles (umbral fijo en todos los períodos), según condición de formalidad, con errores estándar agrupados por departamento y el valor $p$ conjunto de tendencias previas en la última columna. Factores de expansión de la ENAHO en todos los casos. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$.
+Inference robustness, design robustness, and out-of-sample validation	Robustez de la inferencia, robustez del diseño y validación fuera de muestra
+(1) Dept.	(1) Dpto.
+(2) Dept.$\times$sk.	(2) Dpto.$\times$ed.
+(3) CR2	(3) CR2
+(4) RI (cont.)	(4) RI (cont.)
+(5) Continuous	(5) Continuo
+Notes: Columns (1)--(3) report $p$-values for the baseline $\mathrm{Low}\times\mathrm{Post}$ effect under, respectively, department clustering (25 clusters), department$\times$skill clustering (50 clusters), and the CR2 small-sample correction \citep{pustejovsky_tipton_2018} applied to department-level collapsed cells. Column (4) reports the randomization-inference $p$-value for the CONTINUOUS-exposure design of column (5), not for the two-group $\mathrm{Low}\times\mathrm{Post}$ contrast, obtained by permuting the 25 regional Kaitz indices across departments (2{,}000 draws). Column (5) reports the continuous-exposure estimate, the coefficient on $\mathrm{Post}\times$(standardized department Kaitz index), with department-clustered standard errors in parentheses. Column (6) reports the $\mathrm{Low}\times\mathrm{Post}$ DiD estimate for the January-2025 reform (window 2024--2025), with department-clustered standard errors in parentheses. Log hourly wage denotes the log real hourly wage; all estimates are weighted by ENAHO survey weights. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$.	Notas: Las columnas (1)--(3) reportan valores $p$ del efecto de base $\mathrm{Low}\times\mathrm{Post}$ bajo, respectivamente, agrupación por departamento (25 grupos), agrupación por departamento$\times$educación (50 grupos) y la corrección CR2 para muestras pequeñas \citep{pustejovsky_tipton_2018} aplicada a celdas colapsadas a nivel de departamento. La columna (4) reporta el valor $p$ de inferencia por aleatorización (RI) del diseño de exposición CONTINUA de la columna (5), no del contraste de dos grupos $\mathrm{Low}\times\mathrm{Post}$, obtenido permutando los 25 índices regionales de Kaitz entre departamentos (2000 extracciones). La columna (5) reporta la estimación de exposición continua, el coeficiente de $\mathrm{Post}\times$(índice de Kaitz departamental estandarizado), con errores estándar agrupados por departamento entre paréntesis. La columna (6) reporta la estimación DiD de $\mathrm{Low}\times\mathrm{Post}$ para la reforma de enero de 2025 (ventana 2024--2025), con errores estándar agrupados por departamento entre paréntesis. Log salario por hora denota el log del salario real por hora; todas las estimaciones están ponderadas con los factores de expansión de la ENAHO. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$.
+Leave-one-out stability of the baseline DiD estimates	Estabilidad de las estimaciones DiD de base al excluir una unidad a la vez
+Full sample	Muestra completa
+Drop-one-department range	Rango sin un depto.
+Drop-one-quarter range	Rango sin un trimestre
+Notes: Ranges of the $\mathrm{Low}\times\mathrm{Post}$ coefficient when re-estimating the baseline dropping one department at a time (25 estimates) or one quarter at a time (15 estimates). Full per-unit estimates are in the replication output (\texttt{rob\_leaveoneout\_detail.csv}).	Notas: Rangos del coeficiente $\mathrm{Low}\times\mathrm{Post}$ al reestimar la especificación de base excluyendo un departamento a la vez (25 estimaciones) o un trimestre a la vez (15 estimaciones). Las estimaciones completas por unidad están en los resultados de replicación (\texttt{rob\_leaveoneout\_detail.csv}).
+Selection bounds and statistical power	Cotas por selección y poder estadístico
+\multicolumn{3}{l}{\emph{Panel A: Lee-type trimming bounds, unconditional 2$\times$2 log-wage DiD}}	\multicolumn{3}{l}{\emph{Panel A: cotas de recorte tipo Lee, DiD 2$\times$2 incondicional del log del salario}}
+Selection DiD (wage-sample inclusion)	DiD de selección (inclusión en la muestra salarial)
+Trimming fraction	Fracción de recorte
+Untrimmed DiD	DiD sin recorte
+Bounds	Cotas
+\multicolumn{3}{l}{\emph{Panel B: minimum detectable effects (80\% power, 5\% size)}}	\multicolumn{3}{l}{\emph{Panel B: efectos mínimos detectables (poder de 80\%, tamaño de 5\%)}}
+Log real hourly wage	Log salario real por hora
+Log real monthly earnings	Log ingreso real mensual
+Employed (working age)	Ocupado (edad de trabajar)
+Formal employment	Empleo formal
+Weekly hours (main job)	Horas semanales (empleo principal)
+Full-time (>=35h)	Tiempo completo (>=35h)
+Paid below the MW	Gana menos que el SM
+Notes: Panel A: bounds on the unconditional 2$\times$2 log hourly wage DiD following the trimming logic of \citet{lee_2009}: the reform reduced the probability that a low-education worker appears in the wage-earner sample (selection DiD), so the low$\times$post cell is trimmed from above and below by the implied fraction of its baseline rate. Panel B: minimum detectable effect $=2.8\times$ the department-clustered standard error of the baseline DiD.	Notas: Panel A: cotas para el DiD 2$\times$2 incondicional del log del salario por hora, siguiendo la lógica de recorte de \citet{lee_2009}: la reforma redujo la probabilidad de que un trabajador de baja educación aparezca en la muestra de asalariados (DiD de selección), por lo que la celda low$\times$post se recorta por arriba y por abajo en la fracción implícita de su tasa base. Panel B: efecto mínimo detectable $=2.8\times$ el error estándar agrupado por departamento del DiD de base.
+Difference-in-differences estimates of the 2022 minimum-wage reform	Estimaciones de diferencias en diferencias de la reforma del salario mínimo de 2022
+(1) TWFE DiD	(1) DiD TWFE
+(2) Doubly robust	(2) Doblemente robusto
+(3) Pre-trend $p$	(3) $p$ tend. previa
+(4) Elasticity	(4) Elasticidad
+Weekly hours	Horas semanales
+Notes: Each row is a separate regression on ENAHO 2021Q1--2024Q4, excluding the partially treated transition quarter 2022Q2. Column (1) reports the two-way fixed-effects DiD coefficient on $\mathrm{Low}\times\mathrm{Post}$ from equation~\eqref{eq:twfe}, with department and quarter fixed effects and controls (age, age squared, sex, urban, marital status, years of education). Column (2) reports the doubly robust DiD estimator of \citet{santanna_zhao_2020} collapsing to pre/post; its standard errors are clustered by department using the estimator's influence function. Column (3) is the $p$-value of a joint test that the pre-reform event-study interactions are zero. Column (4) converts the column-(1) estimate into an elasticity with respect to the 10.2 percent minimum-wage increase (for level outcomes, relative to the baseline mean $\bar{y}$). Wage outcomes are for private-sector wage earners (employees and domestic workers, monthly-equivalent earnings); formality, hours, and self-employment are for private-sector workers. Standard errors clustered by department (25 clusters) in parentheses; all estimates are weighted by ENAHO survey weights. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$.	Notas: Cada fila es una regresión distinta sobre la ENAHO 2021Q1--2024Q4, que excluye el trimestre de transición 2022Q2, parcialmente tratado. La columna (1) reporta el coeficiente DiD de efectos fijos bidireccionales sobre $\mathrm{Low}\times\mathrm{Post}$ de la ecuación~\eqref{eq:twfe}, con efectos fijos de departamento y trimestre y controles (edad, edad al cuadrado, sexo, área urbana, estado civil, años de educación). La columna (2) reporta el estimador DiD doblemente robusto de \citet{santanna_zhao_2020}, colapsado a pre/post; sus errores estándar se agrupan por departamento usando la función de influencia del estimador. La columna (3) es el valor $p$ de una prueba conjunta de que las interacciones del estudio de eventos previas a la reforma son cero. La columna (4) convierte la estimación de la columna (1) en una elasticidad respecto del aumento de 10.2 por ciento del salario mínimo (para los resultados en niveles, en relación con la media base $\bar{y}$). Los resultados salariales corresponden a asalariados del sector privado (empleados y trabajadores del hogar, ingresos mensuales equivalentes); la formalidad, las horas y el trabajo independiente corresponden a trabajadores del sector privado. Errores estándar agrupados por departamento (25 grupos) entre paréntesis; todas las estimaciones están ponderadas con los factores de expansión de la ENAHO. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$.
+Adjustment margins and additional subgroups	Márgenes de ajuste y subgrupos adicionales
+\multicolumn{4}{l}{\emph{Panel A: adjustment margins ($\mathrm{Low}\times\mathrm{Post}$)}}	\multicolumn{4}{l}{\emph{Panel A: márgenes de ajuste ($\mathrm{Low}\times\mathrm{Post}$)}}
+Margin	Margen
+Estimate	Estimación
+Pre-reform mean	Media previa
+No written contract (wage earners)	Sin contrato escrito (asalariados)
+Micro firm, <=20 workers (employed)	Microempresa, <=20 trab. (ocupados)
+Tenure < 12 months (wage earners)	Antigüedad < 12 meses (asalariados)
+Informal job, informal sector (2021-23)	Informal en sector informal (2021-23)
+Informal job, FORMAL sector (2021-23)	Informal en sector FORMAL (2021-23)
+\multicolumn{4}{l}{\emph{Panel B: subgroups by household role and ethnic self-identification}}	\multicolumn{4}{l}{\emph{Panel B: subgrupos por rol en el hogar y autoidentificación étnica}}
+Head	Jefe de hogar
+Non-head	No jefe de hogar
+Indigenous	Indígena
+Non-indigenous	No indígena
+Notes: Panel A: $\mathrm{Low}\times\mathrm{Post}$ DiD estimates for mechanism-oriented outcomes: the share of private wage earners without a written contract (\texttt{p511a}), the share of private workers in micro units of at most 20 workers (\texttt{p512a}), the share of wage earners with under 12 months of tenure (\texttt{p513a1/2}), and the decomposition of informal employment into informal-sector and formal-sector informal jobs (INEI \texttt{emplpsec}, available 2021--2023). Panel B: baseline DiD within subgroups defined by household headship (\texttt{p203}) and indigenous self-identification (\texttt{p558c}). Department-clustered standard errors; ENAHO survey weights. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$.	Notas: Panel A: estimaciones DiD de $\mathrm{Low}\times\mathrm{Post}$ para resultados orientados a mecanismos: la proporción de asalariados privados sin contrato escrito (\texttt{p511a}), la proporción de trabajadores privados en unidades de a lo sumo 20 trabajadores (\texttt{p512a}), la proporción de asalariados con menos de 12 meses de antigüedad (\texttt{p513a1/2}) y la descomposición del empleo informal en empleos informales del sector informal y del sector formal (INEI \texttt{emplpsec}, disponible para 2021--2023). Panel B: DiD de base dentro de subgrupos definidos por la jefatura del hogar (\texttt{p203}) y la autoidentificación indígena (\texttt{p558c}). Errores estándar agrupados por departamento; factores de expansión de la ENAHO. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$.
+Robustness to the Venezuelan immigration wave	Robustez frente a la ola migratoria venezolana
+Specification	Especificación
+Baseline	Base
+Department$\times$quarter FE	EF departamento$\times$trimestre
+Excluding Lima and Callao	Excluyendo Lima y Callao
+Excluding top-8 migrant-hosting departments	Sin los 8 deptos. con más migrantes
+Notes: $\mathrm{Low}\times\mathrm{Post}$ DiD estimates under specifications that address the Venezuelan immigration inflow. Department$\times$quarter fixed effects absorb any local shock common to both education groups within a department-quarter, including migrant arrivals and regularization waves. The top-8 exclusion drops Lima, Callao, La Libertad, Arequipa, Lambayeque, Piura, Ica, and Tumbes, the departments hosting the large majority of the Venezuelan population. Department-clustered standard errors; ENAHO survey weights. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$.	Notas: Estimaciones DiD de $\mathrm{Low}\times\mathrm{Post}$ bajo especificaciones que abordan la llegada de inmigrantes venezolanos. Los efectos fijos departamento$\times$trimestre absorben cualquier choque local común a ambos grupos educativos dentro de un departamento-trimestre, incluidas las llegadas de migrantes y las olas de regularización. La exclusión de los 8 principales elimina Lima, Callao, La Libertad, Arequipa, Lambayeque, Piura, Ica y Tumbes, los departamentos que acogen a la gran mayoría de la población venezolana. Errores estándar agrupados por departamento; factores de expansión de la ENAHO. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$.
+Placebo 2021Q2	Placebo 2021Q2
+Placebo 2021Q3	Placebo 2021Q3
+Placebo 2021Q4	Placebo 2021Q4
+Specification robustness of the DiD estimates	Robustez de las estimaciones DiD a la especificación
+No controls	Sin controles
+Drop 2021Q1 (pandemic)	Sin 2021Q1 (pandemia)
+Department linear trends	Tendencias lineales por depto.
+Prime age (25--55)	Edad central (25--55)
+Alternative education cutoff	Corte educativo alternativo
+Occupation \& industry FE	EF de ocupación y actividad
+Cluster dept.$\times$skill	Agrupación dpto.$\times$ed.
+Low-skilled group linear trend	Tendencia lineal, baja educación
+Include transition quarter (2022Q2)	Con trim. de transición (2022Q2)
+Exclude agriculture (agrarian regime)	Sin agricultura (régimen agrario)
+Include public-sector workers	Con sector público
+Notes: Each cell is the $\mathrm{Low}\times\mathrm{Post}$ DiD coefficient (standard error clustered by department below; sample size in brackets) for the outcome in the column heading, under the specification in the row; all estimates are weighted by ENAHO survey weights, and Log hourly wage denotes the log real hourly wage. The baseline is equation~\eqref{eq:twfe}, which excludes the partially treated 2022Q2. The alternative education cutoff defines low-skilled as at most incomplete secondary and high-skilled as at least complete non-university tertiary, dropping the boundary categories. The agriculture exclusion and the public-sector inclusion apply to job-conditional outcomes only (industry and sector are undefined for non-workers). $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$.	Notas: Cada celda es el coeficiente DiD de $\mathrm{Low}\times\mathrm{Post}$ (debajo, el error estándar agrupado por departamento; entre corchetes, el tamaño de muestra) para el resultado del encabezado de la columna, bajo la especificación de la fila; todas las estimaciones están ponderadas con los factores de expansión de la ENAHO, y Log salario por hora denota el log del salario real por hora. La especificación de base es la ecuación~\eqref{eq:twfe}, que excluye el trimestre 2022Q2, parcialmente tratado. El corte educativo alternativo define baja educación como a lo sumo secundaria incompleta y alta educación como al menos superior no universitaria completa, y excluye las categorías límite. La exclusión de la agricultura y la inclusión del sector público se aplican solo a los resultados condicionados al empleo (la actividad y el sector no están definidos para quienes no trabajan). $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$.
+Synthetic DiD and the power of the pre-trends test	Diferencias en diferencias sintéticas y poder de la prueba de tendencias previas
+\multicolumn{4}{l}{\emph{Panel A: synthetic difference-in-differences (high-bite vs synthetic low-bite departments)}}	\multicolumn{4}{l}{\emph{Panel A: DiD sintéticas (deptos. de alta incidencia vs.\ sintéticos de baja)}}
+Low-education means	Medias, baja educ.
+Skill gap &	Brecha educativa &
+\multicolumn{4}{l}{\emph{Panel B: power of the pre-trends test against linear violations \citep{roth_2022_pretest}}}	\multicolumn{4}{l}{\emph{Panel B: poder de la prueba de tendencias previas frente a violaciones lineales \citep{roth_2022_pretest}}}
+Notes: Panel A: synthetic DiD estimates \citep{arkhangelsky_2021_sdid} on department$\times$quarter cells, treating above-median-bite departments as treated from 2022Q3; column (1) uses low-education outcome means, column (2) the low-minus-high skill gap; jackknife standard errors in parentheses (the placebo variance is infeasible with 12 treated and 13 control units). Panel B: slope of a linear violation of parallel trends against which the conventional pre-test has only 50 percent power \citep{roth_2022_pretest}, the bias such an undetected violation would induce in the average post-period effect, and its ratio to the estimated effect. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$.	Notas: Panel A: estimaciones de diferencias en diferencias sintéticas \citep{arkhangelsky_2021_sdid} sobre celdas departamento$\times$trimestre, que tratan como tratados desde 2022Q3 a los departamentos con incidencia por encima de la mediana; la columna (1) usa las medias de los resultados de baja educación y la columna (2), la brecha entre baja y alta educación; errores estándar jackknife entre paréntesis (la varianza placebo no es factible con 12 unidades tratadas y 13 de control). Panel B: pendiente de una violación lineal de las tendencias paralelas frente a la cual la prueba previa convencional tiene solo 50 por ciento de poder \citep{roth_2022_pretest}, el sesgo que tal violación no detectada induciría en el efecto promedio posterior y su razón respecto del efecto estimado. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$.
+Sectoral breadth and occupational dose response of the reallocation	Amplitud sectorial y dosis-respuesta ocupacional de la reasignación
+\multicolumn{4}{l}{\emph{Panel A: education DiD by sector group}}	\multicolumn{4}{l}{\emph{Panel A: DiD por educación según grupo sectorial}}
+Covered high-bite	Cubiertos de alta incidencia
+Agriculture	Agricultura
+Other private	Otros privados
+\multicolumn{4}{l}{\emph{Panel B: occupation-exposure dose response ($\mathrm{Post}\times$ occupation share below 1{,}025)}}	\multicolumn{4}{l}{\emph{Panel B: dosis-respuesta según exposición ocupacional ($\mathrm{Post}\times$ proporción de la ocupación bajo 1025)}}
+Paid below MW	Gana menos que el SM
+Notes: Panel A: $\mathrm{Low}\times\mathrm{Post}$ DiD within sector groups defined from CIIU Rev.4 divisions (covered high-bite: manufacturing 10--33, construction 41--43, trade 45--47, hotels and restaurants 55--56; agriculture: divisions 01--03, under the agrarian regime of Ley 31110, whose daily remuneration is indexed to the RMV and therefore rose with the reform). Panel B: coefficient on $\mathrm{Post}\times$(pre-reform share of the 2-digit occupation's private wage earners paid below 1{,}025), with occupation, quarter, and department fixed effects; occupation is measured at the interview and is therefore post-treatment for movers, so Panel B is descriptive corroboration rather than a primary design. Department-clustered standard errors; ENAHO survey weights. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$.	Notas: Panel A: DiD de $\mathrm{Low}\times\mathrm{Post}$ dentro de grupos sectoriales definidos a partir de las divisiones de la CIIU Rev.4 (cubiertos de alta incidencia: manufactura 10--33, construcción 41--43, comercio 45--47, hoteles y restaurantes 55--56; agricultura: divisiones 01--03, bajo el régimen agrario de la Ley 31110, cuya remuneración diaria está indexada a la RMV y, por tanto, subió con la reforma). Panel B: coeficiente de $\mathrm{Post}\times$(proporción, antes de la reforma, de los asalariados privados de la ocupación a 2 dígitos que ganaba menos de 1025), con efectos fijos de ocupación, trimestre y departamento; la ocupación se mide en la entrevista y, por tanto, es posterior al tratamiento para quienes cambian de ocupación, de modo que el panel B es una corroboración descriptiva y no un diseño principal. Errores estándar agrupados por departamento; factores de expansión de la ENAHO. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$.
+Worker-level transitions across the reform (ENAHO Panel 2020--2024)	Transiciones individuales en torno a la reforma (Panel ENAHO 2020--2024)
+\multicolumn{4}{l}{\emph{Panel A: destination shares of base-year formal private workers}}	\multicolumn{4}{l}{\emph{Panel A: proporciones de destino de los trabajadores privados formales en el año base}}
+Low-educated	Baja educación
+High-educated	Alta educación
+Low $-$ High	Baja $-$ Alta
+\multicolumn{4}{l}{Pre-reform pairs}	\multicolumn{4}{l}{Pares previos a la reforma}
+\quad Still formal	\quad Sigue formal
+\quad Informal wage job	\quad Asalariado informal
+\quad Self-employment	\quad Trabajo independiente
+\quad Other employed	\quad Otro ocupado
+\quad Non-employed	\quad No ocupado
+\multicolumn{4}{l}{Reform-window pairs}	\multicolumn{4}{l}{Pares de la ventana de la reforma}
+\multicolumn{4}{l}{Post-reform pairs}	\multicolumn{4}{l}{Pares posteriores a la reforma}
+\multicolumn{4}{l}{\emph{Panel B: stacked transition DiD (Low $\times$ period, pair and department FE)}}	\multicolumn{4}{l}{\emph{Panel B: DiD apilado de transiciones (Low $\times$ período, EF de par y departamento)}}
+Still formal private	Sigue formal privado
+To informal wage job	A asalariado informal
+To self-employment	A trabajo independiente
+To non-employment	A no ocupación
+Informal $\to$ formal (entry)	Informal $\to$ formal (ingreso)
+Notes: Linked persons from the ENAHO Panel 2020--2024 (INEI survey 978), year pairs $t\to t{+}1$ for $t=2020,\dots,2023$, panel weights \texttt{facpanel}. Pair-observations are classified relative to the 1-May-2022 reform using the 2022 interview month: pre-reform (2020--21; 2021--22 interviewed January--April 2022), reform-window (2021--22 interviewed from May 2022; 2022--23 interviewed January--April 2022, whose base state predates the reform), and post-reform (2022--23 interviewed from May 2022; 2023--24). Panel A reports weighted destination shares of workers holding a formal private job in the base year (7,011 pair-observations). Panel B reports coefficients from stacked regressions of each transition indicator on Low$\times$Reform, Low$\times$Post, and Low, with pair and department fixed effects and age, age squared, and sex as controls; the entry row conditions on informal employment (wage or self-employment) in the base year (33,076 observations). Employment states replicate the main text definitions; informality uses the official indicator where released and the reconstruction elsewhere. Standard errors clustered by base-year department in parentheses. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$.	Notas: Personas enlazadas del Panel ENAHO 2020--2024 (encuesta INEI 978), pares de años $t\to t{+}1$ para $t=2020,\dots,2023$, factores de expansión de panel \texttt{facpanel}. Los pares se clasifican respecto de la reforma del 1 de mayo de 2022 según el mes de entrevista de 2022: previos a la reforma (2020--21; 2021--22 entrevistados entre enero y abril de 2022), de la ventana de la reforma (2021--22 entrevistados desde mayo de 2022; 2022--23 entrevistados entre enero y abril de 2022, cuyo estado base es anterior a la reforma) y posteriores a la reforma (2022--23 entrevistados desde mayo de 2022; 2023--24). El panel A reporta las proporciones ponderadas de destino de los trabajadores con un empleo privado formal en el año base (7011 pares-observación). El panel B reporta coeficientes de regresiones apiladas de cada indicador de transición sobre Low$\times$Reform, Low$\times$Post y Low, con efectos fijos de par y departamento y con edad, edad al cuadrado y sexo como controles; la fila de ingreso se condiciona al empleo informal (asalariado o independiente) en el año base (33\,076 observaciones). Los estados de empleo replican las definiciones del texto principal; la informalidad usa el indicador oficial donde está publicado y la reconstrucción en los demás casos. Errores estándar agrupados por departamento del año base entre paréntesis. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$.
+Triple-difference estimates: $\mathrm{Low}\times\mathrm{Post}\times\mathrm{HighBite}$	Estimaciones de triple diferencia: $\mathrm{Low}\times\mathrm{Post}\times\mathrm{HighBite}$
+DDD estimate	Estimación DDD
+Notes: Coefficient on the triple interaction $\mathrm{Low}\times\mathrm{Post}\times\mathrm{HighBite}$, where HighBite indicates departments with an above-median pre-reform fraction of private wage earners paid below the new minimum wage. Department and quarter fixed effects, controls as in the baseline; standard errors clustered by department (25 clusters); ENAHO survey weights. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$.	Notas: Coeficiente de la interacción triple $\mathrm{Low}\times\mathrm{Post}\times\mathrm{HighBite}$, donde HighBite identifica a los departamentos cuya fracción de asalariados privados que ganaba menos que el nuevo salario mínimo antes de la reforma está por encima de la mediana. Efectos fijos de departamento y trimestre, controles como en la especificación de base; errores estándar agrupados por departamento (25 grupos); factores de expansión de la ENAHO. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$.
+Unconditional compositional outcomes (shares of the working-age population)	Resultados composicionales incondicionales (proporciones de la población en edad de trabajar)
+& Pre-reform	& Media previa
+Education DiD	DiD por educación
+Pre-trend	Tend. previa
+Kaitz slope	Pendiente de Kaitz
+RI	RI
+mean	a la reforma
+(Low$\times$Post)	(Low$\times$Post)
+(Post$\times z$)	(Post$\times z$)
+Private formal employment	Empleo formal privado
+Private informal employment	Empleo informal privado
+Notes: Outcomes are defined for every working-age individual: an individual counts as (private) formally employed only if employed, in the private sector, and formal, and analogously for self-employment and private informal employment; the non-employed and public-sector workers count as zeros. Column (2) reports the baseline $\mathrm{Low}\times\mathrm{Post}$ education DiD with department-clustered standard errors; column (3) the joint $p$-value of the pre-reform event-study interactions; column (4) the coefficient on $\mathrm{Post}\times$(standardized department Kaitz index) from the continuous regional-exposure design; column (5) its randomization-inference $p$-value (permuting the Kaitz indices across departments, 1{,}000 draws). Because these outcomes embed the employment margin, the education-DiD versions inherit its differential pandemic-recovery pre-trend and are reported for transparency rather than leaned on; the regional-design estimates do not depend on the education contrast. All estimates weighted by ENAHO survey weights. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$.	Notas: Los resultados se definen para toda persona en edad de trabajar: una persona cuenta como ocupada formal (privada) solo si está ocupada, en el sector privado y es formal, y de manera análoga para el trabajo independiente y el empleo informal privado; los no ocupados y los trabajadores del sector público cuentan como ceros. La columna (2) reporta el DiD por educación de base $\mathrm{Low}\times\mathrm{Post}$ con errores estándar agrupados por departamento; la columna (3), el valor $p$ conjunto de las interacciones del estudio de eventos previas a la reforma; la columna (4), el coeficiente de $\mathrm{Post}\times$(índice de Kaitz departamental estandarizado) del diseño de exposición regional continua; la columna (5), su valor $p$ de inferencia por aleatorización (permutando los índices de Kaitz entre departamentos, 1000 extracciones). Como estos resultados incorporan el margen de empleo, las versiones DiD por educación heredan su tendencia previa diferencial asociada a la recuperación pospandemia y se reportan por transparencia, sin apoyarse en ellas; las estimaciones del diseño regional no dependen del contraste por educación. Todas las estimaciones están ponderadas con los factores de expansión de la ENAHO. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$.
+Exposure	Exposición
+Leads $p$	$p$ adelantos
+DiD	DiD
+Pre-trend $p$	$p$ tend. previa
+MDE	EMD
+Group	Grupo
+Slope at 50\% power	Pendiente (50\% potencia)
+Implied bias (avg.\ post)	Sesgo impl. (prom.\ post)
+Bias / estimate	Sesgo / estimación
+Low$\times$Reform	Low$\times$Reforma
+Low$\times$Post	Low$\times$Post
+Pre-reform mean (low)	Media previa a la reforma (baja)

@@ -1,0 +1,206 @@
+\section{Apéndice de datos}\label{app:data}
+
+\subsection{Muestra y construcción de variables}
+
+Agrupo los veinte módulos trimestrales de empleo de la ENAHO (módulo 500) para
+2021Q1--2025Q4; el análisis principal usa 2021Q1--2024Q4 y la validación usa
+2024Q1--2025Q4. La muestra en edad de trabajar comprende a las personas de 14 a 65 años
+con información de educación. Todas las estadísticas usan el factor de expansión de
+empleo del módulo (\texttt{fac500a}). Este factor está calibrado para que el año
+completo de entrevistas se expanda a la proyección anual de población; cada submuestra
+trimestral se expande, por tanto, a aproximadamente la cuarta parte de la población, lo
+que es irrelevante para las medias, proporciones y estimaciones de regresión ponderadas
+que uso a lo largo del trabajo (numerador y denominador se escalan juntos) y solo
+importaría para totales poblacionales, que nunca estimo. La partición trimestral sigue
+el mes de la entrevista y coincide con el diseño de la propia encuesta: la inferencia
+nacional trimestral es un nivel de inferencia oficial de la ENAHO en las fichas técnicas
+tanto de 2021 como de 2025, y la muestra no panel vuelve a visitar los mismos
+conglomerados en los mismos meses cada año. Verifico ambas propiedades en los
+microdatos para toda la ventana: los 5359 conglomerados aparecen en todos los años de
+2021 a 2025, la superposición de unidades primarias de muestreo entre el mismo
+trimestre de años consecutivos va de 70 a 92 por ciento (frente a 2 a 5 por ciento entre
+trimestres distintos), y cada trimestre es una réplica internamente balanceada del
+diseño. Conviene registrar dos cambios en la encuesta durante la ventana. Primero, la
+modalidad mixta de entrevista adoptada durante la pandemia (prioridad a la entrevista
+presencial, con seguimiento telefónico para los miembros ausentes) siguió siendo el
+estándar hasta 2025, de modo que la modalidad es en líneas generales consistente en mi
+periodo de estudio; la única excepción es febrero de 2021, cuando un cuestionario
+telefónico reducido en quince regiones omitió, entre otras preguntas, la del tipo de
+contrato (faltante para la mitad de los asalariados de ese mes), lo que no afecta a
+ninguno de los resultados de base (la informalidad de 2021 proviene del indicador
+oficial del INEI y las preguntas de ingreso se mantuvieron) y se trata explícitamente en
+el único margen del apéndice que usa contratos. Segundo, la ficha técnica de 2025
+describe el diseño como bietápico, con conglomerados urbanos de unas 140 viviendas,
+frente a la descripción polietápica de 2021; los identificadores y conteos de
+conglomerados son, no obstante, continuos a lo largo de la ventana, de modo que se trata
+de una reformulación de la documentación y no de un quiebre en la muestra. Los
+departamentos son las 25 unidades administrativas de primer nivel derivadas de los dos
+primeros dígitos del \texttt{ubigeo}; el indicador urbano se deriva del estrato de
+muestreo.
+
+\paragraph{Educación y grupos de calificación.} El nivel educativo alcanzado corresponde a
+la variable \texttt{p301a} de la ENAHO. Verifiqué su codificación con la distribución
+ponderada del nivel alcanzado. Los trabajadores poco calificados son aquellos con
+\texttt{p301a} entre 1 y 6 (desde sin nivel hasta secundaria completa); los trabajadores
+calificados son aquellos con \texttt{p301a} entre 7 y 11 (desde superior no
+universitaria hasta posgrado). Se excluyen la educación básica especial (código 12) y
+los valores faltantes.
+
+\paragraph{Ingreso laboral y salarios.} La ENAHO registra la remuneración de los
+asalariados por periodo de pago: \texttt{p524a1} es el pago bruto, incluidas las horas
+extra, y \texttt{p523} su frecuencia (diaria, semanal, quincenal o mensual). El
+cincuenta y cuatro por ciento de los asalariados de baja educación recibe pagos con
+frecuencia no mensual, frente al quince por ciento de los asalariados de alta educación,
+por lo que convierto todos los pagos a equivalentes mensuales con los mismos factores
+implícitos en la variable de ingreso anualizado del propio INEI (\texttt{i524a1}): 25
+para la frecuencia diaria, $52/12$ para la semanal, 2 para la quincenal y 1 para la
+mensual. La distribución ponderada completa de frecuencias entre los asalariados
+privados con ingresos válidos es de 2 por ciento diaria, 45 semanal, 9 quincenal y 45
+mensual para el grupo de baja educación, frente a 1, 18, 6 y 76 por ciento para el grupo
+de alta educación; la variable de frecuencia nunca falta en esa muestra. Los asalariados
+comprenden a empleados y trabajadores del hogar (\texttt{p507} en $\{3,4,6\}$); los
+trabajadores del hogar tienen derecho al salario mínimo desde la Ley 31047. Para los
+empleadores y los trabajadores por cuenta propia, el ingreso laboral es la ganancia neta
+(\texttt{p530a}), que ya es mensual. Como el ingreso reportado se refiere al mes anterior
+a la entrevista, deflacto en ese mes de referencia (las entrevistas de enero se
+remontan a diciembre del año anterior) con el índice de precios al consumidor de Lima
+con base diciembre de 2021, y evalúo el mínimo legal vigente en ese mismo mes de
+referencia al clasificar a los trabajadores como remunerados por debajo del piso. El
+salario real por hora divide el ingreso laboral mensual equivalente entre $4.345$ veces
+las horas semanales en la ocupación principal (\texttt{p513t}; la variable de horas
+imputadas del INEI, \texttt{i513t}, la reemplaza cuando \texttt{p513t} falta, pero
+ninguna observación de la muestra de análisis salarial y menos del 0.01 por ciento de la
+muestra de horas lo requieren). Los resultados salariales excluyen a los trabajadores
+del sector público, cuya remuneración se fija mediante escalas propias, y se
+winsorizan una sola vez en los percentiles 0.5 y 99.5 de la muestra agrupada de
+asalariados privados.
+
+\paragraph{Informalidad.} El indicador oficial de empleo informal del INEI
+(\texttt{ocupinf}, codificado como 1 para informal y 2 para formal en estos archivos)
+está disponible para 2021--2023 pero no para 2024--2025. Reconstruyo un indicador
+consistente a partir de variables primitivas disponibles en todos los años. Un empleado
+asalariado o trabajador del hogar se clasifica como formal si está afiliado a un sistema
+de pensiones (\texttt{p558a1}--\texttt{p558a4}, cuyas opciones seleccionadas se marcan
+con su código de opción y no con unos) o si tiene un contrato laboral formal
+(\texttt{p511a} entre 1 y 6); un empleador o trabajador por cuenta propia se clasifica
+como formal si la unidad productiva está registrada (\texttt{p510a1}); los trabajadores
+familiares no remunerados son siempre informales. Validada contra \texttt{ocupinf} en
+los años de superposición 2021--2023, esta regla coincide con la clasificación oficial
+para el 87.8 por ciento de los ocupados y arroja una tasa de informalidad de 74.9 por
+ciento, frente al 79.1 por ciento oficial. Uso el indicador oficial siempre que está
+disponible y la reconstrucción solo para 2024--2025; dentro de la ventana de validación
+2024--2025 el indicador se reconstruye en todos los trimestres, de modo que allí se mide
+de manera consistente.
+
+\paragraph{Salario mínimo e incidencia.} El calendario del salario mínimo legal se toma de
+los decretos y se verifica con la serie del Banco Central de Reserva del Perú
+(PN02124PM); el deflactor del IPC es la serie PN38705PM del BCRP (Lima, diciembre de
+2021 $=$ 100), y ambos insumos se regeneran con un script documentado en el paquete de
+replicación. El índice de Kaitz departamental es el cociente entre el mínimo posterior a
+la reforma (1025 soles) y el salario mensual equivalente mediano ponderado de los
+asalariados privados del departamento antes de la reforma (2021Q1--2022Q1). La medida de
+fracción afectada es la proporción ponderada, antes de la reforma, de asalariados
+privados que ganaban menos de 1025 soles.
+
+\paragraph{El Panel ENAHO.} El análisis de transiciones de la Sección~\ref{sec:transitions}
+usa el Panel ENAHO 2020--2024 (encuesta 978 del INEI, publicada en noviembre de 2025),
+cuyo módulo de empleo (\texttt{enaho01a-2020-2024-500-panel.dta}) contiene un registro
+por persona con variables con sufijo de año para 2020 a 2024. Las personas observadas en
+ambos años de un par se identifican con los indicadores \texttt{perpanel} (23\,983
+personas enlazadas para 2021--22 y 23\,245 para 2022--23) y se ponderan con los factores
+de expansión de panel del INEI, \texttt{facpanel}, que corrigen por desgaste y no
+respuesta; la inferencia oficial para pares de años consecutivos es nacional, urbana y
+rural, y por región natural. Los estados de empleo replican exactamente las
+definiciones de corte transversal: ocupado es \texttt{ocu500}${}=1$; el estado formal
+privado requiere empleo en el sector privado con un puesto formal; la informalidad usa
+el \texttt{ocupinf} oficial donde se publica y, en los demás casos, la reconstrucción con
+la Regla F descrita arriba; el trabajo independiente comprende a los trabajadores por
+cuenta propia y a los empleadores. La educación en el año base define los grupos de
+calificación. Como el panel es anual y la reforma entró en vigor el 1 de mayo de 2022,
+las observaciones de cada par se clasifican según el mes de entrevista de 2022, como se
+describe en las notas del Cuadro~\ref{tab:transitions}.
+
+\paragraph{Intensidad de las protestas.} La intensidad departamental de la crisis
+política de 2022--23 se mide a partir de los reportes mensuales de conflictos de la
+Presidencia del Consejo de Ministros (Secretar\'ia de Gesti\'on Social y Di\'alogo,
+``Reporte de Conflictos Sociales''), cuyos cuadros de seguimiento de la crisis registran
+el número máximo de personas movilizadas en acciones de protesta en cada departamento,
+por semana y por mes. Tomo el máximo de cada departamento en los reportes de enero y
+febrero de 2023, los dos meses en que la movilización nacional alcanzó su punto más alto
+(el reporte de diciembre de 2022 es anterior al cuadro), lo divido entre la población
+en edad de trabajar del departamento (cuatro veces la suma trimestral media de los
+factores de expansión de la ENAHO) y estandarizo el resultado entre los 25
+departamentos. El cuadro transcrito y los documentos fuente se incluyen en el paquete
+de replicación.
+
+\subsection{Resultados complementarios}
+
+El Cuadro~\ref{tab:ddd} presenta las estimaciones de triple diferencia y el
+Cuadro~\ref{tab:loo} los rangos de estabilidad excluyendo un departamento a la vez
+discutidos en la Sección~\ref{sec:robustness}; los
+Cuadros~\ref{tab:expocells}--\ref{tab:margins} reúnen los diagnósticos del diseño de
+exposición, las verificaciones sectoriales y ocupacionales, las cotas de selección y los
+cálculos de potencia, los resultados de diferencias en diferencias sintéticas y de
+potencia de la prueba previa, y los márgenes de ajuste. El Cuadro~\ref{tab:crisis}
+presenta la robustez del diseño de exposición regional continua frente a la crisis
+política y el Cuadro~\ref{tab:uncond} los resultados de composición incondicionales,
+ambos discutidos en la Sección~\ref{sec:robustness}. El Cuadro~\ref{tab:placebo}
+presenta las reformas placebo en el tiempo y confirma que los placebos salariales son
+nulos, mientras que los placebos de empleo están contaminados por la tendencia previa
+de la pandemia. Las estimaciones doblemente robustas de \citet{santanna_zhao_2020}
+aparecen junto a las estimaciones con efectos fijos bidireccionales en el
+Cuadro~\ref{tab:main}. El Figura~\ref{fig:val2025} muestra el estudio de eventos en
+torno a la reforma de enero de 2025 usado en la validación fuera de muestra.
+
+\input{../../tables/es/tab_triplediff}
+
+\input{../../tables/es/tab_leaveoneout}
+
+\input{../../tables/es/tab_exposure}
+
+\input{../../tables/es/tab_sector_occ}
+
+\input{../../tables/es/tab_lee_mde}
+
+\input{../../tables/es/tab_sdid_power}
+
+\input{../../tables/es/tab_margins}
+
+\input{../../tables/es/tab_migration}
+
+\input{../../tables/es/tab_crisis}
+
+\input{../../tables/es/tab_uncond}
+
+\paragraph{Deflactores.} Todas las regresiones salariales incluyen efectos fijos de
+trimestre, que absorben la inflación nacional, de modo que las estimaciones de
+diferencias en diferencias del logaritmo del salario no dependen del deflactor
+nacional; y las medidas de incidencia comparan salarios nominales con el piso legal
+nominal, por lo que no involucran deflactación alguna. Una deflactación de precios
+específica por departamento solo importaría para comparaciones entre departamentos de
+\emph{niveles} de salario real, que no cumplen ningún papel en la identificación.
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=0.9\textwidth]{fig9_validation2025.pdf}
+\caption{Estudio de eventos en torno a la reforma de enero de 2025 (validación fuera de
+muestra). Coeficientes de la interacción del indicador de baja calificación con
+indicadores de trimestre; trimestre de referencia 2024Q4. Las bandas son intervalos de
+confianza al noventa y cinco por ciento con errores agrupados por departamento.}
+\label{fig:val2025}
+\end{figure}
+
+\begin{table}[!tbp]\centering
+\caption{Reformas placebo en el tiempo (solo ventana previa a la reforma)}\label{tab:placebo}
+\begin{threeparttable}
+\input{../../tables/es/tab_placebo_body}
+\begin{tablenotes}\footnotesize
+\item Notas: Cada celda es el coeficiente $\mathrm{Low}\times\mathrm{Post}$ de una
+estimación placebo de diferencias en diferencias que asigna una reforma ficticia al
+trimestre indicado, estimada usando solo datos previos a la reforma (2021Q1--2022Q1).
+Errores estándar agrupados por departamento entre paréntesis; todas las estimaciones se
+ponderan con los factores de expansión de la ENAHO. $^{*}p<0.1$, $^{**}p<0.05$,
+$^{***}p<0.01$.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

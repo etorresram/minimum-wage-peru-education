@@ -1,0 +1,127 @@
+\section{Estrategia empírica}\label{sec:strategy}
+
+\subsection{Resultados potenciales y el estimando}
+
+Sea $i$ el índice de individuos, $g\in\{\Low,\mathrm{High}\}$ su grupo de calificación y
+$t$ el trimestre. La reforma entra en vigor en el segundo trimestre de 2022, que denoto
+$t^{\ast}$;\footnote{Como la reforma rigió desde el 1 de mayo, el segundo trimestre de 2022
+contiene un mes previo y dos meses posteriores a la reforma, y los ingresos declarados se
+refieren al mes anterior a la entrevista, de modo que incluso las entrevistas de mayo
+reportan ingresos previos a la reforma (de abril). Por ello excluyo 2022Q2 de la
+especificación base como trimestre de transición parcialmente tratado y lo reincorporo en
+una prueba de robustez; el primer trimestre posterior a la reforma en la especificación
+base es 2022Q3.} defino el indicador posterior a la reforma
+$\Post_t=\mathbf{1}\{t\ge t^{\ast}\}$ y el indicador de tratamiento
+$\Low_i=\mathbf{1}\{g_i=\Low\}$. Siguiendo el marco de resultados potenciales, sean
+$Y_{it}(1)$ e $Y_{it}(0)$ el resultado del individuo $i$ en el trimestre $t$ con y sin la
+reforma vigente. El parámetro de interés es el efecto promedio de la reforma sobre los
+trabajadores poco calificados, respecto del contrafactual en el que habrían experimentado
+la misma evolución que los calificados,
+\begin{equation}
+\mathrm{ATT} \;=\; \mathbb{E}\!\left[\,Y_{it}(1)-Y_{it}(0)\;\middle|\;\Low_i=1,\;t\ge t^{\ast}\right].
+\end{equation}
+Los datos son cortes transversales repetidos y no un panel, de modo que este objeto se
+identifica a partir de comparaciones de medias de grupo en el tiempo y no de cambios dentro
+de cada persona.
+
+Como el salario mínimo del Perú es nacional y cambia en una sola fecha, no hay variación en
+el \emph{momento} del tratamiento: todos los trabajadores quedan expuestos a la misma
+política en el mismo instante. La identificación descansa, en cambio, en la variación de la
+\emph{intensidad} de la exposición entre grupos de calificación. El diseño es, por tanto, una
+diferencias en diferencias canónica de dos grupos con muchos periodos, y no un diseño de
+adopción escalonada. Esta distinción importa para la elección del estimador. La literatura
+econométrica reciente ha mostrado que el estimador de efectos fijos bidireccionales puede
+estar severamente sesgado cuando el momento del tratamiento es escalonado y los efectos son
+heterogéneos \citep{goodmanbacon_2021, dechaisemartin_2020, sun_abraham_2021,
+callaway_santanna_2021}. Con una fecha de tratamiento común, sin embargo, estos problemas no
+se presentan: el estimador de efectos fijos bidireccionales y su análogo de estudio de
+eventos recuperan un promedio convexo y correctamente ponderado de los efectos del
+tratamiento \citep{roth_2023_trending, baker_larcker_wang_2022}. Aun así, presento el
+estimador doblemente robusto de \citet{santanna_zhao_2020} como complemento.
+
+\subsection{Ecuaciones de estimación}
+
+Mi especificación base es el modelo de diferencias en diferencias con efectos fijos
+bidireccionales
+\begin{equation}
+Y_{idt} \;=\; \beta\,(\Low_i\times\Post_t) \;+\; \gamma\,\Low_i \;+\; \lambda_t \;+\; \mu_d
+\;+\; X_{it}'\theta \;+\; \varepsilon_{idt},
+\label{eq:twfe}
+\end{equation}
+donde $d$ denota el departamento, $\lambda_t$ son efectos fijos de trimestre, $\mu_d$ son
+efectos fijos de departamento y $X_{it}$ es un vector de controles que incluye la edad, su
+cuadrado, el sexo, un indicador de zona urbana, el estado civil y los años de educación (que
+recogen la variación del nivel educativo dentro de cada grupo de calificación). El
+coeficiente $\beta$ es la estimación de diferencias en diferencias. Los efectos fijos de
+trimestre absorben cualquier choque común a ambos grupos en un trimestre dado, incluida la
+inflación agregada, de modo que las estimaciones en logaritmos no dependen de si los
+salarios se expresan en términos nominales o reales deflactados a nivel nacional. Las
+observaciones se ponderan con los factores de expansión, y los errores estándar se agrupan
+por departamento.
+
+Para trazar la dinámica del efecto y contrastar el supuesto de identificación, estimo la
+especificación dinámica de estudio de eventos
+\begin{equation}
+Y_{idt} \;=\; \sum_{k\neq -1}\beta_k\,\bigl(\Low_i\times\mathbf{1}\{t-t^{\ast}=k\}\bigr)
+\;+\; \gamma\,\Low_i \;+\; \lambda_t \;+\; \mu_d \;+\; X_{it}'\theta \;+\; \varepsilon_{idt},
+\label{eq:event}
+\end{equation}
+donde $k$ indexa los trimestres relativos a la reforma y el trimestre inmediatamente anterior
+a ella ($k=-1$, el primer trimestre de 2022) es la categoría de referencia omitida. Los
+coeficientes $\beta_k$ para $k<0$ miden tendencias previas diferenciales entre los grupos de
+calificación y ofrecen una prueba directa de tendencias paralelas; los coeficientes para
+$k\ge 0$ trazan la trayectoria del efecto.
+
+\subsection{Supuestos de identificación y amenazas}
+
+La identificación del ATT a partir de la ecuación~\eqref{eq:twfe} requiere que, en ausencia
+de la reforma, los resultados de los trabajadores poco calificados y calificados hubieran
+seguido trayectorias paralelas, condicionales a los controles y efectos fijos. Tres amenazas
+merecen atención.
+
+Primero, las \emph{tendencias diferenciales}. La educación está correlacionada con el sector,
+la región y la formalidad, y los dos grupos de calificación podrían haber seguido
+trayectorias divergentes por razones ajenas al salario mínimo. Evalúo esto directamente con
+los coeficientes del estudio de eventos previos a la reforma y una prueba conjunta de que son
+iguales a cero, y examino la robustez a tendencias lineales específicas por departamento.
+Como mi ventana se abre en plena recuperación de la pandemia, cuando el empleo de los
+trabajadores poco calificados y calificados se recuperó a ritmos distintos, presto especial
+atención al primer trimestre de 2021 y presento especificaciones que lo excluyen.
+
+Segundo, la \emph{sensibilidad a violaciones residuales}. Aun cuando las tendencias previas
+son estadísticamente planas, no tienen por qué ser exactamente cero. Por ello presento el
+análisis de sensibilidad de \citet{rambachan_roth_2023}, que pregunta cuán grande tendría que
+ser una violación de tendencias paralelas posterior a la reforma, en relación con la mayor
+violación observada antes de ella, para revertir cada conclusión.
+
+Tercero, los \emph{efectos de derrame y de equilibrio general}. Si la reforma desplaza a
+trabajadores poco calificados hacia el sector informal, podría deprimir indirectamente los
+salarios en ese sector, y si los trabajadores calificados son sustitutos imperfectos, sus
+resultados también podrían moverse y contaminar el grupo de comparación. No puedo descartar
+esta posibilidad, e interpreto las estimaciones como efectos relativos. El grupo de
+comparación no está del todo libre de exposición: el 40 por ciento de los asalariados
+privados calificados percibía menos que el nuevo piso antes de la reforma, frente al 57 por
+ciento de los poco calificados. En primer orden, esta exposición imperfecta atenúa las
+estimaciones hacia cero (el diseño identifica el efecto de la \emph{brecha} de exposición de
+diecisiete puntos, por lo que subestima el efecto sobre los plenamente expuestos), pero
+reconozco que también convierte las estimaciones en objetos relativos y no absolutos. Por esta
+razón complemento el contraste por educación con un diseño de exposición regional continua
+que no depende en absoluto del grupo de comparación (Sección~\ref{sec:robustness}).
+
+\subsection{Inferencia}
+
+El tratamiento se asigna a un nivel agregado, el grupo de calificación, lo que plantea la
+preocupación habitual de que los errores estándar convencionales sobrestimen la precisión
+\citep{bertrand_2004}. La abordo de varias formas complementarias. Mi especificación base
+agrupa los errores por departamento,\footnote{Los 25 conglomerados son los 24 departamentos
+del Perú más la Provincia Constitucional del Callao. Con pocos conglomerados, los errores
+estándar robustos por conglomerado convencionales pueden subestimar la incertidumbre, lo que
+motiva las correcciones adicionales que se describen a continuación.} lo que permite una
+correlación arbitraria dentro de cada departamento entre individuos y trimestres; presento
+una alternativa que agrupa por departamento y grupo de calificación; y aplico la corrección
+de muestra pequeña CR2 de reducción de sesgo de \citet{pustejovsky_tipton_2018} a celdas
+agregadas a nivel departamental, donde resulta computacionalmente factible. Como estas
+correcciones pueden seguir siendo optimistas en un diseño de dos grupos, las complemento con
+inferencia por aleatorización a nivel departamental, permutando la incidencia regional del
+salario mínimo entre departamentos para construir una distribución nula exacta para el
+diseño de intensidad de exposición.

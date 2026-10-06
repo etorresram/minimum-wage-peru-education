@@ -1,0 +1,386 @@
+\section{Robustez e inferencia}\label{sec:robustness}
+
+En esta sección someto los resultados principales a una batería de pruebas de
+especificación, de inferencia y de diseño, y luego a una replicación fuera de muestra. El
+mensaje general es que los resultados de composición, la caída de la formalidad y el
+aumento del trabajo independiente, son los hallazgos más robustos, y los corrobora un
+diseño independiente de exposición continua con inferencia por aleatorización; la
+evidencia salarial muestra de forma consistente que no hubo ganancias de remuneración,
+aunque con una salvedad sobre las tendencias previas; y el resultado sobre el nivel de
+empleo no supera sus diagnósticos y no debe leerse como causal.
+
+\subsection{Robustez a la especificación}
+
+El Cuadro~\ref{tab:robspec} reporta el coeficiente $\mathrm{Low}\times\mathrm{Post}$ para
+los cuatro resultados principales bajo diez especificaciones alternativas: sin controles;
+sin el trimestre pandémico de inicios de 2021; con tendencias lineales específicas por
+departamento; restringiendo la muestra a trabajadores en edad central; con un corte
+educativo alternativo que elimina las categorías situadas en la frontera entre ambos
+grupos; con efectos fijos de ocupación y de rama de actividad; agrupando los errores por
+departamento y nivel de calificación; reincorporando el trimestre de transición 2022Q2,
+parcialmente tratado; excluyendo la agricultura (cubierta por el régimen laboral agrario
+de la Ley 31110 y no por el salario mínimo general); y reincorporando a los trabajadores
+del sector público en las muestras condicionadas a tener empleo. Las estimaciones de
+formalidad y de trabajo independiente son estables en signo y magnitud en todos los
+casos y se mueven dentro de un rango estrecho. La estimación salarial es negativa o nula
+en todas las especificaciones y nunca es significativamente positiva. La estimación de
+empleo, en cambio, se atenúa notablemente cuando se excluye el trimestre pandémico o se
+incluyen tendencias específicas por departamento, lo que refuerza mi renuencia a
+interpretarla de manera causal.
+
+\input{../../tables/es/tab_robustness}
+
+\subsection{Inferencia}
+
+Como el contraste de tratamiento varía solo entre dos grupos educativos, el
+agrupamiento convencional por departamento no proporciona por sí solo una inferencia
+basada en el diseño para el coeficiente $\mathrm{Low}\times\mathrm{Post}$; por ello
+reporto un conjunto de procedimientos cada vez más exigentes. El
+Cuadro~\ref{tab:inference} reúne la evidencia. Las columnas (1) a (3) reportan los
+valores $p$ del efecto base con errores agrupados por departamento (25 conglomerados),
+por departamento y nivel de calificación (50 conglomerados), y con la corrección CR2
+para muestras pequeñas de \citet{pustejovsky_tipton_2018}, aplicada a celdas colapsadas
+en el espíritu de \citet{bertrand_2004}, aquí al nivel
+departamento$\times$grupo$\times$periodo, que es la agregación más fina en la que la
+corrección CR2 resulta computacionalmente factible.
+Los efectos sobre la formalidad y el trabajo independiente siguen siendo altamente
+significativos bajo ambos esquemas de agrupamiento; con el procedimiento CR2 sobre
+celdas colapsadas, deliberadamente conservador y de baja potencia con veinticinco
+departamentos, el trabajo independiente sigue siendo marginalmente significativo y la
+formalidad no. El efecto sobre el empleo pierde significancia con cualquier
+procedimiento más exigente que el simple agrupamiento por departamento. Como una prueba
+de permutación del contraste entre dos grupos no está definida, la inferencia por
+aleatorización basada en el diseño se aplica, en su lugar, al diseño de exposición
+continua, donde la asignación que se permuta (la incidencia regional) toma veinticinco
+valores: la columna (4) reporta estos valores $p$, que corresponden a las estimaciones
+de la columna (5) y no al contraste educativo.\footnote{Un \emph{wild cluster
+bootstrap} en el espíritu de \citet{cameron_2008_bootstrap} no está disponible para
+estimaciones ponderadas con factores de expansión, de modo que los procedimientos CR2 y
+de aleatorización cumplen aquí ese papel.}
+
+\input{../../tables/es/tab_inference}
+
+\subsection{Robustez del diseño: intensidad de la incidencia y triples diferencias}
+
+Mi identificación descansa en la exposición diferencial por nivel educativo, pero el
+salario mínimo también tiene una incidencia (\emph{bite}) distinta entre regiones, y esto
+ofrece una fuente independiente de variación que no depende en absoluto del contraste
+educativo. La columna (5) del Cuadro~\ref{tab:inference} reporta una especificación de
+exposición continua en el espíritu de \citet{card_1992}, que relaciona los resultados
+con el índice de Kaitz departamental previo a la reforma, estandarizado e interactuado
+con el indicador del periodo posterior. Los resultados corroboran el diseño basado en la
+calificación en los márgenes de composición: en los departamentos donde el salario
+mínimo incide con más fuerza, tras la reforma el empleo formal cae 1.8 puntos
+porcentuales más por cada desviación estándar de exposición ($p<0.001$; $p$ por
+aleatorización $<0.001$) y el trabajo independiente aumenta 1.0 punto más ($p=0.02$;
+$p$ por aleatorización $=0.02$). En este diseño el empleo también disminuye con la
+exposición, aunque descarto ese margen por las razones ya expuestas. Los salarios no
+muestran una respuesta significativa. Una especificación de triple diferencia que
+interactúa el contraste por calificación con un indicador de departamentos de alta
+incidencia no es estadísticamente significativa para ningún resultado (Cuadro del
+Apéndice~\ref{tab:ddd}); lo interpreto como falta de potencia de una partición regional
+binaria y gruesa, más que como evidencia contra el mecanismo, dado que la versión
+continua es informativa y que las estimaciones por subgrupos de la
+Sección~\ref{sec:heterogeneity} se mueven en la dirección esperada.
+
+Otras tres pruebas de diseño matizan esta corroboración (Cuadros del
+Apéndice~\ref{tab:expocells} y~\ref{tab:sectorocc}). En primer lugar, el diseño regional
+supera su propio diagnóstico de adelantos justo donde importa: las pruebas conjuntas de
+las interacciones trimestre$\times$exposición previas a la reforma no rechazan la nula
+para la formalidad ($p=0.84$), el trabajo independiente ($p=0.20$) ni los salarios
+($p=0.24$), y solo la rechazan para el empleo ($p=0.002$), lo que es coherente con todo
+lo demás que sabemos de ese margen. En segundo lugar, en aras de la plena
+transparencia, estimo también diseños más finos de fracción afectada a nivel de celda
+\citep{card_1992, clemens_wither_2019}, con la exposición medida dentro de celdas
+departamento$\times$calificación$\times$edad; ambas variantes fallan sus diagnósticos de
+adelantos: la exposición de grano fino se confunde con las heterogéneas recuperaciones
+pospandemia de las celdas, y la variante entre pisos incluso invierte los signos, porque
+las celdas con masa entre ambos pisos son precisamente las celdas semiformales que se
+recuperaron más rápido. Por ello, trato al departamento como el nivel creíble para la
+variación de la exposición y reporto los diseños por celda en el apéndice en lugar de
+omitirlos. En tercer lugar, la reasignación es amplia entre sectores: la caída de la
+formalidad aparece por igual en los sectores cubiertos de alta incidencia, en los demás
+sectores privados y en la agricultura. La estimación agrícola no es una falla de
+falsificación, porque la remuneración diaria del régimen agrario está indexada a la RMV
+y, por tanto, subió con la reforma; en el Perú ningún sector grande queda con su piso
+sin cambios, y por eso los contrastes de cobertura no pueden ser nítidos en este caso.
+Una relación dosis-respuesta a nivel de ocupación (con la exposición medida como la
+proporción de asalariados de la ocupación que ganaban menos que el nuevo piso antes de
+la reforma) muestra mayores caídas en la remuneración por debajo del piso y, de manera
+sugerente, ganancias salariales relativas en las ocupaciones más expuestas, aunque la
+ocupación se mide después del tratamiento y leo ese panel como descriptivo.
+
+Como prueba final de diseño, estimo diferencias en diferencias sintéticas
+\citep{arkhangelsky_2021_sdid} sobre celdas departamento-trimestre, tratando a los
+departamentos de alta incidencia como tratados desde 2022Q3 y dejando que el estimador
+repondere a los departamentos de baja incidencia para reconstruir su trayectoria previa
+a la reforma (Cuadro del Apéndice~\ref{tab:sdidpower}). Las estimaciones van en la
+dirección de la reasignación (la formalidad cae y el trabajo independiente sube, ya sea
+que el resultado sea la media de baja educación o la brecha entre baja y alta
+calificación), con magnitudes de aproximadamente la mitad de las estimaciones TWFE y una
+precisión limitada por las veinticinco unidades agregadas; la caída de la formalidad en
+las medias de baja educación es significativa al cinco por ciento con el
+\emph{jackknife}.
+
+\subsection{Selección y potencia}
+
+Como la reforma sacó a trabajadores de la muestra de asalariados, las diferencias en
+diferencias salariales se condicionan a una población endógena. El Cuadro del
+Apéndice~\ref{tab:leemde} acota el sesgo resultante con el método de recorte de
+\citet{lee_2009}: la reforma redujo la inclusión de los trabajadores poco calificados en
+la muestra salarial en 2.1 puntos porcentuales (7.6 por ciento de la tasa base), y
+recortar en esa fracción la distribución salarial low$\times$post desde cualquiera de
+sus colas acota las diferencias en diferencias salariales 2$\times$2 no condicionadas
+entre $-0.10$ y $+0.10$. La selección por sí sola podría, entonces, ocultar efectos
+salariales de hasta diez puntos logarítmicos en cualquier dirección, lo cual es una
+declaración franca de lo que la evidencia salarial puede y no puede descartar; la
+evidencia de cumplimiento y de acumulación (\emph{bunching}) de la
+Sección~\ref{sec:results}, que solo condiciona en la condición de formalidad, no está
+sujeta a esta preocupación, y es en ella donde apoyo la conclusión sobre la
+fiscalización. El mismo cuadro del apéndice reporta los efectos mínimos detectables: con
+una potencia del ochenta por ciento, el diseño puede detectar efectos salariales de 3.4
+puntos logarítmicos y efectos de 2.1 y 1.7 puntos porcentuales sobre la formalidad y el
+trabajo independiente, ambos muy por debajo de los estimados de 4.6 y 3.6, de modo que
+los hallazgos de composición no son un artefacto de una baja potencia estadística.
+
+La misma lógica de selección se aplica a los propios resultados de composición, que se
+definen entre los ocupados, mientras que el margen de empleo arrastra una tendencia
+previa ligada a la recuperación. Por ello, el Cuadro del Apéndice~\ref{tab:uncond}
+reporta versiones no condicionadas, definidas como proporciones de la población en edad
+de trabajar, que no condicionan en el empleo. En el contraste educativo, las
+estimaciones no condicionadas son mayores (empleo formal $-3.3$ puntos, trabajo
+independiente $+1.7$), pero heredan la tendencia previa diferencial de recuperación
+pospandemia del margen de empleo y no superan su diagnóstico, de modo que las reporto
+por transparencia, sin apoyarme en ellas. El resultado informativo está en el diseño
+regional, que no usa el contraste educativo: el empleo formal no condicionado cae 1.6
+puntos porcentuales por cada desviación estándar de exposición ($p$ por aleatorización
+$<0.001$), de modo que la caída del empleo formal no es un artefacto de condicionar en
+una población ocupada cambiante. El trabajo independiente no condicionado, en cambio, no
+aumenta con la exposición regional; en ese diseño, el aumento de la \emph{proporción}
+del trabajo independiente en el empleo opera a través de la reducción del denominador de
+empleo, y la reasignación absoluta hacia el trabajo independiente es un rasgo propio del
+contraste educativo. Retomo esta distinción en la Sección~\ref{sec:discussion}.
+
+\subsection{Sensibilidad a violaciones de las tendencias paralelas}
+
+Incluso unas tendencias previas planas se estiman con error, por lo que aplico el
+análisis de sensibilidad de \citet{rambachan_roth_2023}. La Figura~\ref{fig:honest}
+muestra el conjunto de confianza robusto para el efecto promedio posterior a la reforma
+sobre el empleo y la formalidad, cuando permito que la violación posterior de las
+tendencias paralelas sea tan grande como un múltiplo $\bar{M}$ de la mayor violación
+previa a la reforma. Los efectos sobre la formalidad y el trabajo independiente se
+mantienen alejados de cero bajo tendencias paralelas exactas, pero incluyen el cero en
+cuanto se admiten violaciones de apenas $\bar{M}=0.1$, y el efecto sobre el empleo
+incluye el cero incluso con $\bar{M}=0$. Este es el eslabón más débil del diseño
+basado en la educación, y lo digo con claridad: los resultados de composición son
+robustos a la inferencia convencional y a la basada en el diseño, pero no a violaciones
+moderadas de las tendencias paralelas en el contraste educativo. Su credibilidad
+descansa, por lo tanto, en las dos piezas de evidencia que no dependen de ese contraste:
+el gradiente regional de dosis-respuesta y el diseño de exposición continua con
+inferencia por aleatorización. El cálculo de potencia de \citet{roth_2022_pretest}
+cuantifica por qué no me apoyo solo en haber superado las pruebas previas: una violación
+lineal de las tendencias paralelas que mi prueba previa detectaría solo la mitad de las
+veces sesgaría el efecto promedio sobre la formalidad en el periodo posterior en 0.042,
+nueve décimas del efecto estimado (Cuadro del Apéndice~\ref{tab:sdidpower}, Panel B).
+Superar las pruebas previas da tranquilidad, pero no es concluyente, y así las trato a
+lo largo de todo el artículo.
+
+La granularidad temporal tampoco determina las estimaciones. Los estudios de eventos
+mensuales (Figura~\ref{fig:monthly}), que fechan los resultados salariales según el mes
+de referencia del ingreso y los de empleo según el mes de la entrevista, muestran que la
+caída de la formalidad aparece inmediatamente después de mayo de 2022 y persiste, con
+una caída sugerente en las semanas en torno a la publicación del decreto, el 3 de abril;
+y un estudio de eventos trimestral que agrupa la cola derecha en $k\ge 8$, en lugar de
+estimar once rezagos libres, deja las estimaciones sin cambios.\footnote{Las series
+completas de coeficientes mensuales y agrupados se incluyen en el paquete de
+replicación.}
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=0.98\textwidth]{fig11_monthly_event.pdf}
+\caption{Estudios de eventos mensuales en torno a la reforma de mayo de 2022. Los
+resultados salariales se fechan según el mes de referencia del ingreso y los de empleo
+según el mes de la entrevista; extremos agrupados en $\pm$13 meses; mes de referencia:
+abril de 2022. Bandas: intervalos de confianza al 95 por ciento con errores agrupados
+por departamento.}
+\label{fig:monthly}
+\end{figure}
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=0.8\textwidth]{fig7_honestdid.pdf}
+\caption{Sensibilidad a violaciones de las tendencias paralelas
+\citep{rambachan_roth_2023}. Conjuntos de confianza robustos para el efecto promedio
+posterior a la reforma bajo la restricción de magnitudes relativas, que acota la
+violación de la tendencia posterior a la reforma en $\bar{M}$ veces la mayor violación
+previa a la reforma.}
+\label{fig:honest}
+\end{figure}
+
+\subsection{Reformas placebo y exclusión de una unidad a la vez}
+
+Asigno reformas ficticias a cada trimestre interior de la ventana previa a la reforma y
+vuelvo a estimar las diferencias en diferencias usando solo datos previos a la reforma
+(Cuadro del Apéndice~\ref{tab:placebo}). Los placebos salariales son nulos y los del
+trabajo independiente son marginales en dos de los tres trimestres. Los placebos de
+empleo son grandes y significativos en los tres trimestres, lo cual es un síntoma
+directo de la tendencia previa impulsada por la pandemia en ese resultado y la base de
+mi negativa a interpretar causalmente la estimación de empleo.
+
+Los placebos de formalidad merecen algo más que una lectura de aprobado o desaprobado,
+porque ellos y la prueba conjunta de tendencias previas responden la misma pregunta con
+distinta potencia. Los tres son negativos ($-0.024$, $-0.029$, $-0.017$, el último
+significativo al cinco por ciento): aunque la prueba conjunta no rechaza la nula
+($p=0.15$), el patrón de las estimaciones puntuales indica una deriva relativa a la baja
+de aproximadamente dos puntos porcentuales a lo largo de la ventana previa. Por eso
+cuantifico cómo cambia la estimación de formalidad bajo correcciones de la deriva de
+severidad creciente, en lugar de apoyarme solo en haber superado la prueba. Descontar
+aritméticamente la deriva implícita en los placebos deja un efecto de aproximadamente
+$-0.02$ a $-0.03$, que sigue siendo más de una décima parte de la formalidad base y que
+está muy cerca de la estimación de la brecha por calificación con diferencias en
+diferencias sintéticas ($-0.028$), inmune por construcción a una deriva a nivel de
+grupo. Dos correcciones más agresivas acotan los extremos. Una especificación que
+permite que los dos grupos educativos diverjan según una tendencia lineal libre a lo
+largo de toda la ventana (Cuadro~\ref{tab:robspec}) lleva a cero las estimaciones de
+composición del contraste educativo, pero esto es mecánico y no diagnóstico: un cambio
+de nivel inmediato y persistente, observado durante diez trimestres posteriores a la
+reforma, se aproxima bien mediante una tendencia, de modo que esta especificación
+absorbe un verdadero efecto escalón junto con cualquier deriva y conviene leerla como
+el peor escenario. De manera simétrica, la restricción de suavidad de
+\citet{rambachan_roth_2023}, que extrapola la tendencia previa lineal ajustada al
+periodo posterior, produce un intervalo no informativo para la formalidad
+($[-0.045,\,0.041]$ con $M=0$): extrapolar cuatro puntos ruidosos del periodo previo a
+lo largo de diez trimestres posteriores dispara la varianza. El resumen justo es que el
+contraste educativo, por sí solo, no puede separar un cambio de nivel persistente de una
+tendencia de grupo en una ventana tan larga. Precisamente por eso el peso causal de este
+artículo descansa en el diseño de exposición regional, cuyos adelantos son planos, cuya
+inferencia se basa en el diseño y cuyo gradiente de dosis-respuesta no puede ser
+generado por una deriva específica de grupo; y en la convergencia de la estimación
+educativa ajustada por la deriva con la estimación de diferencias en diferencias
+sintéticas, de $-0.02$ a $-0.03$.
+
+La reestimación excluyendo un departamento a la vez y excluyendo un trimestre a la vez
+(Cuadro del Apéndice~\ref{tab:loo}) deja las estimaciones puntuales prácticamente sin
+cambios para los cuatro resultados, lo que indica que ninguna región ni ningún
+trimestre en particular determina los resultados.
+
+\subsection{La ola de inmigración venezolana}
+
+Un choque distinto de oferta laboral se superpone a mi contexto: el éxodo venezolano
+trajo al Perú alrededor de 1.5 millones de migrantes, concentrados en 2018--2019 y en
+Lima y la costa urbana, que compiten sobre todo por empleos urbanos informales y de
+bajos salarios \citep{asencios_castellares_2020}. Tres rasgos de la evidencia indican que
+este flujo no explica el resultado de reasignación (Cuadro del
+Apéndice~\ref{tab:migration}). En primer lugar, añadir efectos fijos
+departamento$\times$trimestre, que absorben cualquier choque local común a ambos grupos
+educativos dentro de un departamento-trimestre, incluidas las llegadas de migrantes y
+las olas de regularización del periodo de estudio, deja prácticamente sin cambios las
+estimaciones de formalidad y de trabajo independiente ($-0.041$ y $+0.034$); solo la
+estimación de empleo se atenúa aún más, en línea con mi lectura de ese margen. En
+segundo lugar, las estimaciones son estables, de hecho algo mayores, cuando excluyo a
+Lima y Callao, y cuando excluyo los ocho departamentos que albergan a la gran mayoría de
+la población venezolana. En tercer lugar, la geografía va en la dirección equivocada
+para que la migración sea un factor de confusión: los migrantes se concentran en
+departamentos de baja incidencia, de modo que la presión de desplazamiento derivada de
+la inmigración generaría efectos concentrados donde encuentro los más pequeños, lo
+contrario de la relación dosis-respuesta observada en la exposición regional. El
+calendario apunta en la misma dirección: el pico de entradas de 2018--2019 es anterior a
+mi ventana, y la prueba prepandemia de la siguiente subsección, estimada precisamente en
+esos años de máxima afluencia, muestra que el contraste educativo deriva en la dirección
+opuesta a mis estimaciones de 2022.
+
+\subsection{La crisis política de 2022--2023}
+
+Un segundo choque agregado se superpone a la ventana posterior a la reforma: la crisis
+política que siguió a la destitución del presidente Castillo el 7 de diciembre de 2022,
+con protestas, bloqueos de carreteras y estados de emergencia entre diciembre de 2022 y
+marzo de 2023, seguida de una recesión en 2023. Las protestas se concentraron en la
+sierra sur, y varios de sus epicentros son también departamentos de alta incidencia, de
+modo que la preocupación es específica: las caídas del empleo formal provocadas por el
+conflicto podrían cargarse sobre el gradiente regional del índice de Kaitz, que sostiene
+parte del peso causal de este artículo. Para el contraste educativo, los efectos fijos
+departamento$\times$trimestre del Cuadro~\ref{tab:migration} ya absorben cualquier choque
+departamento-trimestre, incluida la crisis; el diseño regional, en cambio, se identifica
+precisamente a partir de la variación por departamento y en el tiempo, y requiere una
+respuesta directa.
+
+Mido la intensidad local de la crisis con los reportes mensuales de conflictos de la
+Presidencia del Consejo de Ministros, que registran, para cada departamento, el número
+máximo de personas movilizadas en acciones de protesta; tomo el pico de cada
+departamento entre enero y febrero de 2023, los meses en que la movilización nacional
+alcanzó su máximo, lo expreso por residente en edad de trabajar y lo estandarizo entre
+departamentos (el Apéndice A detalla la fuente). Tres resultados del Cuadro del
+Apéndice~\ref{tab:crisis} indican que la crisis no genera el gradiente regional. En
+primer lugar, la geografía de las protestas no es la geografía de la incidencia: la
+correlación entre departamentos de la intensidad de las protestas y la exposición según
+el índice de Kaitz es de 0.19. Hu\'anuco, el departamento con el mayor índice de Kaitz,
+casi no tuvo movilizaciones, mientras que Arequipa y Tacna, entre los más movilizados, se
+ubican en la mitad inferior de la distribución de la exposición. En segundo lugar,
+controlar por la intensidad de las protestas interactuada con el indicador del periodo
+posterior, o con un indicador de 2023 en adelante, deja las pendientes del índice de
+Kaitz prácticamente sin cambios (formalidad: $-0.018$ en la especificación base frente a
+$-0.016$ a $-0.017$ con los controles, con $p$ por aleatorización $\le 0.001$ en todos
+los casos; trabajo independiente: $+0.010$ frente a $+0.008$), mientras que el propio
+control de protestas entra de manera significativa y con los signos esperados, de modo
+que la medida tiene poder de identificación y sencillamente no explica el gradiente. En
+tercer lugar, excluir los seis departamentos del sur que estuvieron en el centro de las
+protestas deja intacto el gradiente ($-0.016$ para la formalidad, $p$ por aleatorización
+$= 0.002$).
+
+Un patrón temporal merece una declaración franca. Restringir la ventana posterior a la
+reforma a 2022Q3--Q4, los dos trimestres posteriores a la reforma pero anteriores a la
+crisis, reduce la pendiente regional de la formalidad a $-0.006$, que pierde
+significancia; el gradiente, por tanto, se estima sobre todo a partir de 2023, cuando
+coexiste con la crisis y la recesión. Tres observaciones me impiden leer el gradiente
+como un artefacto de la crisis: el contraste educativo ya está plenamente presente en
+esos dos trimestres previos a la crisis (formalidad $-0.029$, $p<0.01$, con la misma
+magnitud bajo efectos fijos departamento$\times$trimestre que absorben todos los choques
+locales de la crisis); los estudios de eventos muestran que el efecto de composición se
+construye gradualmente a lo largo del primer año, de modo que una pendiente pequeña en
+la ventana temprana es lo que implican las dinámicas y no una discrepancia; y el control
+directo de protestas descrito arriba, que es exactamente la variable sobre la que se
+cargaría un factor de confusión ligado a la crisis, no mueve nada. Aun así, la lectura
+justa es que la corroboración regional es más sólida para la persistencia de mediano
+plazo del efecto, y que el contraste educativo con absorción de choques locales es el
+que aporta la evidencia sobre el calendario inmediato.
+
+\subsection{Una extensión prepandemia de la prueba de tendencias paralelas}
+
+Como mi ventana se abre en plena recuperación pospandemia, pruebo también el contraste
+educativo en tiempos normales, con los módulos anuales de empleo de la ENAHO de
+2018--2019 y la ventana tranquila 2018Q3--2019Q4 (posterior al aumento de la RMV de
+abril de 2018 y anterior a cualquier otra reforma). El ejercicio es doblemente
+informativo. Por un lado, aconseja humildad sobre el diseño educativo en niveles: las
+pruebas conjuntas de las interacciones $\mathrm{Low}\times$trimestre rechazan la nula
+para los salarios, el empleo y el trabajo independiente incluso en esta ventana
+tranquila: en tiempos normales, los resultados de baja y alta educación oscilan uno
+respecto del otro a bajas frecuencias, lo que es un argumento para apoyar el peso causal
+en el diseño de exposición regional y no solo en el contraste educativo. Por otro lado,
+la \emph{dirección} de la deriva en tiempos normales va en contra de mis hallazgos de
+2022, no a su favor: una reforma placebo ubicada en 2019Q1 produce un ``efecto''
+\emph{negativo} sobre el trabajo independiente ($-2.2$ puntos porcentuales) y uno
+positivo y no significativo sobre la formalidad ($+0.8$ puntos), la imagen especular del
+patrón posterior a la reforma. Cualquiera que sea la divergencia secular entre los
+grupos, antes de la pandemia empujaba a los trabajadores de baja educación hacia la
+formalidad y los alejaba del trabajo independiente, de modo que sesga hacia cero las
+estimaciones de reasignación de 2022 en lugar de generarlas.
+
+\subsection{Validación fuera de muestra: la reforma de 2025}
+
+Por último, replico todo el diseño en torno a la segunda reforma, que elevó el salario
+mínimo a 1130 soles el 1 de enero de 2025, usando los trimestres de 2024 y 2025. Esta
+reforma es de una magnitud casi idéntica a la de 2022, pero ocurre en un entorno más
+tranquilo y pospandemia. La columna (6) del Cuadro~\ref{tab:inference} reporta las
+estimaciones. No aparece ninguna respuesta salarial ($0.002$, error estándar $0.011$):
+en dos reformas ocurridas en condiciones macroeconómicas distintas, no hay evidencia de
+que el salario mínimo haya elevado la remuneración relativa de los trabajadores poco
+calificados. La reasignación, en cambio, no se replica: los efectos sobre la formalidad y
+el empleo son nulos en torno a la reforma de 2025, y el efecto sobre el trabajo
+independiente es pequeño y de signo opuesto. Tomo este resultado en serio en lugar de
+buscarle una explicación que lo neutralice. Implica que la reasignación que documento en
+torno a 2022 no es una respuesta estructural estable que siga a todo aumento del salario
+mínimo; operó cuando el nuevo piso barrió una banda densa de remuneraciones formales,
+una condición que el aumento de 2025 ya no cumplía. La Sección~\ref{sec:discussion}
+desarrolla esta interpretación de dependencia del estado, examina directamente sus dos
+variables de estado candidatas y discute las alternativas, incluida la posibilidad de
+que dinámicas residuales de la recuperación contribuyan a las estimaciones de 2022.

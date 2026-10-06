@@ -1,0 +1,17 @@
+\begin{table}[!tbp]\centering
+\caption{Estabilidad de las estimaciones DiD de base al excluir una unidad a la vez}\label{tab:loo}
+\begin{threeparttable}
+\begin{tabular}{lccc}
+\toprule
+Resultado & Muestra completa & Rango sin un depto. & Rango sin un trimestre \\
+\midrule
+Log salario/hora & -0.021 & [-0.027, -0.017] & [-0.026, -0.010] \\
+Empleo & -0.025 & [-0.028, -0.018] & [-0.031, -0.014] \\
+Empleo formal & -0.046 & [-0.050, -0.043] & [-0.052, -0.042] \\
+Trab. independiente & 0.036 & [0.032, 0.038] & [0.031, 0.041] \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}\footnotesize
+\item Notas: Rangos del coeficiente $\mathrm{Low}\times\mathrm{Post}$ al reestimar la especificación de base excluyendo un departamento a la vez (25 estimaciones) o un trimestre a la vez (15 estimaciones). Las estimaciones completas por unidad están en los resultados de replicación (\texttt{rob\_leaveoneout\_detail.csv}).
+\end{tablenotes}
+\end{threeparttable}\end{table}

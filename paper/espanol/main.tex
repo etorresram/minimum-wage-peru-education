@@ -1,0 +1,118 @@
+% ============================================================================
+% main.tex  --  Versión en español del paper (la versión en inglés está en
+% paper/english/). Tablas en tables/es/ y figuras en figures/es/, generadas por
+% scripts/R/09_tables.R y save_fig() con las etiquetas en español.
+% Compila con pdflatex + bibtex (author-year via natbib/apalike), o tectonic.
+%   pdflatex main ; bibtex main ; pdflatex main ; pdflatex main
+% ============================================================================
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[spanish,es-noshorthands,es-nodecimaldot]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{threeparttable}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage[authoryear,round]{natbib}
+\bibliographystyle{apalike}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+\usepackage{siunitx}
+\usepackage{enumitem}
+
+\captionsetup{font=small,labelfont=bf}
+\setlength{\parskip}{2pt}
+\graphicspath{{../../figures/es/}}
+
+\newcommand{\Low}{\mathrm{Low}}
+\newcommand{\Post}{\mathrm{Post}}
+
+\title{\textbf{Desplazar, no elevar:\\
+salario mínimo, informalidad y trabajadores poco calificados en el Perú}\thanks{Este
+documento utiliza los módulos trimestrales de empleo de uso público de la Encuesta
+Nacional de Hogares (ENAHO) del Instituto Nacional de Estadística e Informática (INEI).
+Todas las estimaciones usan los factores de expansión de la encuesta; el paquete de
+replicación está disponible en el repositorio que acompaña al documento. Cualquier
+error es responsabilidad exclusiva del autor.}}
+
+\author{Eric Torres Ramirez\\
+  \small Pontificia Universidad Católica del Perú\\
+  \small \texttt{eric.torres@pucp.edu.pe}}
+\date{Esta versión: \today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent
+Que un salario mínimo beneficie a los trabajadores a quienes se dirige depende de a
+cuántos de ellos alcanza y de si alguien lo cumple. Estudio el aumento del salario
+mínimo nacional del Perú de mayo de 2022, de 930 a 1025 soles. El Perú fija un único
+salario mínimo nacional, por lo que la identificación proviene de la exposición
+diferencial: en la víspera de la reforma, la mayoría de los asalariados de baja
+educación ganaba menos que el nuevo mínimo, frente a dos quintos del grupo de
+comparación de alta educación. Con datos trimestrales de la ENAHO (2021--2024),
+encuentro que la reforma no elevó la remuneración de los trabajadores a quienes se
+dirigía, aunque el mínimo se respetó allí donde llega la fiscalización: dentro del
+sector formal, el pico de ingresos en el mínimo anterior se traslada casi por completo
+al nuevo, pero los empleos formales representan solo el 13 por ciento del empleo de baja
+educación, la remuneración informal se alejó aún más por debajo del mínimo y los salarios
+relativos no subieron. Lo que cambió fue la composición del empleo: el empleo formal de
+los trabajadores de baja educación cayó 4.6 puntos porcentuales, un quinto de su nivel
+inicial, y el trabajo independiente aumentó 3.6 puntos; el desplazamiento aparece de
+inmediato, resiste el ajuste por la pequeña divergencia previa a la reforma entre los
+grupos, es mayor en los departamentos de alta incidencia y se confirma con un diseño de
+exposición regional continua bajo inferencia por aleatorización. Los datos de panel
+muestran que el ajuste operó a través de las contrataciones y no de las separaciones:
+los trabajadores formales en su puesto conservaron su empleo, mientras que la tasa a la
+que los trabajadores informales de baja educación ingresaban a empleos formales cayó
+casi a la mitad. Un aumento de idéntica magnitud en enero de 2025, en un mercado
+laboral más estable, no produjo una reasignación comparable. Donde la informalidad es
+generalizada y la fiscalización débil, los aumentos del salario mínimo desplazan a los
+trabajadores poco calificados entre modalidades de empleo más de lo que elevan su
+remuneración, lo que matiza la visión del ``efecto faro'' del salario mínimo peruano
+encontrada para reformas anteriores.
+
+\medskip
+\noindent\textbf{Palabras clave:} salario mínimo; informalidad; educación; diferencias en diferencias; Perú.\\
+\noindent\textbf{Códigos JEL:} J23, J31, J38, J46, O17.
+\end{abstract}
+
+\newpage
+\setstretch{1.15}
+
+\input{sections/01_introduction}
+\input{sections/02_institutional}
+\input{sections/03_literature}
+\input{sections/04_data}
+\input{sections/05_strategy}
+\input{sections/06_results}
+\input{sections/07_robustness}
+\input{sections/08_heterogeneity}
+\input{sections/09_discussion}
+\input{sections/10_conclusion}
+
+\section*{Declaraciones}
+\noindent\textbf{Conflictos de interés:} ninguno.\\
+\textbf{Financiamiento:} esta investigación no recibió financiamiento específico de
+ninguna agencia de los sectores público, comercial o sin fines de lucro.\\
+\textbf{Disponibilidad de datos:} los microdatos de la ENAHO están disponibles
+públicamente en el Instituto Nacional de Estadística e Informática (INEI). El código
+que reproduce cada tabla y figura está disponible en el repositorio de replicación en
+línea.
+
+\newpage
+\bibliography{../references}
+
+\newpage
+\appendix
+\input{appendix/appendix}
+
+\end{document}
