@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-20",
+  "pages": 16,
+  "maximum_pages": 20,
+  "includes_references_and_appendices": true,
+  "main_document": "paper_espanol_revista.tex",
+  "pdf_sha256": "5758cb23a134f283660500993e51d5852d8f678ecb3dc3f3be3b58183bae709d",
+  "all_pages_visually_reviewed": true,
+  "unresolved_references": false,
+  "overfull_boxes": false,
+  "body_font_points": 12,
+  "margin_inches": 1,
+  "panel_audit": "auditoria_transiciones.csv",
+  "main_quarterly_estimates_changed": false,
+  "panel_common_window_effects_included": true
+}

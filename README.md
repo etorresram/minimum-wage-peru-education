@@ -25,7 +25,22 @@ treated as inconclusive.
 
 ## Repository structure
 
-### Short Spanish version and coauthor feedback
+### Journal draft and coauthor feedback
+
+The preferred working draft is now **`paper_espanol_revista.tex`**, a 16-page
+Spanish manuscript including references and appendices (requested maximum: 20).
+It adds pre-reform descriptives, develops the contribution, and explicitly
+specifies annual transitions. The panel model includes common window indicators;
+its revised results and independent R audit are documented in
+`paper/espanol_revista/README.md`. These panel estimates supersede the restricted
+specification used in the earlier drafts; the main quarterly estimates are unchanged.
+
+After syncing the existing Overleaf project with GitHub, select
+`paper_espanol_revista.tex` as the main document. The compiled draft is at
+`paper/espanol_revista/paper_espanol_revista.pdf`. Rebuild its exhibits with
+`Rscript scripts/R/build_paper_journal.R`.
+
+### Earlier short version and supporting materials
 
 The revised short version focuses on hourly wages, formality and self-employment,
 with explicit econometric specifications and a compact appendix. It preserves the
@@ -106,7 +121,8 @@ install.packages(c("haven","data.table","fixest","DRDID","HonestDiD",
    ```
 
    In Overleaf, choose the version with Main document
-   (`paper_english.tex`, `paper_espanol.tex`, or `paper_espanol_corto.tex`). The full Spanish version uses
+   (`paper_espanol_revista.tex` for the preferred draft; earlier versions:
+   `paper_english.tex`, `paper_espanol.tex`, `paper_espanol_corto.tex`). The full Spanish version uses
    `tables/es/` and `figures/es/`.
 
 ## Script guide

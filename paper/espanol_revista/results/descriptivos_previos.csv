@@ -1,0 +1,25 @@
+low,value,variable,label,digits
+0,27278,n_all,Observaciones: población de 14--65 años,0
+1,65954,n_all,Observaciones: población de 14--65 años,0
+0,34.6485952535334,age,Edad (años),1
+1,35.9234443930711,age,Edad (años),1
+0,93.1281892048784,urban,Zona urbana (\%),1
+1,76.2441878758025,urban,Zona urbana (\%),1
+1,14449,n_wage,Observaciones: muestra salarial,0
+0,7795,n_wage,Observaciones: muestra salarial,0
+1,946.475591542064,wage_median,Mediana salarial mensual nominal (S/),0
+0,1200,wage_median,Mediana salarial mensual nominal (S/),0
+1,5.80278347473528,wage_hour,"Salario real por hora, media (S/)",2
+0,9.26406948017241,wage_hour,"Salario real por hora, media (S/)",2
+1,45.1630351790721,below_old,Salario mensual inferior a S/930 (\%),1
+0,25.1715164259011,below_old,Salario mensual inferior a S/930 (\%),1
+1,56.907622622689,below_new,Salario mensual inferior a S/1025 (\%),1
+0,40.0398104705184,below_new,Salario mensual inferior a S/1025 (\%),1
+1,11.7445874436169,between,"Salario mensual en [S/930, S/1025) (\%)",1
+0,14.8682940446174,between,"Salario mensual en [S/930, S/1025) (\%)",1
+1,46090,n_comp,Observaciones: muestra de composición,0
+0,15463,n_comp,Observaciones: muestra de composición,0
+1,11.598533621695,formal,Empleo formal (\%),1
+0,38.2650526522343,formal,Empleo formal (\%),1
+1,42.8211731892548,self,Cuenta propia (\%),1
+0,30.8615714430396,self,Cuenta propia (\%),1

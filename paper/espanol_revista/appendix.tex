@@ -1,0 +1,54 @@
+\section{Medición y evidencia complementaria}
+\label{app:short_measure}
+
+\subsection{Construcción de variables}
+
+Los pagos asalariados de \texttt{p524a1} se mensualizan con la frecuencia de \texttt{p523}: pago diario por 25, semanal por $52/12$, quincenal por 2 y mensual por 1. El ingreso real usa el IPC de Lima del mes anterior a la entrevista, con base diciembre de 2021; enero se refiere a diciembre del año previo. Las horas mensuales son las horas semanales de la ocupación principal por 4.345. La winsorización se realiza una sola vez, en los percentiles 0.5 y 99.5 de la muestra canónica de asalariados privados, antes de tomar logaritmos.
+
+La formalidad se deriva de \texttt{ocupinf} cuando está disponible. Para 2024 se usa la regla de reconstrucción seleccionada en el código de preparación: afiliación previsional o contrato entre asalariados y registro de la unidad productiva entre independientes y empleadores, con los trabajadores familiares no remunerados clasificados como informales. La coincidencia de la reconstrucción con el indicador oficial es de aproximadamente 88\% en el período de superposición. Esa validación no garantiza que el error sea estable entre grupos o años. La comparación de 2025 emplea la reconstrucción en ambos años de su ventana.
+
+En el panel, los pares previos incluyen 2020--2021 y las entrevistas de enero--abril de 2022 del par 2021--2022. La ventana que cruza la reforma comprende el par 2021--2022 con entrevista de 2022 en mayo--diciembre y el par 2022--2023 con entrevista de 2022 en enero--abril. La ventana posterior comprende 2022--2023 con entrevista de 2022 en mayo--diciembre y 2023--2024. La base formal contiene 7011 observaciones de pares y la base de entrada, 33\,076. Una persona puede contribuir a más de un par. Se exige edad de 14--65 años al inicio, educación válida, estados de origen y destino observados y factor de expansión positivo.
+
+Los estados laborales se asignan dando prioridad al empleo privado formal. La base de entrada incluye asalariados informales e independientes no clasificados como formales; no comprende a todos los ocupados informales, pues excluye, por ejemplo, trabajadores familiares no remunerados. La categoría independiente del panel incluye empleadores, mientras que el indicador de cuenta propia del texto principal los excluye. La reconstrucción de formalidad usa la regla de previsión, contrato y registro descrita arriba cuando falta el indicador oficial.
+
+La especificación preferida incluye efectos fijos de par y departamento, indicadores comunes de las ventanas e interacciones con baja educación. Omitir los indicadores comunes restringe a cero la variación propia de cada ventana para el grupo de alta educación, aparte de los efectos de par y controles. Bajo esa restricción, la entrada posterior se estima en $-2.12$ puntos ($p=0.011$), frente a $-4.66$ ($p=0.024$) en la especificación preferida. La permanencia pasa de $+8.26$ a $+8.89$ puntos en la ventana que cruza la reforma y de $-2.23$ a $-1.41$ en la posterior. Esta diferencia motiva reportar explícitamente los indicadores comunes y evita atribuir a los efectos fijos de par una absorción que no realizan.
+
+\subsection{Comparación con la reforma de 2025}
+\input{paper/espanol_revista/tables/2025}
+
+La reforma de enero de 2025 elevó la RMV de S/1025 a S/1130. Los resultados del cuadro utilizan la ventana 2024--2025 del código de replicación. La diferencia respecto de 2022 admite varias explicaciones y no constituye una prueba aislada de dependencia del efecto respecto del estado del mercado laboral.
+\FloatBarrier
+
+\section{Robustez y diferencias entre estimadores}
+\label{app:short_robustness}
+
+El Cuadro~\ref{tab:short_specs} reúne las variantes de especificación para los tres resultados. Presentarlas conjuntamente permite valorar su magnitud sin repetir una subsección por cada prueba. Los resultados salariales permanecen pequeños o negativos en estas variantes, mientras que las estimaciones de composición se acercan a cero al introducir una tendencia por grupo. Las modificaciones no comparten siempre la misma muestra ni el mismo supuesto de identificación.
+
+\input{paper/espanol_revista/tables/specifications}
+
+El DiD doblemente robusto de \citet{santanna_zhao_2020}, estimado en cortes transversales repetidos pre/post, obtiene $-0.056$ log puntos en salarios (EE 0.137), $+0.59$ puntos en formalidad (EE 3.98) y $+4.61$ en autoempleo (EE 4.51). Ninguno es significativo al 5\%. Cambian el ajuste de covariables y la estructura temporal respecto del modelo base; no atribuyo toda la discrepancia exclusivamente a una menor potencia.
+
+La corrección CR2 del análisis existente se aplica a medias de celdas departamento por grupo educativo por período, con una regresión colapsada. Sus valores $p$ son 0.854, 0.244 y 0.093 para salarios, formalidad y autoempleo. Son resultados de otra agregación y especificación, no errores alternativos aplicados al mismo coeficiente individual. Los ejercicios de permutación regional también dependen de la intercambiabilidad de las exposiciones bajo la hipótesis nula; que la exposición sea previa no demuestra esa condición. Por ello, el texto principal reporta la inferencia agrupada del modelo regional explícitamente definido.
+
+Los placebos, exclusiones de una unidad, exposiciones por celda, triple diferencia, diferencias en diferencias sintéticas, heterogeneidad y distribución salarial permanecen documentados en la versión extensa y en el paquete de replicación. Varios ofrecen resultados imprecisos o fallan sus propios diagnósticos; no se utilizan aquí como una lista de confirmaciones del diseño. La síntesis del texto principal conserva las amenazas que modifican la interpretación, incluidas las pruebas adversas de tendencias y el episodio de 2025.
+\FloatBarrier
+
+\section{Exploración del límite educativo}
+\label{app:short_local}
+
+Un diseño de regresión discontinua requiere una variable y un umbral que determinen una discontinuidad en la asignación al tratamiento \citep{cattaneo_titiunik_2022_short}. En estos datos no se documenta que la RMV se asigne según años de educación. La variable educativa es una imputación por categoría: secundaria completa recibe 11 años y superior no universitaria incompleta, 13. No hay observaciones con 12 años. Una variable discreta puede emplearse en determinados diseños RD, pero no reemplaza la necesidad de justificar el mecanismo de asignación.
+
+Primero estimo la ecuación~\eqref{eq:short_did} únicamente entre esas dos categorías. Se omite el control de años educativos porque es colineal con el indicador de grupo en esa submuestra. Segundo defino $x_i=E_i-12$ y $A_i=\mathbf{1}\{E_i\ge13\}$, y estimo, en $|x_i|\le3$,
+\begin{equation}
+\begin{split}
+Y_{irt}={}&\alpha_r+\lambda_t+\gamma A_i+b x_i+d(A_ix_i)\\
+&+q(P_tx_i)+h(A_iP_tx_i)+\vartheta(A_iP_t)+Z_i'\omega+e_{irt},
+\end{split}
+\label{eq:short_jump}
+\end{equation}
+donde $Z_i$ contiene los controles demográficos del modelo principal, sin años educativos. El modelo admite pendientes distintas por lado y período. Reporto $-\vartheta$, de modo que la orientación sea baja menos alta educación. La ventana contiene valores imputados de 9, 11, 13 y 14 años, apenas dos valores distintos por lado. No es un ancho de banda óptimo de RD: el salto en 12 se obtiene por extrapolación lineal sobre un intervalo sin observaciones.
+
+\input{paper/espanol_revista/tables/local}
+
+Ninguno de los seis contrastes del Cuadro~\ref{tab:short_local} es significativo al 5\%. Su falta de precisión no demuestra un efecto nulo ni prueba estadísticamente que difieran del DiD amplio. En el período previo, la proporción de asalariados privados bajo la RMV vigente es 37.63\% para la categoría de 11 años y 37.35\% para la de 13. Esta cercanía es descriptiva: no es un primer estadio de una RD difusa ni una prueba formal de ausencia de discontinuidad. En consecuencia, los ejercicios permanecen como comparaciones exploratorias y no como una estrategia causal adicional.
+\FloatBarrier

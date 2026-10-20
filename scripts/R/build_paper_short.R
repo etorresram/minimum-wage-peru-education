@@ -2,7 +2,7 @@
 # Ejecutar desde project/: Rscript scripts/R/build_paper_short.R
 suppressPackageStartupMessages({library(data.table); library(ggplot2)})
 root <- Sys.getenv('MW_PROJ_ROOT', '.')
-folder <- file.path(root,'paper/espanol_corta')
+folder <- Sys.getenv('MW_PAPER_OUTPUT', file.path(root,'paper/espanol_corta'))
 dir.create(file.path(folder,'tables'),recursive=TRUE,showWarnings=FALSE)
 dir.create(file.path(folder,'figures'),recursive=TRUE,showWarnings=FALSE)
 read_out <- function(f) fread(file.path(root,'output',f))
