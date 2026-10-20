@@ -25,6 +25,26 @@ treated as inconclusive.
 
 ## Repository structure
 
+### Short Spanish version and coauthor feedback
+
+The revised short version focuses on hourly wages, formality and self-employment,
+with explicit econometric specifications and a compact appendix. It preserves the
+diagnostics that limit causal interpretation. The education-threshold exercises
+are exploratory, not an identified regression discontinuity design.
+
+- Main file for Overleaf: `paper_espanol_corto.tex`.
+- Compiled paper: `paper/espanol_corta/paper_espanol_corto.pdf`.
+- Build instructions and result provenance: `paper/espanol_corta/README.md`.
+- R notebook: `notebooks/feedback_coautor.ipynb`; estimation script:
+  `notebooks/feedback_coautor.R`; independent numerical audit:
+  `notebooks/revisar_feedback_coautor.R`.
+- Annotated Word companion: `notebooks/feedback_coautor_comentado.docx`.
+
+After pulling the GitHub changes into the existing Overleaf project, select
+`paper_espanol_corto.tex` as the main document. The tables and figure are included,
+so compiling the manuscript does not require running R. The full Spanish and
+English versions remain available.
+
 ```
 project/
   data/
@@ -85,8 +105,8 @@ install.packages(c("haven","data.table","fixest","DRDID","HonestDiD",
    pdflatex paper_english && bibtex paper_english && pdflatex paper_english && pdflatex paper_english
    ```
 
-   In Overleaf, choose the version with Menu > Main document
-   (`paper_english.tex` or `paper_espanol.tex`). The Spanish version uses
+   In Overleaf, choose the version with Main document
+   (`paper_english.tex`, `paper_espanol.tex`, or `paper_espanol_corto.tex`). The full Spanish version uses
    `tables/es/` and `figures/es/`.
 
 ## Script guide

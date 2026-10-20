@@ -1,0 +1,44 @@
+% Versión breve independiente. Compilar desde la raíz de project/:
+% Rscript scripts/R/build_paper_short.R
+% tectonic paper_espanol_corto.tex --outdir paper/espanol_corta
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[spanish,es-noshorthands,es-nodecimaldot]{babel}
+\usepackage{amsmath,amssymb,graphicx,booktabs,threeparttable}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage{caption}
+\usepackage{placeins}
+\usepackage{float}
+\usepackage[authoryear,round]{natbib}
+\usepackage[hidelinks]{hyperref}
+\usepackage{microtype}
+\bibliographystyle{paper/espanol/apalike-es}
+\captionsetup{font=small,labelfont=bf}
+\setlength{\parskip}{3pt}
+\setstretch{1.1}
+\setcounter{topnumber}{3}
+\renewcommand{\topfraction}{.9}
+\renewcommand{\textfraction}{.08}
+\emergencystretch=1.5em
+\title{\textbf{Salarios, formalidad y autoempleo ante el aumento del salario mínimo en el Perú}}
+\author{Eric Torres Ramirez\\\small Pontificia Universidad Católica del Perú\\\small\texttt{etorresram@gmail.com}}
+\date{Versión breve --- 20 de octubre de 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+\noindent Estudio los cambios en salarios, formalidad y autoempleo alrededor del aumento del salario mínimo peruano de mayo de 2022, de S/930 a S/1025. Utilizo cortes transversales trimestrales de la ENAHO de 2021--2024 y comparo trabajadores de menor y mayor educación. El salario horario relativo presenta una variación de $-0.021$ log puntos, no significativa al 5\%; la proporción de empleo formal cae 4.64 puntos porcentuales y la de autoempleo aumenta 3.63 puntos entre los ocupados no públicos. Un diseño complementario de exposición regional encuentra cambios de composición del mismo signo. El panel anual sugiere una menor entrada a la formalidad, sin identificar un aumento preciso de las salidas de quienes ya eran formales. La interpretación causal está limitada por las tendencias previas, la sensibilidad a su relajación y la falta de reproducción del patrón de composición en 2025. La evidencia documenta diferencias relevantes alrededor de la reforma, pero no establece una respuesta general de los salarios o de la formalidad a cualquier aumento del mínimo.
+\medskip
+
+\noindent\textbf{Palabras clave:} salario mínimo; formalidad; autoempleo; educación; Perú.\\
+\noindent\textbf{JEL:} J23, J31, J38, J46.
+\end{abstract}
+\input{paper/espanol_corta/main}
+\FloatBarrier
+\bibliography{paper/references,paper/espanol_corta/references_extra}
+\clearpage
+\appendix
+\input{paper/espanol_corta/appendix}
+\end{document}
